@@ -1223,7 +1223,7 @@ body.lang-de [data-ru]{display:none}
       <span data-de>Briefing absenden &rarr;</span><span data-ru>Отправить бриф &rarr;</span>
     </button>
     <p class="submit-hint">
-      <span data-de>Ihre Daten werden direkt an Telegram gesendet</span><span data-ru>Данные будут отправлены в Telegram</span>
+      <span data-de>Briefing wird kopiert &mdash; f&uuml;gen Sie es im Telegram-Chat ein</span><span data-ru>Бриф скопируется &mdash; вставьте его в Telegram-чат</span>
     </p>
   </div>
 
@@ -1520,10 +1520,41 @@ function sendBrief() {
   lines.push(lang === 'ru' ? '\uD83D\uDCB0 \u041E\u0420\u0418\u0415\u041D\u0422\u0418\u0420\u041E\u0412\u041E\u0427\u041D\u0410\u042F \u0421\u0422\u041E\u0418\u041C\u041E\u0421\u0422\u042C:' : '\uD83D\uDCB0 GESCH\u00C4TZTER PREIS:');
   lines.push('  ' + document.getElementById('totalPrice').textContent);
 
-  /* Build Telegram URL */
+  /* Copy text to clipboard and open Telegram chat */
   var text = lines.join('\n');
-  var url = 'https://t.me/natali_6432?text=' + encodeURIComponent(text);
-  window.open(url, '_blank');
+
+  /* Try clipboard API first, fallback to textarea trick */
+  function copyAndOpen() {
+    window.open('https://t.me/natali_6432', '_blank');
+    var lang2 = document.body.classList.contains('lang-ru') ? 'ru' : 'de';
+    var msg = lang2 === 'ru'
+      ? 'Бриф скопирован! Вставьте текст в чат (долгое нажатие → Вставить)'
+      : 'Briefing kopiert! Fügen Sie den Text im Chat ein (lange drücken → Einfügen)';
+    setTimeout(function(){ alert(msg); }, 600);
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(copyAndOpen).catch(function() {
+      /* Fallback for older browsers */
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;top:-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      copyAndOpen();
+    });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;top:-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    copyAndOpen();
+  }
 }
 
 /* ========== INIT ========== */
