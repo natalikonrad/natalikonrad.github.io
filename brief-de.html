@@ -27,6 +27,7 @@ body{
   line-height:1.6;
   -webkit-print-color-adjust:exact;
   print-color-adjust:exact;
+  padding-bottom:72px;
 }
 
 /* ========== PAGE CONTAINER ========== */
@@ -126,7 +127,7 @@ body{
 }
 .text-area{
   width:100%;
-  min-height:60px;
+  min-height:70px;
   border:1px dotted var(--esp);
   border-radius:6px;
   background:transparent;
@@ -141,21 +142,43 @@ body{
   border-color:var(--gold);
   border-style:solid;
 }
+.number-input{
+  width:80px;
+  border:none;
+  border-bottom:1px dotted var(--esp);
+  background:transparent;
+  font-family:var(--sans);
+  font-size:14px;
+  color:var(--dark);
+  padding:8px 0;
+  outline:none;
+  text-align:center;
+}
+.number-input:focus{
+  border-bottom-color:var(--gold);
+  border-bottom-style:solid;
+}
 
-/* ========== CHECKBOXES ========== */
+/* ========== CHECKBOXES & RADIOS ========== */
 .check-group{
   display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.check-group.horizontal{
+  flex-direction:row;
   flex-wrap:wrap;
-  gap:10px 20px;
+  gap:10px 24px;
 }
 .check-item{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
   cursor:pointer;
   font-size:14px;
   color:var(--dark);
   user-select:none;
+  padding:6px 0;
 }
 .check-item input[type="checkbox"],
 .check-item input[type="radio"]{
@@ -205,12 +228,87 @@ body{
   border-radius:50%;
   background:var(--gold);
 }
+.check-price{
+  font-size:12px;
+  color:var(--gold);
+  font-weight:500;
+  margin-left:auto;
+  white-space:nowrap;
+  padding-left:12px;
+}
+
+/* ========== SERVICE CARDS ========== */
+.svc-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.svc-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 16px;
+  border:1.5px solid rgba(91,74,62,0.12);
+  border-radius:8px;
+  cursor:pointer;
+  transition:all 0.2s;
+  background:rgba(255,255,255,0.35);
+}
+.svc-item:hover{
+  border-color:var(--gold);
+  background:rgba(255,255,255,0.6);
+}
+.svc-item.checked{
+  border-color:var(--gold);
+  background:rgba(196,169,125,0.08);
+}
+.svc-item input[type="checkbox"]{
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  width:20px;
+  height:20px;
+  border:1.5px solid var(--esp);
+  border-radius:4px;
+  background:transparent;
+  cursor:pointer;
+  flex-shrink:0;
+  position:relative;
+  transition:all 0.2s;
+}
+.svc-item input[type="checkbox"]:checked{
+  background:var(--gold);
+  border-color:var(--gold);
+}
+.svc-item input[type="checkbox"]:checked::after{
+  content:'';
+  position:absolute;
+  top:2px;
+  left:5.5px;
+  width:5px;
+  height:10px;
+  border:solid #fff;
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg);
+}
+.svc-name{
+  font-size:14px;
+  font-weight:500;
+  color:var(--dark);
+  flex:1;
+}
+.svc-price{
+  font-size:13px;
+  font-weight:600;
+  color:var(--gold);
+  white-space:nowrap;
+}
 
 /* ========== COLOR PALETTES ========== */
 .palettes{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:16px;
+  gap:12px;
 }
 .palette{
   display:flex;
@@ -225,6 +323,10 @@ body{
 }
 .palette:hover{
   border-color:var(--gold);
+}
+.palette.selected{
+  border-color:var(--gold);
+  background:rgba(196,169,125,0.08);
 }
 .palette input[type="radio"]{
   -webkit-appearance:none;
@@ -269,45 +371,135 @@ body{
   white-space:nowrap;
 }
 
-/* ========== PRICE TABLE ========== */
-.price-block{
-  margin-bottom:24px;
+/* ========== PRICE SUMMARY ========== */
+.price-summary{
+  border:2px solid var(--gold);
+  border-radius:12px;
+  padding:28px 32px;
+  background:rgba(255,255,255,0.5);
+  margin-top:8px;
 }
-.price-block-title{
+.price-summary-title{
   font-family:var(--serif);
-  font-size:18px;
+  font-size:22px;
   font-weight:700;
   color:var(--esp);
-  margin-bottom:12px;
+  margin-bottom:20px;
+  text-align:center;
 }
-.price-table{
-  width:100%;
-  border-collapse:collapse;
+.price-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 0;
   font-size:14px;
-}
-.price-table th{
-  text-align:left;
-  font-weight:600;
-  color:var(--esp);
-  padding:8px 12px;
-  border-bottom:2px solid var(--gold);
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-.price-table td{
-  padding:9px 12px;
-  border-bottom:1px solid rgba(91,74,62,0.12);
   color:var(--dark);
 }
-.price-table tr:last-child td{
-  border-bottom:none;
+.price-row.divider{
+  border-top:1px solid rgba(196,169,125,0.3);
+  margin-top:8px;
+  padding-top:16px;
 }
-.price-table td:last-child{
-  text-align:right;
+.price-row-label{
+  font-weight:400;
+}
+.price-row-value{
   font-weight:600;
   color:var(--esp);
-  white-space:nowrap;
+  font-size:15px;
+}
+.price-total{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 0 4px;
+  border-top:2px solid var(--gold);
+  margin-top:12px;
+}
+.price-total-label{
+  font-family:var(--serif);
+  font-size:20px;
+  font-weight:700;
+  color:var(--esp);
+}
+.price-total-value{
+  font-family:var(--serif);
+  font-size:28px;
+  font-weight:700;
+  color:var(--gold);
+}
+.price-note{
+  font-size:12px;
+  font-style:italic;
+  color:#9A8A7A;
+  margin-top:16px;
+  line-height:1.5;
+  text-align:center;
+}
+
+/* ========== STICKY BOTTOM BAR ========== */
+.sticky-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:var(--dark);
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  z-index:1000;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.15);
+}
+.sticky-bar-label{
+  font-size:14px;
+  color:rgba(255,255,255,0.7);
+  font-weight:400;
+}
+.sticky-bar-price{
+  font-family:var(--serif);
+  font-size:24px;
+  font-weight:700;
+  color:var(--gold);
+  letter-spacing:0.5px;
+}
+.sticky-bar-hint{
+  font-size:11px;
+  color:rgba(255,255,255,0.4);
+}
+
+/* ========== SUBMIT BUTTON ========== */
+.submit-wrap{
+  text-align:center;
+  padding:40px 0;
+}
+.submit-btn{
+  background:var(--esp);
+  color:#fff;
+  border:none;
+  padding:16px 48px;
+  font-family:var(--sans);
+  font-size:16px;
+  font-weight:600;
+  border-radius:12px;
+  cursor:pointer;
+  letter-spacing:0.5px;
+  transition:all 0.25s;
+}
+.submit-btn:hover{
+  background:var(--gold);
+  color:var(--dark);
+  transform:translateY(-1px);
+  box-shadow:0 4px 16px rgba(196,169,125,0.3);
+}
+.submit-btn:active{
+  transform:translateY(0);
+}
+.submit-hint{
+  margin-top:12px;
+  font-size:13px;
+  color:#A89880;
 }
 
 /* ========== FOOTER ========== */
@@ -357,13 +549,20 @@ body{
 }
 
 /* ========== RESPONSIVE ========== */
-@media(max-width:600px){
-  .page{padding:32px 24px 24px}
+@media(max-width:700px){
+  .page{padding:32px 20px 24px}
   .brief-logo{font-size:28px}
   .brief-subtitle{font-size:16px;letter-spacing:2px}
   .section-title{font-size:22px}
   .palettes{grid-template-columns:1fr}
-  .check-group{gap:8px 16px}
+  .check-group{gap:8px}
+  .svc-item{padding:10px 12px}
+  .price-summary{padding:20px 16px}
+  .price-total-value{font-size:24px}
+  .sticky-bar{padding:10px 16px;gap:10px}
+  .sticky-bar-price{font-size:20px}
+  .sticky-bar-hint{display:none}
+  .submit-btn{padding:14px 32px;font-size:15px}
 }
 
 /* ========== PRINT ========== */
@@ -372,6 +571,7 @@ body{
     background:#fff !important;
     -webkit-print-color-adjust:exact;
     print-color-adjust:exact;
+    padding-bottom:0 !important;
   }
   .page{
     max-width:100%;
@@ -387,10 +587,16 @@ body{
     padding-bottom:20px;
     page-break-inside:avoid;
   }
-  .price-block{
+  .sticky-bar{
+    display:none !important;
+  }
+  .price-summary{
     page-break-inside:avoid;
   }
-  .text-line{
+  .submit-wrap{
+    display:none !important;
+  }
+  .text-line,.number-input{
     border-bottom:1px dotted #999 !important;
   }
   .text-area{
@@ -398,12 +604,18 @@ body{
   }
   .check-item input[type="checkbox"],
   .check-item input[type="radio"],
-  .palette input[type="radio"]{
+  .palette input[type="radio"],
+  .svc-item input[type="checkbox"]{
     border-color:#999 !important;
   }
-  .check-item input[type="checkbox"]:checked{
+  .check-item input[type="checkbox"]:checked,
+  .svc-item input[type="checkbox"]:checked{
     background:var(--gold) !important;
     border-color:var(--gold) !important;
+  }
+  .svc-item{
+    border:1px solid #ddd !important;
+    background:transparent !important;
   }
   .palette{
     background:rgba(0,0,0,0.02) !important;
@@ -432,23 +644,55 @@ body{
     <div class="brief-subtitle">Projektbriefing</div>
   </header>
 
-  <!-- ==================== SECTION 1 ==================== -->
+  <!-- ==================== SECTION 1: LEISTUNGSART ==================== -->
   <div class="section">
     <div class="section-number">Abschnitt 01</div>
-    <h2 class="section-title">Über das Projekt</h2>
+    <h2 class="section-title">Leistungsart</h2>
+    <span class="field-hint">Mehrfachauswahl möglich</span>
 
-    <div class="field">
-      <span class="field-label">Leistungsart</span>
-      <div class="check-group">
-        <label class="check-item"><input type="checkbox"> Landingpage</label>
-        <label class="check-item"><input type="checkbox"> Mehrseitige Website</label>
-        <label class="check-item"><input type="checkbox"> Telegram-Bot</label>
-        <label class="check-item"><input type="checkbox"> Design / Branding</label>
-        <label class="check-item"><input type="checkbox"> Instagram-Content</label>
-        <label class="check-item"><input type="checkbox"> Automatisierung</label>
-        <label class="check-item"><input type="checkbox"> Wartung &amp; Support</label>
-      </div>
+    <div class="svc-list">
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="500" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Landingpage (1 Seite)</span>
+        <span class="svc-price">ab 500 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="1200" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Mehrseitige Website (3–5 Seiten)</span>
+        <span class="svc-price">ab 1.200 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="600" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Telegram-Bot (einfach)</span>
+        <span class="svc-price">ab 600 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="1200" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Telegram-Bot mit KI</span>
+        <span class="svc-price">ab 1.200 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="300" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Design / Branding</span>
+        <span class="svc-price">ab 300 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="250" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Instagram-Content</span>
+        <span class="svc-price">ab 250 &euro; / Monat</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="80" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Website-Wartung</span>
+        <span class="svc-price">ab 80 &euro; / Monat</span>
+      </label>
     </div>
+  </div>
+
+  <!-- ==================== SECTION 2: ÜBER DAS PROJEKT ==================== -->
+  <div class="section">
+    <div class="section-number">Abschnitt 02</div>
+    <h2 class="section-title">&Uuml;ber das Projekt</h2>
 
     <div class="field">
       <span class="field-label">Firmenname / Marke</span>
@@ -456,70 +700,96 @@ body{
     </div>
 
     <div class="field">
-      <span class="field-label">Branche / Tätigkeitsbereich</span>
+      <span class="field-label">Branche / T&auml;tigkeitsbereich</span>
       <input type="text" class="text-line" placeholder="z. B. Kosmetik, Gastronomie, Coaching ...">
     </div>
 
     <div class="field">
       <span class="field-label">Zielgruppe</span>
-      <span class="field-hint">Wer sind Ihre Kunden?</span>
-      <input type="text" class="text-line" placeholder="z. B. Frauen 25-45, Unternehmer, Eltern ...">
+      <span class="field-hint">Wer sind Ihre Kunden? Alter, Geschlecht, Interessen ...</span>
+      <textarea class="text-area" placeholder="z. B. Frauen 25-45, interessiert an Beauty und Wellness ..."></textarea>
     </div>
 
     <div class="field">
       <span class="field-label">Wettbewerber</span>
-      <span class="field-hint">Links zu 2-3 Websites Ihrer Mitbewerber</span>
+      <span class="field-hint">Links zu 2–3 Websites Ihrer Mitbewerber</span>
       <input type="text" class="text-line" placeholder="https://" style="margin-bottom:8px">
       <input type="text" class="text-line" placeholder="https://" style="margin-bottom:8px">
       <input type="text" class="text-line" placeholder="https://">
     </div>
   </div>
 
-  <!-- ==================== SECTION 2 ==================== -->
+  <!-- ==================== SECTION 3: FÜR WEBSITES ==================== -->
   <div class="section">
-    <div class="section-number">Abschnitt 02</div>
-    <h2 class="section-title">Für Websites</h2>
+    <div class="section-number">Abschnitt 03</div>
+    <h2 class="section-title">F&uuml;r Websites</h2>
 
     <div class="field">
       <span class="field-label">Anzahl der Seiten</span>
-      <input type="text" class="text-line" placeholder="z. B. 1, 3-5, 7+ ...">
+      <span class="field-hint">Jede Seite ab der 6. kostet +150 &euro;</span>
+      <input type="number" id="pageCount" class="number-input" min="1" max="50" value="0" onchange="calcTotal()" oninput="calcTotal()">
     </div>
 
     <div class="field">
-      <span class="field-label">Gewünschte Bereiche</span>
-      <div class="check-group">
-        <label class="check-item"><input type="checkbox"> Über uns</label>
+      <span class="field-label">Gew&uuml;nschte Bereiche</span>
+      <span class="field-hint">Mehrfachauswahl m&ouml;glich</span>
+      <div class="check-group horizontal">
+        <label class="check-item"><input type="checkbox"> &Uuml;ber uns</label>
         <label class="check-item"><input type="checkbox"> Leistungen</label>
         <label class="check-item"><input type="checkbox"> Portfolio</label>
         <label class="check-item"><input type="checkbox"> Bewertungen</label>
         <label class="check-item"><input type="checkbox"> Kontakt</label>
         <label class="check-item"><input type="checkbox"> Blog</label>
         <label class="check-item"><input type="checkbox"> Online-Shop</label>
-        <label class="check-item"><input type="checkbox"> Sonstiges</label>
+        <label class="check-item"><input type="checkbox"> FAQ</label>
       </div>
     </div>
 
     <div class="field">
       <span class="field-label">Funktionen</span>
       <div class="check-group">
-        <label class="check-item"><input type="checkbox"> Kontaktformular</label>
-        <label class="check-item"><input type="checkbox"> Live-Chat</label>
-        <label class="check-item"><input type="checkbox"> Rechner / Kalkulator</label>
-        <label class="check-item"><input type="checkbox"> Mehrsprachigkeit</label>
-        <label class="check-item"><input type="checkbox"> CRM-Integration</label>
-        <label class="check-item"><input type="checkbox"> Telegram-Bot</label>
+        <label class="check-item">
+          <input type="checkbox" class="addon-check" onchange="calcTotal()">
+          <span>Kontaktformular</span>
+          <span class="check-price">inklusive</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="addon-check" onchange="calcTotal()">
+          <span>Live-Chat / WhatsApp-Button</span>
+          <span class="check-price">inklusive</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="addon-check" data-price-percent="40" onchange="calcTotal()">
+          <span>Mehrsprachigkeit</span>
+          <span class="check-price">+40% vom Basispreis</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="addon-check" data-price="200" onchange="calcTotal()">
+          <span>CRM / API Integration</span>
+          <span class="check-price">+200 &euro;</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="addon-check" data-price="200" onchange="calcTotal()">
+          <span>Rechner / Kalkulator</span>
+          <span class="check-price">+200 &euro;</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="addon-check" data-price="150" onchange="calcTotal()">
+          <span>Telegram-Bot auf der Website</span>
+          <span class="check-price">+150 &euro;</span>
+        </label>
       </div>
     </div>
   </div>
 
-  <!-- ==================== SECTION 3 ==================== -->
+  <!-- ==================== SECTION 4: DESIGN ==================== -->
   <div class="section">
-    <div class="section-number">Abschnitt 03</div>
+    <div class="section-number">Abschnitt 04</div>
     <h2 class="section-title">Design</h2>
 
     <div class="field">
       <span class="field-label">Stil</span>
-      <div class="check-group">
+      <div class="check-group horizontal">
         <label class="check-item"><input type="radio" name="stil"> Minimalistisch</label>
         <label class="check-item"><input type="radio" name="stil"> Luxury / Premium</label>
         <label class="check-item"><input type="radio" name="stil"> Bunt / Kreativ</label>
@@ -530,10 +800,10 @@ body{
 
     <div class="field">
       <span class="field-label">Farbpalette</span>
-      <span class="field-hint">Markieren Sie Ihre bevorzugte Farbkombination</span>
+      <span class="field-hint">W&auml;hlen Sie Ihre bevorzugte Farbkombination</span>
       <div class="palettes">
 
-        <label class="palette">
+        <label class="palette" onclick="selectPalette(this)">
           <input type="radio" name="palette">
           <div class="swatches">
             <div class="swatch" style="background:#232323"></div>
@@ -544,7 +814,7 @@ body{
           <span class="palette-name">Espresso &amp; Gold</span>
         </label>
 
-        <label class="palette">
+        <label class="palette" onclick="selectPalette(this)">
           <input type="radio" name="palette">
           <div class="swatches">
             <div class="swatch" style="background:#1a1a2e"></div>
@@ -555,7 +825,7 @@ body{
           <span class="palette-name">Dark &amp; Rot</span>
         </label>
 
-        <label class="palette">
+        <label class="palette" onclick="selectPalette(this)">
           <input type="radio" name="palette">
           <div class="swatches">
             <div class="swatch" style="background:#2d3436"></div>
@@ -563,10 +833,10 @@ body{
             <div class="swatch" style="background:#dfe6e9"></div>
             <div class="swatch" style="background:#00b894"></div>
           </div>
-          <span class="palette-name">Modern Grün</span>
+          <span class="palette-name">Modern Gr&uuml;n</span>
         </label>
 
-        <label class="palette">
+        <label class="palette" onclick="selectPalette(this)">
           <input type="radio" name="palette">
           <div class="swatches">
             <div class="swatch" style="background:#2C3E50"></div>
@@ -577,7 +847,7 @@ body{
           <span class="palette-name">Corporate Blau</span>
         </label>
 
-        <label class="palette">
+        <label class="palette" onclick="selectPalette(this)">
           <input type="radio" name="palette">
           <div class="swatches">
             <div class="swatch" style="background:#f8f9fa"></div>
@@ -588,7 +858,7 @@ body{
           <span class="palette-name">Clean Mono</span>
         </label>
 
-        <label class="palette">
+        <label class="palette" onclick="selectPalette(this)">
           <input type="radio" name="palette">
           <div class="swatches">
             <div class="swatch" style="background:#fdf6f0"></div>
@@ -599,7 +869,7 @@ body{
           <span class="palette-name">Soft Pastell</span>
         </label>
 
-        <label class="palette">
+        <label class="palette" onclick="selectPalette(this)">
           <input type="radio" name="palette">
           <div class="swatches">
             <div class="swatch" style="background:#0d1b2a"></div>
@@ -610,7 +880,7 @@ body{
           <span class="palette-name">Navy</span>
         </label>
 
-        <label class="palette">
+        <label class="palette" onclick="selectPalette(this)">
           <input type="radio" name="palette">
           <div class="swatches">
             <div class="swatch" style="background:#fcf6bd"></div>
@@ -631,144 +901,145 @@ body{
     </div>
 
     <div class="field">
-      <span class="field-label">Schriftarten</span>
-      <div class="check-group">
-        <label class="check-item"><input type="radio" name="font"> Serifenschrift</label>
+      <span class="field-label">Schriftart</span>
+      <div class="check-group horizontal">
+        <label class="check-item"><input type="radio" name="font"> Mit Serifen</label>
         <label class="check-item"><input type="radio" name="font"> Ohne Serifen</label>
-        <label class="check-item"><input type="radio" name="font"> Weiß nicht</label>
+        <label class="check-item"><input type="radio" name="font"> Nach Ihrem Ermessen</label>
       </div>
     </div>
   </div>
 
-  <!-- ==================== SECTION 4 ==================== -->
+  <!-- ==================== SECTION 5: INHALTE ==================== -->
   <div class="section">
-    <div class="section-number">Abschnitt 04</div>
+    <div class="section-number">Abschnitt 05</div>
     <h2 class="section-title">Inhalte</h2>
 
     <div class="field">
       <span class="field-label">Texte</span>
       <div class="check-group">
-        <label class="check-item"><input type="radio" name="texte"> Sind vorhanden</label>
-        <label class="check-item"><input type="radio" name="texte"> Müssen erstellt werden</label>
-        <label class="check-item"><input type="radio" name="texte"> Teilweise vorhanden</label>
+        <label class="check-item">
+          <input type="radio" name="texte" class="price-radio" onchange="calcTotal()">
+          <span>Sind vorhanden</span>
+        </label>
+        <label class="check-item">
+          <input type="radio" name="texte" class="price-radio" data-price="150" onchange="calcTotal()">
+          <span>M&uuml;ssen erstellt werden</span>
+          <span class="check-price">+150 &euro;</span>
+        </label>
+        <label class="check-item">
+          <input type="radio" name="texte" class="price-radio" data-price="80" onchange="calcTotal()">
+          <span>Teilweise vorhanden</span>
+          <span class="check-price">+80 &euro;</span>
+        </label>
       </div>
     </div>
 
     <div class="field">
       <span class="field-label">Fotos</span>
       <div class="check-group">
-        <label class="check-item"><input type="radio" name="fotos"> Sind vorhanden</label>
-        <label class="check-item"><input type="radio" name="fotos"> Fotoshooting benötigt</label>
-        <label class="check-item"><input type="radio" name="fotos"> Teilweise vorhanden</label>
+        <label class="check-item">
+          <input type="radio" name="fotos">
+          <span>Sind vorhanden</span>
+        </label>
+        <label class="check-item">
+          <input type="radio" name="fotos">
+          <span>Fotoshooting ben&ouml;tigt</span>
+          <span class="check-price">wird separat besprochen</span>
+        </label>
+        <label class="check-item">
+          <input type="radio" name="fotos">
+          <span>Teilweise vorhanden</span>
+        </label>
       </div>
     </div>
 
     <div class="field">
       <span class="field-label">Logo</span>
       <div class="check-group">
-        <label class="check-item"><input type="radio" name="logo"> Ist vorhanden</label>
-        <label class="check-item"><input type="radio" name="logo"> Muss erstellt werden</label>
+        <label class="check-item">
+          <input type="radio" name="logo" class="price-radio" onchange="calcTotal()">
+          <span>Ist vorhanden</span>
+        </label>
+        <label class="check-item">
+          <input type="radio" name="logo" class="price-radio" data-price="150" onchange="calcTotal()">
+          <span>Muss erstellt werden</span>
+          <span class="check-price">+150 &euro;</span>
+        </label>
       </div>
     </div>
   </div>
 
-  <!-- ==================== SECTION 5 ==================== -->
+  <!-- ==================== SECTION 6: ZUSÄTZLICHE OPTIONEN ==================== -->
   <div class="section">
-    <div class="section-number">Abschnitt 05</div>
-    <h2 class="section-title">Zeitrahmen und Budget</h2>
+    <div class="section-number">Abschnitt 06</div>
+    <h2 class="section-title">Zus&auml;tzliche Optionen</h2>
+
+    <div class="check-group">
+      <label class="check-item">
+        <input type="checkbox" class="addon-check" data-price-percent="50" onchange="calcTotal()">
+        <span>Express — bis 3 Tage</span>
+        <span class="check-price">+50% vom Basispreis</span>
+      </label>
+      <label class="check-item">
+        <input type="checkbox" class="addon-check" data-price="80" onchange="calcTotal()">
+        <span>Bildbearbeitung — 10 Fotos</span>
+        <span class="check-price">+80 &euro;</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 7: ZEITRAHMEN ==================== -->
+  <div class="section">
+    <div class="section-number">Abschnitt 07</div>
+    <h2 class="section-title">Zeitrahmen</h2>
 
     <div class="field">
-      <span class="field-label">Gewünschter Starttermin</span>
+      <span class="field-label">Gew&uuml;nschter Starttermin</span>
       <input type="text" class="text-line" placeholder="z. B. sofort, ab April 2026 ...">
     </div>
 
     <div class="field">
-      <span class="field-label">Budget</span>
-      <input type="text" class="text-line" placeholder="Ihr ungefähres Budget in Euro">
+      <span class="field-label">Kommentare / W&uuml;nsche</span>
+      <textarea class="text-area" placeholder="Haben Sie besondere Anforderungen oder Wünsche?"></textarea>
     </div>
   </div>
 
-  <!-- ==================== SECTION 6 ==================== -->
-  <div class="section">
-    <div class="section-number">Abschnitt 06</div>
-    <h2 class="section-title">Preisübersicht</h2>
+  <!-- ==================== PRICE SUMMARY ==================== -->
+  <div class="price-summary">
+    <div class="price-summary-title">Kosten&uuml;bersicht</div>
 
-    <div class="price-block">
-      <div class="price-block-title">Basispreise</div>
-      <table class="price-table">
-        <thead>
-          <tr>
-            <th>Leistung</th>
-            <th style="text-align:right">Preis</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Landingpage (1 Seite)</td><td>ab 250 &euro;</td></tr>
-          <tr><td>Website (3-5 Seiten)</td><td>ab 450 &euro;</td></tr>
-          <tr><td>Telegram-Bot (einfach)</td><td>ab 300 &euro;</td></tr>
-          <tr><td>Telegram-Bot mit KI</td><td>ab 500 &euro;</td></tr>
-          <tr><td>Design / Branding</td><td>ab 150 &euro;</td></tr>
-          <tr><td>Instagram-Content</td><td>ab 100 &euro;/Monat</td></tr>
-          <tr><td>Website-Wartung</td><td>ab 50 &euro;/Monat</td></tr>
-        </tbody>
-      </table>
+    <div class="price-row">
+      <span class="price-row-label">Basisleistungen</span>
+      <span class="price-row-value" id="basePrice">0 &euro;</span>
+    </div>
+    <div class="price-row">
+      <span class="price-row-label">Zusatzoptionen</span>
+      <span class="price-row-value" id="addonPrice">0 &euro;</span>
+    </div>
+    <div class="price-row">
+      <span class="price-row-label">Prozentuale Aufschl&auml;ge</span>
+      <span class="price-row-value" id="percentPrice">0 &euro;</span>
     </div>
 
-    <div class="price-block">
-      <div class="price-block-title">Zusätzliche Optionen</div>
-      <table class="price-table">
-        <thead>
-          <tr>
-            <th>Option</th>
-            <th style="text-align:right">Aufpreis</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Zusätzliche Seite</td><td>+80 &euro;</td></tr>
-          <tr><td>Mehrsprachigkeit</td><td>+30%</td></tr>
-          <tr><td>Express (bis 3 Tage)</td><td>+50%</td></tr>
-          <tr><td>CRM / API Integration</td><td>+100 &euro;</td></tr>
-          <tr><td>Texterstellung</td><td>+80 &euro;</td></tr>
-          <tr><td>Bildbearbeitung (10 Fotos)</td><td>+50 &euro;</td></tr>
-        </tbody>
-      </table>
+    <div class="price-total">
+      <span class="price-total-label">Gesamt</span>
+      <span class="price-total-value" id="totalPrice">0 &euro;</span>
     </div>
+
+    <p class="price-note">Der angegebene Betrag ist ein Richtwert. Der genaue Preis wird nach Besprechung der Projektdetails individuell berechnet.</p>
   </div>
 
-  <!-- SUBMIT -->
-  <div style="text-align:center;padding:40px 0">
-    <button onclick="sendBrief()" style="background:#5B4A3E;color:#fff;border:none;padding:16px 48px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;border-radius:12px;cursor:pointer;letter-spacing:0.5px;transition:all .2s">Briefing absenden →</button>
-    <p style="margin-top:12px;font-size:13px;color:#A89880">Klicken — Ihr E-Mail-Programm öffnet sich mit den ausgefüllten Daten</p>
+  <!-- ==================== SUBMIT ==================== -->
+  <div class="submit-wrap">
+    <button class="submit-btn" onclick="sendBrief()">Briefing absenden &rarr;</button>
+    <p class="submit-hint">Klicken &mdash; Ihr E-Mail-Programm &ouml;ffnet sich mit den ausgef&uuml;llten Daten</p>
   </div>
-
-  <script>
-  function sendBrief(){
-    var lines=[];
-    document.querySelectorAll('input[type=checkbox]:checked').forEach(function(c){
-      var label=c.parentElement.textContent.trim();
-      lines.push('✓ '+label);
-    });
-    document.querySelectorAll('input[type=radio]:checked').forEach(function(r){
-      var label=r.parentElement.textContent.trim();
-      var group=r.name;
-      lines.push(group+': '+label);
-    });
-    document.querySelectorAll('input[type=text],textarea').forEach(function(f){
-      if(f.value.trim()){
-        var label=f.placeholder||f.previousElementSibling&&f.previousElementSibling.textContent||'';
-        lines.push(label.trim()+': '+f.value.trim());
-      }
-    });
-    var body='PROJEKTBRIEFING\n================\n\n'+lines.join('\n');
-    var subject='Projektbriefing';
-    window.location.href='mailto:veniva.business@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-  }
-  </script>
 
   <!-- ==================== FOOTER ==================== -->
   <footer class="brief-footer">
     <div class="footer-nk">NK</div>
-    <div class="footer-title">Kontakt</div>
+    <div class="footer-title">Natali Konrad</div>
     <div class="footer-contacts">
       <a href="mailto:veniva.business@gmail.com">veniva.business@gmail.com</a><br>
       +49 1514 1367080<br>
@@ -777,6 +1048,169 @@ body{
   </footer>
 
 </div>
+
+<!-- ==================== STICKY BOTTOM BAR ==================== -->
+<div class="sticky-bar" id="stickyBar">
+  <span class="sticky-bar-label">Gesch&auml;tzter Preis:</span>
+  <span class="sticky-bar-price" id="stickyPrice">0 &euro;</span>
+  <span class="sticky-bar-hint">Richtwert</span>
+</div>
+
+<script>
+/* ========== LIVE PRICE CALCULATOR ========== */
+function calcTotal() {
+  var base = 0;
+  var addons = 0;
+  var percentMult = 1;
+
+  /* Base services (checkboxes) */
+  var svcChecks = document.querySelectorAll('.svc-check:checked');
+  for (var i = 0; i < svcChecks.length; i++) {
+    base += parseInt(svcChecks[i].dataset.price || 0);
+  }
+
+  /* Add-on checkboxes */
+  var addonChecks = document.querySelectorAll('.addon-check:checked');
+  for (var i = 0; i < addonChecks.length; i++) {
+    var c = addonChecks[i];
+    if (c.dataset.price) addons += parseInt(c.dataset.price);
+    if (c.dataset.pricePercent) percentMult += parseInt(c.dataset.pricePercent) / 100;
+  }
+
+  /* Radio buttons with prices */
+  var priceRadios = document.querySelectorAll('.price-radio:checked');
+  for (var i = 0; i < priceRadios.length; i++) {
+    var r = priceRadios[i];
+    if (r.dataset.price) addons += parseInt(r.dataset.price);
+    if (r.dataset.pricePercent) percentMult += parseInt(r.dataset.pricePercent) / 100;
+  }
+
+  /* Extra pages */
+  var pageEl = document.getElementById('pageCount');
+  var pages = parseInt(pageEl ? pageEl.value : 0) || 0;
+  if (pages > 5) addons += (pages - 5) * 150;
+
+  var subtotal = base + addons;
+  var percentSurcharge = Math.round(subtotal * (percentMult - 1));
+  var total = Math.round(subtotal * percentMult);
+
+  document.getElementById('basePrice').textContent = base.toLocaleString('de-DE') + ' \u20AC';
+  document.getElementById('addonPrice').textContent = addons.toLocaleString('de-DE') + ' \u20AC';
+  document.getElementById('percentPrice').textContent = (percentSurcharge > 0 ? '+' : '') + percentSurcharge.toLocaleString('de-DE') + ' \u20AC';
+  document.getElementById('totalPrice').textContent = total.toLocaleString('de-DE') + ' \u20AC';
+  document.getElementById('stickyPrice').textContent = total.toLocaleString('de-DE') + ' \u20AC';
+}
+
+/* ========== TOGGLE SERVICE CARD HIGHLIGHT ========== */
+function toggleSvc(checkbox) {
+  var item = checkbox.closest('.svc-item');
+  if (checkbox.checked) {
+    item.classList.add('checked');
+  } else {
+    item.classList.remove('checked');
+  }
+}
+
+/* ========== PALETTE SELECTION HIGHLIGHT ========== */
+function selectPalette(el) {
+  var all = document.querySelectorAll('.palette');
+  for (var i = 0; i < all.length; i++) {
+    all[i].classList.remove('selected');
+  }
+  el.classList.add('selected');
+}
+
+/* ========== MAILTO BRIEF ========== */
+function sendBrief() {
+  var lines = [];
+
+  /* Services */
+  lines.push('LEISTUNGSART:');
+  var svcChecked = document.querySelectorAll('.svc-check:checked');
+  for (var i = 0; i < svcChecked.length; i++) {
+    var name = svcChecked[i].closest('.svc-item').querySelector('.svc-name').textContent;
+    var price = svcChecked[i].closest('.svc-item').querySelector('.svc-price').textContent;
+    lines.push('  \u2713 ' + name + ' (' + price + ')');
+  }
+  if (svcChecked.length === 0) lines.push('  (keine Auswahl)');
+  lines.push('');
+
+  /* Text fields & textareas */
+  lines.push('\u00DCBER DAS PROJEKT:');
+  var fields = document.querySelectorAll('.text-line, .text-area, .number-input');
+  for (var i = 0; i < fields.length; i++) {
+    var f = fields[i];
+    if (f.value && f.value.trim()) {
+      var label = '';
+      var prev = f.previousElementSibling;
+      while (prev) {
+        if (prev.classList && (prev.classList.contains('field-label') || prev.classList.contains('field-hint'))) {
+          if (prev.classList.contains('field-label')) {
+            label = prev.textContent.trim();
+            break;
+          }
+        }
+        prev = prev.previousElementSibling;
+      }
+      if (!label) {
+        var parent = f.closest('.field');
+        if (parent) {
+          var lbl = parent.querySelector('.field-label');
+          if (lbl) label = lbl.textContent.trim();
+        }
+      }
+      lines.push('  ' + (label || 'Feld') + ': ' + f.value.trim());
+    }
+  }
+  lines.push('');
+
+  /* Checkboxes (non-service, non-addon) */
+  lines.push('BEREICHE:');
+  var sections = document.querySelectorAll('.check-group.horizontal input[type="checkbox"]:checked');
+  for (var i = 0; i < sections.length; i++) {
+    var lbl = sections[i].parentElement.textContent.trim();
+    lines.push('  \u2713 ' + lbl);
+  }
+  lines.push('');
+
+  /* Addons */
+  lines.push('FUNKTIONEN & ZUSATZOPTIONEN:');
+  var addonChecked = document.querySelectorAll('.addon-check:checked');
+  for (var i = 0; i < addonChecked.length; i++) {
+    var span = addonChecked[i].parentElement.querySelector('span');
+    lines.push('  \u2713 ' + (span ? span.textContent.trim() : ''));
+  }
+  lines.push('');
+
+  /* Radio buttons */
+  lines.push('AUSWAHL:');
+  var radios = document.querySelectorAll('input[type="radio"]:checked');
+  for (var i = 0; i < radios.length; i++) {
+    var r = radios[i];
+    var name = r.name || '';
+    var label = r.parentElement.textContent.trim();
+    lines.push('  ' + name + ': ' + label);
+  }
+  lines.push('');
+
+  /* Price */
+  lines.push('KOSTENÜBERSICHT:');
+  lines.push('  Basisleistungen: ' + document.getElementById('basePrice').textContent);
+  lines.push('  Zusatzoptionen: ' + document.getElementById('addonPrice').textContent);
+  lines.push('  Prozentuale Aufschläge: ' + document.getElementById('percentPrice').textContent);
+  lines.push('  GESAMT: ' + document.getElementById('totalPrice').textContent);
+  lines.push('');
+  lines.push('Hinweis: Der angegebene Betrag ist ein Richtwert.');
+
+  var body = 'PROJEKTBRIEFING\n' + '='.repeat(40) + '\n\n' + lines.join('\n');
+  var subject = 'Projektbriefing \u2014 ' + (document.querySelector('.text-line') ? document.querySelector('.text-line').value || 'Neues Projekt' : 'Neues Projekt');
+
+  window.location.href = 'mailto:veniva.business@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+
+/* Initial calc */
+calcTotal();
+</script>
 
 </body>
 </html>

@@ -36,7 +36,7 @@ body {
   color: var(--text);
   max-width: 800px;
   margin: 40px auto;
-  padding: 60px 64px;
+  padding: 60px 64px 100px;
   border: 1px solid #e8e0d6;
   box-shadow: 0 4px 40px rgba(91,74,62,.07);
 }
@@ -157,6 +157,17 @@ textarea.text-line:focus {
   border-color: var(--gold);
 }
 
+input[type="number"].text-line {
+  width: 120px;
+  -moz-appearance: textfield;
+}
+
+input[type="number"].text-line::-webkit-outer-spin-button,
+input[type="number"].text-line::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /* ===== CHECKBOXES ===== */
 .checkbox-grid {
   display: grid;
@@ -164,15 +175,16 @@ textarea.text-line:focus {
   gap: 10px 24px;
 }
 
-.checkbox-grid.three-col {
-  grid-template-columns: 1fr 1fr 1fr;
+.checkbox-grid.single-col {
+  grid-template-columns: 1fr;
 }
 
 .cb-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
-  cursor: default;
+  cursor: pointer;
+  padding: 6px 0;
 }
 
 .cb-box {
@@ -183,6 +195,7 @@ textarea.text-line:focus {
   flex-shrink: 0;
   position: relative;
   transition: all 0.2s;
+  margin-top: 1px;
 }
 
 .cb-item input[type="checkbox"] {
@@ -210,6 +223,19 @@ textarea.text-line:focus {
   font-size: 14px;
   color: var(--text);
   user-select: none;
+  line-height: 1.4;
+}
+
+.cb-price {
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.cb-included {
+  font-size: 12px;
+  color: #84a59d;
+  font-weight: 500;
 }
 
 /* ===== RADIO BUTTONS ===== */
@@ -219,11 +245,16 @@ textarea.text-line:focus {
   gap: 10px 24px;
 }
 
+.radio-group.vertical {
+  flex-direction: column;
+}
+
 .radio-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
-  cursor: default;
+  cursor: pointer;
+  padding: 4px 0;
 }
 
 .radio-circle {
@@ -234,6 +265,7 @@ textarea.text-line:focus {
   flex-shrink: 0;
   position: relative;
   transition: all 0.2s;
+  margin-top: 1px;
 }
 
 .radio-item input[type="radio"] {
@@ -259,13 +291,20 @@ textarea.text-line:focus {
   font-size: 14px;
   color: var(--text);
   user-select: none;
+  line-height: 1.4;
+}
+
+.radio-price {
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 600;
 }
 
 /* ===== COLOR PALETTES ===== */
 .palettes-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 16px;
 }
 
 .palette-item {
@@ -275,21 +314,22 @@ textarea.text-line:focus {
   padding: 12px 16px;
   border: 1.5px solid #e8e0d6;
   border-radius: 8px;
-  cursor: default;
-  transition: border-color 0.2s;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.palette-item:hover {
+  border-color: var(--gold2);
 }
 
 .palette-item input[type="radio"] {
   display: none;
 }
 
-.palette-item input[type="radio"]:checked ~ .palette-border {
-  border-color: var(--gold);
-}
-
 .palette-item:has(input[type="radio"]:checked) {
   border-color: var(--gold);
-  background: rgba(196,169,125,.04);
+  background: rgba(196,169,125,.06);
+  box-shadow: 0 0 0 1px var(--gold);
 }
 
 .palette-check {
@@ -336,60 +376,68 @@ textarea.text-line:focus {
   white-space: nowrap;
 }
 
-/* ===== PRICE TABLE ===== */
-.price-section-title {
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 600;
+/* ===== PRICE SUMMARY BLOCK ===== */
+.price-summary {
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  padding: 32px;
+  margin: 40px 0;
+  background: linear-gradient(135deg, rgba(245,239,231,.5) 0%, rgba(255,255,255,1) 100%);
+}
+
+.price-summary h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
   color: var(--esp);
-  margin-bottom: 12px;
-  margin-top: 28px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  margin-bottom: 24px;
+  text-align: center;
 }
 
-.price-section-title:first-of-type {
-  margin-top: 0;
-}
-
-.price-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 8px;
-}
-
-.price-table th {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  text-align: left;
-  padding: 10px 0;
-  border-bottom: 1.5px solid var(--gold);
-}
-
-.price-table th:last-child {
-  text-align: right;
-}
-
-.price-table td {
-  font-size: 14px;
-  color: var(--text);
+.price-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #eee5db;
+  font-size: 14px;
 }
 
-.price-table td:last-child {
-  text-align: right;
+.price-line:last-of-type {
+  border-bottom: none;
+}
+
+.price-line-label {
+  color: var(--textm);
+}
+
+.price-line-value {
   font-weight: 600;
   color: var(--esp);
-  white-space: nowrap;
+  font-size: 15px;
 }
 
-.price-table tr:last-child td {
-  border-bottom: none;
+.price-total-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 8px;
+  margin-top: 8px;
+  border-top: 2px solid var(--gold);
+}
+
+.price-total-label {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--esp);
+}
+
+.price-total-value {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold);
 }
 
 .price-note {
@@ -398,6 +446,75 @@ textarea.text-line:focus {
   font-style: italic;
   margin-top: 16px;
   line-height: 1.6;
+  text-align: center;
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.submit-section {
+  text-align: center;
+  padding: 24px 0 40px;
+}
+
+.submit-btn {
+  background: var(--esp);
+  color: #fff;
+  border: none;
+  padding: 16px 52px;
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+}
+
+.submit-btn:hover {
+  background: var(--dark);
+  box-shadow: 0 4px 20px rgba(91,74,62,.25);
+  transform: translateY(-1px);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.submit-hint {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #A89880;
+}
+
+/* ===== STICKY PRICE BAR ===== */
+.sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--dark);
+  color: var(--gold);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.2);
+  font-family: var(--sans);
+}
+
+.sticky-bar-label {
+  font-size: 14px;
+  color: #a09080;
+  font-weight: 400;
+}
+
+.sticky-bar-value {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.5px;
 }
 
 /* ===== FOOTER ===== */
@@ -440,18 +557,6 @@ textarea.text-line:focus {
   font-size: 11px;
   color: #c4b8aa;
   margin-top: 16px;
-}
-
-/* ===== DATE LINE ===== */
-.date-line {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 12px;
-}
-
-.date-line .text-line {
-  width: 200px;
-  text-align: right;
 }
 
 /* ===== PRINT ===== */
@@ -515,27 +620,40 @@ textarea.text-line:focus {
     -webkit-print-color-adjust: exact;
   }
 
+  .radio-item input[type="radio"]:checked + .radio-circle {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
   .palette-item {
     border-color: #ccc;
     padding: 8px 12px;
+  }
+
+  .palette-item:has(input[type="radio"]:checked) {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
   }
 
   .palettes-grid {
     gap: 12px;
   }
 
-  .price-table td,
-  .price-table th {
-    padding: 6px 0;
+  .sticky-bar {
+    display: none !important;
+  }
+
+  .submit-section {
+    display: none;
+  }
+
+  .price-summary {
+    break-inside: avoid;
   }
 
   .brief-footer {
     padding-top: 20px;
     margin-top: 24px;
-  }
-
-  .no-print {
-    display: none !important;
   }
 
   a {
@@ -547,8 +665,10 @@ textarea.text-line:focus {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 700px) {
   body {
-    margin: 16px;
-    padding: 36px 28px;
+    margin: 0;
+    padding: 32px 24px 100px;
+    border: none;
+    box-shadow: none;
   }
 
   .brief-logo {
@@ -568,10 +688,6 @@ textarea.text-line:focus {
     grid-template-columns: 1fr;
   }
 
-  .checkbox-grid.three-col {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .palettes-grid {
     grid-template-columns: 1fr;
   }
@@ -584,6 +700,31 @@ textarea.text-line:focus {
     flex-direction: column;
     gap: 6px;
   }
+
+  .price-summary {
+    padding: 24px 20px;
+  }
+
+  .price-total-value {
+    font-size: 26px;
+  }
+
+  .sticky-bar {
+    padding: 12px 20px;
+  }
+
+  .sticky-bar-value {
+    font-size: 24px;
+  }
+
+  .palette-item {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .palette-name {
+    font-size: 11px;
+  }
 }
 </style>
 </head>
@@ -595,64 +736,93 @@ textarea.text-line:focus {
   <div class="brief-subtitle">Бриф на разработку проекта</div>
 </header>
 
-<!-- DATE -->
-<div class="date-line">
-  <input type="text" class="text-line" placeholder="Дата: __.__.____">
-</div>
 
-
-<!-- SECTION 1: О ПРОЕКТЕ -->
+<!-- SECTION 1: ТИП УСЛУГИ -->
 <section class="brief-section">
-  <h2 class="section-title"><span>Раздел 1</span>О проекте</h2>
+  <h2 class="section-title"><span>Раздел 1</span>Тип услуги</h2>
 
   <div class="field-group">
-    <label class="field-label">Тип услуги <span class="field-hint">(выберите одно или несколько)</span></label>
-    <div class="checkbox-grid">
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Лендинг</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Многостраничный сайт</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Telegram-бот</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Дизайн / Брендинг</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Instagram-контент</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Автоматизация</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Обслуживание</span></label>
+    <label class="field-label">Выберите необходимые услуги <span class="field-hint">(можно выбрать несколько)</span></label>
+    <div class="checkbox-grid single-col">
+      <label class="cb-item">
+        <input type="checkbox" class="svc-check" data-price="500" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Лендинг (1 страница) <span class="cb-price">от 500 &euro;</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="svc-check" data-price="1200" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Многостраничный сайт (3-5 стр.) <span class="cb-price">от 1.200 &euro;</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="svc-check" data-price="600" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Telegram-бот (простой) <span class="cb-price">от 600 &euro;</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="svc-check" data-price="1200" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Telegram-бот с ИИ <span class="cb-price">от 1.200 &euro;</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="svc-check" data-price="300" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Дизайн / Брендинг <span class="cb-price">от 300 &euro;</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="svc-check" data-price="250" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Instagram-контент <span class="cb-price">от 250 &euro; / мес.</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="svc-check" data-price="80" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Обслуживание сайта <span class="cb-price">от 80 &euro; / мес.</span></span>
+      </label>
     </div>
-  </div>
-
-  <div class="field-group">
-    <label class="field-label">Название компании / бренда</label>
-    <input type="text" class="text-line" placeholder="">
-  </div>
-
-  <div class="field-group">
-    <label class="field-label">Ниша / сфера деятельности</label>
-    <input type="text" class="text-line" placeholder="">
-  </div>
-
-  <div class="field-group">
-    <label class="field-label">Целевая аудитория <span class="field-hint">(кто ваши клиенты?)</span></label>
-    <textarea class="text-line" rows="3" placeholder=""></textarea>
-  </div>
-
-  <div class="field-group">
-    <label class="field-label">Конкуренты <span class="field-hint">(ссылки на 2-3 сайта)</span></label>
-    <input type="text" class="text-line" placeholder="" style="margin-bottom: 8px;">
-    <input type="text" class="text-line" placeholder="" style="margin-bottom: 8px;">
-    <input type="text" class="text-line" placeholder="">
   </div>
 </section>
 
 
-<!-- SECTION 2: ДЛЯ САЙТОВ -->
+<!-- SECTION 2: О ПРОЕКТЕ -->
 <section class="brief-section">
-  <h2 class="section-title"><span>Раздел 2</span>Для сайтов</h2>
+  <h2 class="section-title"><span>Раздел 2</span>О проекте</h2>
 
   <div class="field-group">
-    <label class="field-label">Количество страниц</label>
-    <input type="text" class="text-line" placeholder="" style="width: 200px;">
+    <label class="field-label">Название компании / бренда</label>
+    <input type="text" class="text-line" id="companyName" placeholder="">
   </div>
 
   <div class="field-group">
-    <label class="field-label">Нужные разделы</label>
+    <label class="field-label">Ниша / сфера деятельности</label>
+    <input type="text" class="text-line" id="niche" placeholder="">
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Целевая аудитория <span class="field-hint">(кто ваши клиенты?)</span></label>
+    <textarea class="text-line" rows="3" id="audience" placeholder=""></textarea>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Конкуренты <span class="field-hint">(ссылки на 2-3 сайта)</span></label>
+    <input type="text" class="text-line" id="comp1" placeholder="" style="margin-bottom: 8px;">
+    <input type="text" class="text-line" id="comp2" placeholder="" style="margin-bottom: 8px;">
+    <input type="text" class="text-line" id="comp3" placeholder="">
+  </div>
+</section>
+
+
+<!-- SECTION 3: ДЛЯ САЙТОВ -->
+<section class="brief-section">
+  <h2 class="section-title"><span>Раздел 3</span>Для сайтов</h2>
+
+  <div class="field-group">
+    <label class="field-label">Количество страниц <span class="field-hint">(каждая доп. страница сверх 5 = +150 &euro;)</span></label>
+    <input type="number" class="text-line" id="pageCount" min="1" max="50" placeholder="5" onchange="calcTotal()" oninput="calcTotal()">
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Нужные разделы <span class="field-hint">(можно выбрать несколько)</span></label>
     <div class="checkbox-grid">
       <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">О компании</span></label>
       <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Услуги</span></label>
@@ -661,36 +831,60 @@ textarea.text-line:focus {
       <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Контакты</span></label>
       <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Блог</span></label>
       <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Интернет-магазин</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Другое: ________</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">FAQ</span></label>
     </div>
   </div>
 
   <div class="field-group">
     <label class="field-label">Функционал</label>
-    <div class="checkbox-grid three-col">
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Форма заявки</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Онлайн-чат</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Калькулятор</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Мультиязычность</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Интеграция с CRM</span></label>
-      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Telegram-бот</span></label>
+    <div class="checkbox-grid single-col">
+      <label class="cb-item">
+        <input type="checkbox" class="addon-check" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Форма обратной связи <span class="cb-included">(включено)</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="addon-check" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Онлайн-чат / WhatsApp кнопка <span class="cb-included">(включено)</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="addon-check" data-price-percent="40" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Мультиязычность <span class="cb-price">(+40% от базовой стоимости)</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="addon-check" data-price="200" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Интеграция с CRM / API <span class="cb-price">(+200 &euro;)</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="addon-check" data-price="200" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Калькулятор на сайте <span class="cb-price">(+200 &euro;)</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="addon-check" data-price="150" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Telegram-бот на сайте <span class="cb-price">(+150 &euro;)</span></span>
+      </label>
     </div>
   </div>
 </section>
 
 
-<!-- SECTION 3: ДИЗАЙН -->
+<!-- SECTION 4: ДИЗАЙН -->
 <section class="brief-section">
-  <h2 class="section-title"><span>Раздел 3</span>Дизайн</h2>
+  <h2 class="section-title"><span>Раздел 4</span>Дизайн</h2>
 
   <div class="field-group">
-    <label class="field-label">Стиль</label>
+    <label class="field-label">Стиль <span class="field-hint">(выберите один)</span></label>
     <div class="radio-group">
       <label class="radio-item"><input type="radio" name="style"><span class="radio-circle"></span><span class="radio-label">Минимализм</span></label>
       <label class="radio-item"><input type="radio" name="style"><span class="radio-circle"></span><span class="radio-label">Luxury / Премиум</span></label>
       <label class="radio-item"><input type="radio" name="style"><span class="radio-circle"></span><span class="radio-label">Яркий / Креативный</span></label>
       <label class="radio-item"><input type="radio" name="style"><span class="radio-circle"></span><span class="radio-label">Корпоративный</span></label>
-      <label class="radio-item"><input type="radio" name="style"><span class="radio-circle"></span><span class="radio-label">Другой: ________</span></label>
+      <label class="radio-item"><input type="radio" name="style"><span class="radio-circle"></span><span class="radio-label">Другой</span></label>
     </div>
   </div>
 
@@ -799,147 +993,154 @@ textarea.text-line:focus {
 
   <div class="field-group">
     <label class="field-label">Примеры сайтов, которые нравятся <span class="field-hint">(ссылки)</span></label>
-    <input type="text" class="text-line" placeholder="" style="margin-bottom: 8px;">
-    <input type="text" class="text-line" placeholder="" style="margin-bottom: 8px;">
-    <input type="text" class="text-line" placeholder="">
+    <input type="text" class="text-line" id="ref1" placeholder="" style="margin-bottom: 8px;">
+    <input type="text" class="text-line" id="ref2" placeholder="">
   </div>
 
   <div class="field-group">
-    <label class="field-label">Шрифты</label>
+    <label class="field-label">Шрифты <span class="field-hint">(выберите один)</span></label>
     <div class="radio-group">
       <label class="radio-item"><input type="radio" name="fonts"><span class="radio-circle"></span><span class="radio-label">С засечками (serif)</span></label>
       <label class="radio-item"><input type="radio" name="fonts"><span class="radio-circle"></span><span class="radio-label">Без засечек (sans-serif)</span></label>
-      <label class="radio-item"><input type="radio" name="fonts"><span class="radio-circle"></span><span class="radio-label">Не знаю</span></label>
+      <label class="radio-item"><input type="radio" name="fonts"><span class="radio-circle"></span><span class="radio-label">На ваше усмотрение</span></label>
     </div>
   </div>
 </section>
 
 
-<!-- SECTION 4: КОНТЕНТ -->
+<!-- SECTION 5: КОНТЕНТ -->
 <section class="brief-section">
-  <h2 class="section-title"><span>Раздел 4</span>Контент</h2>
+  <h2 class="section-title"><span>Раздел 5</span>Контент</h2>
 
   <div class="field-group">
     <label class="field-label">Тексты</label>
-    <div class="radio-group">
-      <label class="radio-item"><input type="radio" name="texts"><span class="radio-circle"></span><span class="radio-label">Есть готовые</span></label>
-      <label class="radio-item"><input type="radio" name="texts"><span class="radio-circle"></span><span class="radio-label">Нужно написать</span></label>
-      <label class="radio-item"><input type="radio" name="texts"><span class="radio-circle"></span><span class="radio-label">Частично есть</span></label>
+    <div class="radio-group vertical">
+      <label class="radio-item">
+        <input type="radio" name="texts" class="price-radio" onchange="calcTotal()">
+        <span class="radio-circle"></span>
+        <span class="radio-label">Есть готовые</span>
+      </label>
+      <label class="radio-item">
+        <input type="radio" name="texts" class="price-radio" data-price="150" onchange="calcTotal()">
+        <span class="radio-circle"></span>
+        <span class="radio-label">Нужно написать <span class="radio-price">(+150 &euro;)</span></span>
+      </label>
+      <label class="radio-item">
+        <input type="radio" name="texts" class="price-radio" data-price="80" onchange="calcTotal()">
+        <span class="radio-circle"></span>
+        <span class="radio-label">Частично есть <span class="radio-price">(+80 &euro;)</span></span>
+      </label>
     </div>
   </div>
 
   <div class="field-group">
     <label class="field-label">Фотографии</label>
-    <div class="radio-group">
-      <label class="radio-item"><input type="radio" name="photos"><span class="radio-circle"></span><span class="radio-label">Есть</span></label>
-      <label class="radio-item"><input type="radio" name="photos"><span class="radio-circle"></span><span class="radio-label">Нужна съёмка</span></label>
-      <label class="radio-item"><input type="radio" name="photos"><span class="radio-circle"></span><span class="radio-label">Есть частично</span></label>
+    <div class="radio-group vertical">
+      <label class="radio-item">
+        <input type="radio" name="photos" onchange="calcTotal()">
+        <span class="radio-circle"></span>
+        <span class="radio-label">Есть</span>
+      </label>
+      <label class="radio-item">
+        <input type="radio" name="photos" onchange="calcTotal()">
+        <span class="radio-circle"></span>
+        <span class="radio-label">Нужна съёмка <span class="field-hint">(обсуждается отдельно)</span></span>
+      </label>
+      <label class="radio-item">
+        <input type="radio" name="photos" onchange="calcTotal()">
+        <span class="radio-circle"></span>
+        <span class="radio-label">Частично есть</span>
+      </label>
     </div>
   </div>
 
   <div class="field-group">
     <label class="field-label">Логотип</label>
-    <div class="radio-group">
-      <label class="radio-item"><input type="radio" name="logo"><span class="radio-circle"></span><span class="radio-label">Есть</span></label>
-      <label class="radio-item"><input type="radio" name="logo"><span class="radio-circle"></span><span class="radio-label">Нужно разработать</span></label>
+    <div class="radio-group vertical">
+      <label class="radio-item">
+        <input type="radio" name="logo" class="price-radio" onchange="calcTotal()">
+        <span class="radio-circle"></span>
+        <span class="radio-label">Есть</span>
+      </label>
+      <label class="radio-item">
+        <input type="radio" name="logo" class="price-radio" data-price="150" onchange="calcTotal()">
+        <span class="radio-circle"></span>
+        <span class="radio-label">Нужно разработать <span class="radio-price">(+150 &euro;)</span></span>
+      </label>
     </div>
   </div>
 </section>
 
 
-<!-- SECTION 5: СРОКИ И БЮДЖЕТ -->
+<!-- SECTION 6: ДОПОЛНИТЕЛЬНЫЕ ОПЦИИ -->
 <section class="brief-section">
-  <h2 class="section-title"><span>Раздел 5</span>Сроки и бюджет</h2>
+  <h2 class="section-title"><span>Раздел 6</span>Дополнительные опции</h2>
+
+  <div class="field-group">
+    <div class="checkbox-grid single-col">
+      <label class="cb-item">
+        <input type="checkbox" class="addon-check" data-price-percent="50" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Срочность -- до 3 дней <span class="cb-price">(+50% от базовой стоимости)</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="addon-check" data-price="80" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Фотообработка -- 10 фото <span class="cb-price">(+80 &euro;)</span></span>
+      </label>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION 7: СРОКИ -->
+<section class="brief-section">
+  <h2 class="section-title"><span>Раздел 7</span>Сроки</h2>
 
   <div class="field-group">
     <label class="field-label">Желаемый срок запуска</label>
-    <input type="text" class="text-line" placeholder="">
+    <input type="text" class="text-line" id="deadline" placeholder="">
   </div>
 
   <div class="field-group">
-    <label class="field-label">Бюджет</label>
-    <input type="text" class="text-line" placeholder="">
+    <label class="field-label">Комментарии / пожелания</label>
+    <textarea class="text-line" rows="4" id="comments" placeholder=""></textarea>
   </div>
 </section>
 
 
-<!-- SECTION 6: КАЛЬКУЛЯТОР ЦЕН -->
-<section class="brief-section">
-  <h2 class="section-title"><span>Раздел 6</span>Калькулятор цен</h2>
+<!-- PRICE SUMMARY -->
+<div class="price-summary">
+  <h3>Ориентировочная стоимость</h3>
 
-  <p class="price-section-title">Базовые цены</p>
-  <table class="price-table">
-    <thead>
-      <tr>
-        <th>Услуга</th>
-        <th>Цена</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Лендинг (1 страница)</td><td>от 250 &euro;</td></tr>
-      <tr><td>Сайт (3-5 страниц)</td><td>от 450 &euro;</td></tr>
-      <tr><td>Telegram-бот (простой)</td><td>от 300 &euro;</td></tr>
-      <tr><td>Telegram-бот с ИИ</td><td>от 500 &euro;</td></tr>
-      <tr><td>Дизайн / брендинг</td><td>от 150 &euro;</td></tr>
-      <tr><td>Instagram-контент</td><td>от 100 &euro;/мес</td></tr>
-      <tr><td>Обслуживание сайта</td><td>от 50 &euro;/мес</td></tr>
-    </tbody>
-  </table>
+  <div class="price-line">
+    <span class="price-line-label">Базовые услуги</span>
+    <span class="price-line-value" id="basePrice">0 &euro;</span>
+  </div>
+  <div class="price-line">
+    <span class="price-line-label">Дополнительные опции</span>
+    <span class="price-line-value" id="addonPrice">0 &euro;</span>
+  </div>
+  <div class="price-line">
+    <span class="price-line-label">Процентные надбавки</span>
+    <span class="price-line-value" id="percentPrice">0 &euro;</span>
+  </div>
 
-  <p class="price-section-title">Дополнительные опции</p>
-  <table class="price-table">
-    <thead>
-      <tr>
-        <th>Опция</th>
-        <th>Надбавка</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Доп. страница</td><td>+80 &euro;</td></tr>
-      <tr><td>Мультиязычность</td><td>+30%</td></tr>
-      <tr><td>Срочность (до 3 дней)</td><td>+50%</td></tr>
-      <tr><td>Интеграция с CRM / API</td><td>+100 &euro;</td></tr>
-      <tr><td>Написание текстов</td><td>+80 &euro;</td></tr>
-      <tr><td>Фотообработка (10 фото)</td><td>+50 &euro;</td></tr>
-    </tbody>
-  </table>
+  <div class="price-total-line">
+    <span class="price-total-label">Итого</span>
+    <span class="price-total-value" id="totalPrice">0 &euro;</span>
+  </div>
 
-  <p class="price-note">* Точная стоимость рассчитывается индивидуально после заполнения брифа. Указанные цены являются ориентировочными.</p>
-</section>
+  <p class="price-note">Указанная сумма является ориентировочной. Точная стоимость рассчитывается индивидуально после обсуждения деталей проекта.</p>
+</div>
 
 
 <!-- SUBMIT -->
-<section class="section" style="text-align:center;padding:40px 0">
-  <button onclick="sendBrief()" style="background:#5B4A3E;color:#fff;border:none;padding:16px 48px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;border-radius:12px;cursor:pointer;letter-spacing:0.5px;transition:all .2s">Отправить бриф →</button>
-  <p style="margin-top:12px;font-size:13px;color:#A89880">Нажмите — откроется ваш email с заполненными данными</p>
-</section>
+<div class="submit-section">
+  <button class="submit-btn" onclick="sendBrief()">Отправить бриф &rarr;</button>
+  <p class="submit-hint">Нажмите -- откроется ваш email с заполненными данными</p>
+</div>
 
-<script>
-function sendBrief(){
-  var lines=[];
-  // Collect checkboxes
-  document.querySelectorAll('input[type=checkbox]:checked').forEach(function(c){
-    var label=c.parentElement.textContent.trim();
-    lines.push('✓ '+label);
-  });
-  // Collect radios
-  document.querySelectorAll('input[type=radio]:checked').forEach(function(r){
-    var label=r.parentElement.textContent.trim();
-    var group=r.name;
-    lines.push(group+': '+label);
-  });
-  // Collect text inputs
-  document.querySelectorAll('input[type=text],textarea').forEach(function(f){
-    if(f.value.trim()){
-      var label=f.placeholder||f.previousElementSibling&&f.previousElementSibling.textContent||'';
-      lines.push(label.trim()+': '+f.value.trim());
-    }
-  });
-  var body='БРИФ НА РАЗРАБОТКУ ПРОЕКТА\n========================\n\n'+lines.join('\n');
-  var subject='Бриф на разработку проекта';
-  window.location.href='mailto:veniva.business@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-}
-</script>
 
 <!-- FOOTER -->
 <footer class="brief-footer">
@@ -951,6 +1152,178 @@ function sendBrief(){
   </div>
   <p class="footer-copy">Kempten, Germany</p>
 </footer>
+
+
+<!-- STICKY PRICE BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <span class="sticky-bar-label">Ориентировочная стоимость:</span>
+  <span class="sticky-bar-value" id="stickyTotal">0 &euro;</span>
+</div>
+
+
+<script>
+function calcTotal() {
+  var base = 0;
+  var addons = 0;
+  var percentMult = 1;
+
+  // Sum checked services (data-price on .svc-check)
+  var svcChecks = document.querySelectorAll('.svc-check:checked');
+  for (var i = 0; i < svcChecks.length; i++) {
+    base += parseInt(svcChecks[i].dataset.price || 0);
+  }
+
+  // Sum addon checkboxes with data-price and data-price-percent
+  var addonChecks = document.querySelectorAll('.addon-check:checked');
+  for (var i = 0; i < addonChecks.length; i++) {
+    var c = addonChecks[i];
+    if (c.dataset.price) addons += parseInt(c.dataset.price);
+    if (c.dataset.pricePercent) percentMult += parseInt(c.dataset.pricePercent) / 100;
+  }
+
+  // Sum radio with prices
+  var priceRadios = document.querySelectorAll('.price-radio:checked');
+  for (var i = 0; i < priceRadios.length; i++) {
+    var r = priceRadios[i];
+    if (r.dataset.price) addons += parseInt(r.dataset.price);
+    if (r.dataset.pricePercent) percentMult += parseInt(r.dataset.pricePercent) / 100;
+  }
+
+  // Extra pages beyond 5
+  var pageEl = document.getElementById('pageCount');
+  var pages = parseInt(pageEl ? pageEl.value : 0) || 0;
+  if (pages > 5) {
+    addons += (pages - 5) * 150;
+  }
+
+  var subtotal = base + addons;
+  var percentSurcharge = Math.round(subtotal * (percentMult - 1));
+  var total = Math.round(subtotal * percentMult);
+
+  // Format with German locale
+  function fmt(n) {
+    return n.toLocaleString('de-DE') + ' \u20AC';
+  }
+
+  // Update summary block
+  document.getElementById('basePrice').textContent = fmt(base);
+  document.getElementById('addonPrice').textContent = fmt(addons);
+  document.getElementById('percentPrice').textContent = percentMult > 1 ? '+ ' + fmt(percentSurcharge) : fmt(0);
+  document.getElementById('totalPrice').textContent = fmt(total);
+
+  // Update sticky bar
+  document.getElementById('stickyTotal').textContent = fmt(total);
+}
+
+function sendBrief() {
+  var lines = [];
+  lines.push('БРИФ НА РАЗРАБОТКУ ПРОЕКТА');
+  lines.push('========================\n');
+
+  // Services
+  lines.push('--- ТИП УСЛУГИ ---');
+  var svcChecks = document.querySelectorAll('.svc-check:checked');
+  for (var i = 0; i < svcChecks.length; i++) {
+    var label = svcChecks[i].closest('.cb-item').querySelector('.cb-label').textContent.trim();
+    lines.push('\u2713 ' + label);
+  }
+  lines.push('');
+
+  // About
+  lines.push('--- О ПРОЕКТЕ ---');
+  var companyName = document.getElementById('companyName');
+  if (companyName && companyName.value.trim()) lines.push('Компания: ' + companyName.value.trim());
+  var niche = document.getElementById('niche');
+  if (niche && niche.value.trim()) lines.push('Ниша: ' + niche.value.trim());
+  var audience = document.getElementById('audience');
+  if (audience && audience.value.trim()) lines.push('Целевая аудитория: ' + audience.value.trim());
+  var comp1 = document.getElementById('comp1');
+  var comp2 = document.getElementById('comp2');
+  var comp3 = document.getElementById('comp3');
+  var comps = [];
+  if (comp1 && comp1.value.trim()) comps.push(comp1.value.trim());
+  if (comp2 && comp2.value.trim()) comps.push(comp2.value.trim());
+  if (comp3 && comp3.value.trim()) comps.push(comp3.value.trim());
+  if (comps.length) lines.push('Конкуренты: ' + comps.join(', '));
+  lines.push('');
+
+  // Website sections
+  lines.push('--- ДЛЯ САЙТОВ ---');
+  var pageCount = document.getElementById('pageCount');
+  if (pageCount && pageCount.value) lines.push('Количество страниц: ' + pageCount.value);
+
+  // Collect all non-service, non-addon checkboxes (sections + included features)
+  var allCb = document.querySelectorAll('input[type="checkbox"]:checked');
+  var sections = [];
+  for (var i = 0; i < allCb.length; i++) {
+    var cb = allCb[i];
+    if (!cb.classList.contains('svc-check') && !cb.classList.contains('addon-check')) {
+      var lbl = cb.closest('.cb-item');
+      if (lbl) sections.push(lbl.querySelector('.cb-label').textContent.trim());
+    }
+  }
+  if (sections.length) lines.push('Разделы/Функционал: ' + sections.join(', '));
+
+  // Addon checkboxes
+  var addonChecks = document.querySelectorAll('.addon-check:checked');
+  if (addonChecks.length) {
+    var addonLabels = [];
+    for (var i = 0; i < addonChecks.length; i++) {
+      var lbl = addonChecks[i].closest('.cb-item');
+      if (lbl) addonLabels.push(lbl.querySelector('.cb-label').textContent.trim());
+    }
+    lines.push('Функционал/Опции: ' + addonLabels.join(', '));
+  }
+  lines.push('');
+
+  // Design
+  lines.push('--- ДИЗАЙН ---');
+  var radios = document.querySelectorAll('input[type="radio"]:checked');
+  for (var i = 0; i < radios.length; i++) {
+    var r = radios[i];
+    var name = r.name;
+    var label = r.closest('.radio-item, .palette-item');
+    var text = '';
+    if (label) {
+      if (label.querySelector('.palette-name')) {
+        text = label.querySelector('.palette-name').textContent.trim();
+      } else if (label.querySelector('.radio-label')) {
+        text = label.querySelector('.radio-label').textContent.trim();
+      }
+    }
+    if (text) lines.push(name + ': ' + text);
+  }
+  var ref1 = document.getElementById('ref1');
+  var ref2 = document.getElementById('ref2');
+  if (ref1 && ref1.value.trim()) lines.push('Пример сайта 1: ' + ref1.value.trim());
+  if (ref2 && ref2.value.trim()) lines.push('Пример сайта 2: ' + ref2.value.trim());
+  lines.push('');
+
+  // Deadlines
+  lines.push('--- СРОКИ ---');
+  var deadline = document.getElementById('deadline');
+  if (deadline && deadline.value.trim()) lines.push('Срок: ' + deadline.value.trim());
+  var comments = document.getElementById('comments');
+  if (comments && comments.value.trim()) lines.push('Комментарии: ' + comments.value.trim());
+  lines.push('');
+
+  // Price
+  lines.push('--- СТОИМОСТЬ ---');
+  lines.push('Базовые услуги: ' + document.getElementById('basePrice').textContent);
+  lines.push('Дополнительно: ' + document.getElementById('addonPrice').textContent);
+  lines.push('Надбавки: ' + document.getElementById('percentPrice').textContent);
+  lines.push('ИТОГО: ' + document.getElementById('totalPrice').textContent);
+  lines.push('');
+  lines.push('* Сумма ориентировочная, точный расчёт после обсуждения.');
+
+  var body = lines.join('\n');
+  var subject = '\u0411\u0440\u0438\u0444 \u043D\u0430 \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u043A\u0443 \u043F\u0440\u043E\u0435\u043A\u0442\u0430';
+  window.location.href = 'mailto:veniva.business@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+
+// Initialize
+calcTotal();
+</script>
 
 </body>
 </html>
