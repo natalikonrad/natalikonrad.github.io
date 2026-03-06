@@ -735,6 +735,36 @@ body{
     </div>
   </div>
 
+  <!-- SUBMIT -->
+  <div style="text-align:center;padding:40px 0">
+    <button onclick="sendBrief()" style="background:#5B4A3E;color:#fff;border:none;padding:16px 48px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;border-radius:12px;cursor:pointer;letter-spacing:0.5px;transition:all .2s">Briefing absenden →</button>
+    <p style="margin-top:12px;font-size:13px;color:#A89880">Klicken — Ihr E-Mail-Programm öffnet sich mit den ausgefüllten Daten</p>
+  </div>
+
+  <script>
+  function sendBrief(){
+    var lines=[];
+    document.querySelectorAll('input[type=checkbox]:checked').forEach(function(c){
+      var label=c.parentElement.textContent.trim();
+      lines.push('✓ '+label);
+    });
+    document.querySelectorAll('input[type=radio]:checked').forEach(function(r){
+      var label=r.parentElement.textContent.trim();
+      var group=r.name;
+      lines.push(group+': '+label);
+    });
+    document.querySelectorAll('input[type=text],textarea').forEach(function(f){
+      if(f.value.trim()){
+        var label=f.placeholder||f.previousElementSibling&&f.previousElementSibling.textContent||'';
+        lines.push(label.trim()+': '+f.value.trim());
+      }
+    });
+    var body='PROJEKTBRIEFING\n================\n\n'+lines.join('\n');
+    var subject='Projektbriefing';
+    window.location.href='mailto:veniva.business@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  }
+  </script>
+
   <!-- ==================== FOOTER ==================== -->
   <footer class="brief-footer">
     <div class="footer-nk">NK</div>

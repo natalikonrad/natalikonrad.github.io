@@ -908,6 +908,39 @@ textarea.text-line:focus {
 </section>
 
 
+<!-- SUBMIT -->
+<section class="section" style="text-align:center;padding:40px 0">
+  <button onclick="sendBrief()" style="background:#5B4A3E;color:#fff;border:none;padding:16px 48px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;border-radius:12px;cursor:pointer;letter-spacing:0.5px;transition:all .2s">Отправить бриф →</button>
+  <p style="margin-top:12px;font-size:13px;color:#A89880">Нажмите — откроется ваш email с заполненными данными</p>
+</section>
+
+<script>
+function sendBrief(){
+  var lines=[];
+  // Collect checkboxes
+  document.querySelectorAll('input[type=checkbox]:checked').forEach(function(c){
+    var label=c.parentElement.textContent.trim();
+    lines.push('✓ '+label);
+  });
+  // Collect radios
+  document.querySelectorAll('input[type=radio]:checked').forEach(function(r){
+    var label=r.parentElement.textContent.trim();
+    var group=r.name;
+    lines.push(group+': '+label);
+  });
+  // Collect text inputs
+  document.querySelectorAll('input[type=text],textarea').forEach(function(f){
+    if(f.value.trim()){
+      var label=f.placeholder||f.previousElementSibling&&f.previousElementSibling.textContent||'';
+      lines.push(label.trim()+': '+f.value.trim());
+    }
+  });
+  var body='БРИФ НА РАЗРАБОТКУ ПРОЕКТА\n========================\n\n'+lines.join('\n');
+  var subject='Бриф на разработку проекта';
+  window.location.href='mailto:veniva.business@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+}
+</script>
+
 <!-- FOOTER -->
 <footer class="brief-footer">
   <div class="footer-logo">Natali Konrad</div>
