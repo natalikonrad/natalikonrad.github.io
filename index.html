@@ -308,9 +308,9 @@ textarea.fi{resize:vertical;min-height:88px}
 @media(max-width:1024px){
   section{padding:72px 36px}
   .ft-w{padding:0}
-  .hero{grid-template-columns:1fr}
-  .h-right{display:none}
-  .h-left{padding:116px 36px 72px}
+  .hero{grid-template-columns:1fr;grid-template-rows:auto auto}
+  .h-right{height:50vh;min-height:300px;order:-1}
+  .h-left{padding:40px 36px 72px}
   .n-links{display:none}
   
   .ab-w{grid-template-columns:1fr;gap:40px}
@@ -327,7 +327,8 @@ textarea.fi{resize:vertical;min-height:88px}
   section{padding:56px 20px}
   .ft-w{padding:0}
   .svc-g{grid-template-columns:1fr}
-  .h-left{padding:100px 20px 56px}
+  .h-right{height:40vh;min-height:260px}
+  .h-left{padding:30px 20px 56px}
   .h-stats{gap:20px}
   nav{padding:0 20px}
   .ab-feats{grid-template-columns:1fr}
