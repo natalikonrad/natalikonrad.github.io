@@ -1520,41 +1520,46 @@ function sendBrief() {
   lines.push(lang === 'ru' ? '\uD83D\uDCB0 \u041E\u0420\u0418\u0415\u041D\u0422\u0418\u0420\u041E\u0412\u041E\u0427\u041D\u0410\u042F \u0421\u0422\u041E\u0418\u041C\u041E\u0421\u0422\u042C:' : '\uD83D\uDCB0 GESCH\u00C4TZTER PREIS:');
   lines.push('  ' + document.getElementById('totalPrice').textContent);
 
-  /* Copy text to clipboard and open Telegram chat */
+  /* Copy text to clipboard (iOS-compatible sync approach) */
   var text = lines.join('\n');
 
-  /* Try clipboard API first, fallback to textarea trick */
-  function copyAndOpen() {
-    window.open('https://t.me/natali_6432', '_blank');
-    var lang2 = document.body.classList.contains('lang-ru') ? 'ru' : 'de';
-    var msg = lang2 === 'ru'
-      ? 'Бриф скопирован! Вставьте текст в чат (долгое нажатие → Вставить)'
-      : 'Briefing kopiert! Fügen Sie den Text im Chat ein (lange drücken → Einfügen)';
-    setTimeout(function(){ alert(msg); }, 600);
-  }
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;left:0;top:0;opacity:0.01;width:1px;height:1px';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  if (ta.setSelectionRange) ta.setSelectionRange(0, text.length);
+  document.execCommand('copy');
+  document.body.removeChild(ta);
 
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(copyAndOpen).catch(function() {
-      /* Fallback for older browsers */
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.cssText = 'position:fixed;top:-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      copyAndOpen();
-    });
-  } else {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.cssText = 'position:fixed;top:-9999px';
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    copyAndOpen();
-  }
+  /* Show overlay with instructions + Telegram button */
+  var overlay = document.createElement('div');
+  overlay.id = 'tgOverlay';
+  overlay.innerHTML =
+    '<div style="position:fixed;inset:0;background:rgba(35,35,35,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">' +
+      '<div style="background:#fff;border-radius:16px;padding:40px 32px;max-width:400px;width:100%;text-align:center;box-shadow:0 12px 48px rgba(0,0,0,0.2)">' +
+        '<div style="font-size:48px;margin-bottom:16px">✓</div>' +
+        '<div style="font-family:var(--serif);font-size:24px;font-weight:700;color:var(--esp);margin-bottom:12px">' +
+          (lang === 'ru' ? 'Бриф скопирован!' : 'Briefing kopiert!') +
+        '</div>' +
+        '<div style="font-size:14px;color:#6B5E54;margin-bottom:24px;line-height:1.6">' +
+          (lang === 'ru'
+            ? 'Откройте чат в Telegram и вставьте текст:<br><b>долгое нажатие → Вставить → Отправить</b>'
+            : 'Öffnen Sie den Chat in Telegram und fügen Sie den Text ein:<br><b>lange drücken → Einfügen → Senden</b>') +
+        '</div>' +
+        '<a href="https://t.me/natali_6432" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#fff;padding:14px 32px;border-radius:30px;text-decoration:none;font-family:var(--sans);font-size:15px;font-weight:600">' +
+          '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>' +
+          (lang === 'ru' ? 'Открыть Telegram' : 'Telegram öffnen') +
+        '</a>' +
+        '<div style="margin-top:16px">' +
+          '<button onclick="document.getElementById(\'tgOverlay\').remove()" style="background:none;border:none;color:#A89888;font-size:13px;cursor:pointer;font-family:var(--sans)">' +
+            (lang === 'ru' ? 'Закрыть' : 'Schließen') +
+          '</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(overlay);
 }
 
 /* ========== INIT ========== */
