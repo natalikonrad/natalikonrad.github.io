@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>Projektbriefing — Natali Konrad</title>
+<meta property="og:title" content="Projektbriefing — Natali Konrad">
+<meta property="og:description" content="Füllen Sie den Briefing-Fragebogen aus, damit ich ein individuelles Angebot für Sie erstellen kann.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://natalikonrad.github.io/brief.html">
+<meta property="og:image" content="https://natalikonrad.github.io/og-brief.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET & BASE ========== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --esp:#5B4A3E;
+  --gold:#C4A97D;
+  --gold2:#E8D5B0;
+  --cream:#F5EFE7;
+  --dark:#232323;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+html{background:var(--cream)}
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--dark);
+  line-height:1.6;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+  padding-bottom:72px;
+}
+
+/* ========== LANGUAGE TOGGLE ========== */
+body.lang-ru [data-de],
+body.lang-de [data-ru]{display:none}
+
+.lang-switch{display:flex;gap:4px;justify-content:center;margin-bottom:16px}
+.lang-btn{
+  padding:4px 14px;
+  border:1px solid var(--gold);
+  border-radius:20px;
+  background:transparent;
+  color:var(--esp);
+  font-family:var(--sans);
+  font-size:12px;
+  font-weight:500;
+  cursor:pointer;
+  transition:all 0.2s;
+  letter-spacing:1px;
+}
+.lang-btn.active{background:var(--gold);color:#fff}
+
+/* ========== PAGE CONTAINER ========== */
+.page{
+  max-width:800px;
+  margin:0 auto;
+  padding:60px 48px 40px;
+}
+
+/* ========== HEADER ========== */
+.brief-header{
+  text-align:center;
+  padding-bottom:40px;
+  margin-bottom:40px;
+  border-bottom:1px solid var(--gold);
+}
+.brief-logo{
+  font-family:var(--serif);
+  font-size:36px;
+  font-weight:700;
+  font-style:italic;
+  color:var(--gold);
+  letter-spacing:1px;
+  margin-bottom:6px;
+}
+.brief-subtitle{
+  font-family:var(--serif);
+  font-size:20px;
+  font-weight:400;
+  color:var(--esp);
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+/* ========== SECTIONS ========== */
+.section{
+  margin-bottom:36px;
+  padding-bottom:36px;
+  border-bottom:1px solid var(--gold);
+}
+.section:last-of-type{
+  border-bottom:none;
+}
+.section-number{
+  font-family:var(--serif);
+  font-size:13px;
+  font-weight:600;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:3px;
+  margin-bottom:4px;
+}
+.section-title{
+  font-family:var(--serif);
+  font-size:26px;
+  font-weight:700;
+  color:var(--esp);
+  margin-bottom:24px;
+}
+
+/* ========== FORM ELEMENTS ========== */
+.field{
+  margin-bottom:22px;
+}
+.field-label{
+  font-size:14px;
+  font-weight:600;
+  color:var(--esp);
+  margin-bottom:8px;
+  display:block;
+}
+.field-hint{
+  font-size:12px;
+  font-weight:400;
+  color:#9A8A7A;
+  margin-bottom:8px;
+  display:block;
+}
+.text-line{
+  width:100%;
+  border:none;
+  border-bottom:1px dotted var(--esp);
+  background:transparent;
+  font-family:var(--sans);
+  font-size:14px;
+  color:var(--dark);
+  padding:8px 0;
+  outline:none;
+}
+.text-line::placeholder{
+  color:#B8A898;
+  font-style:italic;
+}
+.text-line:focus{
+  border-bottom-color:var(--gold);
+  border-bottom-style:solid;
+}
+.text-area{
+  width:100%;
+  min-height:70px;
+  border:1px dotted var(--esp);
+  border-radius:6px;
+  background:transparent;
+  font-family:var(--sans);
+  font-size:14px;
+  color:var(--dark);
+  padding:10px 12px;
+  outline:none;
+  resize:vertical;
+}
+.text-area:focus{
+  border-color:var(--gold);
+  border-style:solid;
+}
+.number-input{
+  width:80px;
+  border:none;
+  border-bottom:1px dotted var(--esp);
+  background:transparent;
+  font-family:var(--sans);
+  font-size:14px;
+  color:var(--dark);
+  padding:8px 0;
+  outline:none;
+  text-align:center;
+}
+.number-input:focus{
+  border-bottom-color:var(--gold);
+  border-bottom-style:solid;
+}
+
+/* ========== CHECKBOXES & RADIOS ========== */
+.check-group{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.check-group.horizontal{
+  flex-direction:row;
+  flex-wrap:wrap;
+  gap:10px 24px;
+}
+.check-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  font-size:14px;
+  color:var(--dark);
+  user-select:none;
+  padding:6px 0;
+}
+.check-item input[type="checkbox"],
+.check-item input[type="radio"]{
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  width:18px;
+  height:18px;
+  border:1.5px solid var(--esp);
+  background:transparent;
+  cursor:pointer;
+  flex-shrink:0;
+  position:relative;
+  transition:all 0.2s;
+}
+.check-item input[type="checkbox"]{
+  border-radius:3px;
+}
+.check-item input[type="radio"]{
+  border-radius:50%;
+}
+.check-item input[type="checkbox"]:checked{
+  background:var(--gold);
+  border-color:var(--gold);
+}
+.check-item input[type="checkbox"]:checked::after{
+  content:'';
+  position:absolute;
+  top:2px;
+  left:5px;
+  width:5px;
+  height:9px;
+  border:solid #fff;
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg);
+}
+.check-item input[type="radio"]:checked{
+  border-color:var(--gold);
+}
+.check-item input[type="radio"]:checked::after{
+  content:'';
+  position:absolute;
+  top:3px;
+  left:3px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--gold);
+}
+.check-price{
+  font-size:12px;
+  color:var(--gold);
+  font-weight:500;
+  margin-left:auto;
+  white-space:nowrap;
+  padding-left:12px;
+}
+
+/* ========== SERVICE CARDS ========== */
+.svc-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.svc-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 16px;
+  border:1.5px solid rgba(91,74,62,0.12);
+  border-radius:8px;
+  cursor:pointer;
+  transition:all 0.2s;
+  background:rgba(255,255,255,0.35);
+}
+.svc-item:hover{
+  border-color:var(--gold);
+  background:rgba(255,255,255,0.6);
+}
+.svc-item.checked{
+  border-color:var(--gold);
+  background:rgba(196,169,125,0.08);
+}
+.svc-item input[type="checkbox"]{
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  width:20px;
+  height:20px;
+  border:1.5px solid var(--esp);
+  border-radius:4px;
+  background:transparent;
+  cursor:pointer;
+  flex-shrink:0;
+  position:relative;
+  transition:all 0.2s;
+}
+.svc-item input[type="checkbox"]:checked{
+  background:var(--gold);
+  border-color:var(--gold);
+}
+.svc-item input[type="checkbox"]:checked::after{
+  content:'';
+  position:absolute;
+  top:2px;
+  left:5.5px;
+  width:5px;
+  height:10px;
+  border:solid #fff;
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg);
+}
+.svc-name{
+  font-size:14px;
+  font-weight:500;
+  color:var(--dark);
+  flex:1;
+}
+.svc-price{
+  font-size:13px;
+  font-weight:600;
+  color:var(--gold);
+  white-space:nowrap;
+}
+
+/* ========== COLOR PALETTES ========== */
+.palettes{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.palette{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border:1.5px solid transparent;
+  border-radius:8px;
+  cursor:pointer;
+  transition:all 0.2s;
+  background:rgba(255,255,255,0.4);
+}
+.palette:hover{
+  border-color:var(--gold);
+}
+.palette.selected,
+.palette:has(.palette-check:checked){
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px var(--gold);
+  background:rgba(196,169,125,0.08);
+}
+.palette-check{position:absolute;opacity:0;pointer-events:none}
+.swatches{
+  display:flex;
+  gap:5px;
+}
+.swatch{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  border:1px solid rgba(0,0,0,0.08);
+}
+.palette-name{
+  font-size:11px;
+  color:#9A8A7A;
+  font-weight:500;
+  white-space:nowrap;
+}
+
+/* ========== PRICE SUMMARY ========== */
+.price-summary{
+  border:2px solid var(--gold);
+  border-radius:12px;
+  padding:28px 32px;
+  background:rgba(255,255,255,0.5);
+  margin-top:8px;
+}
+.price-summary-title{
+  font-family:var(--serif);
+  font-size:22px;
+  font-weight:700;
+  color:var(--esp);
+  margin-bottom:20px;
+  text-align:center;
+}
+.price-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:8px 0;
+  font-size:14px;
+  color:var(--dark);
+}
+.price-row.divider{
+  border-top:1px solid rgba(196,169,125,0.3);
+  margin-top:8px;
+  padding-top:16px;
+}
+.price-row-label{
+  font-weight:400;
+}
+.price-row-value{
+  font-weight:600;
+  color:var(--esp);
+  font-size:15px;
+}
+.price-total{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 0 4px;
+  border-top:2px solid var(--gold);
+  margin-top:12px;
+}
+.price-total-label{
+  font-family:var(--serif);
+  font-size:20px;
+  font-weight:700;
+  color:var(--esp);
+}
+.price-total-value{
+  font-family:var(--serif);
+  font-size:28px;
+  font-weight:700;
+  color:var(--gold);
+}
+.price-note{
+  font-size:12px;
+  font-style:italic;
+  color:#9A8A7A;
+  margin-top:16px;
+  line-height:1.5;
+  text-align:center;
+}
+
+/* ========== STICKY BOTTOM BAR ========== */
+.sticky-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:var(--dark);
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  z-index:1000;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.15);
+}
+.sticky-bar-label{
+  font-size:14px;
+  color:rgba(255,255,255,0.7);
+  font-weight:400;
+}
+.sticky-bar-price{
+  font-family:var(--serif);
+  font-size:24px;
+  font-weight:700;
+  color:var(--gold);
+  letter-spacing:0.5px;
+}
+.sticky-bar-hint{
+  font-size:11px;
+  color:rgba(255,255,255,0.4);
+}
+
+/* ========== SUBMIT BUTTON ========== */
+.submit-wrap{
+  text-align:center;
+  padding:40px 0;
+}
+.submit-btn{
+  background:var(--esp);
+  color:#fff;
+  border:none;
+  padding:16px 48px;
+  font-family:var(--sans);
+  font-size:16px;
+  font-weight:600;
+  border-radius:12px;
+  cursor:pointer;
+  letter-spacing:0.5px;
+  transition:all 0.25s;
+}
+.submit-btn:hover{
+  background:var(--gold);
+  color:var(--dark);
+  transform:translateY(-1px);
+  box-shadow:0 4px 16px rgba(196,169,125,0.3);
+}
+.submit-btn:active{
+  transform:translateY(0);
+}
+.submit-hint{
+  margin-top:12px;
+  font-size:13px;
+  color:#A89880;
+}
+
+/* ========== FOOTER ========== */
+.brief-footer{
+  text-align:center;
+  padding-top:32px;
+  border-top:1px solid var(--gold);
+  margin-top:36px;
+}
+.brief-footer .footer-title{
+  font-family:var(--serif);
+  font-size:16px;
+  font-weight:600;
+  color:var(--esp);
+  margin-bottom:10px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+.brief-footer .footer-contacts{
+  font-size:13px;
+  color:#7A6A5A;
+  line-height:1.8;
+}
+.brief-footer .footer-contacts a{
+  color:var(--esp);
+  text-decoration:none;
+  border-bottom:1px dotted var(--gold);
+  transition:color 0.2s;
+}
+.brief-footer .footer-contacts a:hover{
+  color:var(--gold);
+}
+.footer-nk{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--esp));
+  color:#fff;
+  font-family:var(--serif);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:1px;
+  margin-bottom:12px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:700px){
+  .page{padding:32px 20px 24px}
+  .brief-logo{font-size:28px}
+  .brief-subtitle{font-size:16px;letter-spacing:2px}
+  .section-title{font-size:22px}
+  .palettes{grid-template-columns:1fr}
+  .check-group{gap:8px}
+  .svc-item{padding:10px 12px}
+  .price-summary{padding:20px 16px}
+  .price-total-value{font-size:24px}
+  .sticky-bar{padding:10px 16px;gap:10px}
+  .sticky-bar-price{font-size:20px}
+  .sticky-bar-hint{display:none}
+  .submit-btn{padding:14px 32px;font-size:15px}
+}
+
+/* ========== PRINT ========== */
+@media print{
+  html,body{
+    background:#fff !important;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    padding-bottom:0 !important;
+  }
+  .page{
+    max-width:100%;
+    padding:24px 32px;
+    margin:0;
+  }
+  .brief-header{
+    padding-bottom:20px;
+    margin-bottom:24px;
+  }
+  .section{
+    margin-bottom:20px;
+    padding-bottom:20px;
+    page-break-inside:avoid;
+  }
+  .sticky-bar{
+    display:none !important;
+  }
+  .price-summary{
+    page-break-inside:avoid;
+  }
+  .submit-wrap{
+    display:none !important;
+  }
+  .lang-switch{
+    display:none !important;
+  }
+  .text-line,.number-input{
+    border-bottom:1px dotted #999 !important;
+  }
+  .text-area{
+    border:1px dotted #999 !important;
+  }
+  .check-item input[type="checkbox"],
+  .check-item input[type="radio"],
+  .palette-check,
+  .svc-item input[type="checkbox"]{
+    border-color:#999 !important;
+  }
+  .check-item input[type="checkbox"]:checked,
+  .svc-item input[type="checkbox"]:checked{
+    background:var(--gold) !important;
+    border-color:var(--gold) !important;
+  }
+  .svc-item{
+    border:1px solid #ddd !important;
+    background:transparent !important;
+  }
+  .palette{
+    background:rgba(0,0,0,0.02) !important;
+    border:1px solid #ddd !important;
+  }
+  .swatch{
+    border:1px solid rgba(0,0,0,0.15) !important;
+  }
+  a{
+    color:var(--esp) !important;
+    text-decoration:none !important;
+  }
+  .brief-footer{
+    page-break-inside:avoid;
+  }
+}
+</style>
+</head>
+<body class="lang-de">
+
+<div class="page">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="brief-header">
+    <div class="lang-switch">
+      <button class="lang-btn active" id="btnDe" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" id="btnRu" onclick="setLang('ru')">RU</button>
+    </div>
+    <div class="brief-logo">Natali Konrad</div>
+    <div class="brief-subtitle">
+      <span data-de>Projektbriefing</span><span data-ru>Бриф на проект</span>
+    </div>
+  </header>
+
+  <!-- ==================== SECTION 1: SERVICES ==================== -->
+  <div class="section">
+    <div class="section-number">
+      <span data-de>Abschnitt 01</span><span data-ru>Раздел 01</span>
+    </div>
+    <h2 class="section-title">
+      <span data-de>Leistungsart</span><span data-ru>Тип услуги</span>
+    </h2>
+    <span class="field-hint">
+      <span data-de>Mehrfachauswahl m&ouml;glich</span><span data-ru>Можно выбрать несколько</span>
+    </span>
+
+    <div class="svc-list">
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="300" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name"><span data-de>Landingpage (1 Seite)</span><span data-ru>Лендинг (1 страница)</span></span>
+        <span class="svc-price">ab 300 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="500" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name"><span data-de>Mehrseitige Website (3&ndash;5 Seiten)</span><span data-ru>Многостраничный сайт (3&ndash;5 страниц)</span></span>
+        <span class="svc-price">ab 500 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="350" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name"><span data-de>Telegram-Bot (einfach)</span><span data-ru>Telegram-бот (простой)</span></span>
+        <span class="svc-price">ab 350 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="600" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name"><span data-de>Telegram-Bot mit KI</span><span data-ru>Telegram-бот с ИИ</span></span>
+        <span class="svc-price">ab 600 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="150" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name"><span data-de>Design / Branding</span><span data-ru>Дизайн / Брендинг</span></span>
+        <span class="svc-price">ab 150 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="120" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name"><span data-de>Instagram-Content</span><span data-ru>Instagram-контент</span></span>
+        <span class="svc-price">ab 120 &euro; / <span data-de>Monat</span><span data-ru>мес.</span></span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="50" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name"><span data-de>Website-Wartung</span><span data-ru>Обслуживание сайта</span></span>
+        <span class="svc-price">ab 50 &euro; / <span data-de>Monat</span><span data-ru>мес.</span></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 2: ABOUT PROJECT ==================== -->
+  <div class="section">
+    <div class="section-number">
+      <span data-de>Abschnitt 02</span><span data-ru>Раздел 02</span>
+    </div>
+    <h2 class="section-title">
+      <span data-de>&Uuml;ber das Projekt</span><span data-ru>О проекте</span>
+    </h2>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Firmenname / Marke</span><span data-ru>Название компании / бренд</span>
+      </span>
+      <input type="text" class="text-line" data-label-de="Firmenname" data-label-ru="Компания" placeholder="">
+    </div>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Branche / T&auml;tigkeitsbereich</span><span data-ru>Отрасль / ниша</span>
+      </span>
+      <input type="text" class="text-line" data-label-de="Branche" data-label-ru="Отрасль" placeholder="">
+    </div>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Zielgruppe</span><span data-ru>Целевая аудитория</span>
+      </span>
+      <span class="field-hint">
+        <span data-de>Wer sind Ihre Kunden? Alter, Geschlecht, Interessen ...</span><span data-ru>Кто ваши клиенты? Возраст, пол, интересы ...</span>
+      </span>
+      <textarea class="text-area" data-label-de="Zielgruppe" data-label-ru="Целевая аудитория" placeholder=""></textarea>
+    </div>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Wettbewerber</span><span data-ru>Конкуренты</span>
+      </span>
+      <span class="field-hint">
+        <span data-de>Links zu 2&ndash;3 Websites Ihrer Mitbewerber</span><span data-ru>Ссылки на 2&ndash;3 сайта конкурентов</span>
+      </span>
+      <input type="text" class="text-line" data-label-de="Wettbewerber" data-label-ru="Конкурент" placeholder="https://" style="margin-bottom:8px">
+      <input type="text" class="text-line" data-label-de="Wettbewerber" data-label-ru="Конкурент" placeholder="https://" style="margin-bottom:8px">
+      <input type="text" class="text-line" data-label-de="Wettbewerber" data-label-ru="Конкурент" placeholder="https://">
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 3: FOR WEBSITES ==================== -->
+  <div class="section">
+    <div class="section-number">
+      <span data-de>Abschnitt 03</span><span data-ru>Раздел 03</span>
+    </div>
+    <h2 class="section-title">
+      <span data-de>F&uuml;r Websites</span><span data-ru>Для сайтов</span>
+    </h2>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Anzahl der Seiten</span><span data-ru>Количество страниц</span>
+      </span>
+      <span class="field-hint">
+        <span data-de>Jede Seite ab der 6. kostet +150 &euro;</span><span data-ru>Каждая страница начиная с 6-й: +150 &euro;</span>
+      </span>
+      <input type="number" id="pageCount" class="number-input" min="1" max="50" value="0" onchange="calcTotal()" oninput="calcTotal()">
+    </div>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Gew&uuml;nschte Bereiche</span><span data-ru>Нужные разделы</span>
+      </span>
+      <span class="field-hint">
+        <span data-de>Mehrfachauswahl m&ouml;glich</span><span data-ru>Можно выбрать несколько</span>
+      </span>
+      <div class="check-group horizontal" id="sectionsGroup">
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Über uns" data-ru="О нас"> <span data-de>&Uuml;ber uns</span><span data-ru>О нас</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Leistungen" data-ru="Услуги"> <span data-de>Leistungen</span><span data-ru>Услуги</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Portfolio" data-ru="Портфолио"> <span data-de>Portfolio</span><span data-ru>Портфолио</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Bewertungen" data-ru="Отзывы"> <span data-de>Bewertungen</span><span data-ru>Отзывы</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Kontakt" data-ru="Контакт"> <span data-de>Kontakt</span><span data-ru>Контакт</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Blog" data-ru="Блог"> <span data-de>Blog</span><span data-ru>Блог</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Online-Shop" data-ru="Магазин"> <span data-de>Online-Shop</span><span data-ru>Магазин</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="FAQ" data-ru="FAQ"> <span data-de>FAQ</span><span data-ru>FAQ</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Funktionen</span><span data-ru>Функции</span>
+      </span>
+      <div class="check-group" id="functionsGroup">
+        <label class="check-item">
+          <input type="checkbox" class="addon-check func-check" data-de="Kontaktformular" data-ru="Контактная форма" onchange="calcTotal()">
+          <span><span data-de>Kontaktformular</span><span data-ru>Контактная форма</span></span>
+          <span class="check-price"><span data-de>inklusive</span><span data-ru>включено</span></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="addon-check func-check" data-de="Live-Chat / WhatsApp" data-ru="Чат / WhatsApp" onchange="calcTotal()">
+          <span><span data-de>Live-Chat / WhatsApp-Button</span><span data-ru>Чат / WhatsApp-кнопка</span></span>
+          <span class="check-price"><span data-de>inklusive</span><span data-ru>включено</span></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="addon-check func-check" data-price-percent="30" data-de="Mehrsprachigkeit (+30%)" data-ru="Мультиязычность (+30%)" onchange="calcTotal()">
+          <span><span data-de>Mehrsprachigkeit</span><span data-ru>Мультиязычность</span></span>
+          <span class="check-price"><span data-de>+30% vom Basispreis</span><span data-ru>+30% от базовой цены</span></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="CRM / API (+100€)" data-ru="CRM / API (+100€)" onchange="calcTotal()">
+          <span>CRM / API Integration</span>
+          <span class="check-price">+100 &euro;</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="Rechner / Kalkulator (+100€)" data-ru="Калькулятор (+100€)" onchange="calcTotal()">
+          <span><span data-de>Rechner / Kalkulator</span><span data-ru>Калькулятор</span></span>
+          <span class="check-price">+100 &euro;</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="Telegram-Bot auf der Website (+100€)" data-ru="Telegram-бот на сайте (+100€)" onchange="calcTotal()">
+          <span><span data-de>Telegram-Bot auf der Website</span><span data-ru>Telegram-бот на сайте</span></span>
+          <span class="check-price">+100 &euro;</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 4: DESIGN ==================== -->
+  <div class="section">
+    <div class="section-number">
+      <span data-de>Abschnitt 04</span><span data-ru>Раздел 04</span>
+    </div>
+    <h2 class="section-title">
+      <span data-de>Design</span><span data-ru>Дизайн</span>
+    </h2>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Stil</span><span data-ru>Стиль</span>
+      </span>
+      <div class="check-group horizontal">
+        <label class="check-item"><input type="radio" name="stil" data-de="Minimalistisch" data-ru="Минимализм"> <span data-de>Minimalistisch</span><span data-ru>Минимализм</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Luxury / Premium" data-ru="Люкс / Премиум"> <span data-de>Luxury / Premium</span><span data-ru>Люкс / Премиум</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Bunt / Kreativ" data-ru="Яркий / Креативный"> <span data-de>Bunt / Kreativ</span><span data-ru>Яркий / Креативный</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Korporativ" data-ru="Корпоративный"> <span data-de>Korporativ</span><span data-ru>Корпоративный</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Anderer" data-ru="Другой"> <span data-de>Anderer</span><span data-ru>Другой</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Farbpalette</span><span data-ru>Цветовая палитра</span>
+      </span>
+      <span class="field-hint">
+        <span data-de>W&auml;hlen Sie bis zu 3 Farbkombinationen</span><span data-ru>Выберите до 3 цветовых комбинаций</span>
+      </span>
+      <div class="palettes">
+
+        <label class="palette" data-num="1" data-colors="#5B4A3E #8A8077 #CBBFAF #E8DED4 #F6F2EB">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#5B4A3E"></div>
+            <div class="swatch" style="background:#8A8077"></div>
+            <div class="swatch" style="background:#CBBFAF"></div>
+            <div class="swatch" style="background:#E8DED4"></div>
+            <div class="swatch" style="background:#F6F2EB"></div>
+          </div>
+          <span class="palette-name">#1 Urban Espresso</span>
+        </label>
+
+        <label class="palette" data-num="2" data-colors="#3E3A37 #2B2C25 #71705C #EAE9E6">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#3E3A37"></div>
+            <div class="swatch" style="background:#2B2C25"></div>
+            <div class="swatch" style="background:#71705C"></div>
+            <div class="swatch" style="background:#EAE9E6"></div>
+          </div>
+          <span class="palette-name"><span data-de>#2 Dunkles Oliv</span><span data-ru>#2 Dark Olive</span></span>
+        </label>
+
+        <label class="palette" data-num="3" data-colors="#051F20 #163832 #235347 #8EB69B">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#051F20"></div>
+            <div class="swatch" style="background:#163832"></div>
+            <div class="swatch" style="background:#235347"></div>
+            <div class="swatch" style="background:#8EB69B"></div>
+          </div>
+          <span class="palette-name"><span data-de>#3 Gr&uuml;ner Verlauf</span><span data-ru>#3 Green Gradient</span></span>
+        </label>
+
+        <label class="palette" data-num="4" data-colors="#4E4D4D #C4A97D #DCCECD">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#4E4D4D"></div>
+            <div class="swatch" style="background:#C4A97D"></div>
+            <div class="swatch" style="background:#DCCECD"></div>
+          </div>
+          <span class="palette-name">#4 Gold &amp; Blush</span>
+        </label>
+
+        <label class="palette" data-num="5" data-colors="#291C0E #6E473B #A78D78 #BEB5A9 #E1D4C2">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#291C0E"></div>
+            <div class="swatch" style="background:#6E473B"></div>
+            <div class="swatch" style="background:#A78D78"></div>
+            <div class="swatch" style="background:#BEB5A9"></div>
+            <div class="swatch" style="background:#E1D4C2"></div>
+          </div>
+          <span class="palette-name"><span data-de>#5 Warme Erde</span><span data-ru>#5 Warm Earth</span></span>
+        </label>
+
+        <label class="palette" data-num="6" data-colors="#EDEDE9 #D6CCC2 #F5EBE0 #E3D5CA #D5BDAF">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#EDEDE9"></div>
+            <div class="swatch" style="background:#D6CCC2"></div>
+            <div class="swatch" style="background:#F5EBE0"></div>
+            <div class="swatch" style="background:#E3D5CA"></div>
+            <div class="swatch" style="background:#D5BDAF"></div>
+          </div>
+          <span class="palette-name"><span data-de>#6 Weicher Sand</span><span data-ru>#6 Soft Sand</span></span>
+        </label>
+
+        <label class="palette" data-num="7" data-colors="#424123 #80744C #E6DED3 #E8D1C1">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#424123"></div>
+            <div class="swatch" style="background:#80744C"></div>
+            <div class="swatch" style="background:#E6DED3"></div>
+            <div class="swatch" style="background:#E8D1C1"></div>
+          </div>
+          <span class="palette-name"><span data-de>#7 Moos &amp; Ros&eacute;</span><span data-ru>#7 Moss &amp; Blush</span></span>
+        </label>
+
+        <label class="palette" data-num="8" data-colors="#000000 #91766E #F3ECE3 #C8A19C">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#000000"></div>
+            <div class="swatch" style="background:#91766E"></div>
+            <div class="swatch" style="background:#F3ECE3"></div>
+            <div class="swatch" style="background:#C8A19C"></div>
+          </div>
+          <span class="palette-name"><span data-de>#8 Schwarz &amp; Ros&eacute;</span><span data-ru>#8 Black &amp; Rosy</span></span>
+        </label>
+
+        <label class="palette" data-num="9" data-colors="#19201F #A18C72 #BF9D87 #E9D7CE #F7F5F0">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#19201F"></div>
+            <div class="swatch" style="background:#A18C72"></div>
+            <div class="swatch" style="background:#BF9D87"></div>
+            <div class="swatch" style="background:#E9D7CE"></div>
+            <div class="swatch" style="background:#F7F5F0"></div>
+          </div>
+          <span class="palette-name">#9 Style</span>
+        </label>
+
+        <label class="palette" data-num="10" data-colors="#2D1E17 #523F31 #796254 #9D8A7C #EADDD3">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#2D1E17"></div>
+            <div class="swatch" style="background:#523F31"></div>
+            <div class="swatch" style="background:#796254"></div>
+            <div class="swatch" style="background:#9D8A7C"></div>
+            <div class="swatch" style="background:#EADDD3"></div>
+          </div>
+          <span class="palette-name"><span data-de>#10 Kaffee-Verlauf</span><span data-ru>#10 Coffee Gradient</span></span>
+        </label>
+
+        <label class="palette" data-num="11" data-colors="#111012 #767273 #A08348 #BAAFAD #ECE0DE">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#111012"></div>
+            <div class="swatch" style="background:#767273"></div>
+            <div class="swatch" style="background:#A08348"></div>
+            <div class="swatch" style="background:#BAAFAD"></div>
+            <div class="swatch" style="background:#ECE0DE"></div>
+          </div>
+          <span class="palette-name"><span data-de>#11 Dunkle Bl&uuml;ten</span><span data-ru>#11 Dark Floral</span></span>
+        </label>
+
+        <label class="palette" data-num="12" data-colors="#332821 #5B563B #868264 #E9E1D2">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#332821"></div>
+            <div class="swatch" style="background:#5B563B"></div>
+            <div class="swatch" style="background:#868264"></div>
+            <div class="swatch" style="background:#E9E1D2"></div>
+          </div>
+          <span class="palette-name"><span data-de>#12 Salbei &amp; Braun</span><span data-ru>#12 Sage &amp; Brown</span></span>
+        </label>
+
+        <label class="palette" data-num="13" data-colors="#22211F #5C5B58 #A9A6A2 #E5E3E0 #F7F6F5">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#22211F"></div>
+            <div class="swatch" style="background:#5C5B58"></div>
+            <div class="swatch" style="background:#A9A6A2"></div>
+            <div class="swatch" style="background:#E5E3E0"></div>
+            <div class="swatch" style="background:#F7F6F5"></div>
+          </div>
+          <span class="palette-name"><span data-de>#13 Marmor-Grau</span><span data-ru>#13 Marble Gray</span></span>
+        </label>
+
+        <label class="palette" data-num="14" data-colors="#2E2E2E #C2AF95 #DDD4C6 #EFECE6">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#2E2E2E"></div>
+            <div class="swatch" style="background:#C2AF95"></div>
+            <div class="swatch" style="background:#DDD4C6"></div>
+            <div class="swatch" style="background:#EFECE6"></div>
+          </div>
+          <span class="palette-name"><span data-de>#14 Ruhiger Schreibtisch</span><span data-ru>#14 Calm Desk</span></span>
+        </label>
+
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Beispiel-Websites die Ihnen gefallen</span><span data-ru>Сайты-примеры, которые нравятся</span>
+      </span>
+      <input type="text" class="text-line" data-label-de="Referenz-Website" data-label-ru="Сайт-пример" placeholder="https://" style="margin-bottom:8px">
+      <input type="text" class="text-line" data-label-de="Referenz-Website" data-label-ru="Сайт-пример" placeholder="https://">
+    </div>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Schriftart</span><span data-ru>Шрифт</span>
+      </span>
+      <div class="check-group horizontal">
+        <label class="check-item"><input type="radio" name="font" data-de="Mit Serifen" data-ru="С засечками"> <span data-de>Mit Serifen</span><span data-ru>С засечками (Serif)</span></label>
+        <label class="check-item"><input type="radio" name="font" data-de="Ohne Serifen" data-ru="Без засечек"> <span data-de>Ohne Serifen</span><span data-ru>Без засечек (Sans-serif)</span></label>
+        <label class="check-item"><input type="radio" name="font" data-de="Nach Ihrem Ermessen" data-ru="На усмотрение дизайнера"> <span data-de>Nach Ihrem Ermessen</span><span data-ru>На усмотрение дизайнера</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 5: CONTENT ==================== -->
+  <div class="section">
+    <div class="section-number">
+      <span data-de>Abschnitt 05</span><span data-ru>Раздел 05</span>
+    </div>
+    <h2 class="section-title">
+      <span data-de>Inhalte</span><span data-ru>Контент</span>
+    </h2>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Texte</span><span data-ru>Тексты</span>
+      </span>
+      <div class="check-group">
+        <label class="check-item">
+          <input type="radio" name="texte" class="price-radio" data-de="Sind vorhanden" data-ru="Есть" onchange="calcTotal()">
+          <span><span data-de>Sind vorhanden</span><span data-ru>Есть</span></span>
+        </label>
+        <label class="check-item">
+          <input type="radio" name="texte" class="price-radio" data-price="80" data-de="Müssen erstellt werden (+80€)" data-ru="Нужно написать (+80€)" onchange="calcTotal()">
+          <span><span data-de>M&uuml;ssen erstellt werden</span><span data-ru>Нужно написать</span></span>
+          <span class="check-price">+80 &euro;</span>
+        </label>
+        <label class="check-item">
+          <input type="radio" name="texte" class="price-radio" data-price="40" data-de="Teilweise vorhanden (+40€)" data-ru="Частично есть (+40€)" onchange="calcTotal()">
+          <span><span data-de>Teilweise vorhanden</span><span data-ru>Частично есть</span></span>
+          <span class="check-price">+40 &euro;</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Fotos</span><span data-ru>Фотографии</span>
+      </span>
+      <div class="check-group">
+        <label class="check-item">
+          <input type="radio" name="fotos" data-de="Sind vorhanden" data-ru="Есть">
+          <span><span data-de>Sind vorhanden</span><span data-ru>Есть</span></span>
+        </label>
+        <label class="check-item">
+          <input type="radio" name="fotos" data-de="Fotoshooting benötigt" data-ru="Нужна фотосессия">
+          <span><span data-de>Fotoshooting ben&ouml;tigt</span><span data-ru>Нужна фотосессия</span></span>
+          <span class="check-price"><span data-de>wird separat besprochen</span><span data-ru>обсуждается отдельно</span></span>
+        </label>
+        <label class="check-item">
+          <input type="radio" name="fotos" data-de="Teilweise vorhanden" data-ru="Частично есть">
+          <span><span data-de>Teilweise vorhanden</span><span data-ru>Частично есть</span></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Logo</span><span data-ru>Логотип</span>
+      </span>
+      <div class="check-group">
+        <label class="check-item">
+          <input type="radio" name="logo" class="price-radio" data-de="Ist vorhanden" data-ru="Есть" onchange="calcTotal()">
+          <span><span data-de>Ist vorhanden</span><span data-ru>Есть</span></span>
+        </label>
+        <label class="check-item">
+          <input type="radio" name="logo" class="price-radio" data-price="80" data-de="Muss erstellt werden (+80€)" data-ru="Нужно создать (+80€)" onchange="calcTotal()">
+          <span><span data-de>Muss erstellt werden</span><span data-ru>Нужно создать</span></span>
+          <span class="check-price">+80 &euro;</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 6: ADDITIONAL OPTIONS ==================== -->
+  <div class="section">
+    <div class="section-number">
+      <span data-de>Abschnitt 06</span><span data-ru>Раздел 06</span>
+    </div>
+    <h2 class="section-title">
+      <span data-de>Zus&auml;tzliche Optionen</span><span data-ru>Дополнительные опции</span>
+    </h2>
+
+    <div class="check-group">
+      <label class="check-item">
+        <input type="checkbox" class="addon-check extra-check" data-price-percent="50" data-de="Express (+50%)" data-ru="Экспресс (+50%)" onchange="calcTotal()">
+        <span><span data-de>Express &mdash; bis 3 Tage</span><span data-ru>Экспресс &mdash; до 3 дней</span></span>
+        <span class="check-price"><span data-de>+50% vom Basispreis</span><span data-ru>+50% от базовой цены</span></span>
+      </label>
+      <label class="check-item">
+        <input type="checkbox" class="addon-check extra-check" data-price="50" data-de="Bildbearbeitung (+50€)" data-ru="Обработка фото (+50€)" onchange="calcTotal()">
+        <span><span data-de>Bildbearbeitung &mdash; 10 Fotos</span><span data-ru>Обработка фото &mdash; 10 шт.</span></span>
+        <span class="check-price">+50 &euro;</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 7: TIMELINE ==================== -->
+  <div class="section">
+    <div class="section-number">
+      <span data-de>Abschnitt 07</span><span data-ru>Раздел 07</span>
+    </div>
+    <h2 class="section-title">
+      <span data-de>Zeitrahmen</span><span data-ru>Сроки</span>
+    </h2>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Gew&uuml;nschter Starttermin</span><span data-ru>Желаемая дата начала</span>
+      </span>
+      <input type="text" class="text-line" data-label-de="Starttermin" data-label-ru="Дата начала" placeholder="">
+    </div>
+
+    <div class="field">
+      <span class="field-label">
+        <span data-de>Kommentare / W&uuml;nsche</span><span data-ru>Комментарии / пожелания</span>
+      </span>
+      <textarea class="text-area" data-label-de="Kommentare" data-label-ru="Комментарии" placeholder=""></textarea>
+    </div>
+  </div>
+
+  <!-- ==================== PRICE SUMMARY ==================== -->
+  <div class="price-summary">
+    <div class="price-summary-title">
+      <span data-de>Kosten&uuml;bersicht</span><span data-ru>Стоимость</span>
+    </div>
+
+    <div class="price-row">
+      <span class="price-row-label"><span data-de>Basisleistungen</span><span data-ru>Базовые услуги</span></span>
+      <span class="price-row-value" id="basePrice">0 &euro;</span>
+    </div>
+    <div class="price-row">
+      <span class="price-row-label"><span data-de>Zusatzoptionen</span><span data-ru>Дополнительно</span></span>
+      <span class="price-row-value" id="addonPrice">0 &euro;</span>
+    </div>
+    <div class="price-row">
+      <span class="price-row-label"><span data-de>Prozentuale Aufschl&auml;ge</span><span data-ru>Процентные надбавки</span></span>
+      <span class="price-row-value" id="percentPrice">0 &euro;</span>
+    </div>
+
+    <div class="price-total">
+      <span class="price-total-label"><span data-de>Gesamt</span><span data-ru>Итого</span></span>
+      <span class="price-total-value" id="totalPrice">0 &euro;</span>
+    </div>
+
+    <p class="price-note">
+      <span data-de>Der angegebene Betrag ist ein Richtwert. Der genaue Preis wird nach Besprechung der Projektdetails individuell berechnet.</span><span data-ru>Указанная сумма является ориентировочной. Точная стоимость рассчитывается после обсуждения деталей проекта.</span>
+    </p>
+  </div>
+
+  <!-- ==================== SUBMIT ==================== -->
+  <div class="submit-wrap">
+    <button class="submit-btn" onclick="sendBrief()">
+      <span data-de>Briefing absenden &rarr;</span><span data-ru>Отправить бриф &rarr;</span>
+    </button>
+    <p class="submit-hint">
+      <span data-de>Ihre Daten werden direkt an Telegram gesendet</span><span data-ru>Данные будут отправлены в Telegram</span>
+    </p>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="brief-footer">
+    <div class="footer-nk">NK</div>
+    <div class="footer-title">Natali Konrad</div>
+    <div class="footer-contacts">
+      <a href="mailto:veniva.business@gmail.com">veniva.business@gmail.com</a><br>
+      +49 1514 1367080<br>
+      Telegram: <a href="https://t.me/natali_6432" target="_blank">@natali_6432</a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ==================== STICKY BOTTOM BAR ==================== -->
+<div class="sticky-bar" id="stickyBar">
+  <span class="sticky-bar-label">
+    <span data-de>Gesch&auml;tzter Preis:</span><span data-ru>Ориентировочно:</span>
+  </span>
+  <span class="sticky-bar-price" id="stickyPrice">0 &euro;</span>
+  <span class="sticky-bar-hint">
+    <span data-de>Richtwert</span><span data-ru>предварительно</span>
+  </span>
+</div>
+
+<script>
+/* ========== LANGUAGE SWITCHER ========== */
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.getElementById('btnDe').classList.toggle('active', lang === 'de');
+  document.getElementById('btnRu').classList.toggle('active', lang === 'ru');
+  updatePlaceholders(lang);
+}
+
+function updatePlaceholders(lang) {
+  var placeholders = {
+    de: [
+      'Ihr Firmenname oder Markenname',
+      'z. B. Kosmetik, Gastronomie, Coaching ...',
+      'z. B. Frauen 25-45, interessiert an Beauty und Wellness ...',
+      'https://', 'https://', 'https://',
+      'https://', 'https://',
+      'z. B. sofort, ab April 2026 ...',
+      'Haben Sie besondere Anforderungen oder W\u00FCnsche?'
+    ],
+    ru: [
+      '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438 \u0438\u043B\u0438 \u0431\u0440\u0435\u043D\u0434\u0430',
+      '\u041D\u0430\u043F\u0440. \u043A\u043E\u0441\u043C\u0435\u0442\u0438\u043A\u0430, \u0440\u0435\u0441\u0442\u043E\u0440\u0430\u043D\u044B, \u043A\u043E\u0443\u0447\u0438\u043D\u0433 ...',
+      '\u041D\u0430\u043F\u0440. \u0436\u0435\u043D\u0449\u0438\u043D\u044B 25-45, \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u044B: \u043A\u0440\u0430\u0441\u043E\u0442\u0430 \u0438 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435 ...',
+      'https://', 'https://', 'https://',
+      'https://', 'https://',
+      '\u041D\u0430\u043F\u0440. \u0441\u0440\u0430\u0437\u0443, \u0441 \u0430\u043F\u0440\u0435\u043B\u044F 2026 ...',
+      '\u041E\u0441\u043E\u0431\u044B\u0435 \u0442\u0440\u0435\u0431\u043E\u0432\u0430\u043D\u0438\u044F \u0438\u043B\u0438 \u043F\u043E\u0436\u0435\u043B\u0430\u043D\u0438\u044F?'
+    ]
+  };
+  var inputs = document.querySelectorAll('.text-line, .text-area');
+  var ph = placeholders[lang];
+  for (var i = 0; i < inputs.length && i < ph.length; i++) {
+    inputs[i].placeholder = ph[i];
+  }
+}
+
+/* ========== LIVE PRICE CALCULATOR ========== */
+function calcTotal() {
+  var base = 0;
+  var addons = 0;
+  var percentMult = 1;
+
+  /* Base services */
+  var svcChecks = document.querySelectorAll('.svc-check:checked');
+  for (var i = 0; i < svcChecks.length; i++) {
+    base += parseInt(svcChecks[i].dataset.price || 0);
+  }
+
+  /* Add-on checkboxes */
+  var addonChecks = document.querySelectorAll('.addon-check:checked');
+  for (var i = 0; i < addonChecks.length; i++) {
+    var c = addonChecks[i];
+    if (c.dataset.price) addons += parseInt(c.dataset.price);
+    if (c.dataset.pricePercent) percentMult += parseInt(c.dataset.pricePercent) / 100;
+  }
+
+  /* Radio buttons with prices */
+  var priceRadios = document.querySelectorAll('.price-radio:checked');
+  for (var i = 0; i < priceRadios.length; i++) {
+    var r = priceRadios[i];
+    if (r.dataset.price) addons += parseInt(r.dataset.price);
+    if (r.dataset.pricePercent) percentMult += parseInt(r.dataset.pricePercent) / 100;
+  }
+
+  /* Extra pages */
+  var pageEl = document.getElementById('pageCount');
+  var pages = parseInt(pageEl ? pageEl.value : 0) || 0;
+  if (pages > 5) addons += (pages - 5) * 150;
+
+  var subtotal = base + addons;
+  var percentSurcharge = Math.round(subtotal * (percentMult - 1));
+  var total = Math.round(subtotal * percentMult);
+
+  document.getElementById('basePrice').textContent = base.toLocaleString('de-DE') + ' \u20AC';
+  document.getElementById('addonPrice').textContent = addons.toLocaleString('de-DE') + ' \u20AC';
+  document.getElementById('percentPrice').textContent = (percentSurcharge > 0 ? '+' : '') + percentSurcharge.toLocaleString('de-DE') + ' \u20AC';
+  document.getElementById('totalPrice').textContent = total.toLocaleString('de-DE') + ' \u20AC';
+  document.getElementById('stickyPrice').textContent = total.toLocaleString('de-DE') + ' \u20AC';
+}
+
+/* ========== TOGGLE SERVICE CARD HIGHLIGHT ========== */
+function toggleSvc(checkbox) {
+  var item = checkbox.closest('.svc-item');
+  if (checkbox.checked) {
+    item.classList.add('checked');
+  } else {
+    item.classList.remove('checked');
+  }
+}
+
+/* ========== PALETTE SELECTION LIMIT (max 3) ========== */
+function limitPalettes(el) {
+  var checks = document.querySelectorAll('.palette-check:checked');
+  if (checks.length > 3) { el.checked = false; }
+}
+
+/* ========== SEND BRIEF VIA TELEGRAM ========== */
+function sendBrief() {
+  var lang = document.body.classList.contains('lang-ru') ? 'ru' : 'de';
+  var lines = [];
+
+  /* Title */
+  lines.push(lang === 'ru' ? '\u0411\u0420\u0418\u0424 \u041D\u0410 \u041F\u0420\u041E\u0415\u041A\u0422' : 'PROJEKTBRIEFING');
+  lines.push('\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550');
+  lines.push('');
+
+  /* Section 1: Services */
+  lines.push(lang === 'ru' ? '\uD83D\uDCCB \u0423\u0421\u041B\u0423\u0413\u0418:' : '\uD83D\uDCCB LEISTUNGEN:');
+  var svcChecked = document.querySelectorAll('.svc-check:checked');
+  for (var i = 0; i < svcChecked.length; i++) {
+    var item = svcChecked[i].closest('.svc-item');
+    var nameEl = item.querySelector('.svc-name');
+    var nameSpan = nameEl.querySelector('[data-' + lang + ']');
+    var name = nameSpan ? nameSpan.textContent.trim() : nameEl.textContent.trim();
+    var price = item.querySelector('.svc-price').textContent.trim();
+    lines.push('  \u2713 ' + name + ' (' + price + ')');
+  }
+  if (!svcChecked.length) lines.push('  \u2014');
+  lines.push('');
+
+  /* Section 2: About project - text fields */
+  lines.push(lang === 'ru' ? '\uD83C\uDFE2 \u041E \u041F\u0420\u041E\u0415\u041A\u0422\u0415:' : '\uD83C\uDFE2 \u00DCBER DAS PROJEKT:');
+  var textFields = document.querySelectorAll('.text-line, .text-area');
+  for (var i = 0; i < textFields.length; i++) {
+    var f = textFields[i];
+    if (f.value && f.value.trim()) {
+      var labelKey = lang === 'ru' ? 'labelRu' : 'labelDe';
+      var label = f.dataset[labelKey] || '';
+      if (!label) {
+        var field = f.closest('.field');
+        if (field) {
+          var lbl = field.querySelector('.field-label [data-' + lang + ']');
+          if (lbl) label = lbl.textContent.trim();
+        }
+      }
+      lines.push('  ' + (label || '') + ': ' + f.value.trim());
+    }
+  }
+  lines.push('');
+
+  /* Page count */
+  var pageEl = document.getElementById('pageCount');
+  var pages = parseInt(pageEl ? pageEl.value : 0) || 0;
+  if (pages > 0) {
+    lines.push((lang === 'ru' ? '\uD83D\uDCC4 \u0421\u0422\u0420\u0410\u041D\u0418\u0426\u042B: ' : '\uD83D\uDCC4 SEITEN: ') + pages);
+    lines.push('');
+  }
+
+  /* Section 3: Sections needed */
+  var secChecked = document.querySelectorAll('.section-check:checked');
+  if (secChecked.length) {
+    lines.push(lang === 'ru' ? '\uD83D\uDCC2 \u0420\u0410\u0417\u0414\u0415\u041B\u042B:' : '\uD83D\uDCC2 BEREICHE:');
+    for (var i = 0; i < secChecked.length; i++) {
+      var val = secChecked[i].dataset[lang] || secChecked[i].parentElement.textContent.trim();
+      lines.push('  \u2713 ' + val);
+    }
+    lines.push('');
+  }
+
+  /* Section 3: Functions */
+  var funcChecked = document.querySelectorAll('.func-check:checked');
+  if (funcChecked.length) {
+    lines.push(lang === 'ru' ? '\u2699\uFE0F \u0424\u0423\u041D\u041A\u0426\u0418\u0418:' : '\u2699\uFE0F FUNKTIONEN:');
+    for (var i = 0; i < funcChecked.length; i++) {
+      var val = funcChecked[i].dataset[lang] || '';
+      if (!val) {
+        var span = funcChecked[i].closest('.check-item').querySelector('span [data-' + lang + ']');
+        val = span ? span.textContent.trim() : funcChecked[i].closest('.check-item').textContent.trim();
+      }
+      lines.push('  \u2713 ' + val);
+    }
+    lines.push('');
+  }
+
+  /* Section 4: Style */
+  var stilRadio = document.querySelector('input[name="stil"]:checked');
+  if (stilRadio) {
+    var stilVal = stilRadio.dataset[lang] || stilRadio.parentElement.textContent.trim();
+    lines.push((lang === 'ru' ? '\uD83C\uDFA8 \u0421\u0422\u0418\u041B\u042C: ' : '\uD83C\uDFA8 STIL: ') + stilVal);
+    lines.push('');
+  }
+
+  /* Section 4: Palettes */
+  var palChecked = document.querySelectorAll('.palette-check:checked');
+  if (palChecked.length) {
+    lines.push(lang === 'ru' ? '\uD83C\uDFA8 \u041F\u0410\u041B\u0418\u0422\u0420\u042B:' : '\uD83C\uDFA8 FARBPALETTEN:');
+    for (var i = 0; i < palChecked.length; i++) {
+      var pal = palChecked[i].closest('.palette');
+      var num = pal.dataset.num;
+      var nameEl = pal.querySelector('.palette-name');
+      var nameSpan = nameEl.querySelector('[data-' + lang + ']');
+      var name = nameSpan ? nameSpan.textContent.trim() : nameEl.textContent.trim();
+      var colors = pal.dataset.colors;
+      lines.push('  ' + name + ' (' + colors + ')');
+    }
+    lines.push('');
+  }
+
+  /* Section 4: Font */
+  var fontRadio = document.querySelector('input[name="font"]:checked');
+  if (fontRadio) {
+    var fontVal = fontRadio.dataset[lang] || fontRadio.parentElement.textContent.trim();
+    lines.push((lang === 'ru' ? '\u2712\uFE0F \u0428\u0420\u0418\u0424\u0422: ' : '\u2712\uFE0F SCHRIFTART: ') + fontVal);
+    lines.push('');
+  }
+
+  /* Section 5: Content radios */
+  lines.push(lang === 'ru' ? '\uD83D\uDCC1 \u041A\u041E\u041D\u0422\u0415\u041D\u0422:' : '\uD83D\uDCC1 INHALTE:');
+
+  var texteRadio = document.querySelector('input[name="texte"]:checked');
+  if (texteRadio) {
+    var texteVal = texteRadio.dataset[lang] || '';
+    if (!texteVal) {
+      var span = texteRadio.closest('.check-item').querySelector('span [data-' + lang + ']');
+      texteVal = span ? span.textContent.trim() : '';
+    }
+    lines.push('  ' + (lang === 'ru' ? '\u0422\u0435\u043A\u0441\u0442\u044B' : 'Texte') + ': ' + texteVal);
+  }
+
+  var fotosRadio = document.querySelector('input[name="fotos"]:checked');
+  if (fotosRadio) {
+    var fotosVal = fotosRadio.dataset[lang] || '';
+    if (!fotosVal) {
+      var span = fotosRadio.closest('.check-item').querySelector('span [data-' + lang + ']');
+      fotosVal = span ? span.textContent.trim() : '';
+    }
+    lines.push('  ' + (lang === 'ru' ? '\u0424\u043E\u0442\u043E' : 'Fotos') + ': ' + fotosVal);
+  }
+
+  var logoRadio = document.querySelector('input[name="logo"]:checked');
+  if (logoRadio) {
+    var logoVal = logoRadio.dataset[lang] || '';
+    if (!logoVal) {
+      var span = logoRadio.closest('.check-item').querySelector('span [data-' + lang + ']');
+      logoVal = span ? span.textContent.trim() : '';
+    }
+    lines.push('  ' + (lang === 'ru' ? '\u041B\u043E\u0433\u043E' : 'Logo') + ': ' + logoVal);
+  }
+  lines.push('');
+
+  /* Section 6: Extra options */
+  var extraChecked = document.querySelectorAll('.extra-check:checked');
+  if (extraChecked.length) {
+    lines.push(lang === 'ru' ? '\u2B50 \u0414\u041E\u041F. \u041E\u041F\u0426\u0418\u0418:' : '\u2B50 ZUSATZOPTIONEN:');
+    for (var i = 0; i < extraChecked.length; i++) {
+      var val = extraChecked[i].dataset[lang] || '';
+      if (!val) {
+        var span = extraChecked[i].closest('.check-item').querySelector('span [data-' + lang + ']');
+        val = span ? span.textContent.trim() : '';
+      }
+      lines.push('  \u2713 ' + val);
+    }
+    lines.push('');
+  }
+
+  /* Price */
+  lines.push(lang === 'ru' ? '\uD83D\uDCB0 \u041E\u0420\u0418\u0415\u041D\u0422\u0418\u0420\u041E\u0412\u041E\u0427\u041D\u0410\u042F \u0421\u0422\u041E\u0418\u041C\u041E\u0421\u0422\u042C:' : '\uD83D\uDCB0 GESCH\u00C4TZTER PREIS:');
+  lines.push('  ' + document.getElementById('totalPrice').textContent);
+
+  /* Build Telegram URL */
+  var text = lines.join('\n');
+  var url = 'https://t.me/natali_6432?text=' + encodeURIComponent(text);
+  window.open(url, '_blank');
+}
+
+/* ========== INIT ========== */
+updatePlaceholders('de');
+calcTotal();
+</script>
+
+</body>
+</html>
