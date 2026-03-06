@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>Бриф — Natali Konrad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --esp: #5B4A3E;
+  --gold: #C4A97D;
+  --gold2: #E8D5B0;
+  --cream: #F5EFE7;
+  --dark: #232323;
+  --text: #1C1917;
+  --textm: #6B5E54;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #F0EBE3;
+}
+
+body {
+  font-family: var(--sans);
+  background: #fff;
+  color: var(--text);
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 60px 64px;
+  border: 1px solid #e8e0d6;
+  box-shadow: 0 4px 40px rgba(91,74,62,.07);
+}
+
+/* ===== HEADER ===== */
+.brief-header {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--gold);
+  margin-bottom: 40px;
+}
+
+.brief-logo {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.brief-subtitle {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--textm);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ===== SECTIONS ===== */
+.brief-section {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--gold);
+}
+
+.brief-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 20px;
+  padding-bottom: 0;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--esp);
+  margin-bottom: 28px;
+  letter-spacing: 0.5px;
+}
+
+.section-title span {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ===== FORM FIELDS ===== */
+.field-group {
+  margin-bottom: 24px;
+}
+
+.field-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--esp);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.field-hint {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--textm);
+  font-style: italic;
+}
+
+.text-line {
+  width: 100%;
+  border: none;
+  border-bottom: 1px dotted var(--esp);
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text);
+  padding: 8px 0;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.text-line:focus {
+  border-bottom-color: var(--gold);
+}
+
+.text-line::placeholder {
+  color: #c4b8aa;
+  font-style: italic;
+}
+
+textarea.text-line {
+  resize: vertical;
+  min-height: 60px;
+  line-height: 1.7;
+  border-bottom: none;
+  border: 1px dotted var(--esp);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+textarea.text-line:focus {
+  border-color: var(--gold);
+}
+
+/* ===== CHECKBOXES ===== */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 24px;
+}
+
+.checkbox-grid.three-col {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.cb-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: default;
+}
+
+.cb-box {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--esp);
+  border-radius: 3px;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.cb-item input[type="checkbox"] {
+  display: none;
+}
+
+.cb-item input[type="checkbox"]:checked + .cb-box {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.cb-item input[type="checkbox"]:checked + .cb-box::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.cb-label {
+  font-size: 14px;
+  color: var(--text);
+  user-select: none;
+}
+
+/* ===== RADIO BUTTONS ===== */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: default;
+}
+
+.radio-circle {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--esp);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.radio-item input[type="radio"] {
+  display: none;
+}
+
+.radio-item input[type="radio"]:checked + .radio-circle {
+  border-color: var(--gold);
+}
+
+.radio-item input[type="radio"]:checked + .radio-circle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.radio-label {
+  font-size: 14px;
+  color: var(--text);
+  user-select: none;
+}
+
+/* ===== COLOR PALETTES ===== */
+.palettes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.palette-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border: 1.5px solid #e8e0d6;
+  border-radius: 8px;
+  cursor: default;
+  transition: border-color 0.2s;
+}
+
+.palette-item input[type="radio"] {
+  display: none;
+}
+
+.palette-item input[type="radio"]:checked ~ .palette-border {
+  border-color: var(--gold);
+}
+
+.palette-item:has(input[type="radio"]:checked) {
+  border-color: var(--gold);
+  background: rgba(196,169,125,.04);
+}
+
+.palette-check {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--esp);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.palette-item input[type="radio"]:checked + .palette-check {
+  border-color: var(--gold);
+}
+
+.palette-item input[type="radio"]:checked + .palette-check::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.palette-colors {
+  display: flex;
+  gap: 6px;
+}
+
+.palette-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+.palette-name {
+  font-size: 12px;
+  color: var(--textm);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* ===== PRICE TABLE ===== */
+.price-section-title {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--esp);
+  margin-bottom: 12px;
+  margin-top: 28px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.price-section-title:first-of-type {
+  margin-top: 0;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+}
+
+.price-table th {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-align: left;
+  padding: 10px 0;
+  border-bottom: 1.5px solid var(--gold);
+}
+
+.price-table th:last-child {
+  text-align: right;
+}
+
+.price-table td {
+  font-size: 14px;
+  color: var(--text);
+  padding: 10px 0;
+  border-bottom: 1px solid #eee5db;
+}
+
+.price-table td:last-child {
+  text-align: right;
+  font-weight: 600;
+  color: var(--esp);
+  white-space: nowrap;
+}
+
+.price-table tr:last-child td {
+  border-bottom: none;
+}
+
+.price-note {
+  font-size: 12px;
+  color: var(--textm);
+  font-style: italic;
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+/* ===== FOOTER ===== */
+.brief-footer {
+  text-align: center;
+  padding-top: 32px;
+  border-top: 1px solid var(--gold);
+  margin-top: 40px;
+}
+
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.footer-contacts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  font-size: 13px;
+  color: var(--textm);
+}
+
+.footer-contacts a {
+  color: var(--esp);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-contacts a:hover {
+  color: var(--gold);
+}
+
+.footer-copy {
+  font-size: 11px;
+  color: #c4b8aa;
+  margin-top: 16px;
+}
+
+/* ===== DATE LINE ===== */
+.date-line {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.date-line .text-line {
+  width: 200px;
+  text-align: right;
+}
+
+/* ===== PRINT ===== */
+@media print {
+  html {
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 40px 48px;
+    border: none;
+    box-shadow: none;
+    max-width: 100%;
+    font-size: 12px;
+  }
+
+  .brief-header {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+
+  .brief-section {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    break-inside: avoid;
+  }
+
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .field-group {
+    margin-bottom: 16px;
+  }
+
+  .text-line {
+    border-bottom: 1px dotted #999;
+  }
+
+  textarea.text-line {
+    border: 1px dotted #999;
+  }
+
+  .cb-box,
+  .radio-circle,
+  .palette-check {
+    border-color: #999;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .palette-dot {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .cb-item input[type="checkbox"]:checked + .cb-box {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .palette-item {
+    border-color: #ccc;
+    padding: 8px 12px;
+  }
+
+  .palettes-grid {
+    gap: 12px;
+  }
+
+  .price-table td,
+  .price-table th {
+    padding: 6px 0;
+  }
+
+  .brief-footer {
+    padding-top: 20px;
+    margin-top: 24px;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  a {
+    color: var(--esp) !important;
+    text-decoration: none !important;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  body {
+    margin: 16px;
+    padding: 36px 28px;
+  }
+
+  .brief-logo {
+    font-size: 28px;
+  }
+
+  .brief-subtitle {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkbox-grid.three-col {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .palettes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .radio-group {
+    flex-direction: column;
+  }
+
+  .footer-contacts {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="brief-header">
+  <div class="brief-logo">Natali Konrad</div>
+  <div class="brief-subtitle">Бриф на разработку проекта</div>
+</header>
+
+<!-- DATE -->
+<div class="date-line">
+  <input type="text" class="text-line" placeholder="Дата: __.__.____">
+</div>
+
+
+<!-- SECTION 1: О ПРОЕКТЕ -->
+<section class="brief-section">
+  <h2 class="section-title"><span>Раздел 1</span>О проекте</h2>
+
+  <div class="field-group">
+    <label class="field-label">Тип услуги <span class="field-hint">(выберите одно или несколько)</span></label>
+    <div class="checkbox-grid">
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Лендинг</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Многостраничный сайт</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Telegram-бот</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Дизайн / Брендинг</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Instagram-контент</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Автоматизация</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Обслуживание</span></label>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Название компании / бренда</label>
+    <input type="text" class="text-line" placeholder="">
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Ниша / сфера деятельности</label>
+    <input type="text" class="text-line" placeholder="">
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Целевая аудитория <span class="field-hint">(кто ваши клиенты?)</span></label>
+    <textarea class="text-line" rows="3" placeholder=""></textarea>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Конкуренты <span class="field-hint">(ссылки на 2-3 сайта)</span></label>
+    <input type="text" class="text-line" placeholder="" style="margin-bottom: 8px;">
+    <input type="text" class="text-line" placeholder="" style="margin-bottom: 8px;">
+    <input type="text" class="text-line" placeholder="">
+  </div>
+</section>
+
+
+<!-- SECTION 2: ДЛЯ САЙТОВ -->
+<section class="brief-section">
+  <h2 class="section-title"><span>Раздел 2</span>Для сайтов</h2>
+
+  <div class="field-group">
+    <label class="field-label">Количество страниц</label>
+    <input type="text" class="text-line" placeholder="" style="width: 200px;">
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Нужные разделы</label>
+    <div class="checkbox-grid">
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">О компании</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Услуги</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Портфолио</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Отзывы</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Контакты</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Блог</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Интернет-магазин</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Другое: ________</span></label>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Функционал</label>
+    <div class="checkbox-grid three-col">
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Форма заявки</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Онлайн-чат</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Калькулятор</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Мультиязычность</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Интеграция с CRM</span></label>
+      <label class="cb-item"><input type="checkbox"><span class="cb-box"></span><span class="cb-label">Telegram-бот</span></label>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION 3: ДИЗАЙН -->
+<section class="brief-section">
+  <h2 class="section-title"><span>Раздел 3</span>Дизайн</h2>
+
+  <div class="field-group">
+    <label class="field-label">Стиль</label>
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="style"><span class="radio-circle"></span><span class="radio-label">Минимализм</span></label>
+      <label class="radio-item"><input type="radio" name="style"><span class="radio-circle"></span><span class="radio-label">Luxury / Премиум</span></label>
+      <label class="radio-item"><input type="radio" name="style"><span class="radio-circle"></span><span class="radio-label">Яркий / Креативный</span></label>
+      <label class="radio-item"><input type="radio" name="style"><span class="radio-circle"></span><span class="radio-label">Корпоративный</span></label>
+      <label class="radio-item"><input type="radio" name="style"><span class="radio-circle"></span><span class="radio-label">Другой: ________</span></label>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Цветовая палитра <span class="field-hint">(отметьте понравившуюся)</span></label>
+    <div class="palettes-grid">
+
+      <label class="palette-item">
+        <input type="radio" name="palette">
+        <span class="palette-check"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#232323"></span>
+          <span class="palette-dot" style="background:#5B4A3E"></span>
+          <span class="palette-dot" style="background:#C4A97D"></span>
+          <span class="palette-dot" style="background:#F5EFE7"></span>
+        </span>
+        <span class="palette-name">Espresso & Gold</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="radio" name="palette">
+        <span class="palette-check"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#1a1a2e"></span>
+          <span class="palette-dot" style="background:#16213e"></span>
+          <span class="palette-dot" style="background:#0f3460"></span>
+          <span class="palette-dot" style="background:#e94560"></span>
+        </span>
+        <span class="palette-name">Dark & Red</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="radio" name="palette">
+        <span class="palette-check"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#2d3436"></span>
+          <span class="palette-dot" style="background:#636e72"></span>
+          <span class="palette-dot" style="background:#dfe6e9"></span>
+          <span class="palette-dot" style="background:#00b894"></span>
+        </span>
+        <span class="palette-name">Modern Green</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="radio" name="palette">
+        <span class="palette-check"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#2C3E50"></span>
+          <span class="palette-dot" style="background:#E74C3C"></span>
+          <span class="palette-dot" style="background:#ECF0F1"></span>
+          <span class="palette-dot" style="background:#3498DB"></span>
+        </span>
+        <span class="palette-name">Corporate Blue</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="radio" name="palette">
+        <span class="palette-check"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#f8f9fa"></span>
+          <span class="palette-dot" style="background:#e9ecef"></span>
+          <span class="palette-dot" style="background:#495057"></span>
+          <span class="palette-dot" style="background:#212529"></span>
+        </span>
+        <span class="palette-name">Clean Mono</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="radio" name="palette">
+        <span class="palette-check"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#fdf6f0"></span>
+          <span class="palette-dot" style="background:#f5cac3"></span>
+          <span class="palette-dot" style="background:#84a59d"></span>
+          <span class="palette-dot" style="background:#f28482"></span>
+        </span>
+        <span class="palette-name">Soft Pastel</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="radio" name="palette">
+        <span class="palette-check"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#0d1b2a"></span>
+          <span class="palette-dot" style="background:#1b263b"></span>
+          <span class="palette-dot" style="background:#415a77"></span>
+          <span class="palette-dot" style="background:#778da9"></span>
+        </span>
+        <span class="palette-name">Navy</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="radio" name="palette">
+        <span class="palette-check"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#fcf6bd"></span>
+          <span class="palette-dot" style="background:#d0f4de"></span>
+          <span class="palette-dot" style="background:#a9def9"></span>
+          <span class="palette-dot" style="background:#e4c1f9"></span>
+        </span>
+        <span class="palette-name">Playful</span>
+      </label>
+
+    </div>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Примеры сайтов, которые нравятся <span class="field-hint">(ссылки)</span></label>
+    <input type="text" class="text-line" placeholder="" style="margin-bottom: 8px;">
+    <input type="text" class="text-line" placeholder="" style="margin-bottom: 8px;">
+    <input type="text" class="text-line" placeholder="">
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Шрифты</label>
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="fonts"><span class="radio-circle"></span><span class="radio-label">С засечками (serif)</span></label>
+      <label class="radio-item"><input type="radio" name="fonts"><span class="radio-circle"></span><span class="radio-label">Без засечек (sans-serif)</span></label>
+      <label class="radio-item"><input type="radio" name="fonts"><span class="radio-circle"></span><span class="radio-label">Не знаю</span></label>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION 4: КОНТЕНТ -->
+<section class="brief-section">
+  <h2 class="section-title"><span>Раздел 4</span>Контент</h2>
+
+  <div class="field-group">
+    <label class="field-label">Тексты</label>
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="texts"><span class="radio-circle"></span><span class="radio-label">Есть готовые</span></label>
+      <label class="radio-item"><input type="radio" name="texts"><span class="radio-circle"></span><span class="radio-label">Нужно написать</span></label>
+      <label class="radio-item"><input type="radio" name="texts"><span class="radio-circle"></span><span class="radio-label">Частично есть</span></label>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Фотографии</label>
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="photos"><span class="radio-circle"></span><span class="radio-label">Есть</span></label>
+      <label class="radio-item"><input type="radio" name="photos"><span class="radio-circle"></span><span class="radio-label">Нужна съёмка</span></label>
+      <label class="radio-item"><input type="radio" name="photos"><span class="radio-circle"></span><span class="radio-label">Есть частично</span></label>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Логотип</label>
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="logo"><span class="radio-circle"></span><span class="radio-label">Есть</span></label>
+      <label class="radio-item"><input type="radio" name="logo"><span class="radio-circle"></span><span class="radio-label">Нужно разработать</span></label>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION 5: СРОКИ И БЮДЖЕТ -->
+<section class="brief-section">
+  <h2 class="section-title"><span>Раздел 5</span>Сроки и бюджет</h2>
+
+  <div class="field-group">
+    <label class="field-label">Желаемый срок запуска</label>
+    <input type="text" class="text-line" placeholder="">
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Бюджет</label>
+    <input type="text" class="text-line" placeholder="">
+  </div>
+</section>
+
+
+<!-- SECTION 6: КАЛЬКУЛЯТОР ЦЕН -->
+<section class="brief-section">
+  <h2 class="section-title"><span>Раздел 6</span>Калькулятор цен</h2>
+
+  <p class="price-section-title">Базовые цены</p>
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>Услуга</th>
+        <th>Цена</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Лендинг (1 страница)</td><td>от 250 &euro;</td></tr>
+      <tr><td>Сайт (3-5 страниц)</td><td>от 450 &euro;</td></tr>
+      <tr><td>Telegram-бот (простой)</td><td>от 300 &euro;</td></tr>
+      <tr><td>Telegram-бот с ИИ</td><td>от 500 &euro;</td></tr>
+      <tr><td>Дизайн / брендинг</td><td>от 150 &euro;</td></tr>
+      <tr><td>Instagram-контент</td><td>от 100 &euro;/мес</td></tr>
+      <tr><td>Обслуживание сайта</td><td>от 50 &euro;/мес</td></tr>
+    </tbody>
+  </table>
+
+  <p class="price-section-title">Дополнительные опции</p>
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>Опция</th>
+        <th>Надбавка</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Доп. страница</td><td>+80 &euro;</td></tr>
+      <tr><td>Мультиязычность</td><td>+30%</td></tr>
+      <tr><td>Срочность (до 3 дней)</td><td>+50%</td></tr>
+      <tr><td>Интеграция с CRM / API</td><td>+100 &euro;</td></tr>
+      <tr><td>Написание текстов</td><td>+80 &euro;</td></tr>
+      <tr><td>Фотообработка (10 фото)</td><td>+50 &euro;</td></tr>
+    </tbody>
+  </table>
+
+  <p class="price-note">* Точная стоимость рассчитывается индивидуально после заполнения брифа. Указанные цены являются ориентировочными.</p>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="brief-footer">
+  <div class="footer-logo">Natali Konrad</div>
+  <div class="footer-contacts">
+    <span><a href="mailto:veniva.business@gmail.com">veniva.business@gmail.com</a></span>
+    <span><a href="tel:+4915141367080">+49 1514 1367080</a></span>
+    <span>Telegram: <a href="https://t.me/natali_6432" target="_blank">@natali_6432</a></span>
+  </div>
+  <p class="footer-copy">Kempten, Germany</p>
+</footer>
+
+</body>
+</html>

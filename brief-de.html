@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>Projektbriefing — Natali Konrad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET & BASE ========== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --esp:#5B4A3E;
+  --gold:#C4A97D;
+  --gold2:#E8D5B0;
+  --cream:#F5EFE7;
+  --dark:#232323;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+html{background:var(--cream)}
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--dark);
+  line-height:1.6;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+}
+
+/* ========== PAGE CONTAINER ========== */
+.page{
+  max-width:800px;
+  margin:0 auto;
+  padding:60px 48px 40px;
+}
+
+/* ========== HEADER ========== */
+.brief-header{
+  text-align:center;
+  padding-bottom:40px;
+  margin-bottom:40px;
+  border-bottom:1px solid var(--gold);
+}
+.brief-logo{
+  font-family:var(--serif);
+  font-size:36px;
+  font-weight:700;
+  font-style:italic;
+  color:var(--gold);
+  letter-spacing:1px;
+  margin-bottom:6px;
+}
+.brief-subtitle{
+  font-family:var(--serif);
+  font-size:20px;
+  font-weight:400;
+  color:var(--esp);
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+/* ========== SECTIONS ========== */
+.section{
+  margin-bottom:36px;
+  padding-bottom:36px;
+  border-bottom:1px solid var(--gold);
+}
+.section:last-of-type{
+  border-bottom:none;
+}
+.section-number{
+  font-family:var(--serif);
+  font-size:13px;
+  font-weight:600;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:3px;
+  margin-bottom:4px;
+}
+.section-title{
+  font-family:var(--serif);
+  font-size:26px;
+  font-weight:700;
+  color:var(--esp);
+  margin-bottom:24px;
+}
+
+/* ========== FORM ELEMENTS ========== */
+.field{
+  margin-bottom:22px;
+}
+.field-label{
+  font-size:14px;
+  font-weight:600;
+  color:var(--esp);
+  margin-bottom:8px;
+  display:block;
+}
+.field-hint{
+  font-size:12px;
+  font-weight:400;
+  color:#9A8A7A;
+  margin-bottom:8px;
+  display:block;
+}
+.text-line{
+  width:100%;
+  border:none;
+  border-bottom:1px dotted var(--esp);
+  background:transparent;
+  font-family:var(--sans);
+  font-size:14px;
+  color:var(--dark);
+  padding:8px 0;
+  outline:none;
+}
+.text-line::placeholder{
+  color:#B8A898;
+  font-style:italic;
+}
+.text-line:focus{
+  border-bottom-color:var(--gold);
+  border-bottom-style:solid;
+}
+.text-area{
+  width:100%;
+  min-height:60px;
+  border:1px dotted var(--esp);
+  border-radius:6px;
+  background:transparent;
+  font-family:var(--sans);
+  font-size:14px;
+  color:var(--dark);
+  padding:10px 12px;
+  outline:none;
+  resize:vertical;
+}
+.text-area:focus{
+  border-color:var(--gold);
+  border-style:solid;
+}
+
+/* ========== CHECKBOXES ========== */
+.check-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 20px;
+}
+.check-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+  font-size:14px;
+  color:var(--dark);
+  user-select:none;
+}
+.check-item input[type="checkbox"],
+.check-item input[type="radio"]{
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  width:18px;
+  height:18px;
+  border:1.5px solid var(--esp);
+  background:transparent;
+  cursor:pointer;
+  flex-shrink:0;
+  position:relative;
+  transition:all 0.2s;
+}
+.check-item input[type="checkbox"]{
+  border-radius:3px;
+}
+.check-item input[type="radio"]{
+  border-radius:50%;
+}
+.check-item input[type="checkbox"]:checked{
+  background:var(--gold);
+  border-color:var(--gold);
+}
+.check-item input[type="checkbox"]:checked::after{
+  content:'';
+  position:absolute;
+  top:2px;
+  left:5px;
+  width:5px;
+  height:9px;
+  border:solid #fff;
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg);
+}
+.check-item input[type="radio"]:checked{
+  border-color:var(--gold);
+}
+.check-item input[type="radio"]:checked::after{
+  content:'';
+  position:absolute;
+  top:3px;
+  left:3px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--gold);
+}
+
+/* ========== COLOR PALETTES ========== */
+.palettes{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.palette{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border:1.5px solid transparent;
+  border-radius:8px;
+  cursor:pointer;
+  transition:all 0.2s;
+  background:rgba(255,255,255,0.4);
+}
+.palette:hover{
+  border-color:var(--gold);
+}
+.palette input[type="radio"]{
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  width:16px;
+  height:16px;
+  border:1.5px solid var(--esp);
+  border-radius:50%;
+  cursor:pointer;
+  flex-shrink:0;
+  position:relative;
+  transition:all 0.2s;
+}
+.palette input[type="radio"]:checked{
+  border-color:var(--gold);
+}
+.palette input[type="radio"]:checked::after{
+  content:'';
+  position:absolute;
+  top:2.5px;
+  left:2.5px;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--gold);
+}
+.swatches{
+  display:flex;
+  gap:5px;
+}
+.swatch{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  border:1px solid rgba(0,0,0,0.08);
+}
+.palette-name{
+  font-size:11px;
+  color:#9A8A7A;
+  font-weight:500;
+  white-space:nowrap;
+}
+
+/* ========== PRICE TABLE ========== */
+.price-block{
+  margin-bottom:24px;
+}
+.price-block-title{
+  font-family:var(--serif);
+  font-size:18px;
+  font-weight:700;
+  color:var(--esp);
+  margin-bottom:12px;
+}
+.price-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+.price-table th{
+  text-align:left;
+  font-weight:600;
+  color:var(--esp);
+  padding:8px 12px;
+  border-bottom:2px solid var(--gold);
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.price-table td{
+  padding:9px 12px;
+  border-bottom:1px solid rgba(91,74,62,0.12);
+  color:var(--dark);
+}
+.price-table tr:last-child td{
+  border-bottom:none;
+}
+.price-table td:last-child{
+  text-align:right;
+  font-weight:600;
+  color:var(--esp);
+  white-space:nowrap;
+}
+
+/* ========== FOOTER ========== */
+.brief-footer{
+  text-align:center;
+  padding-top:32px;
+  border-top:1px solid var(--gold);
+  margin-top:36px;
+}
+.brief-footer .footer-title{
+  font-family:var(--serif);
+  font-size:16px;
+  font-weight:600;
+  color:var(--esp);
+  margin-bottom:10px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+.brief-footer .footer-contacts{
+  font-size:13px;
+  color:#7A6A5A;
+  line-height:1.8;
+}
+.brief-footer .footer-contacts a{
+  color:var(--esp);
+  text-decoration:none;
+  border-bottom:1px dotted var(--gold);
+  transition:color 0.2s;
+}
+.brief-footer .footer-contacts a:hover{
+  color:var(--gold);
+}
+.footer-nk{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--esp));
+  color:#fff;
+  font-family:var(--serif);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:1px;
+  margin-bottom:12px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:600px){
+  .page{padding:32px 24px 24px}
+  .brief-logo{font-size:28px}
+  .brief-subtitle{font-size:16px;letter-spacing:2px}
+  .section-title{font-size:22px}
+  .palettes{grid-template-columns:1fr}
+  .check-group{gap:8px 16px}
+}
+
+/* ========== PRINT ========== */
+@media print{
+  html,body{
+    background:#fff !important;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    max-width:100%;
+    padding:24px 32px;
+    margin:0;
+  }
+  .brief-header{
+    padding-bottom:20px;
+    margin-bottom:24px;
+  }
+  .section{
+    margin-bottom:20px;
+    padding-bottom:20px;
+    page-break-inside:avoid;
+  }
+  .price-block{
+    page-break-inside:avoid;
+  }
+  .text-line{
+    border-bottom:1px dotted #999 !important;
+  }
+  .text-area{
+    border:1px dotted #999 !important;
+  }
+  .check-item input[type="checkbox"],
+  .check-item input[type="radio"],
+  .palette input[type="radio"]{
+    border-color:#999 !important;
+  }
+  .check-item input[type="checkbox"]:checked{
+    background:var(--gold) !important;
+    border-color:var(--gold) !important;
+  }
+  .palette{
+    background:rgba(0,0,0,0.02) !important;
+    border:1px solid #ddd !important;
+  }
+  .swatch{
+    border:1px solid rgba(0,0,0,0.15) !important;
+  }
+  a{
+    color:var(--esp) !important;
+    text-decoration:none !important;
+  }
+  .brief-footer{
+    page-break-inside:avoid;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="brief-header">
+    <div class="brief-logo">Natali Konrad</div>
+    <div class="brief-subtitle">Projektbriefing</div>
+  </header>
+
+  <!-- ==================== SECTION 1 ==================== -->
+  <div class="section">
+    <div class="section-number">Abschnitt 01</div>
+    <h2 class="section-title">Über das Projekt</h2>
+
+    <div class="field">
+      <span class="field-label">Leistungsart</span>
+      <div class="check-group">
+        <label class="check-item"><input type="checkbox"> Landingpage</label>
+        <label class="check-item"><input type="checkbox"> Mehrseitige Website</label>
+        <label class="check-item"><input type="checkbox"> Telegram-Bot</label>
+        <label class="check-item"><input type="checkbox"> Design / Branding</label>
+        <label class="check-item"><input type="checkbox"> Instagram-Content</label>
+        <label class="check-item"><input type="checkbox"> Automatisierung</label>
+        <label class="check-item"><input type="checkbox"> Wartung &amp; Support</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Firmenname / Marke</span>
+      <input type="text" class="text-line" placeholder="Ihr Firmenname oder Markenname">
+    </div>
+
+    <div class="field">
+      <span class="field-label">Branche / Tätigkeitsbereich</span>
+      <input type="text" class="text-line" placeholder="z. B. Kosmetik, Gastronomie, Coaching ...">
+    </div>
+
+    <div class="field">
+      <span class="field-label">Zielgruppe</span>
+      <span class="field-hint">Wer sind Ihre Kunden?</span>
+      <input type="text" class="text-line" placeholder="z. B. Frauen 25-45, Unternehmer, Eltern ...">
+    </div>
+
+    <div class="field">
+      <span class="field-label">Wettbewerber</span>
+      <span class="field-hint">Links zu 2-3 Websites Ihrer Mitbewerber</span>
+      <input type="text" class="text-line" placeholder="https://" style="margin-bottom:8px">
+      <input type="text" class="text-line" placeholder="https://" style="margin-bottom:8px">
+      <input type="text" class="text-line" placeholder="https://">
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 2 ==================== -->
+  <div class="section">
+    <div class="section-number">Abschnitt 02</div>
+    <h2 class="section-title">Für Websites</h2>
+
+    <div class="field">
+      <span class="field-label">Anzahl der Seiten</span>
+      <input type="text" class="text-line" placeholder="z. B. 1, 3-5, 7+ ...">
+    </div>
+
+    <div class="field">
+      <span class="field-label">Gewünschte Bereiche</span>
+      <div class="check-group">
+        <label class="check-item"><input type="checkbox"> Über uns</label>
+        <label class="check-item"><input type="checkbox"> Leistungen</label>
+        <label class="check-item"><input type="checkbox"> Portfolio</label>
+        <label class="check-item"><input type="checkbox"> Bewertungen</label>
+        <label class="check-item"><input type="checkbox"> Kontakt</label>
+        <label class="check-item"><input type="checkbox"> Blog</label>
+        <label class="check-item"><input type="checkbox"> Online-Shop</label>
+        <label class="check-item"><input type="checkbox"> Sonstiges</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Funktionen</span>
+      <div class="check-group">
+        <label class="check-item"><input type="checkbox"> Kontaktformular</label>
+        <label class="check-item"><input type="checkbox"> Live-Chat</label>
+        <label class="check-item"><input type="checkbox"> Rechner / Kalkulator</label>
+        <label class="check-item"><input type="checkbox"> Mehrsprachigkeit</label>
+        <label class="check-item"><input type="checkbox"> CRM-Integration</label>
+        <label class="check-item"><input type="checkbox"> Telegram-Bot</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 3 ==================== -->
+  <div class="section">
+    <div class="section-number">Abschnitt 03</div>
+    <h2 class="section-title">Design</h2>
+
+    <div class="field">
+      <span class="field-label">Stil</span>
+      <div class="check-group">
+        <label class="check-item"><input type="radio" name="stil"> Minimalistisch</label>
+        <label class="check-item"><input type="radio" name="stil"> Luxury / Premium</label>
+        <label class="check-item"><input type="radio" name="stil"> Bunt / Kreativ</label>
+        <label class="check-item"><input type="radio" name="stil"> Korporativ</label>
+        <label class="check-item"><input type="radio" name="stil"> Anderer</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Farbpalette</span>
+      <span class="field-hint">Markieren Sie Ihre bevorzugte Farbkombination</span>
+      <div class="palettes">
+
+        <label class="palette">
+          <input type="radio" name="palette">
+          <div class="swatches">
+            <div class="swatch" style="background:#232323"></div>
+            <div class="swatch" style="background:#5B4A3E"></div>
+            <div class="swatch" style="background:#C4A97D"></div>
+            <div class="swatch" style="background:#F5EFE7"></div>
+          </div>
+          <span class="palette-name">Espresso &amp; Gold</span>
+        </label>
+
+        <label class="palette">
+          <input type="radio" name="palette">
+          <div class="swatches">
+            <div class="swatch" style="background:#1a1a2e"></div>
+            <div class="swatch" style="background:#16213e"></div>
+            <div class="swatch" style="background:#0f3460"></div>
+            <div class="swatch" style="background:#e94560"></div>
+          </div>
+          <span class="palette-name">Dark &amp; Rot</span>
+        </label>
+
+        <label class="palette">
+          <input type="radio" name="palette">
+          <div class="swatches">
+            <div class="swatch" style="background:#2d3436"></div>
+            <div class="swatch" style="background:#636e72"></div>
+            <div class="swatch" style="background:#dfe6e9"></div>
+            <div class="swatch" style="background:#00b894"></div>
+          </div>
+          <span class="palette-name">Modern Grün</span>
+        </label>
+
+        <label class="palette">
+          <input type="radio" name="palette">
+          <div class="swatches">
+            <div class="swatch" style="background:#2C3E50"></div>
+            <div class="swatch" style="background:#E74C3C"></div>
+            <div class="swatch" style="background:#ECF0F1"></div>
+            <div class="swatch" style="background:#3498DB"></div>
+          </div>
+          <span class="palette-name">Corporate Blau</span>
+        </label>
+
+        <label class="palette">
+          <input type="radio" name="palette">
+          <div class="swatches">
+            <div class="swatch" style="background:#f8f9fa"></div>
+            <div class="swatch" style="background:#e9ecef"></div>
+            <div class="swatch" style="background:#495057"></div>
+            <div class="swatch" style="background:#212529"></div>
+          </div>
+          <span class="palette-name">Clean Mono</span>
+        </label>
+
+        <label class="palette">
+          <input type="radio" name="palette">
+          <div class="swatches">
+            <div class="swatch" style="background:#fdf6f0"></div>
+            <div class="swatch" style="background:#f5cac3"></div>
+            <div class="swatch" style="background:#84a59d"></div>
+            <div class="swatch" style="background:#f28482"></div>
+          </div>
+          <span class="palette-name">Soft Pastell</span>
+        </label>
+
+        <label class="palette">
+          <input type="radio" name="palette">
+          <div class="swatches">
+            <div class="swatch" style="background:#0d1b2a"></div>
+            <div class="swatch" style="background:#1b263b"></div>
+            <div class="swatch" style="background:#415a77"></div>
+            <div class="swatch" style="background:#778da9"></div>
+          </div>
+          <span class="palette-name">Navy</span>
+        </label>
+
+        <label class="palette">
+          <input type="radio" name="palette">
+          <div class="swatches">
+            <div class="swatch" style="background:#fcf6bd"></div>
+            <div class="swatch" style="background:#d0f4de"></div>
+            <div class="swatch" style="background:#a9def9"></div>
+            <div class="swatch" style="background:#e4c1f9"></div>
+          </div>
+          <span class="palette-name">Verspielt</span>
+        </label>
+
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Beispiel-Websites die Ihnen gefallen</span>
+      <input type="text" class="text-line" placeholder="https://" style="margin-bottom:8px">
+      <input type="text" class="text-line" placeholder="https://">
+    </div>
+
+    <div class="field">
+      <span class="field-label">Schriftarten</span>
+      <div class="check-group">
+        <label class="check-item"><input type="radio" name="font"> Serifenschrift</label>
+        <label class="check-item"><input type="radio" name="font"> Ohne Serifen</label>
+        <label class="check-item"><input type="radio" name="font"> Weiß nicht</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 4 ==================== -->
+  <div class="section">
+    <div class="section-number">Abschnitt 04</div>
+    <h2 class="section-title">Inhalte</h2>
+
+    <div class="field">
+      <span class="field-label">Texte</span>
+      <div class="check-group">
+        <label class="check-item"><input type="radio" name="texte"> Sind vorhanden</label>
+        <label class="check-item"><input type="radio" name="texte"> Müssen erstellt werden</label>
+        <label class="check-item"><input type="radio" name="texte"> Teilweise vorhanden</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Fotos</span>
+      <div class="check-group">
+        <label class="check-item"><input type="radio" name="fotos"> Sind vorhanden</label>
+        <label class="check-item"><input type="radio" name="fotos"> Fotoshooting benötigt</label>
+        <label class="check-item"><input type="radio" name="fotos"> Teilweise vorhanden</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Logo</span>
+      <div class="check-group">
+        <label class="check-item"><input type="radio" name="logo"> Ist vorhanden</label>
+        <label class="check-item"><input type="radio" name="logo"> Muss erstellt werden</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 5 ==================== -->
+  <div class="section">
+    <div class="section-number">Abschnitt 05</div>
+    <h2 class="section-title">Zeitrahmen und Budget</h2>
+
+    <div class="field">
+      <span class="field-label">Gewünschter Starttermin</span>
+      <input type="text" class="text-line" placeholder="z. B. sofort, ab April 2026 ...">
+    </div>
+
+    <div class="field">
+      <span class="field-label">Budget</span>
+      <input type="text" class="text-line" placeholder="Ihr ungefähres Budget in Euro">
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 6 ==================== -->
+  <div class="section">
+    <div class="section-number">Abschnitt 06</div>
+    <h2 class="section-title">Preisübersicht</h2>
+
+    <div class="price-block">
+      <div class="price-block-title">Basispreise</div>
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Leistung</th>
+            <th style="text-align:right">Preis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Landingpage (1 Seite)</td><td>ab 250 &euro;</td></tr>
+          <tr><td>Website (3-5 Seiten)</td><td>ab 450 &euro;</td></tr>
+          <tr><td>Telegram-Bot (einfach)</td><td>ab 300 &euro;</td></tr>
+          <tr><td>Telegram-Bot mit KI</td><td>ab 500 &euro;</td></tr>
+          <tr><td>Design / Branding</td><td>ab 150 &euro;</td></tr>
+          <tr><td>Instagram-Content</td><td>ab 100 &euro;/Monat</td></tr>
+          <tr><td>Website-Wartung</td><td>ab 50 &euro;/Monat</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="price-block">
+      <div class="price-block-title">Zusätzliche Optionen</div>
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th style="text-align:right">Aufpreis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Zusätzliche Seite</td><td>+80 &euro;</td></tr>
+          <tr><td>Mehrsprachigkeit</td><td>+30%</td></tr>
+          <tr><td>Express (bis 3 Tage)</td><td>+50%</td></tr>
+          <tr><td>CRM / API Integration</td><td>+100 &euro;</td></tr>
+          <tr><td>Texterstellung</td><td>+80 &euro;</td></tr>
+          <tr><td>Bildbearbeitung (10 Fotos)</td><td>+50 &euro;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="brief-footer">
+    <div class="footer-nk">NK</div>
+    <div class="footer-title">Kontakt</div>
+    <div class="footer-contacts">
+      <a href="mailto:veniva.business@gmail.com">veniva.business@gmail.com</a><br>
+      +49 1514 1367080<br>
+      Telegram: <a href="https://t.me/natali_6432" target="_blank">@natali_6432</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
