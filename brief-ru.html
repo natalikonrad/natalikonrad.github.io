@@ -322,39 +322,43 @@ input[type="number"].text-line::-webkit-inner-spin-button {
   border-color: var(--gold2);
 }
 
-.palette-item input[type="radio"] {
-  display: none;
-}
-
-.palette-item:has(input[type="radio"]:checked) {
-  border-color: var(--gold);
-  background: rgba(196,169,125,.06);
-  box-shadow: 0 0 0 1px var(--gold);
-}
-
 .palette-check {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.palette-check-mark {
   width: 18px;
   height: 18px;
   border: 1.5px solid var(--esp);
-  border-radius: 50%;
+  border-radius: 4px;
   flex-shrink: 0;
   position: relative;
   transition: all 0.2s;
 }
 
-.palette-item input[type="radio"]:checked + .palette-check {
+.palette-item:has(.palette-check:checked) {
+  border-color: var(--gold);
+  background: rgba(196,169,125,.06);
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+.palette-item:has(.palette-check:checked) .palette-check-mark {
+  background: var(--gold);
   border-color: var(--gold);
 }
 
-.palette-item input[type="radio"]:checked + .palette-check::after {
+.palette-item:has(.palette-check:checked) .palette-check-mark::after {
   content: '';
   position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--gold);
+  top: 2px;
+  left: 5px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 .palette-colors {
@@ -630,7 +634,7 @@ input[type="number"].text-line::-webkit-inner-spin-button {
     padding: 8px 12px;
   }
 
-  .palette-item:has(input[type="radio"]:checked) {
+  .palette-item:has(.palette-check:checked) {
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
@@ -745,39 +749,39 @@ input[type="number"].text-line::-webkit-inner-spin-button {
     <label class="field-label">Выберите необходимые услуги <span class="field-hint">(можно выбрать несколько)</span></label>
     <div class="checkbox-grid single-col">
       <label class="cb-item">
-        <input type="checkbox" class="svc-check" data-price="500" onchange="calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="300" onchange="calcTotal()">
         <span class="cb-box"></span>
-        <span class="cb-label">Лендинг (1 страница) <span class="cb-price">от 500 &euro;</span></span>
+        <span class="cb-label">Лендинг (1 страница) <span class="cb-price">от 300 &euro;</span></span>
       </label>
       <label class="cb-item">
-        <input type="checkbox" class="svc-check" data-price="1200" onchange="calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="500" onchange="calcTotal()">
         <span class="cb-box"></span>
-        <span class="cb-label">Многостраничный сайт (3-5 стр.) <span class="cb-price">от 1.200 &euro;</span></span>
+        <span class="cb-label">Многостраничный сайт (3-5 стр.) <span class="cb-price">от 500 &euro;</span></span>
+      </label>
+      <label class="cb-item">
+        <input type="checkbox" class="svc-check" data-price="350" onchange="calcTotal()">
+        <span class="cb-box"></span>
+        <span class="cb-label">Telegram-бот (простой) <span class="cb-price">от 350 &euro;</span></span>
       </label>
       <label class="cb-item">
         <input type="checkbox" class="svc-check" data-price="600" onchange="calcTotal()">
         <span class="cb-box"></span>
-        <span class="cb-label">Telegram-бот (простой) <span class="cb-price">от 600 &euro;</span></span>
+        <span class="cb-label">Telegram-бот с ИИ <span class="cb-price">от 600 &euro;</span></span>
       </label>
       <label class="cb-item">
-        <input type="checkbox" class="svc-check" data-price="1200" onchange="calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="150" onchange="calcTotal()">
         <span class="cb-box"></span>
-        <span class="cb-label">Telegram-бот с ИИ <span class="cb-price">от 1.200 &euro;</span></span>
+        <span class="cb-label">Дизайн / Брендинг <span class="cb-price">от 150 &euro;</span></span>
       </label>
       <label class="cb-item">
-        <input type="checkbox" class="svc-check" data-price="300" onchange="calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="120" onchange="calcTotal()">
         <span class="cb-box"></span>
-        <span class="cb-label">Дизайн / Брендинг <span class="cb-price">от 300 &euro;</span></span>
+        <span class="cb-label">Instagram-контент <span class="cb-price">от 120 &euro; / мес.</span></span>
       </label>
       <label class="cb-item">
-        <input type="checkbox" class="svc-check" data-price="250" onchange="calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="50" onchange="calcTotal()">
         <span class="cb-box"></span>
-        <span class="cb-label">Instagram-контент <span class="cb-price">от 250 &euro; / мес.</span></span>
-      </label>
-      <label class="cb-item">
-        <input type="checkbox" class="svc-check" data-price="80" onchange="calcTotal()">
-        <span class="cb-box"></span>
-        <span class="cb-label">Обслуживание сайта <span class="cb-price">от 80 &euro; / мес.</span></span>
+        <span class="cb-label">Обслуживание сайта <span class="cb-price">от 50 &euro; / мес.</span></span>
       </label>
     </div>
   </div>
@@ -849,24 +853,24 @@ input[type="number"].text-line::-webkit-inner-spin-button {
         <span class="cb-label">Онлайн-чат / WhatsApp кнопка <span class="cb-included">(включено)</span></span>
       </label>
       <label class="cb-item">
-        <input type="checkbox" class="addon-check" data-price-percent="40" onchange="calcTotal()">
+        <input type="checkbox" class="addon-check" data-price-percent="30" onchange="calcTotal()">
         <span class="cb-box"></span>
-        <span class="cb-label">Мультиязычность <span class="cb-price">(+40% от базовой стоимости)</span></span>
+        <span class="cb-label">Мультиязычность <span class="cb-price">(+30% от базовой стоимости)</span></span>
       </label>
       <label class="cb-item">
-        <input type="checkbox" class="addon-check" data-price="200" onchange="calcTotal()">
+        <input type="checkbox" class="addon-check" data-price="100" onchange="calcTotal()">
         <span class="cb-box"></span>
-        <span class="cb-label">Интеграция с CRM / API <span class="cb-price">(+200 &euro;)</span></span>
+        <span class="cb-label">Интеграция с CRM / API <span class="cb-price">(+100 &euro;)</span></span>
       </label>
       <label class="cb-item">
-        <input type="checkbox" class="addon-check" data-price="200" onchange="calcTotal()">
+        <input type="checkbox" class="addon-check" data-price="100" onchange="calcTotal()">
         <span class="cb-box"></span>
-        <span class="cb-label">Калькулятор на сайте <span class="cb-price">(+200 &euro;)</span></span>
+        <span class="cb-label">Калькулятор на сайте <span class="cb-price">(+100 &euro;)</span></span>
       </label>
       <label class="cb-item">
-        <input type="checkbox" class="addon-check" data-price="150" onchange="calcTotal()">
+        <input type="checkbox" class="addon-check" data-price="100" onchange="calcTotal()">
         <span class="cb-box"></span>
-        <span class="cb-label">Telegram-бот на сайте <span class="cb-price">(+150 &euro;)</span></span>
+        <span class="cb-label">Telegram-бот на сайте <span class="cb-price">(+100 &euro;)</span></span>
       </label>
     </div>
   </div>
@@ -889,103 +893,181 @@ input[type="number"].text-line::-webkit-inner-spin-button {
   </div>
 
   <div class="field-group">
-    <label class="field-label">Цветовая палитра <span class="field-hint">(отметьте понравившуюся)</span></label>
+    <label class="field-label">Цветовая палитра <span class="field-hint">(выберите до 3)</span></label>
     <div class="palettes-grid">
 
       <label class="palette-item">
-        <input type="radio" name="palette">
-        <span class="palette-check"></span>
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
         <span class="palette-colors">
-          <span class="palette-dot" style="background:#232323"></span>
           <span class="palette-dot" style="background:#5B4A3E"></span>
+          <span class="palette-dot" style="background:#8A8077"></span>
+          <span class="palette-dot" style="background:#CBBFAF"></span>
+          <span class="palette-dot" style="background:#E8DED4"></span>
+          <span class="palette-dot" style="background:#F6F2EB"></span>
+        </span>
+        <span class="palette-name">Urban Espresso</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#3E3A37"></span>
+          <span class="palette-dot" style="background:#2B2C25"></span>
+          <span class="palette-dot" style="background:#71705C"></span>
+          <span class="palette-dot" style="background:#EAE9E6"></span>
+        </span>
+        <span class="palette-name">Dark Olive</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#051F20"></span>
+          <span class="palette-dot" style="background:#163832"></span>
+          <span class="palette-dot" style="background:#235347"></span>
+          <span class="palette-dot" style="background:#8EB69B"></span>
+        </span>
+        <span class="palette-name">Green Gradient</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#4E4D4D"></span>
           <span class="palette-dot" style="background:#C4A97D"></span>
-          <span class="palette-dot" style="background:#F5EFE7"></span>
+          <span class="palette-dot" style="background:#DCCECD"></span>
         </span>
-        <span class="palette-name">Espresso & Gold</span>
+        <span class="palette-name">Gold &amp; Blush</span>
       </label>
 
       <label class="palette-item">
-        <input type="radio" name="palette">
-        <span class="palette-check"></span>
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
         <span class="palette-colors">
-          <span class="palette-dot" style="background:#1a1a2e"></span>
-          <span class="palette-dot" style="background:#16213e"></span>
-          <span class="palette-dot" style="background:#0f3460"></span>
-          <span class="palette-dot" style="background:#e94560"></span>
+          <span class="palette-dot" style="background:#291C0E"></span>
+          <span class="palette-dot" style="background:#6E473B"></span>
+          <span class="palette-dot" style="background:#A78D78"></span>
+          <span class="palette-dot" style="background:#BEB5A9"></span>
+          <span class="palette-dot" style="background:#E1D4C2"></span>
         </span>
-        <span class="palette-name">Dark & Red</span>
+        <span class="palette-name">Warm Earth</span>
       </label>
 
       <label class="palette-item">
-        <input type="radio" name="palette">
-        <span class="palette-check"></span>
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
         <span class="palette-colors">
-          <span class="palette-dot" style="background:#2d3436"></span>
-          <span class="palette-dot" style="background:#636e72"></span>
-          <span class="palette-dot" style="background:#dfe6e9"></span>
-          <span class="palette-dot" style="background:#00b894"></span>
+          <span class="palette-dot" style="background:#EDEDE9"></span>
+          <span class="palette-dot" style="background:#D6CCC2"></span>
+          <span class="palette-dot" style="background:#F5EBE0"></span>
+          <span class="palette-dot" style="background:#E3D5CA"></span>
+          <span class="palette-dot" style="background:#D5BDAF"></span>
         </span>
-        <span class="palette-name">Modern Green</span>
+        <span class="palette-name">Soft Sand</span>
       </label>
 
       <label class="palette-item">
-        <input type="radio" name="palette">
-        <span class="palette-check"></span>
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
         <span class="palette-colors">
-          <span class="palette-dot" style="background:#2C3E50"></span>
-          <span class="palette-dot" style="background:#E74C3C"></span>
-          <span class="palette-dot" style="background:#ECF0F1"></span>
-          <span class="palette-dot" style="background:#3498DB"></span>
+          <span class="palette-dot" style="background:#424123"></span>
+          <span class="palette-dot" style="background:#80744C"></span>
+          <span class="palette-dot" style="background:#E6DED3"></span>
+          <span class="palette-dot" style="background:#E8D1C1"></span>
         </span>
-        <span class="palette-name">Corporate Blue</span>
+        <span class="palette-name">Moss &amp; Blush</span>
       </label>
 
       <label class="palette-item">
-        <input type="radio" name="palette">
-        <span class="palette-check"></span>
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
         <span class="palette-colors">
-          <span class="palette-dot" style="background:#f8f9fa"></span>
-          <span class="palette-dot" style="background:#e9ecef"></span>
-          <span class="palette-dot" style="background:#495057"></span>
-          <span class="palette-dot" style="background:#212529"></span>
+          <span class="palette-dot" style="background:#000000"></span>
+          <span class="palette-dot" style="background:#91766E"></span>
+          <span class="palette-dot" style="background:#F3ECE3"></span>
+          <span class="palette-dot" style="background:#C8A19C"></span>
         </span>
-        <span class="palette-name">Clean Mono</span>
+        <span class="palette-name">Black &amp; Rosy</span>
       </label>
 
       <label class="palette-item">
-        <input type="radio" name="palette">
-        <span class="palette-check"></span>
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
         <span class="palette-colors">
-          <span class="palette-dot" style="background:#fdf6f0"></span>
-          <span class="palette-dot" style="background:#f5cac3"></span>
-          <span class="palette-dot" style="background:#84a59d"></span>
-          <span class="palette-dot" style="background:#f28482"></span>
+          <span class="palette-dot" style="background:#19201F"></span>
+          <span class="palette-dot" style="background:#A18C72"></span>
+          <span class="palette-dot" style="background:#BF9D87"></span>
+          <span class="palette-dot" style="background:#E9D7CE"></span>
+          <span class="palette-dot" style="background:#F7F5F0"></span>
         </span>
-        <span class="palette-name">Soft Pastel</span>
+        <span class="palette-name">Style</span>
       </label>
 
       <label class="palette-item">
-        <input type="radio" name="palette">
-        <span class="palette-check"></span>
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
         <span class="palette-colors">
-          <span class="palette-dot" style="background:#0d1b2a"></span>
-          <span class="palette-dot" style="background:#1b263b"></span>
-          <span class="palette-dot" style="background:#415a77"></span>
-          <span class="palette-dot" style="background:#778da9"></span>
+          <span class="palette-dot" style="background:#2D1E17"></span>
+          <span class="palette-dot" style="background:#523F31"></span>
+          <span class="palette-dot" style="background:#796254"></span>
+          <span class="palette-dot" style="background:#9D8A7C"></span>
+          <span class="palette-dot" style="background:#EADDD3"></span>
         </span>
-        <span class="palette-name">Navy</span>
+        <span class="palette-name">Coffee Gradient</span>
       </label>
 
       <label class="palette-item">
-        <input type="radio" name="palette">
-        <span class="palette-check"></span>
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
         <span class="palette-colors">
-          <span class="palette-dot" style="background:#fcf6bd"></span>
-          <span class="palette-dot" style="background:#d0f4de"></span>
-          <span class="palette-dot" style="background:#a9def9"></span>
-          <span class="palette-dot" style="background:#e4c1f9"></span>
+          <span class="palette-dot" style="background:#111012"></span>
+          <span class="palette-dot" style="background:#767273"></span>
+          <span class="palette-dot" style="background:#A08348"></span>
+          <span class="palette-dot" style="background:#BAAFAD"></span>
+          <span class="palette-dot" style="background:#ECE0DE"></span>
         </span>
-        <span class="palette-name">Playful</span>
+        <span class="palette-name">Dark Floral</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#332821"></span>
+          <span class="palette-dot" style="background:#5B563B"></span>
+          <span class="palette-dot" style="background:#868264"></span>
+          <span class="palette-dot" style="background:#E9E1D2"></span>
+        </span>
+        <span class="palette-name">Sage &amp; Brown</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#22211F"></span>
+          <span class="palette-dot" style="background:#5C5B58"></span>
+          <span class="palette-dot" style="background:#A9A6A2"></span>
+          <span class="palette-dot" style="background:#E5E3E0"></span>
+          <span class="palette-dot" style="background:#F7F6F5"></span>
+        </span>
+        <span class="palette-name">Marble Gray</span>
+      </label>
+
+      <label class="palette-item">
+        <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+        <span class="palette-check-mark"></span>
+        <span class="palette-colors">
+          <span class="palette-dot" style="background:#2E2E2E"></span>
+          <span class="palette-dot" style="background:#C2AF95"></span>
+          <span class="palette-dot" style="background:#DDD4C6"></span>
+          <span class="palette-dot" style="background:#EFECE6"></span>
+        </span>
+        <span class="palette-name">Calm Desk</span>
       </label>
 
     </div>
@@ -1021,14 +1103,14 @@ input[type="number"].text-line::-webkit-inner-spin-button {
         <span class="radio-label">Есть готовые</span>
       </label>
       <label class="radio-item">
-        <input type="radio" name="texts" class="price-radio" data-price="150" onchange="calcTotal()">
-        <span class="radio-circle"></span>
-        <span class="radio-label">Нужно написать <span class="radio-price">(+150 &euro;)</span></span>
-      </label>
-      <label class="radio-item">
         <input type="radio" name="texts" class="price-radio" data-price="80" onchange="calcTotal()">
         <span class="radio-circle"></span>
-        <span class="radio-label">Частично есть <span class="radio-price">(+80 &euro;)</span></span>
+        <span class="radio-label">Нужно написать <span class="radio-price">(+80 &euro;)</span></span>
+      </label>
+      <label class="radio-item">
+        <input type="radio" name="texts" class="price-radio" data-price="40" onchange="calcTotal()">
+        <span class="radio-circle"></span>
+        <span class="radio-label">Частично есть <span class="radio-price">(+40 &euro;)</span></span>
       </label>
     </div>
   </div>
@@ -1063,9 +1145,9 @@ input[type="number"].text-line::-webkit-inner-spin-button {
         <span class="radio-label">Есть</span>
       </label>
       <label class="radio-item">
-        <input type="radio" name="logo" class="price-radio" data-price="150" onchange="calcTotal()">
+        <input type="radio" name="logo" class="price-radio" data-price="80" onchange="calcTotal()">
         <span class="radio-circle"></span>
-        <span class="radio-label">Нужно разработать <span class="radio-price">(+150 &euro;)</span></span>
+        <span class="radio-label">Нужно разработать <span class="radio-price">(+80 &euro;)</span></span>
       </label>
     </div>
   </div>
@@ -1084,9 +1166,9 @@ input[type="number"].text-line::-webkit-inner-spin-button {
         <span class="cb-label">Срочность -- до 3 дней <span class="cb-price">(+50% от базовой стоимости)</span></span>
       </label>
       <label class="cb-item">
-        <input type="checkbox" class="addon-check" data-price="80" onchange="calcTotal()">
+        <input type="checkbox" class="addon-check" data-price="50" onchange="calcTotal()">
         <span class="cb-box"></span>
-        <span class="cb-label">Фотообработка -- 10 фото <span class="cb-price">(+80 &euro;)</span></span>
+        <span class="cb-label">Фотообработка -- 10 фото <span class="cb-price">(+50 &euro;)</span></span>
       </label>
     </div>
   </div>
@@ -1162,6 +1244,11 @@ input[type="number"].text-line::-webkit-inner-spin-button {
 
 
 <script>
+function limitPalettes(el){
+  const checks = document.querySelectorAll('.palette-check:checked');
+  if(checks.length > 3){ el.checked = false; }
+}
+
 function calcTotal() {
   var base = 0;
   var addons = 0;
@@ -1257,7 +1344,7 @@ function sendBrief() {
   var sections = [];
   for (var i = 0; i < allCb.length; i++) {
     var cb = allCb[i];
-    if (!cb.classList.contains('svc-check') && !cb.classList.contains('addon-check')) {
+    if (!cb.classList.contains('svc-check') && !cb.classList.contains('addon-check') && !cb.classList.contains('palette-check')) {
       var lbl = cb.closest('.cb-item');
       if (lbl) sections.push(lbl.querySelector('.cb-label').textContent.trim());
     }
@@ -1282,16 +1369,23 @@ function sendBrief() {
   for (var i = 0; i < radios.length; i++) {
     var r = radios[i];
     var name = r.name;
-    var label = r.closest('.radio-item, .palette-item');
+    var label = r.closest('.radio-item');
     var text = '';
-    if (label) {
-      if (label.querySelector('.palette-name')) {
-        text = label.querySelector('.palette-name').textContent.trim();
-      } else if (label.querySelector('.radio-label')) {
-        text = label.querySelector('.radio-label').textContent.trim();
-      }
+    if (label && label.querySelector('.radio-label')) {
+      text = label.querySelector('.radio-label').textContent.trim();
     }
     if (text) lines.push(name + ': ' + text);
+  }
+  var paletteChecks = document.querySelectorAll('.palette-check:checked');
+  if (paletteChecks.length) {
+    var palNames = [];
+    for (var i = 0; i < paletteChecks.length; i++) {
+      var pi = paletteChecks[i].closest('.palette-item');
+      if (pi && pi.querySelector('.palette-name')) {
+        palNames.push(pi.querySelector('.palette-name').textContent.trim());
+      }
+    }
+    if (palNames.length) lines.push('palette: ' + palNames.join(', '));
   }
   var ref1 = document.getElementById('ref1');
   var ref2 = document.getElementById('ref2');

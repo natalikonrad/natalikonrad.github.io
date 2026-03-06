@@ -324,36 +324,13 @@ body{
 .palette:hover{
   border-color:var(--gold);
 }
-.palette.selected{
+.palette.selected,
+.palette:has(.palette-check:checked){
   border-color:var(--gold);
+  box-shadow:0 0 0 2px var(--gold);
   background:rgba(196,169,125,0.08);
 }
-.palette input[type="radio"]{
-  -webkit-appearance:none;
-  -moz-appearance:none;
-  appearance:none;
-  width:16px;
-  height:16px;
-  border:1.5px solid var(--esp);
-  border-radius:50%;
-  cursor:pointer;
-  flex-shrink:0;
-  position:relative;
-  transition:all 0.2s;
-}
-.palette input[type="radio"]:checked{
-  border-color:var(--gold);
-}
-.palette input[type="radio"]:checked::after{
-  content:'';
-  position:absolute;
-  top:2.5px;
-  left:2.5px;
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:var(--gold);
-}
+.palette-check{position:absolute;opacity:0;pointer-events:none}
 .swatches{
   display:flex;
   gap:5px;
@@ -604,7 +581,7 @@ body{
   }
   .check-item input[type="checkbox"],
   .check-item input[type="radio"],
-  .palette input[type="radio"],
+  .palette-check,
   .svc-item input[type="checkbox"]{
     border-color:#999 !important;
   }
@@ -652,39 +629,39 @@ body{
 
     <div class="svc-list">
       <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="500" onchange="toggleSvc(this);calcTotal()">
-        <span class="svc-name">Landingpage (1 Seite)</span>
-        <span class="svc-price">ab 500 &euro;</span>
-      </label>
-      <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="1200" onchange="toggleSvc(this);calcTotal()">
-        <span class="svc-name">Mehrseitige Website (3–5 Seiten)</span>
-        <span class="svc-price">ab 1.200 &euro;</span>
-      </label>
-      <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="600" onchange="toggleSvc(this);calcTotal()">
-        <span class="svc-name">Telegram-Bot (einfach)</span>
-        <span class="svc-price">ab 600 &euro;</span>
-      </label>
-      <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="1200" onchange="toggleSvc(this);calcTotal()">
-        <span class="svc-name">Telegram-Bot mit KI</span>
-        <span class="svc-price">ab 1.200 &euro;</span>
-      </label>
-      <label class="svc-item">
         <input type="checkbox" class="svc-check" data-price="300" onchange="toggleSvc(this);calcTotal()">
-        <span class="svc-name">Design / Branding</span>
+        <span class="svc-name">Landingpage (1 Seite)</span>
         <span class="svc-price">ab 300 &euro;</span>
       </label>
       <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="250" onchange="toggleSvc(this);calcTotal()">
-        <span class="svc-name">Instagram-Content</span>
-        <span class="svc-price">ab 250 &euro; / Monat</span>
+        <input type="checkbox" class="svc-check" data-price="500" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Mehrseitige Website (3–5 Seiten)</span>
+        <span class="svc-price">ab 500 &euro;</span>
       </label>
       <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="80" onchange="toggleSvc(this);calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="350" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Telegram-Bot (einfach)</span>
+        <span class="svc-price">ab 350 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="600" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Telegram-Bot mit KI</span>
+        <span class="svc-price">ab 600 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="150" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Design / Branding</span>
+        <span class="svc-price">ab 150 &euro;</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="120" onchange="toggleSvc(this);calcTotal()">
+        <span class="svc-name">Instagram-Content</span>
+        <span class="svc-price">ab 120 &euro; / Monat</span>
+      </label>
+      <label class="svc-item">
+        <input type="checkbox" class="svc-check" data-price="50" onchange="toggleSvc(this);calcTotal()">
         <span class="svc-name">Website-Wartung</span>
-        <span class="svc-price">ab 80 &euro; / Monat</span>
+        <span class="svc-price">ab 50 &euro; / Monat</span>
       </label>
     </div>
   </div>
@@ -759,24 +736,24 @@ body{
           <span class="check-price">inklusive</span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check" data-price-percent="40" onchange="calcTotal()">
+          <input type="checkbox" class="addon-check" data-price-percent="30" onchange="calcTotal()">
           <span>Mehrsprachigkeit</span>
-          <span class="check-price">+40% vom Basispreis</span>
+          <span class="check-price">+30% vom Basispreis</span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check" data-price="200" onchange="calcTotal()">
+          <input type="checkbox" class="addon-check" data-price="100" onchange="calcTotal()">
           <span>CRM / API Integration</span>
-          <span class="check-price">+200 &euro;</span>
+          <span class="check-price">+100 &euro;</span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check" data-price="200" onchange="calcTotal()">
+          <input type="checkbox" class="addon-check" data-price="100" onchange="calcTotal()">
           <span>Rechner / Kalkulator</span>
-          <span class="check-price">+200 &euro;</span>
+          <span class="check-price">+100 &euro;</span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check" data-price="150" onchange="calcTotal()">
+          <input type="checkbox" class="addon-check" data-price="100" onchange="calcTotal()">
           <span>Telegram-Bot auf der Website</span>
-          <span class="check-price">+150 &euro;</span>
+          <span class="check-price">+100 &euro;</span>
         </label>
       </div>
     </div>
@@ -800,95 +777,167 @@ body{
 
     <div class="field">
       <span class="field-label">Farbpalette</span>
-      <span class="field-hint">W&auml;hlen Sie Ihre bevorzugte Farbkombination</span>
+      <span class="field-hint">W&auml;hlen Sie bis zu 3 Farbkombinationen</span>
       <div class="palettes">
 
-        <label class="palette" onclick="selectPalette(this)">
-          <input type="radio" name="palette">
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
           <div class="swatches">
-            <div class="swatch" style="background:#232323"></div>
             <div class="swatch" style="background:#5B4A3E"></div>
+            <div class="swatch" style="background:#8A8077"></div>
+            <div class="swatch" style="background:#CBBFAF"></div>
+            <div class="swatch" style="background:#E8DED4"></div>
+            <div class="swatch" style="background:#F6F2EB"></div>
+          </div>
+          <span class="palette-name">Urban Espresso</span>
+        </label>
+
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#3E3A37"></div>
+            <div class="swatch" style="background:#2B2C25"></div>
+            <div class="swatch" style="background:#71705C"></div>
+            <div class="swatch" style="background:#EAE9E6"></div>
+          </div>
+          <span class="palette-name">Dunkles Oliv</span>
+        </label>
+
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#051F20"></div>
+            <div class="swatch" style="background:#163832"></div>
+            <div class="swatch" style="background:#235347"></div>
+            <div class="swatch" style="background:#8EB69B"></div>
+          </div>
+          <span class="palette-name">Gr&uuml;ner Verlauf</span>
+        </label>
+
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#4E4D4D"></div>
             <div class="swatch" style="background:#C4A97D"></div>
-            <div class="swatch" style="background:#F5EFE7"></div>
+            <div class="swatch" style="background:#DCCECD"></div>
           </div>
-          <span class="palette-name">Espresso &amp; Gold</span>
+          <span class="palette-name">Gold &amp; Blush</span>
         </label>
 
-        <label class="palette" onclick="selectPalette(this)">
-          <input type="radio" name="palette">
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
           <div class="swatches">
-            <div class="swatch" style="background:#1a1a2e"></div>
-            <div class="swatch" style="background:#16213e"></div>
-            <div class="swatch" style="background:#0f3460"></div>
-            <div class="swatch" style="background:#e94560"></div>
+            <div class="swatch" style="background:#291C0E"></div>
+            <div class="swatch" style="background:#6E473B"></div>
+            <div class="swatch" style="background:#A78D78"></div>
+            <div class="swatch" style="background:#BEB5A9"></div>
+            <div class="swatch" style="background:#E1D4C2"></div>
           </div>
-          <span class="palette-name">Dark &amp; Rot</span>
+          <span class="palette-name">Warme Erde</span>
         </label>
 
-        <label class="palette" onclick="selectPalette(this)">
-          <input type="radio" name="palette">
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
           <div class="swatches">
-            <div class="swatch" style="background:#2d3436"></div>
-            <div class="swatch" style="background:#636e72"></div>
-            <div class="swatch" style="background:#dfe6e9"></div>
-            <div class="swatch" style="background:#00b894"></div>
+            <div class="swatch" style="background:#EDEDE9"></div>
+            <div class="swatch" style="background:#D6CCC2"></div>
+            <div class="swatch" style="background:#F5EBE0"></div>
+            <div class="swatch" style="background:#E3D5CA"></div>
+            <div class="swatch" style="background:#D5BDAF"></div>
           </div>
-          <span class="palette-name">Modern Gr&uuml;n</span>
+          <span class="palette-name">Weicher Sand</span>
         </label>
 
-        <label class="palette" onclick="selectPalette(this)">
-          <input type="radio" name="palette">
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
           <div class="swatches">
-            <div class="swatch" style="background:#2C3E50"></div>
-            <div class="swatch" style="background:#E74C3C"></div>
-            <div class="swatch" style="background:#ECF0F1"></div>
-            <div class="swatch" style="background:#3498DB"></div>
+            <div class="swatch" style="background:#424123"></div>
+            <div class="swatch" style="background:#80744C"></div>
+            <div class="swatch" style="background:#E6DED3"></div>
+            <div class="swatch" style="background:#E8D1C1"></div>
           </div>
-          <span class="palette-name">Corporate Blau</span>
+          <span class="palette-name">Moos &amp; Ros&eacute;</span>
         </label>
 
-        <label class="palette" onclick="selectPalette(this)">
-          <input type="radio" name="palette">
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
           <div class="swatches">
-            <div class="swatch" style="background:#f8f9fa"></div>
-            <div class="swatch" style="background:#e9ecef"></div>
-            <div class="swatch" style="background:#495057"></div>
-            <div class="swatch" style="background:#212529"></div>
+            <div class="swatch" style="background:#000000"></div>
+            <div class="swatch" style="background:#91766E"></div>
+            <div class="swatch" style="background:#F3ECE3"></div>
+            <div class="swatch" style="background:#C8A19C"></div>
           </div>
-          <span class="palette-name">Clean Mono</span>
+          <span class="palette-name">Schwarz &amp; Ros&eacute;</span>
         </label>
 
-        <label class="palette" onclick="selectPalette(this)">
-          <input type="radio" name="palette">
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
           <div class="swatches">
-            <div class="swatch" style="background:#fdf6f0"></div>
-            <div class="swatch" style="background:#f5cac3"></div>
-            <div class="swatch" style="background:#84a59d"></div>
-            <div class="swatch" style="background:#f28482"></div>
+            <div class="swatch" style="background:#19201F"></div>
+            <div class="swatch" style="background:#A18C72"></div>
+            <div class="swatch" style="background:#BF9D87"></div>
+            <div class="swatch" style="background:#E9D7CE"></div>
+            <div class="swatch" style="background:#F7F5F0"></div>
           </div>
-          <span class="palette-name">Soft Pastell</span>
+          <span class="palette-name">Style</span>
         </label>
 
-        <label class="palette" onclick="selectPalette(this)">
-          <input type="radio" name="palette">
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
           <div class="swatches">
-            <div class="swatch" style="background:#0d1b2a"></div>
-            <div class="swatch" style="background:#1b263b"></div>
-            <div class="swatch" style="background:#415a77"></div>
-            <div class="swatch" style="background:#778da9"></div>
+            <div class="swatch" style="background:#2D1E17"></div>
+            <div class="swatch" style="background:#523F31"></div>
+            <div class="swatch" style="background:#796254"></div>
+            <div class="swatch" style="background:#9D8A7C"></div>
+            <div class="swatch" style="background:#EADDD3"></div>
           </div>
-          <span class="palette-name">Navy</span>
+          <span class="palette-name">Kaffee-Verlauf</span>
         </label>
 
-        <label class="palette" onclick="selectPalette(this)">
-          <input type="radio" name="palette">
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
           <div class="swatches">
-            <div class="swatch" style="background:#fcf6bd"></div>
-            <div class="swatch" style="background:#d0f4de"></div>
-            <div class="swatch" style="background:#a9def9"></div>
-            <div class="swatch" style="background:#e4c1f9"></div>
+            <div class="swatch" style="background:#111012"></div>
+            <div class="swatch" style="background:#767273"></div>
+            <div class="swatch" style="background:#A08348"></div>
+            <div class="swatch" style="background:#BAAFAD"></div>
+            <div class="swatch" style="background:#ECE0DE"></div>
           </div>
-          <span class="palette-name">Verspielt</span>
+          <span class="palette-name">Dunkle Bl&uuml;ten</span>
+        </label>
+
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#332821"></div>
+            <div class="swatch" style="background:#5B563B"></div>
+            <div class="swatch" style="background:#868264"></div>
+            <div class="swatch" style="background:#E9E1D2"></div>
+          </div>
+          <span class="palette-name">Salbei &amp; Braun</span>
+        </label>
+
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#22211F"></div>
+            <div class="swatch" style="background:#5C5B58"></div>
+            <div class="swatch" style="background:#A9A6A2"></div>
+            <div class="swatch" style="background:#E5E3E0"></div>
+            <div class="swatch" style="background:#F7F6F5"></div>
+          </div>
+          <span class="palette-name">Marmor-Grau</span>
+        </label>
+
+        <label class="palette">
+          <input type="checkbox" name="palette" class="palette-check" onchange="limitPalettes(this)">
+          <div class="swatches">
+            <div class="swatch" style="background:#2E2E2E"></div>
+            <div class="swatch" style="background:#C2AF95"></div>
+            <div class="swatch" style="background:#DDD4C6"></div>
+            <div class="swatch" style="background:#EFECE6"></div>
+          </div>
+          <span class="palette-name">Ruhiger Schreibtisch</span>
         </label>
 
       </div>
@@ -923,14 +972,14 @@ body{
           <span>Sind vorhanden</span>
         </label>
         <label class="check-item">
-          <input type="radio" name="texte" class="price-radio" data-price="150" onchange="calcTotal()">
+          <input type="radio" name="texte" class="price-radio" data-price="80" onchange="calcTotal()">
           <span>M&uuml;ssen erstellt werden</span>
-          <span class="check-price">+150 &euro;</span>
+          <span class="check-price">+80 &euro;</span>
         </label>
         <label class="check-item">
-          <input type="radio" name="texte" class="price-radio" data-price="80" onchange="calcTotal()">
+          <input type="radio" name="texte" class="price-radio" data-price="40" onchange="calcTotal()">
           <span>Teilweise vorhanden</span>
-          <span class="check-price">+80 &euro;</span>
+          <span class="check-price">+40 &euro;</span>
         </label>
       </div>
     </div>
@@ -962,9 +1011,9 @@ body{
           <span>Ist vorhanden</span>
         </label>
         <label class="check-item">
-          <input type="radio" name="logo" class="price-radio" data-price="150" onchange="calcTotal()">
+          <input type="radio" name="logo" class="price-radio" data-price="80" onchange="calcTotal()">
           <span>Muss erstellt werden</span>
-          <span class="check-price">+150 &euro;</span>
+          <span class="check-price">+80 &euro;</span>
         </label>
       </div>
     </div>
@@ -982,9 +1031,9 @@ body{
         <span class="check-price">+50% vom Basispreis</span>
       </label>
       <label class="check-item">
-        <input type="checkbox" class="addon-check" data-price="80" onchange="calcTotal()">
+        <input type="checkbox" class="addon-check" data-price="50" onchange="calcTotal()">
         <span>Bildbearbeitung — 10 Fotos</span>
-        <span class="check-price">+80 &euro;</span>
+        <span class="check-price">+50 &euro;</span>
       </label>
     </div>
   </div>
@@ -1111,13 +1160,10 @@ function toggleSvc(checkbox) {
   }
 }
 
-/* ========== PALETTE SELECTION HIGHLIGHT ========== */
-function selectPalette(el) {
-  var all = document.querySelectorAll('.palette');
-  for (var i = 0; i < all.length; i++) {
-    all[i].classList.remove('selected');
-  }
-  el.classList.add('selected');
+/* ========== PALETTE SELECTION LIMIT (max 3) ========== */
+function limitPalettes(el){
+  const checks = document.querySelectorAll('.palette-check:checked');
+  if(checks.length > 3){ el.checked = false; }
 }
 
 /* ========== MAILTO BRIEF ========== */
