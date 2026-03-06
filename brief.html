@@ -205,31 +205,33 @@ body.lang-de [data-ru]{display:none}
   user-select:none;
   padding:6px 0;
 }
+/* Hide real inputs */
 .check-item input[type="checkbox"],
 .check-item input[type="radio"]{
-  -webkit-appearance:none;
-  -moz-appearance:none;
-  appearance:none;
+  position:absolute;
+  opacity:0;
+  width:0;
+  height:0;
+  pointer-events:none;
+}
+
+/* Checkbox visual box */
+.check-box{
   width:18px;
   height:18px;
   border:1.5px solid var(--esp);
+  border-radius:3px;
   background:transparent;
-  cursor:pointer;
   flex-shrink:0;
   position:relative;
   transition:all 0.2s;
+  display:inline-block;
 }
-.check-item input[type="checkbox"]{
-  border-radius:3px;
-}
-.check-item input[type="radio"]{
-  border-radius:50%;
-}
-.check-item input[type="checkbox"]:checked{
+.check-item input[type="checkbox"]:checked + .check-box{
   background:var(--gold);
   border-color:var(--gold);
 }
-.check-item input[type="checkbox"]:checked::after{
+.check-item input[type="checkbox"]:checked + .check-box::after{
   content:'';
   position:absolute;
   top:2px;
@@ -240,10 +242,23 @@ body.lang-de [data-ru]{display:none}
   border-width:0 2px 2px 0;
   transform:rotate(45deg);
 }
-.check-item input[type="radio"]:checked{
+
+/* Radio visual dot */
+.radio-dot{
+  width:18px;
+  height:18px;
+  border:1.5px solid var(--esp);
+  border-radius:50%;
+  background:transparent;
+  flex-shrink:0;
+  position:relative;
+  transition:all 0.2s;
+  display:inline-block;
+}
+.check-item input[type="radio"]:checked + .radio-dot{
   border-color:var(--gold);
 }
-.check-item input[type="radio"]:checked::after{
+.check-item input[type="radio"]:checked + .radio-dot::after{
   content:'';
   position:absolute;
   top:3px;
@@ -288,24 +303,28 @@ body.lang-de [data-ru]{display:none}
   background:rgba(196,169,125,0.08);
 }
 .svc-item input[type="checkbox"]{
-  -webkit-appearance:none;
-  -moz-appearance:none;
-  appearance:none;
+  position:absolute;
+  opacity:0;
+  width:0;
+  height:0;
+  pointer-events:none;
+}
+.svc-box{
   width:20px;
   height:20px;
   border:1.5px solid var(--esp);
   border-radius:4px;
   background:transparent;
-  cursor:pointer;
   flex-shrink:0;
   position:relative;
   transition:all 0.2s;
+  display:inline-block;
 }
-.svc-item input[type="checkbox"]:checked{
+.svc-item input[type="checkbox"]:checked + .svc-box{
   background:var(--gold);
   border-color:var(--gold);
 }
-.svc-item input[type="checkbox"]:checked::after{
+.svc-item input[type="checkbox"]:checked + .svc-box::after{
   content:'';
   position:absolute;
   top:2px;
@@ -607,15 +626,24 @@ body.lang-de [data-ru]{display:none}
   .text-area{
     border:1px dotted #999 !important;
   }
-  .check-item input[type="checkbox"],
-  .check-item input[type="radio"],
-  .palette-check,
-  .svc-item input[type="checkbox"]{
+  .check-box, .radio-dot, .svc-box{
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
     border-color:#999 !important;
   }
-  .check-item input[type="checkbox"]:checked,
-  .svc-item input[type="checkbox"]:checked{
+  .palette-check{
+    border-color:#999 !important;
+  }
+  .check-item input[type="checkbox"]:checked + .check-box,
+  .svc-item input[type="checkbox"]:checked + .svc-box{
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
     background:var(--gold) !important;
+    border-color:var(--gold) !important;
+  }
+  .check-item input[type="radio"]:checked + .radio-dot{
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
     border-color:var(--gold) !important;
   }
   .svc-item{
@@ -669,39 +697,39 @@ body.lang-de [data-ru]{display:none}
 
     <div class="svc-list">
       <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="300" onchange="toggleSvc(this);calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="300" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
         <span class="svc-name"><span data-de>Landingpage (1 Seite)</span><span data-ru>Лендинг (1 страница)</span></span>
-        <span class="svc-price">ab 300 &euro;</span>
+        <span class="svc-price"><span data-de>ab 300 &euro;</span><span data-ru>от 300 &euro;</span></span>
       </label>
       <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="500" onchange="toggleSvc(this);calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="500" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
         <span class="svc-name"><span data-de>Mehrseitige Website (3&ndash;5 Seiten)</span><span data-ru>Многостраничный сайт (3&ndash;5 страниц)</span></span>
-        <span class="svc-price">ab 500 &euro;</span>
+        <span class="svc-price"><span data-de>ab 500 &euro;</span><span data-ru>от 500 &euro;</span></span>
       </label>
       <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="350" onchange="toggleSvc(this);calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="350" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
         <span class="svc-name"><span data-de>Telegram-Bot (einfach)</span><span data-ru>Telegram-бот (простой)</span></span>
-        <span class="svc-price">ab 350 &euro;</span>
+        <span class="svc-price"><span data-de>ab 350 &euro;</span><span data-ru>от 350 &euro;</span></span>
       </label>
       <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="600" onchange="toggleSvc(this);calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="600" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
         <span class="svc-name"><span data-de>Telegram-Bot mit KI</span><span data-ru>Telegram-бот с ИИ</span></span>
-        <span class="svc-price">ab 600 &euro;</span>
+        <span class="svc-price"><span data-de>ab 600 &euro;</span><span data-ru>от 600 &euro;</span></span>
       </label>
       <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="150" onchange="toggleSvc(this);calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="150" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
         <span class="svc-name"><span data-de>Design / Branding</span><span data-ru>Дизайн / Брендинг</span></span>
-        <span class="svc-price">ab 150 &euro;</span>
+        <span class="svc-price"><span data-de>ab 150 &euro;</span><span data-ru>от 150 &euro;</span></span>
       </label>
       <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="120" onchange="toggleSvc(this);calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="120" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
         <span class="svc-name"><span data-de>Instagram-Content</span><span data-ru>Instagram-контент</span></span>
-        <span class="svc-price">ab 120 &euro; / <span data-de>Monat</span><span data-ru>мес.</span></span>
+        <span class="svc-price"><span data-de>ab 120 &euro; / Monat</span><span data-ru>от 120 &euro; / мес.</span></span>
       </label>
       <label class="svc-item">
-        <input type="checkbox" class="svc-check" data-price="50" onchange="toggleSvc(this);calcTotal()">
+        <input type="checkbox" class="svc-check" data-price="50" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
         <span class="svc-name"><span data-de>Website-Wartung</span><span data-ru>Обслуживание сайта</span></span>
-        <span class="svc-price">ab 50 &euro; / <span data-de>Monat</span><span data-ru>мес.</span></span>
+        <span class="svc-price"><span data-de>ab 50 &euro; / Monat</span><span data-ru>от 50 &euro; / мес.</span></span>
       </label>
     </div>
   </div>
@@ -779,14 +807,14 @@ body.lang-de [data-ru]{display:none}
         <span data-de>Mehrfachauswahl m&ouml;glich</span><span data-ru>Можно выбрать несколько</span>
       </span>
       <div class="check-group horizontal" id="sectionsGroup">
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Über uns" data-ru="О нас"> <span data-de>&Uuml;ber uns</span><span data-ru>О нас</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Leistungen" data-ru="Услуги"> <span data-de>Leistungen</span><span data-ru>Услуги</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Portfolio" data-ru="Портфолио"> <span data-de>Portfolio</span><span data-ru>Портфолио</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Bewertungen" data-ru="Отзывы"> <span data-de>Bewertungen</span><span data-ru>Отзывы</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Kontakt" data-ru="Контакт"> <span data-de>Kontakt</span><span data-ru>Контакт</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Blog" data-ru="Блог"> <span data-de>Blog</span><span data-ru>Блог</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Online-Shop" data-ru="Магазин"> <span data-de>Online-Shop</span><span data-ru>Магазин</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="FAQ" data-ru="FAQ"> <span data-de>FAQ</span><span data-ru>FAQ</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Über uns" data-ru="О нас"><span class="check-box"></span> <span data-de>&Uuml;ber uns</span><span data-ru>О нас</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Leistungen" data-ru="Услуги"><span class="check-box"></span> <span data-de>Leistungen</span><span data-ru>Услуги</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Portfolio" data-ru="Портфолио"><span class="check-box"></span> <span data-de>Portfolio</span><span data-ru>Портфолио</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Bewertungen" data-ru="Отзывы"><span class="check-box"></span> <span data-de>Bewertungen</span><span data-ru>Отзывы</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Kontakt" data-ru="Контакт"><span class="check-box"></span> <span data-de>Kontakt</span><span data-ru>Контакт</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Blog" data-ru="Блог"><span class="check-box"></span> <span data-de>Blog</span><span data-ru>Блог</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Online-Shop" data-ru="Магазин"><span class="check-box"></span> <span data-de>Online-Shop</span><span data-ru>Магазин</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="FAQ" data-ru="FAQ"><span class="check-box"></span> <span data-de>FAQ</span><span data-ru>FAQ</span></label>
       </div>
     </div>
 
@@ -796,32 +824,32 @@ body.lang-de [data-ru]{display:none}
       </span>
       <div class="check-group" id="functionsGroup">
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-de="Kontaktformular" data-ru="Контактная форма" onchange="calcTotal()">
+          <input type="checkbox" class="addon-check func-check" data-de="Kontaktformular" data-ru="Контактная форма" onchange="calcTotal()"><span class="check-box"></span>
           <span><span data-de>Kontaktformular</span><span data-ru>Контактная форма</span></span>
           <span class="check-price"><span data-de>inklusive</span><span data-ru>включено</span></span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-de="Live-Chat / WhatsApp" data-ru="Чат / WhatsApp" onchange="calcTotal()">
+          <input type="checkbox" class="addon-check func-check" data-de="Live-Chat / WhatsApp" data-ru="Чат / WhatsApp" onchange="calcTotal()"><span class="check-box"></span>
           <span><span data-de>Live-Chat / WhatsApp-Button</span><span data-ru>Чат / WhatsApp-кнопка</span></span>
           <span class="check-price"><span data-de>inklusive</span><span data-ru>включено</span></span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-price-percent="30" data-de="Mehrsprachigkeit (+30%)" data-ru="Мультиязычность (+30%)" onchange="calcTotal()">
+          <input type="checkbox" class="addon-check func-check" data-price-percent="30" data-de="Mehrsprachigkeit (+30%)" data-ru="Мультиязычность (+30%)" onchange="calcTotal()"><span class="check-box"></span>
           <span><span data-de>Mehrsprachigkeit</span><span data-ru>Мультиязычность</span></span>
           <span class="check-price"><span data-de>+30% vom Basispreis</span><span data-ru>+30% от базовой цены</span></span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="CRM / API (+100€)" data-ru="CRM / API (+100€)" onchange="calcTotal()">
+          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="CRM / API (+100€)" data-ru="CRM / API (+100€)" onchange="calcTotal()"><span class="check-box"></span>
           <span>CRM / API Integration</span>
           <span class="check-price">+100 &euro;</span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="Rechner / Kalkulator (+100€)" data-ru="Калькулятор (+100€)" onchange="calcTotal()">
+          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="Rechner / Kalkulator (+100€)" data-ru="Калькулятор (+100€)" onchange="calcTotal()"><span class="check-box"></span>
           <span><span data-de>Rechner / Kalkulator</span><span data-ru>Калькулятор</span></span>
           <span class="check-price">+100 &euro;</span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="Telegram-Bot auf der Website (+100€)" data-ru="Telegram-бот на сайте (+100€)" onchange="calcTotal()">
+          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="Telegram-Bot auf der Website (+100€)" data-ru="Telegram-бот на сайте (+100€)" onchange="calcTotal()"><span class="check-box"></span>
           <span><span data-de>Telegram-Bot auf der Website</span><span data-ru>Telegram-бот на сайте</span></span>
           <span class="check-price">+100 &euro;</span>
         </label>
@@ -843,11 +871,11 @@ body.lang-de [data-ru]{display:none}
         <span data-de>Stil</span><span data-ru>Стиль</span>
       </span>
       <div class="check-group horizontal">
-        <label class="check-item"><input type="radio" name="stil" data-de="Minimalistisch" data-ru="Минимализм"> <span data-de>Minimalistisch</span><span data-ru>Минимализм</span></label>
-        <label class="check-item"><input type="radio" name="stil" data-de="Luxury / Premium" data-ru="Люкс / Премиум"> <span data-de>Luxury / Premium</span><span data-ru>Люкс / Премиум</span></label>
-        <label class="check-item"><input type="radio" name="stil" data-de="Bunt / Kreativ" data-ru="Яркий / Креативный"> <span data-de>Bunt / Kreativ</span><span data-ru>Яркий / Креативный</span></label>
-        <label class="check-item"><input type="radio" name="stil" data-de="Korporativ" data-ru="Корпоративный"> <span data-de>Korporativ</span><span data-ru>Корпоративный</span></label>
-        <label class="check-item"><input type="radio" name="stil" data-de="Anderer" data-ru="Другой"> <span data-de>Anderer</span><span data-ru>Другой</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Minimalistisch" data-ru="Минимализм"><span class="radio-dot"></span> <span data-de>Minimalistisch</span><span data-ru>Минимализм</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Luxury / Premium" data-ru="Люкс / Премиум"><span class="radio-dot"></span> <span data-de>Luxury / Premium</span><span data-ru>Люкс / Премиум</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Bunt / Kreativ" data-ru="Яркий / Креативный"><span class="radio-dot"></span> <span data-de>Bunt / Kreativ</span><span data-ru>Яркий / Креативный</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Korporativ" data-ru="Корпоративный"><span class="radio-dot"></span> <span data-de>Korporativ</span><span data-ru>Корпоративный</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Anderer" data-ru="Другой"><span class="radio-dot"></span> <span data-de>Anderer</span><span data-ru>Другой</span></label>
       </div>
     </div>
 
@@ -1036,9 +1064,9 @@ body.lang-de [data-ru]{display:none}
         <span data-de>Schriftart</span><span data-ru>Шрифт</span>
       </span>
       <div class="check-group horizontal">
-        <label class="check-item"><input type="radio" name="font" data-de="Mit Serifen" data-ru="С засечками"> <span data-de>Mit Serifen</span><span data-ru>С засечками (Serif)</span></label>
-        <label class="check-item"><input type="radio" name="font" data-de="Ohne Serifen" data-ru="Без засечек"> <span data-de>Ohne Serifen</span><span data-ru>Без засечек (Sans-serif)</span></label>
-        <label class="check-item"><input type="radio" name="font" data-de="Nach Ihrem Ermessen" data-ru="На усмотрение дизайнера"> <span data-de>Nach Ihrem Ermessen</span><span data-ru>На усмотрение дизайнера</span></label>
+        <label class="check-item"><input type="radio" name="font" data-de="Mit Serifen" data-ru="С засечками"><span class="radio-dot"></span> <span data-de>Mit Serifen</span><span data-ru>С засечками (Serif)</span></label>
+        <label class="check-item"><input type="radio" name="font" data-de="Ohne Serifen" data-ru="Без засечек"><span class="radio-dot"></span> <span data-de>Ohne Serifen</span><span data-ru>Без засечек (Sans-serif)</span></label>
+        <label class="check-item"><input type="radio" name="font" data-de="Nach Ihrem Ermessen" data-ru="На усмотрение дизайнера"><span class="radio-dot"></span> <span data-de>Nach Ihrem Ermessen</span><span data-ru>На усмотрение дизайнера</span></label>
       </div>
     </div>
   </div>
@@ -1058,16 +1086,16 @@ body.lang-de [data-ru]{display:none}
       </span>
       <div class="check-group">
         <label class="check-item">
-          <input type="radio" name="texte" class="price-radio" data-de="Sind vorhanden" data-ru="Есть" onchange="calcTotal()">
+          <input type="radio" name="texte" class="price-radio" data-de="Sind vorhanden" data-ru="Есть" onchange="calcTotal()"><span class="radio-dot"></span>
           <span><span data-de>Sind vorhanden</span><span data-ru>Есть</span></span>
         </label>
         <label class="check-item">
-          <input type="radio" name="texte" class="price-radio" data-price="80" data-de="Müssen erstellt werden (+80€)" data-ru="Нужно написать (+80€)" onchange="calcTotal()">
+          <input type="radio" name="texte" class="price-radio" data-price="80" data-de="Müssen erstellt werden (+80€)" data-ru="Нужно написать (+80€)" onchange="calcTotal()"><span class="radio-dot"></span>
           <span><span data-de>M&uuml;ssen erstellt werden</span><span data-ru>Нужно написать</span></span>
           <span class="check-price">+80 &euro;</span>
         </label>
         <label class="check-item">
-          <input type="radio" name="texte" class="price-radio" data-price="40" data-de="Teilweise vorhanden (+40€)" data-ru="Частично есть (+40€)" onchange="calcTotal()">
+          <input type="radio" name="texte" class="price-radio" data-price="40" data-de="Teilweise vorhanden (+40€)" data-ru="Частично есть (+40€)" onchange="calcTotal()"><span class="radio-dot"></span>
           <span><span data-de>Teilweise vorhanden</span><span data-ru>Частично есть</span></span>
           <span class="check-price">+40 &euro;</span>
         </label>
@@ -1080,16 +1108,16 @@ body.lang-de [data-ru]{display:none}
       </span>
       <div class="check-group">
         <label class="check-item">
-          <input type="radio" name="fotos" data-de="Sind vorhanden" data-ru="Есть">
+          <input type="radio" name="fotos" data-de="Sind vorhanden" data-ru="Есть"><span class="radio-dot"></span>
           <span><span data-de>Sind vorhanden</span><span data-ru>Есть</span></span>
         </label>
         <label class="check-item">
-          <input type="radio" name="fotos" data-de="Fotoshooting benötigt" data-ru="Нужна фотосессия">
+          <input type="radio" name="fotos" data-de="Fotoshooting benötigt" data-ru="Нужна фотосессия"><span class="radio-dot"></span>
           <span><span data-de>Fotoshooting ben&ouml;tigt</span><span data-ru>Нужна фотосессия</span></span>
           <span class="check-price"><span data-de>wird separat besprochen</span><span data-ru>обсуждается отдельно</span></span>
         </label>
         <label class="check-item">
-          <input type="radio" name="fotos" data-de="Teilweise vorhanden" data-ru="Частично есть">
+          <input type="radio" name="fotos" data-de="Teilweise vorhanden" data-ru="Частично есть"><span class="radio-dot"></span>
           <span><span data-de>Teilweise vorhanden</span><span data-ru>Частично есть</span></span>
         </label>
       </div>
@@ -1101,11 +1129,11 @@ body.lang-de [data-ru]{display:none}
       </span>
       <div class="check-group">
         <label class="check-item">
-          <input type="radio" name="logo" class="price-radio" data-de="Ist vorhanden" data-ru="Есть" onchange="calcTotal()">
+          <input type="radio" name="logo" class="price-radio" data-de="Ist vorhanden" data-ru="Есть" onchange="calcTotal()"><span class="radio-dot"></span>
           <span><span data-de>Ist vorhanden</span><span data-ru>Есть</span></span>
         </label>
         <label class="check-item">
-          <input type="radio" name="logo" class="price-radio" data-price="80" data-de="Muss erstellt werden (+80€)" data-ru="Нужно создать (+80€)" onchange="calcTotal()">
+          <input type="radio" name="logo" class="price-radio" data-price="80" data-de="Muss erstellt werden (+80€)" data-ru="Нужно создать (+80€)" onchange="calcTotal()"><span class="radio-dot"></span>
           <span><span data-de>Muss erstellt werden</span><span data-ru>Нужно создать</span></span>
           <span class="check-price">+80 &euro;</span>
         </label>
@@ -1124,12 +1152,12 @@ body.lang-de [data-ru]{display:none}
 
     <div class="check-group">
       <label class="check-item">
-        <input type="checkbox" class="addon-check extra-check" data-price-percent="50" data-de="Express (+50%)" data-ru="Экспресс (+50%)" onchange="calcTotal()">
+        <input type="checkbox" class="addon-check extra-check" data-price-percent="50" data-de="Express (+50%)" data-ru="Экспресс (+50%)" onchange="calcTotal()"><span class="check-box"></span>
         <span><span data-de>Express &mdash; bis 3 Tage</span><span data-ru>Экспресс &mdash; до 3 дней</span></span>
         <span class="check-price"><span data-de>+50% vom Basispreis</span><span data-ru>+50% от базовой цены</span></span>
       </label>
       <label class="check-item">
-        <input type="checkbox" class="addon-check extra-check" data-price="50" data-de="Bildbearbeitung (+50€)" data-ru="Обработка фото (+50€)" onchange="calcTotal()">
+        <input type="checkbox" class="addon-check extra-check" data-price="50" data-de="Bildbearbeitung (+50€)" data-ru="Обработка фото (+50€)" onchange="calcTotal()"><span class="check-box"></span>
         <span><span data-de>Bildbearbeitung &mdash; 10 Fotos</span><span data-ru>Обработка фото &mdash; 10 шт.</span></span>
         <span class="check-price">+50 &euro;</span>
       </label>
@@ -1318,6 +1346,15 @@ function toggleSvc(checkbox) {
 function limitPalettes(el) {
   var checks = document.querySelectorAll('.palette-check:checked');
   if (checks.length > 3) { el.checked = false; }
+  // Update visual state for all palettes
+  document.querySelectorAll('.palette').forEach(function(p) {
+    var cb = p.querySelector('.palette-check');
+    if (cb && cb.checked) {
+      p.classList.add('selected');
+    } else {
+      p.classList.remove('selected');
+    }
+  });
 }
 
 /* ========== SEND BRIEF VIA TELEGRAM ========== */
