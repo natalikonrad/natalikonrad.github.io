@@ -978,9 +978,9 @@ function openService(n){
     <p class="svc-mo-p">${t.desc}</p>
     <ul class="svc-mo-list">${items}</ul>
     <div class="svc-mo-foot">
-      <a href="https://t.me/natali_6432" class="svc-mo-cta" target="_blank">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
-        ${lang==='de'?'Im Telegram schreiben':lang==='en'?'Message on Telegram':'Написать в Telegram'}
+      <a href="${n===2?'brief-bot.html':'brief.html'}" class="svc-mo-cta" target="_blank">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        ${lang==='de'?'Preis anfragen':lang==='en'?'Get a Quote':'Узнать цену'}
       </a>
     </div>`;
   document.getElementById('svc-mo').classList.add('open');
