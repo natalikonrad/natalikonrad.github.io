@@ -1302,6 +1302,14 @@ const TIERS = [
 
 const calcActive = new Set(['FAQ']);
 
+function syncCalcToForm(){
+  document.querySelectorAll('#func-checks input[type=checkbox]').forEach(inp=>{
+    const on = calcActive.has(inp.value);
+    inp.checked = on;
+    inp.closest('.check-item').classList.toggle('selected', on);
+  });
+}
+
 function toggleCalcFeat(el){
   if(el.classList.contains('cf-base')) return;
   const feat = el.dataset.feature;
@@ -1309,6 +1317,7 @@ function toggleCalcFeat(el){
   if(calcActive.has(feat)) calcActive.delete(feat);
   else calcActive.add(feat);
   updateCalcResult();
+  syncCalcToForm();
 }
 
 function updateCalcResult(){
@@ -1335,12 +1344,7 @@ function updateCalcResult(){
 }
 
 function calcGoToForm(){
-  // Sync selections → form checkboxes
-  document.querySelectorAll('#func-checks input[type=checkbox]').forEach(inp=>{
-    const on = calcActive.has(inp.value);
-    inp.checked = on;
-    inp.closest('.check-item').classList.toggle('selected', on);
-  });
+  syncCalcToForm();
   document.getElementById('theForm').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
@@ -1384,6 +1388,7 @@ function showSuccess(){
   s.scrollIntoView({behavior:'smooth', block:'center'});
 }
 updateCalcResult();
+syncCalcToForm();
 </script>
 </body>
 </html>
