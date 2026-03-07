@@ -50,6 +50,10 @@ body{
 /* ========== LANGUAGE TOGGLE ========== */
 body.lang-ru [data-de],
 body.lang-de [data-ru]{display:none}
+body.lang-en [data-de],
+body.lang-en [data-ru]{display:none}
+body.lang-de [data-en],
+body.lang-ru [data-en]{display:none}
 
 .lang-switch{display:flex;gap:4px;justify-content:center;margin-bottom:16px}
 .lang-btn{
@@ -688,60 +692,61 @@ body.lang-de [data-ru]{display:none}
     <div class="lang-switch">
       <button class="lang-btn active" id="btnDe" onclick="setLang('de')">DE</button>
       <button class="lang-btn" id="btnRu" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" id="btnEn" onclick="setLang('en')">EN</button>
     </div>
     <div class="brief-logo">Natali Konrad</div>
     <div class="brief-subtitle">
-      <span data-de>Projektbriefing</span><span data-ru>Бриф на проект</span>
+      <span data-de>Projektbriefing</span><span data-ru>Бриф на проект</span><span data-en>Project Brief</span>
     </div>
   </header>
 
   <!-- ==================== SECTION 1: SERVICES ==================== -->
   <div class="section">
     <div class="section-number">
-      <span data-de>Abschnitt 01</span><span data-ru>Раздел 01</span>
+      <span data-de>Abschnitt 01</span><span data-ru>Раздел 01</span><span data-en>Section 01</span>
     </div>
     <h2 class="section-title">
-      <span data-de>Leistungsart</span><span data-ru>Тип услуги</span>
+      <span data-de>Leistungsart</span><span data-ru>Тип услуги</span><span data-en>Service Type</span>
     </h2>
     <span class="field-hint">
-      <span data-de>Mehrfachauswahl m&ouml;glich</span><span data-ru>Можно выбрать несколько</span>
+      <span data-de>Mehrfachauswahl m&ouml;glich</span><span data-ru>Можно выбрать несколько</span><span data-en>Multiple selection allowed</span>
     </span>
 
     <div class="svc-list">
       <label class="svc-item">
         <input type="checkbox" class="svc-check" data-price="300" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
-        <span class="svc-name"><span data-de>Landingpage (1 Seite)</span><span data-ru>Лендинг (1 страница)</span></span>
-        <span class="svc-price"><span data-de>ab 300 &euro;</span><span data-ru>от 300 &euro;</span></span>
+        <span class="svc-name"><span data-de>Landingpage (1 Seite)</span><span data-ru>Лендинг (1 страница)</span><span data-en>Landing Page (1 page)</span></span>
+        <span class="svc-price"><span data-de>ab 300 &euro;</span><span data-ru>от 300 &euro;</span><span data-en>from 300 &euro;</span></span>
       </label>
       <label class="svc-item">
         <input type="checkbox" class="svc-check" data-price="500" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
-        <span class="svc-name"><span data-de>Mehrseitige Website (3&ndash;5 Seiten)</span><span data-ru>Многостраничный сайт (3&ndash;5 страниц)</span></span>
-        <span class="svc-price"><span data-de>ab 500 &euro;</span><span data-ru>от 500 &euro;</span></span>
+        <span class="svc-name"><span data-de>Mehrseitige Website (3&ndash;5 Seiten)</span><span data-ru>Многостраничный сайт (3&ndash;5 страниц)</span><span data-en>Multi-page Website (3&ndash;5 pages)</span></span>
+        <span class="svc-price"><span data-de>ab 500 &euro;</span><span data-ru>от 500 &euro;</span><span data-en>from 500 &euro;</span></span>
       </label>
       <label class="svc-item">
         <input type="checkbox" class="svc-check" data-price="350" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
-        <span class="svc-name"><span data-de>Telegram-Bot (einfach)</span><span data-ru>Telegram-бот (простой)</span></span>
-        <span class="svc-price"><span data-de>ab 350 &euro;</span><span data-ru>от 350 &euro;</span></span>
+        <span class="svc-name"><span data-de>Telegram-Bot (einfach)</span><span data-ru>Telegram-бот (простой)</span><span data-en>Telegram Bot (basic)</span></span>
+        <span class="svc-price"><span data-de>ab 350 &euro;</span><span data-ru>от 350 &euro;</span><span data-en>from 350 &euro;</span></span>
       </label>
       <label class="svc-item">
         <input type="checkbox" class="svc-check" data-price="600" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
-        <span class="svc-name"><span data-de>Telegram-Bot mit KI</span><span data-ru>Telegram-бот с ИИ</span></span>
-        <span class="svc-price"><span data-de>ab 600 &euro;</span><span data-ru>от 600 &euro;</span></span>
+        <span class="svc-name"><span data-de>Telegram-Bot mit KI</span><span data-ru>Telegram-бот с ИИ</span><span data-en>Telegram Bot with AI</span></span>
+        <span class="svc-price"><span data-de>ab 600 &euro;</span><span data-ru>от 600 &euro;</span><span data-en>from 600 &euro;</span></span>
       </label>
       <label class="svc-item">
         <input type="checkbox" class="svc-check" data-price="150" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
-        <span class="svc-name"><span data-de>Design / Branding</span><span data-ru>Дизайн / Брендинг</span></span>
-        <span class="svc-price"><span data-de>ab 150 &euro;</span><span data-ru>от 150 &euro;</span></span>
+        <span class="svc-name"><span data-de>Design / Branding</span><span data-ru>Дизайн / Брендинг</span><span data-en>Design / Branding</span></span>
+        <span class="svc-price"><span data-de>ab 150 &euro;</span><span data-ru>от 150 &euro;</span><span data-en>from 150 &euro;</span></span>
       </label>
       <label class="svc-item">
         <input type="checkbox" class="svc-check" data-price="120" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
-        <span class="svc-name"><span data-de>Instagram-Content</span><span data-ru>Instagram-контент</span></span>
-        <span class="svc-price"><span data-de>ab 120 &euro; / Monat</span><span data-ru>от 120 &euro; / мес.</span></span>
+        <span class="svc-name"><span data-de>Instagram-Content</span><span data-ru>Instagram-контент</span><span data-en>Instagram Content</span></span>
+        <span class="svc-price"><span data-de>ab 120 &euro; / Monat</span><span data-ru>от 120 &euro; / мес.</span><span data-en>from 120 &euro; / month</span></span>
       </label>
       <label class="svc-item">
         <input type="checkbox" class="svc-check" data-price="50" onchange="toggleSvc(this);calcTotal()"><span class="svc-box"></span>
-        <span class="svc-name"><span data-de>Website-Wartung</span><span data-ru>Обслуживание сайта</span></span>
-        <span class="svc-price"><span data-de>ab 50 &euro; / Monat</span><span data-ru>от 50 &euro; / мес.</span></span>
+        <span class="svc-name"><span data-de>Website-Wartung</span><span data-ru>Обслуживание сайта</span><span data-en>Website Maintenance</span></span>
+        <span class="svc-price"><span data-de>ab 50 &euro; / Monat</span><span data-ru>от 50 &euro; / мес.</span><span data-en>from 50 &euro; / month</span></span>
       </label>
     </div>
   </div>
@@ -749,42 +754,42 @@ body.lang-de [data-ru]{display:none}
   <!-- ==================== SECTION 2: ABOUT PROJECT ==================== -->
   <div class="section">
     <div class="section-number">
-      <span data-de>Abschnitt 02</span><span data-ru>Раздел 02</span>
+      <span data-de>Abschnitt 02</span><span data-ru>Раздел 02</span><span data-en>Section 02</span>
     </div>
     <h2 class="section-title">
-      <span data-de>&Uuml;ber das Projekt</span><span data-ru>О проекте</span>
+      <span data-de>&Uuml;ber das Projekt</span><span data-ru>О проекте</span><span data-en>About the Project</span>
     </h2>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Firmenname / Marke</span><span data-ru>Название компании / бренд</span>
+        <span data-de>Firmenname / Marke</span><span data-ru>Название компании / бренд</span><span data-en>Company Name / Brand</span>
       </span>
       <input type="text" class="text-line" data-label-de="Firmenname" data-label-ru="Компания" placeholder="">
     </div>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Branche / T&auml;tigkeitsbereich</span><span data-ru>Отрасль / ниша</span>
+        <span data-de>Branche / T&auml;tigkeitsbereich</span><span data-ru>Отрасль / ниша</span><span data-en>Industry / Niche</span>
       </span>
       <input type="text" class="text-line" data-label-de="Branche" data-label-ru="Отрасль" placeholder="">
     </div>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Zielgruppe</span><span data-ru>Целевая аудитория</span>
+        <span data-de>Zielgruppe</span><span data-ru>Целевая аудитория</span><span data-en>Target Audience</span>
       </span>
       <span class="field-hint">
-        <span data-de>Wer sind Ihre Kunden? Alter, Geschlecht, Interessen ...</span><span data-ru>Кто ваши клиенты? Возраст, пол, интересы ...</span>
+        <span data-de>Wer sind Ihre Kunden? Alter, Geschlecht, Interessen ...</span><span data-ru>Кто ваши клиенты? Возраст, пол, интересы ...</span><span data-en>Who are your customers? Age, gender, interests ...</span>
       </span>
       <textarea class="text-area" data-label-de="Zielgruppe" data-label-ru="Целевая аудитория" placeholder=""></textarea>
     </div>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Wettbewerber</span><span data-ru>Конкуренты</span>
+        <span data-de>Wettbewerber</span><span data-ru>Конкуренты</span><span data-en>Competitors</span>
       </span>
       <span class="field-hint">
-        <span data-de>Links zu 2&ndash;3 Websites Ihrer Mitbewerber</span><span data-ru>Ссылки на 2&ndash;3 сайта конкурентов</span>
+        <span data-de>Links zu 2&ndash;3 Websites Ihrer Mitbewerber</span><span data-ru>Ссылки на 2&ndash;3 сайта конкурентов</span><span data-en>Links to 2&ndash;3 competitor websites</span>
       </span>
       <input type="text" class="text-line" data-label-de="Wettbewerber" data-label-ru="Конкурент" placeholder="https://" style="margin-bottom:8px">
       <input type="text" class="text-line" data-label-de="Wettbewerber" data-label-ru="Конкурент" placeholder="https://" style="margin-bottom:8px">
@@ -795,74 +800,74 @@ body.lang-de [data-ru]{display:none}
   <!-- ==================== SECTION 3: FOR WEBSITES ==================== -->
   <div class="section">
     <div class="section-number">
-      <span data-de>Abschnitt 03</span><span data-ru>Раздел 03</span>
+      <span data-de>Abschnitt 03</span><span data-ru>Раздел 03</span><span data-en>Section 03</span>
     </div>
     <h2 class="section-title">
-      <span data-de>F&uuml;r Websites</span><span data-ru>Для сайтов</span>
+      <span data-de>F&uuml;r Websites</span><span data-ru>Для сайтов</span><span data-en>For Websites</span>
     </h2>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Anzahl der Seiten</span><span data-ru>Количество страниц</span>
+        <span data-de>Anzahl der Seiten</span><span data-ru>Количество страниц</span><span data-en>Number of Pages</span>
       </span>
       <span class="field-hint">
-        <span data-de>Jede Seite ab der 6. kostet +150 &euro;</span><span data-ru>Каждая страница начиная с 6-й: +150 &euro;</span>
+        <span data-de>Jede Seite ab der 6. kostet +150 &euro;</span><span data-ru>Каждая страница начиная с 6-й: +150 &euro;</span><span data-en>Each page from the 6th onwards: +150 &euro;</span>
       </span>
       <input type="number" id="pageCount" class="number-input" min="1" max="50" value="0" onchange="calcTotal()" oninput="calcTotal()">
     </div>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Gew&uuml;nschte Bereiche</span><span data-ru>Нужные разделы</span>
+        <span data-de>Gew&uuml;nschte Bereiche</span><span data-ru>Нужные разделы</span><span data-en>Required Sections</span>
       </span>
       <span class="field-hint">
-        <span data-de>Mehrfachauswahl m&ouml;glich</span><span data-ru>Можно выбрать несколько</span>
+        <span data-de>Mehrfachauswahl m&ouml;glich</span><span data-ru>Можно выбрать несколько</span><span data-en>Multiple selection allowed</span>
       </span>
       <div class="check-group horizontal" id="sectionsGroup">
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Über uns" data-ru="О нас"><span class="check-box"></span> <span data-de>&Uuml;ber uns</span><span data-ru>О нас</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Leistungen" data-ru="Услуги"><span class="check-box"></span> <span data-de>Leistungen</span><span data-ru>Услуги</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Portfolio" data-ru="Портфолио"><span class="check-box"></span> <span data-de>Portfolio</span><span data-ru>Портфолио</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Bewertungen" data-ru="Отзывы"><span class="check-box"></span> <span data-de>Bewertungen</span><span data-ru>Отзывы</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Kontakt" data-ru="Контакт"><span class="check-box"></span> <span data-de>Kontakt</span><span data-ru>Контакт</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Blog" data-ru="Блог"><span class="check-box"></span> <span data-de>Blog</span><span data-ru>Блог</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="Online-Shop" data-ru="Магазин"><span class="check-box"></span> <span data-de>Online-Shop</span><span data-ru>Магазин</span></label>
-        <label class="check-item"><input type="checkbox" class="section-check" data-de="FAQ" data-ru="FAQ"><span class="check-box"></span> <span data-de>FAQ</span><span data-ru>FAQ</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Über uns" data-ru="О нас" data-en="About Us"><span class="check-box"></span> <span data-de>&Uuml;ber uns</span><span data-ru>О нас</span><span data-en>About Us</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Leistungen" data-ru="Услуги" data-en="Services"><span class="check-box"></span> <span data-de>Leistungen</span><span data-ru>Услуги</span><span data-en>Services</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Portfolio" data-ru="Портфолио" data-en="Portfolio"><span class="check-box"></span> <span data-de>Portfolio</span><span data-ru>Портфолио</span><span data-en>Portfolio</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Bewertungen" data-ru="Отзывы" data-en="Reviews"><span class="check-box"></span> <span data-de>Bewertungen</span><span data-ru>Отзывы</span><span data-en>Reviews</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Kontakt" data-ru="Контакт" data-en="Contact"><span class="check-box"></span> <span data-de>Kontakt</span><span data-ru>Контакт</span><span data-en>Contact</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Blog" data-ru="Блог" data-en="Blog"><span class="check-box"></span> <span data-de>Blog</span><span data-ru>Блог</span><span data-en>Blog</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="Online-Shop" data-ru="Магазин" data-en="Online Shop"><span class="check-box"></span> <span data-de>Online-Shop</span><span data-ru>Магазин</span><span data-en>Online Shop</span></label>
+        <label class="check-item"><input type="checkbox" class="section-check" data-de="FAQ" data-ru="FAQ" data-en="FAQ"><span class="check-box"></span> <span data-de>FAQ</span><span data-ru>FAQ</span><span data-en>FAQ</span></label>
       </div>
     </div>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Funktionen</span><span data-ru>Функции</span>
+        <span data-de>Funktionen</span><span data-ru>Функции</span><span data-en>Features</span>
       </span>
       <div class="check-group" id="functionsGroup">
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-de="Kontaktformular" data-ru="Контактная форма" onchange="calcTotal()"><span class="check-box"></span>
-          <span><span data-de>Kontaktformular</span><span data-ru>Контактная форма</span></span>
-          <span class="check-price"><span data-de>inklusive</span><span data-ru>включено</span></span>
+          <input type="checkbox" class="addon-check func-check" data-de="Kontaktformular" data-ru="Контактная форма" data-en="Contact Form" onchange="calcTotal()"><span class="check-box"></span>
+          <span><span data-de>Kontaktformular</span><span data-ru>Контактная форма</span><span data-en>Contact Form</span></span>
+          <span class="check-price"><span data-de>inklusive</span><span data-ru>включено</span><span data-en>included</span></span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-de="Live-Chat / WhatsApp" data-ru="Чат / WhatsApp" onchange="calcTotal()"><span class="check-box"></span>
-          <span><span data-de>Live-Chat / WhatsApp-Button</span><span data-ru>Чат / WhatsApp-кнопка</span></span>
-          <span class="check-price"><span data-de>inklusive</span><span data-ru>включено</span></span>
+          <input type="checkbox" class="addon-check func-check" data-de="Live-Chat / WhatsApp" data-ru="Чат / WhatsApp" data-en="Live Chat / WhatsApp" onchange="calcTotal()"><span class="check-box"></span>
+          <span><span data-de>Live-Chat / WhatsApp-Button</span><span data-ru>Чат / WhatsApp-кнопка</span><span data-en>Live Chat / WhatsApp Button</span></span>
+          <span class="check-price"><span data-de>inklusive</span><span data-ru>включено</span><span data-en>included</span></span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-price-percent="30" data-de="Mehrsprachigkeit (+30%)" data-ru="Мультиязычность (+30%)" onchange="calcTotal()"><span class="check-box"></span>
-          <span><span data-de>Mehrsprachigkeit</span><span data-ru>Мультиязычность</span></span>
-          <span class="check-price"><span data-de>+30% vom Basispreis</span><span data-ru>+30% от базовой цены</span></span>
+          <input type="checkbox" class="addon-check func-check" data-price-percent="30" data-de="Mehrsprachigkeit (+30%)" data-ru="Мультиязычность (+30%)" data-en="Multilingual (+30%)" onchange="calcTotal()"><span class="check-box"></span>
+          <span><span data-de>Mehrsprachigkeit</span><span data-ru>Мультиязычность</span><span data-en>Multilingual</span></span>
+          <span class="check-price"><span data-de>+30% vom Basispreis</span><span data-ru>+30% от базовой цены</span><span data-en>+30% of base price</span></span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="CRM / API (+100€)" data-ru="CRM / API (+100€)" onchange="calcTotal()"><span class="check-box"></span>
+          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="CRM / API (+100€)" data-ru="CRM / API (+100€)" data-en="CRM / API (+100€)" onchange="calcTotal()"><span class="check-box"></span>
           <span>CRM / API Integration</span>
           <span class="check-price">+100 &euro;</span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="Rechner / Kalkulator (+100€)" data-ru="Калькулятор (+100€)" onchange="calcTotal()"><span class="check-box"></span>
-          <span><span data-de>Rechner / Kalkulator</span><span data-ru>Калькулятор</span></span>
+          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="Rechner / Kalkulator (+100€)" data-ru="Калькулятор (+100€)" data-en="Calculator (+100€)" onchange="calcTotal()"><span class="check-box"></span>
+          <span><span data-de>Rechner / Kalkulator</span><span data-ru>Калькулятор</span><span data-en>Calculator</span></span>
           <span class="check-price">+100 &euro;</span>
         </label>
         <label class="check-item">
-          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="Telegram-Bot auf der Website (+100€)" data-ru="Telegram-бот на сайте (+100€)" onchange="calcTotal()"><span class="check-box"></span>
-          <span><span data-de>Telegram-Bot auf der Website</span><span data-ru>Telegram-бот на сайте</span></span>
+          <input type="checkbox" class="addon-check func-check" data-price="100" data-de="Telegram-Bot auf der Website (+100€)" data-ru="Telegram-бот на сайте (+100€)" data-en="Telegram Bot on the Website (+100€)" onchange="calcTotal()"><span class="check-box"></span>
+          <span><span data-de>Telegram-Bot auf der Website</span><span data-ru>Telegram-бот на сайте</span><span data-en>Telegram Bot on the Website</span></span>
           <span class="check-price">+100 &euro;</span>
         </label>
       </div>
@@ -872,31 +877,31 @@ body.lang-de [data-ru]{display:none}
   <!-- ==================== SECTION 4: DESIGN ==================== -->
   <div class="section">
     <div class="section-number">
-      <span data-de>Abschnitt 04</span><span data-ru>Раздел 04</span>
+      <span data-de>Abschnitt 04</span><span data-ru>Раздел 04</span><span data-en>Section 04</span>
     </div>
     <h2 class="section-title">
-      <span data-de>Design</span><span data-ru>Дизайн</span>
+      <span data-de>Design</span><span data-ru>Дизайн</span><span data-en>Design</span>
     </h2>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Stil</span><span data-ru>Стиль</span>
+        <span data-de>Stil</span><span data-ru>Стиль</span><span data-en>Style</span>
       </span>
       <div class="check-group horizontal">
-        <label class="check-item"><input type="radio" name="stil" data-de="Minimalistisch" data-ru="Минимализм"><span class="radio-dot"></span> <span data-de>Minimalistisch</span><span data-ru>Минимализм</span></label>
-        <label class="check-item"><input type="radio" name="stil" data-de="Luxury / Premium" data-ru="Люкс / Премиум"><span class="radio-dot"></span> <span data-de>Luxury / Premium</span><span data-ru>Люкс / Премиум</span></label>
-        <label class="check-item"><input type="radio" name="stil" data-de="Bunt / Kreativ" data-ru="Яркий / Креативный"><span class="radio-dot"></span> <span data-de>Bunt / Kreativ</span><span data-ru>Яркий / Креативный</span></label>
-        <label class="check-item"><input type="radio" name="stil" data-de="Korporativ" data-ru="Корпоративный"><span class="radio-dot"></span> <span data-de>Korporativ</span><span data-ru>Корпоративный</span></label>
-        <label class="check-item"><input type="radio" name="stil" data-de="Anderer" data-ru="Другой"><span class="radio-dot"></span> <span data-de>Anderer</span><span data-ru>Другой</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Minimalistisch" data-ru="Минимализм" data-en="Minimalist"><span class="radio-dot"></span> <span data-de>Minimalistisch</span><span data-ru>Минимализм</span><span data-en>Minimalist</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Luxury / Premium" data-ru="Люкс / Премиум" data-en="Luxury / Premium"><span class="radio-dot"></span> <span data-de>Luxury / Premium</span><span data-ru>Люкс / Премиум</span><span data-en>Luxury / Premium</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Bunt / Kreativ" data-ru="Яркий / Креативный" data-en="Colorful / Creative"><span class="radio-dot"></span> <span data-de>Bunt / Kreativ</span><span data-ru>Яркий / Креативный</span><span data-en>Colorful / Creative</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Korporativ" data-ru="Корпоративный" data-en="Corporate"><span class="radio-dot"></span> <span data-de>Korporativ</span><span data-ru>Корпоративный</span><span data-en>Corporate</span></label>
+        <label class="check-item"><input type="radio" name="stil" data-de="Anderer" data-ru="Другой" data-en="Other"><span class="radio-dot"></span> <span data-de>Anderer</span><span data-ru>Другой</span><span data-en>Other</span></label>
       </div>
     </div>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Farbpalette</span><span data-ru>Цветовая палитра</span>
+        <span data-de>Farbpalette</span><span data-ru>Цветовая палитра</span><span data-en>Color Palette</span>
       </span>
       <span class="field-hint">
-        <span data-de>W&auml;hlen Sie bis zu 3 Farbkombinationen</span><span data-ru>Выберите до 3 цветовых комбинаций</span>
+        <span data-de>W&auml;hlen Sie bis zu 3 Farbkombinationen</span><span data-ru>Выберите до 3 цветовых комбинаций</span><span data-en>Choose up to 3 color combinations</span>
       </span>
       <div class="palettes">
 
@@ -920,7 +925,7 @@ body.lang-de [data-ru]{display:none}
             <div class="swatch" style="background:#71705C"></div>
             <div class="swatch" style="background:#EAE9E6"></div>
           </div>
-          <span class="palette-name"><span data-de>#2 Dunkles Oliv</span><span data-ru>#2 Dark Olive</span></span>
+          <span class="palette-name"><span data-de>#2 Dunkles Oliv</span><span data-ru>#2 Dark Olive</span><span data-en>#2 Dark Olive</span></span>
         </label>
 
         <label class="palette" data-num="3" data-colors="#051F20 #163832 #235347 #8EB69B">
@@ -931,7 +936,7 @@ body.lang-de [data-ru]{display:none}
             <div class="swatch" style="background:#235347"></div>
             <div class="swatch" style="background:#8EB69B"></div>
           </div>
-          <span class="palette-name"><span data-de>#3 Gr&uuml;ner Verlauf</span><span data-ru>#3 Green Gradient</span></span>
+          <span class="palette-name"><span data-de>#3 Gr&uuml;ner Verlauf</span><span data-ru>#3 Green Gradient</span><span data-en>#3 Green Gradient</span></span>
         </label>
 
         <label class="palette" data-num="4" data-colors="#4E4D4D #C4A97D #DCCECD">
@@ -953,7 +958,7 @@ body.lang-de [data-ru]{display:none}
             <div class="swatch" style="background:#BEB5A9"></div>
             <div class="swatch" style="background:#E1D4C2"></div>
           </div>
-          <span class="palette-name"><span data-de>#5 Warme Erde</span><span data-ru>#5 Warm Earth</span></span>
+          <span class="palette-name"><span data-de>#5 Warme Erde</span><span data-ru>#5 Warm Earth</span><span data-en>#5 Warm Earth</span></span>
         </label>
 
         <label class="palette" data-num="6" data-colors="#EDEDE9 #D6CCC2 #F5EBE0 #E3D5CA #D5BDAF">
@@ -965,7 +970,7 @@ body.lang-de [data-ru]{display:none}
             <div class="swatch" style="background:#E3D5CA"></div>
             <div class="swatch" style="background:#D5BDAF"></div>
           </div>
-          <span class="palette-name"><span data-de>#6 Weicher Sand</span><span data-ru>#6 Soft Sand</span></span>
+          <span class="palette-name"><span data-de>#6 Weicher Sand</span><span data-ru>#6 Soft Sand</span><span data-en>#6 Soft Sand</span></span>
         </label>
 
         <label class="palette" data-num="7" data-colors="#424123 #80744C #E6DED3 #E8D1C1">
@@ -976,7 +981,7 @@ body.lang-de [data-ru]{display:none}
             <div class="swatch" style="background:#E6DED3"></div>
             <div class="swatch" style="background:#E8D1C1"></div>
           </div>
-          <span class="palette-name"><span data-de>#7 Moos &amp; Ros&eacute;</span><span data-ru>#7 Moss &amp; Blush</span></span>
+          <span class="palette-name"><span data-de>#7 Moos &amp; Ros&eacute;</span><span data-ru>#7 Moss &amp; Blush</span><span data-en>#7 Moss &amp; Blush</span></span>
         </label>
 
         <label class="palette" data-num="8" data-colors="#000000 #91766E #F3ECE3 #C8A19C">
@@ -987,7 +992,7 @@ body.lang-de [data-ru]{display:none}
             <div class="swatch" style="background:#F3ECE3"></div>
             <div class="swatch" style="background:#C8A19C"></div>
           </div>
-          <span class="palette-name"><span data-de>#8 Schwarz &amp; Ros&eacute;</span><span data-ru>#8 Black &amp; Rosy</span></span>
+          <span class="palette-name"><span data-de>#8 Schwarz &amp; Ros&eacute;</span><span data-ru>#8 Black &amp; Rosy</span><span data-en>#8 Black &amp; Rosy</span></span>
         </label>
 
         <label class="palette" data-num="9" data-colors="#19201F #A18C72 #BF9D87 #E9D7CE #F7F5F0">
@@ -1011,7 +1016,7 @@ body.lang-de [data-ru]{display:none}
             <div class="swatch" style="background:#9D8A7C"></div>
             <div class="swatch" style="background:#EADDD3"></div>
           </div>
-          <span class="palette-name"><span data-de>#10 Kaffee-Verlauf</span><span data-ru>#10 Coffee Gradient</span></span>
+          <span class="palette-name"><span data-de>#10 Kaffee-Verlauf</span><span data-ru>#10 Coffee Gradient</span><span data-en>#10 Coffee Gradient</span></span>
         </label>
 
         <label class="palette" data-num="11" data-colors="#111012 #767273 #A08348 #BAAFAD #ECE0DE">
@@ -1023,7 +1028,7 @@ body.lang-de [data-ru]{display:none}
             <div class="swatch" style="background:#BAAFAD"></div>
             <div class="swatch" style="background:#ECE0DE"></div>
           </div>
-          <span class="palette-name"><span data-de>#11 Dunkle Bl&uuml;ten</span><span data-ru>#11 Dark Floral</span></span>
+          <span class="palette-name"><span data-de>#11 Dunkle Bl&uuml;ten</span><span data-ru>#11 Dark Floral</span><span data-en>#11 Dark Floral</span></span>
         </label>
 
         <label class="palette" data-num="12" data-colors="#332821 #5B563B #868264 #E9E1D2">
@@ -1034,7 +1039,7 @@ body.lang-de [data-ru]{display:none}
             <div class="swatch" style="background:#868264"></div>
             <div class="swatch" style="background:#E9E1D2"></div>
           </div>
-          <span class="palette-name"><span data-de>#12 Salbei &amp; Braun</span><span data-ru>#12 Sage &amp; Brown</span></span>
+          <span class="palette-name"><span data-de>#12 Salbei &amp; Braun</span><span data-ru>#12 Sage &amp; Brown</span><span data-en>#12 Sage &amp; Brown</span></span>
         </label>
 
         <label class="palette" data-num="13" data-colors="#22211F #5C5B58 #A9A6A2 #E5E3E0 #F7F6F5">
@@ -1046,7 +1051,7 @@ body.lang-de [data-ru]{display:none}
             <div class="swatch" style="background:#E5E3E0"></div>
             <div class="swatch" style="background:#F7F6F5"></div>
           </div>
-          <span class="palette-name"><span data-de>#13 Marmor-Grau</span><span data-ru>#13 Marble Gray</span></span>
+          <span class="palette-name"><span data-de>#13 Marmor-Grau</span><span data-ru>#13 Marble Gray</span><span data-en>#13 Marble Gray</span></span>
         </label>
 
         <label class="palette" data-num="14" data-colors="#2E2E2E #C2AF95 #DDD4C6 #EFECE6">
@@ -1057,7 +1062,7 @@ body.lang-de [data-ru]{display:none}
             <div class="swatch" style="background:#DDD4C6"></div>
             <div class="swatch" style="background:#EFECE6"></div>
           </div>
-          <span class="palette-name"><span data-de>#14 Ruhiger Schreibtisch</span><span data-ru>#14 Calm Desk</span></span>
+          <span class="palette-name"><span data-de>#14 Ruhiger Schreibtisch</span><span data-ru>#14 Calm Desk</span><span data-en>#14 Calm Desk</span></span>
         </label>
 
       </div>
@@ -1065,7 +1070,7 @@ body.lang-de [data-ru]{display:none}
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Beispiel-Websites die Ihnen gefallen</span><span data-ru>Сайты-примеры, которые нравятся</span>
+        <span data-de>Beispiel-Websites die Ihnen gefallen</span><span data-ru>Сайты-примеры, которые нравятся</span><span data-en>Example Websites You Like</span>
       </span>
       <input type="text" class="text-line" data-label-de="Referenz-Website" data-label-ru="Сайт-пример" placeholder="https://" style="margin-bottom:8px">
       <input type="text" class="text-line" data-label-de="Referenz-Website" data-label-ru="Сайт-пример" placeholder="https://">
@@ -1073,12 +1078,12 @@ body.lang-de [data-ru]{display:none}
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Schriftart</span><span data-ru>Шрифт</span>
+        <span data-de>Schriftart</span><span data-ru>Шрифт</span><span data-en>Font</span>
       </span>
       <div class="check-group horizontal">
-        <label class="check-item"><input type="radio" name="font" data-de="Mit Serifen" data-ru="С засечками"><span class="radio-dot"></span> <span data-de>Mit Serifen</span><span data-ru>С засечками (Serif)</span></label>
-        <label class="check-item"><input type="radio" name="font" data-de="Ohne Serifen" data-ru="Без засечек"><span class="radio-dot"></span> <span data-de>Ohne Serifen</span><span data-ru>Без засечек (Sans-serif)</span></label>
-        <label class="check-item"><input type="radio" name="font" data-de="Nach Ihrem Ermessen" data-ru="На усмотрение дизайнера"><span class="radio-dot"></span> <span data-de>Nach Ihrem Ermessen</span><span data-ru>На усмотрение дизайнера</span></label>
+        <label class="check-item"><input type="radio" name="font" data-de="Mit Serifen" data-ru="С засечками" data-en="Serif"><span class="radio-dot"></span> <span data-de>Mit Serifen</span><span data-ru>С засечками (Serif)</span><span data-en>Serif</span></label>
+        <label class="check-item"><input type="radio" name="font" data-de="Ohne Serifen" data-ru="Без засечек" data-en="Sans-serif"><span class="radio-dot"></span> <span data-de>Ohne Serifen</span><span data-ru>Без засечек (Sans-serif)</span><span data-en>Sans-serif</span></label>
+        <label class="check-item"><input type="radio" name="font" data-de="Nach Ihrem Ermessen" data-ru="На усмотрение дизайнера" data-en="Designer's choice"><span class="radio-dot"></span> <span data-de>Nach Ihrem Ermessen</span><span data-ru>На усмотрение дизайнера</span><span data-en>Designer's choice</span></label>
       </div>
     </div>
   </div>
@@ -1086,29 +1091,29 @@ body.lang-de [data-ru]{display:none}
   <!-- ==================== SECTION 5: CONTENT ==================== -->
   <div class="section">
     <div class="section-number">
-      <span data-de>Abschnitt 05</span><span data-ru>Раздел 05</span>
+      <span data-de>Abschnitt 05</span><span data-ru>Раздел 05</span><span data-en>Section 05</span>
     </div>
     <h2 class="section-title">
-      <span data-de>Inhalte</span><span data-ru>Контент</span>
+      <span data-de>Inhalte</span><span data-ru>Контент</span><span data-en>Content</span>
     </h2>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Texte</span><span data-ru>Тексты</span>
+        <span data-de>Texte</span><span data-ru>Тексты</span><span data-en>Texts</span>
       </span>
       <div class="check-group">
         <label class="check-item">
-          <input type="radio" name="texte" class="price-radio" data-de="Sind vorhanden" data-ru="Есть" onchange="calcTotal()"><span class="radio-dot"></span>
-          <span><span data-de>Sind vorhanden</span><span data-ru>Есть</span></span>
+          <input type="radio" name="texte" class="price-radio" data-de="Sind vorhanden" data-ru="Есть" data-en="Available" onchange="calcTotal()"><span class="radio-dot"></span>
+          <span><span data-de>Sind vorhanden</span><span data-ru>Есть</span><span data-en>Available</span></span>
         </label>
         <label class="check-item">
-          <input type="radio" name="texte" class="price-radio" data-price="80" data-de="Müssen erstellt werden (+80€)" data-ru="Нужно написать (+80€)" onchange="calcTotal()"><span class="radio-dot"></span>
-          <span><span data-de>M&uuml;ssen erstellt werden</span><span data-ru>Нужно написать</span></span>
+          <input type="radio" name="texte" class="price-radio" data-price="80" data-de="Müssen erstellt werden (+80€)" data-ru="Нужно написать (+80€)" data-en="Need to be written (+80€)" onchange="calcTotal()"><span class="radio-dot"></span>
+          <span><span data-de>M&uuml;ssen erstellt werden</span><span data-ru>Нужно написать</span><span data-en>Need to be written</span></span>
           <span class="check-price">+80 &euro;</span>
         </label>
         <label class="check-item">
-          <input type="radio" name="texte" class="price-radio" data-price="40" data-de="Teilweise vorhanden (+40€)" data-ru="Частично есть (+40€)" onchange="calcTotal()"><span class="radio-dot"></span>
-          <span><span data-de>Teilweise vorhanden</span><span data-ru>Частично есть</span></span>
+          <input type="radio" name="texte" class="price-radio" data-price="40" data-de="Teilweise vorhanden (+40€)" data-ru="Частично есть (+40€)" data-en="Partially available (+40€)" onchange="calcTotal()"><span class="radio-dot"></span>
+          <span><span data-de>Teilweise vorhanden</span><span data-ru>Частично есть</span><span data-en>Partially available</span></span>
           <span class="check-price">+40 &euro;</span>
         </label>
       </div>
@@ -1116,37 +1121,37 @@ body.lang-de [data-ru]{display:none}
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Fotos</span><span data-ru>Фотографии</span>
+        <span data-de>Fotos</span><span data-ru>Фотографии</span><span data-en>Photos</span>
       </span>
       <div class="check-group">
         <label class="check-item">
-          <input type="radio" name="fotos" data-de="Sind vorhanden" data-ru="Есть"><span class="radio-dot"></span>
-          <span><span data-de>Sind vorhanden</span><span data-ru>Есть</span></span>
+          <input type="radio" name="fotos" data-de="Sind vorhanden" data-ru="Есть" data-en="Available"><span class="radio-dot"></span>
+          <span><span data-de>Sind vorhanden</span><span data-ru>Есть</span><span data-en>Available</span></span>
         </label>
         <label class="check-item">
-          <input type="radio" name="fotos" data-de="Fotoshooting benötigt" data-ru="Нужна фотосессия"><span class="radio-dot"></span>
-          <span><span data-de>Fotoshooting ben&ouml;tigt</span><span data-ru>Нужна фотосессия</span></span>
-          <span class="check-price"><span data-de>wird separat besprochen</span><span data-ru>обсуждается отдельно</span></span>
+          <input type="radio" name="fotos" data-de="Fotoshooting benötigt" data-ru="Нужна фотосессия" data-en="Photo shoot needed"><span class="radio-dot"></span>
+          <span><span data-de>Fotoshooting ben&ouml;tigt</span><span data-ru>Нужна фотосессия</span><span data-en>Photo shoot needed</span></span>
+          <span class="check-price"><span data-de>wird separat besprochen</span><span data-ru>обсуждается отдельно</span><span data-en>discussed separately</span></span>
         </label>
         <label class="check-item">
-          <input type="radio" name="fotos" data-de="Teilweise vorhanden" data-ru="Частично есть"><span class="radio-dot"></span>
-          <span><span data-de>Teilweise vorhanden</span><span data-ru>Частично есть</span></span>
+          <input type="radio" name="fotos" data-de="Teilweise vorhanden" data-ru="Частично есть" data-en="Partially available"><span class="radio-dot"></span>
+          <span><span data-de>Teilweise vorhanden</span><span data-ru>Частично есть</span><span data-en>Partially available</span></span>
         </label>
       </div>
     </div>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Logo</span><span data-ru>Логотип</span>
+        <span data-de>Logo</span><span data-ru>Логотип</span><span data-en>Logo</span>
       </span>
       <div class="check-group">
         <label class="check-item">
-          <input type="radio" name="logo" class="price-radio" data-de="Ist vorhanden" data-ru="Есть" onchange="calcTotal()"><span class="radio-dot"></span>
-          <span><span data-de>Ist vorhanden</span><span data-ru>Есть</span></span>
+          <input type="radio" name="logo" class="price-radio" data-de="Ist vorhanden" data-ru="Есть" data-en="Available" onchange="calcTotal()"><span class="radio-dot"></span>
+          <span><span data-de>Ist vorhanden</span><span data-ru>Есть</span><span data-en>Available</span></span>
         </label>
         <label class="check-item">
-          <input type="radio" name="logo" class="price-radio" data-price="80" data-de="Muss erstellt werden (+80€)" data-ru="Нужно создать (+80€)" onchange="calcTotal()"><span class="radio-dot"></span>
-          <span><span data-de>Muss erstellt werden</span><span data-ru>Нужно создать</span></span>
+          <input type="radio" name="logo" class="price-radio" data-price="80" data-de="Muss erstellt werden (+80€)" data-ru="Нужно создать (+80€)" data-en="Needs to be created (+80€)" onchange="calcTotal()"><span class="radio-dot"></span>
+          <span><span data-de>Muss erstellt werden</span><span data-ru>Нужно создать</span><span data-en>Needs to be created</span></span>
           <span class="check-price">+80 &euro;</span>
         </label>
       </div>
@@ -1156,21 +1161,21 @@ body.lang-de [data-ru]{display:none}
   <!-- ==================== SECTION 6: ADDITIONAL OPTIONS ==================== -->
   <div class="section">
     <div class="section-number">
-      <span data-de>Abschnitt 06</span><span data-ru>Раздел 06</span>
+      <span data-de>Abschnitt 06</span><span data-ru>Раздел 06</span><span data-en>Section 06</span>
     </div>
     <h2 class="section-title">
-      <span data-de>Zus&auml;tzliche Optionen</span><span data-ru>Дополнительные опции</span>
+      <span data-de>Zus&auml;tzliche Optionen</span><span data-ru>Дополнительные опции</span><span data-en>Additional Options</span>
     </h2>
 
     <div class="check-group">
       <label class="check-item">
-        <input type="checkbox" class="addon-check extra-check" data-price-percent="50" data-de="Express (+50%)" data-ru="Экспресс (+50%)" onchange="calcTotal()"><span class="check-box"></span>
-        <span><span data-de>Express &mdash; bis 3 Tage</span><span data-ru>Экспресс &mdash; до 3 дней</span></span>
-        <span class="check-price"><span data-de>+50% vom Basispreis</span><span data-ru>+50% от базовой цены</span></span>
+        <input type="checkbox" class="addon-check extra-check" data-price-percent="50" data-de="Express (+50%)" data-ru="Экспресс (+50%)" data-en="Express (+50%)" onchange="calcTotal()"><span class="check-box"></span>
+        <span><span data-de>Express &mdash; bis 3 Tage</span><span data-ru>Экспресс &mdash; до 3 дней</span><span data-en>Express &mdash; within 3 days</span></span>
+        <span class="check-price"><span data-de>+50% vom Basispreis</span><span data-ru>+50% от базовой цены</span><span data-en>+50% of base price</span></span>
       </label>
       <label class="check-item">
-        <input type="checkbox" class="addon-check extra-check" data-price="50" data-de="Bildbearbeitung (+50€)" data-ru="Обработка фото (+50€)" onchange="calcTotal()"><span class="check-box"></span>
-        <span><span data-de>Bildbearbeitung &mdash; 10 Fotos</span><span data-ru>Обработка фото &mdash; 10 шт.</span></span>
+        <input type="checkbox" class="addon-check extra-check" data-price="50" data-de="Bildbearbeitung (+50€)" data-ru="Обработка фото (+50€)" data-en="Photo editing (+50€)" onchange="calcTotal()"><span class="check-box"></span>
+        <span><span data-de>Bildbearbeitung &mdash; 10 Fotos</span><span data-ru>Обработка фото &mdash; 10 шт.</span><span data-en>Photo editing &mdash; 10 photos</span></span>
         <span class="check-price">+50 &euro;</span>
       </label>
     </div>
@@ -1179,22 +1184,22 @@ body.lang-de [data-ru]{display:none}
   <!-- ==================== SECTION 7: TIMELINE ==================== -->
   <div class="section">
     <div class="section-number">
-      <span data-de>Abschnitt 07</span><span data-ru>Раздел 07</span>
+      <span data-de>Abschnitt 07</span><span data-ru>Раздел 07</span><span data-en>Section 07</span>
     </div>
     <h2 class="section-title">
-      <span data-de>Zeitrahmen</span><span data-ru>Сроки</span>
+      <span data-de>Zeitrahmen</span><span data-ru>Сроки</span><span data-en>Timeline</span>
     </h2>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Gew&uuml;nschter Starttermin</span><span data-ru>Желаемая дата начала</span>
+        <span data-de>Gew&uuml;nschter Starttermin</span><span data-ru>Желаемая дата начала</span><span data-en>Desired Start Date</span>
       </span>
       <input type="text" class="text-line" data-label-de="Starttermin" data-label-ru="Дата начала" placeholder="">
     </div>
 
     <div class="field">
       <span class="field-label">
-        <span data-de>Kommentare / W&uuml;nsche</span><span data-ru>Комментарии / пожелания</span>
+        <span data-de>Kommentare / W&uuml;nsche</span><span data-ru>Комментарии / пожелания</span><span data-en>Comments / Wishes</span>
       </span>
       <textarea class="text-area" data-label-de="Kommentare" data-label-ru="Комментарии" placeholder=""></textarea>
     </div>
@@ -1203,39 +1208,39 @@ body.lang-de [data-ru]{display:none}
   <!-- ==================== PRICE SUMMARY ==================== -->
   <div class="price-summary">
     <div class="price-summary-title">
-      <span data-de>Kosten&uuml;bersicht</span><span data-ru>Стоимость</span>
+      <span data-de>Kosten&uuml;bersicht</span><span data-ru>Стоимость</span><span data-en>Cost Overview</span>
     </div>
 
     <div class="price-row">
-      <span class="price-row-label"><span data-de>Basisleistungen</span><span data-ru>Базовые услуги</span></span>
+      <span class="price-row-label"><span data-de>Basisleistungen</span><span data-ru>Базовые услуги</span><span data-en>Base Services</span></span>
       <span class="price-row-value" id="basePrice">0 &euro;</span>
     </div>
     <div class="price-row">
-      <span class="price-row-label"><span data-de>Zusatzoptionen</span><span data-ru>Дополнительно</span></span>
+      <span class="price-row-label"><span data-de>Zusatzoptionen</span><span data-ru>Дополнительно</span><span data-en>Add-ons</span></span>
       <span class="price-row-value" id="addonPrice">0 &euro;</span>
     </div>
     <div class="price-row">
-      <span class="price-row-label"><span data-de>Prozentuale Aufschl&auml;ge</span><span data-ru>Процентные надбавки</span></span>
+      <span class="price-row-label"><span data-de>Prozentuale Aufschl&auml;ge</span><span data-ru>Процентные надбавки</span><span data-en>Percentage Surcharges</span></span>
       <span class="price-row-value" id="percentPrice">0 &euro;</span>
     </div>
 
     <div class="price-total">
-      <span class="price-total-label"><span data-de>Gesamt</span><span data-ru>Итого</span></span>
+      <span class="price-total-label"><span data-de>Gesamt</span><span data-ru>Итого</span><span data-en>Total</span></span>
       <span class="price-total-value" id="totalPrice">0 &euro;</span>
     </div>
 
     <p class="price-note">
-      <span data-de>Der angegebene Betrag ist ein Richtwert. Der genaue Preis wird nach Besprechung der Projektdetails individuell berechnet.</span><span data-ru>Указанная сумма является ориентировочной. Точная стоимость рассчитывается после обсуждения деталей проекта.</span>
+      <span data-de>Der angegebene Betrag ist ein Richtwert. Der genaue Preis wird nach Besprechung der Projektdetails individuell berechnet.</span><span data-ru>Указанная сумма является ориентировочной. Точная стоимость рассчитывается после обсуждения деталей проекта.</span><span data-en>The stated amount is an estimate. The exact price is calculated individually after discussing the project details.</span>
     </p>
   </div>
 
   <!-- ==================== SUBMIT ==================== -->
   <div class="submit-wrap">
     <button class="submit-btn" onclick="sendBrief()">
-      <span data-de>Briefing absenden &rarr;</span><span data-ru>Отправить бриф &rarr;</span>
+      <span data-de>Briefing absenden &rarr;</span><span data-ru>Отправить бриф &rarr;</span><span data-en>Send Brief &rarr;</span>
     </button>
     <p class="submit-hint">
-      <span data-de>Briefing wird kopiert &mdash; f&uuml;gen Sie es im Telegram-Chat ein</span><span data-ru>Бриф скопируется &mdash; вставьте его в Telegram-чат</span>
+      <span data-de>Briefing wird kopiert &mdash; f&uuml;gen Sie es im Telegram-Chat ein</span><span data-ru>Бриф скопируется &mdash; вставьте его в Telegram-чат</span><span data-en>The brief will be copied &mdash; paste it in the Telegram chat</span>
     </p>
   </div>
 
@@ -1255,11 +1260,11 @@ body.lang-de [data-ru]{display:none}
 <!-- ==================== STICKY BOTTOM BAR ==================== -->
 <div class="sticky-bar" id="stickyBar">
   <span class="sticky-bar-label">
-    <span data-de>Gesch&auml;tzter Preis:</span><span data-ru>Ориентировочно:</span>
+    <span data-de>Gesch&auml;tzter Preis:</span><span data-ru>Ориентировочно:</span><span data-en>Estimated Price:</span>
   </span>
   <span class="sticky-bar-price" id="stickyPrice">0 &euro;</span>
   <span class="sticky-bar-hint">
-    <span data-de>Richtwert</span><span data-ru>предварительно</span>
+    <span data-de>Richtwert</span><span data-ru>предварительно</span><span data-en>estimate</span>
   </span>
 </div>
 
@@ -1269,6 +1274,7 @@ function setLang(lang) {
   document.body.className = 'lang-' + lang;
   document.getElementById('btnDe').classList.toggle('active', lang === 'de');
   document.getElementById('btnRu').classList.toggle('active', lang === 'ru');
+  document.getElementById('btnEn').classList.toggle('active', lang === 'en');
   updatePlaceholders(lang);
 }
 
@@ -1291,6 +1297,15 @@ function updatePlaceholders(lang) {
       'https://', 'https://',
       '\u041D\u0430\u043F\u0440. \u0441\u0440\u0430\u0437\u0443, \u0441 \u0430\u043F\u0440\u0435\u043B\u044F 2026 ...',
       '\u041E\u0441\u043E\u0431\u044B\u0435 \u0442\u0440\u0435\u0431\u043E\u0432\u0430\u043D\u0438\u044F \u0438\u043B\u0438 \u043F\u043E\u0436\u0435\u043B\u0430\u043D\u0438\u044F?'
+    ],
+    en: [
+      'Your company or brand name',
+      'e.g. cosmetics, restaurant, coaching ...',
+      'e.g. women 25-45, interested in beauty and wellness ...',
+      'https://', 'https://', 'https://',
+      'https://', 'https://',
+      'e.g. immediately, from April 2026 ...',
+      'Any special requirements or wishes?'
     ]
   };
   var inputs = document.querySelectorAll('.text-line, .text-area');
@@ -1371,16 +1386,16 @@ function limitPalettes(el) {
 
 /* ========== SEND BRIEF VIA TELEGRAM ========== */
 function sendBrief() {
-  var lang = document.body.classList.contains('lang-ru') ? 'ru' : 'de';
+  var lang = document.body.classList.contains('lang-ru') ? 'ru' : (document.body.classList.contains('lang-en') ? 'en' : 'de');
   var lines = [];
 
   /* Title */
-  lines.push(lang === 'ru' ? '\u0411\u0420\u0418\u0424 \u041D\u0410 \u041F\u0420\u041E\u0415\u041A\u0422' : 'PROJEKTBRIEFING');
+  lines.push(lang === 'ru' ? '\u0411\u0420\u0418\u0424 \u041D\u0410 \u041F\u0420\u041E\u0415\u041A\u0422' : (lang === 'en' ? 'PROJECT BRIEF' : 'PROJEKTBRIEFING'));
   lines.push('\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550');
   lines.push('');
 
   /* Section 1: Services */
-  lines.push(lang === 'ru' ? '\uD83D\uDCCB \u0423\u0421\u041B\u0423\u0413\u0418:' : '\uD83D\uDCCB LEISTUNGEN:');
+  lines.push(lang === 'ru' ? '\uD83D\uDCCB \u0423\u0421\u041B\u0423\u0413\u0418:' : (lang === 'en' ? '\uD83D\uDCCB SERVICES:' : '\uD83D\uDCCB LEISTUNGEN:'));
   var svcChecked = document.querySelectorAll('.svc-check:checked');
   for (var i = 0; i < svcChecked.length; i++) {
     var item = svcChecked[i].closest('.svc-item');
@@ -1394,7 +1409,7 @@ function sendBrief() {
   lines.push('');
 
   /* Section 2: About project - text fields */
-  lines.push(lang === 'ru' ? '\uD83C\uDFE2 \u041E \u041F\u0420\u041E\u0415\u041A\u0422\u0415:' : '\uD83C\uDFE2 \u00DCBER DAS PROJEKT:');
+  lines.push(lang === 'ru' ? '\uD83C\uDFE2 \u041E \u041F\u0420\u041E\u0415\u041A\u0422\u0415:' : (lang === 'en' ? '\uD83C\uDFE2 ABOUT THE PROJECT:' : '\uD83C\uDFE2 \u00DCBER DAS PROJEKT:'));
   var textFields = document.querySelectorAll('.text-line, .text-area');
   for (var i = 0; i < textFields.length; i++) {
     var f = textFields[i];
@@ -1417,14 +1432,14 @@ function sendBrief() {
   var pageEl = document.getElementById('pageCount');
   var pages = parseInt(pageEl ? pageEl.value : 0) || 0;
   if (pages > 0) {
-    lines.push((lang === 'ru' ? '\uD83D\uDCC4 \u0421\u0422\u0420\u0410\u041D\u0418\u0426\u042B: ' : '\uD83D\uDCC4 SEITEN: ') + pages);
+    lines.push((lang === 'ru' ? '\uD83D\uDCC4 \u0421\u0422\u0420\u0410\u041D\u0418\u0426\u042B: ' : (lang === 'en' ? '\uD83D\uDCC4 PAGES: ' : '\uD83D\uDCC4 SEITEN: ')) + pages);
     lines.push('');
   }
 
   /* Section 3: Sections needed */
   var secChecked = document.querySelectorAll('.section-check:checked');
   if (secChecked.length) {
-    lines.push(lang === 'ru' ? '\uD83D\uDCC2 \u0420\u0410\u0417\u0414\u0415\u041B\u042B:' : '\uD83D\uDCC2 BEREICHE:');
+    lines.push(lang === 'ru' ? '\uD83D\uDCC2 \u0420\u0410\u0417\u0414\u0415\u041B\u042B:' : (lang === 'en' ? '\uD83D\uDCC2 SECTIONS:' : '\uD83D\uDCC2 BEREICHE:'));
     for (var i = 0; i < secChecked.length; i++) {
       var val = secChecked[i].dataset[lang] || secChecked[i].parentElement.textContent.trim();
       lines.push('  \u2713 ' + val);
@@ -1435,7 +1450,7 @@ function sendBrief() {
   /* Section 3: Functions */
   var funcChecked = document.querySelectorAll('.func-check:checked');
   if (funcChecked.length) {
-    lines.push(lang === 'ru' ? '\u2699\uFE0F \u0424\u0423\u041D\u041A\u0426\u0418\u0418:' : '\u2699\uFE0F FUNKTIONEN:');
+    lines.push(lang === 'ru' ? '\u2699\uFE0F \u0424\u0423\u041D\u041A\u0426\u0418\u0418:' : (lang === 'en' ? '\u2699\uFE0F FEATURES:' : '\u2699\uFE0F FUNKTIONEN:'));
     for (var i = 0; i < funcChecked.length; i++) {
       var val = funcChecked[i].dataset[lang] || '';
       if (!val) {
@@ -1451,14 +1466,14 @@ function sendBrief() {
   var stilRadio = document.querySelector('input[name="stil"]:checked');
   if (stilRadio) {
     var stilVal = stilRadio.dataset[lang] || stilRadio.parentElement.textContent.trim();
-    lines.push((lang === 'ru' ? '\uD83C\uDFA8 \u0421\u0422\u0418\u041B\u042C: ' : '\uD83C\uDFA8 STIL: ') + stilVal);
+    lines.push((lang === 'ru' ? '\uD83C\uDFA8 \u0421\u0422\u0418\u041B\u042C: ' : (lang === 'en' ? '\uD83C\uDFA8 STYLE: ' : '\uD83C\uDFA8 STIL: ')) + stilVal);
     lines.push('');
   }
 
   /* Section 4: Palettes */
   var palChecked = document.querySelectorAll('.palette-check:checked');
   if (palChecked.length) {
-    lines.push(lang === 'ru' ? '\uD83C\uDFA8 \u041F\u0410\u041B\u0418\u0422\u0420\u042B:' : '\uD83C\uDFA8 FARBPALETTEN:');
+    lines.push(lang === 'ru' ? '\uD83C\uDFA8 \u041F\u0410\u041B\u0418\u0422\u0420\u042B:' : (lang === 'en' ? '\uD83C\uDFA8 COLOR PALETTES:' : '\uD83C\uDFA8 FARBPALETTEN:'));
     for (var i = 0; i < palChecked.length; i++) {
       var pal = palChecked[i].closest('.palette');
       var num = pal.dataset.num;
@@ -1475,12 +1490,12 @@ function sendBrief() {
   var fontRadio = document.querySelector('input[name="font"]:checked');
   if (fontRadio) {
     var fontVal = fontRadio.dataset[lang] || fontRadio.parentElement.textContent.trim();
-    lines.push((lang === 'ru' ? '\u2712\uFE0F \u0428\u0420\u0418\u0424\u0422: ' : '\u2712\uFE0F SCHRIFTART: ') + fontVal);
+    lines.push((lang === 'ru' ? '\u2712\uFE0F \u0428\u0420\u0418\u0424\u0422: ' : (lang === 'en' ? '\u2712\uFE0F FONT: ' : '\u2712\uFE0F SCHRIFTART: ')) + fontVal);
     lines.push('');
   }
 
   /* Section 5: Content radios */
-  lines.push(lang === 'ru' ? '\uD83D\uDCC1 \u041A\u041E\u041D\u0422\u0415\u041D\u0422:' : '\uD83D\uDCC1 INHALTE:');
+  lines.push(lang === 'ru' ? '\uD83D\uDCC1 \u041A\u041E\u041D\u0422\u0415\u041D\u0422:' : (lang === 'en' ? '\uD83D\uDCC1 CONTENT:' : '\uD83D\uDCC1 INHALTE:'));
 
   var texteRadio = document.querySelector('input[name="texte"]:checked');
   if (texteRadio) {
@@ -1489,7 +1504,7 @@ function sendBrief() {
       var span = texteRadio.closest('.check-item').querySelector('span [data-' + lang + ']');
       texteVal = span ? span.textContent.trim() : '';
     }
-    lines.push('  ' + (lang === 'ru' ? '\u0422\u0435\u043A\u0441\u0442\u044B' : 'Texte') + ': ' + texteVal);
+    lines.push('  ' + (lang === 'ru' ? '\u0422\u0435\u043A\u0441\u0442\u044B' : (lang === 'en' ? 'Texts' : 'Texte')) + ': ' + texteVal);
   }
 
   var fotosRadio = document.querySelector('input[name="fotos"]:checked');
@@ -1499,7 +1514,7 @@ function sendBrief() {
       var span = fotosRadio.closest('.check-item').querySelector('span [data-' + lang + ']');
       fotosVal = span ? span.textContent.trim() : '';
     }
-    lines.push('  ' + (lang === 'ru' ? '\u0424\u043E\u0442\u043E' : 'Fotos') + ': ' + fotosVal);
+    lines.push('  ' + (lang === 'ru' ? '\u0424\u043E\u0442\u043E' : (lang === 'en' ? 'Photos' : 'Fotos')) + ': ' + fotosVal);
   }
 
   var logoRadio = document.querySelector('input[name="logo"]:checked');
@@ -1516,7 +1531,7 @@ function sendBrief() {
   /* Section 6: Extra options */
   var extraChecked = document.querySelectorAll('.extra-check:checked');
   if (extraChecked.length) {
-    lines.push(lang === 'ru' ? '\u2B50 \u0414\u041E\u041F. \u041E\u041F\u0426\u0418\u0418:' : '\u2B50 ZUSATZOPTIONEN:');
+    lines.push(lang === 'ru' ? '\u2B50 \u0414\u041E\u041F. \u041E\u041F\u0426\u0418\u0418:' : (lang === 'en' ? '\u2B50 ADDITIONAL OPTIONS:' : '\u2B50 ZUSATZOPTIONEN:'));
     for (var i = 0; i < extraChecked.length; i++) {
       var val = extraChecked[i].dataset[lang] || '';
       if (!val) {
@@ -1529,7 +1544,7 @@ function sendBrief() {
   }
 
   /* Price */
-  lines.push(lang === 'ru' ? '\uD83D\uDCB0 \u041E\u0420\u0418\u0415\u041D\u0422\u0418\u0420\u041E\u0412\u041E\u0427\u041D\u0410\u042F \u0421\u0422\u041E\u0418\u041C\u041E\u0421\u0422\u042C:' : '\uD83D\uDCB0 GESCH\u00C4TZTER PREIS:');
+  lines.push(lang === 'ru' ? '\uD83D\uDCB0 \u041E\u0420\u0418\u0415\u041D\u0422\u0418\u0420\u041E\u0412\u041E\u0427\u041D\u0410\u042F \u0421\u0422\u041E\u0418\u041C\u041E\u0421\u0422\u042C:' : (lang === 'en' ? '\uD83D\uDCB0 ESTIMATED PRICE:' : '\uD83D\uDCB0 GESCH\u00C4TZTER PREIS:'));
   lines.push('  ' + document.getElementById('totalPrice').textContent);
 
   /* Copy text to clipboard (iOS-compatible sync approach) */
@@ -1553,20 +1568,22 @@ function sendBrief() {
       '<div style="background:#fff;border-radius:16px;padding:40px 32px;max-width:400px;width:100%;text-align:center;box-shadow:0 12px 48px rgba(0,0,0,0.2)">' +
         '<div style="font-size:48px;margin-bottom:16px">✓</div>' +
         '<div style="font-family:var(--serif);font-size:24px;font-weight:700;color:var(--esp);margin-bottom:12px">' +
-          (lang === 'ru' ? 'Бриф скопирован!' : 'Briefing kopiert!') +
+          (lang === 'ru' ? 'Бриф скопирован!' : (lang === 'en' ? 'Brief copied!' : 'Briefing kopiert!')) +
         '</div>' +
         '<div style="font-size:14px;color:#6B5E54;margin-bottom:24px;line-height:1.6">' +
           (lang === 'ru'
             ? 'Откройте чат в Telegram и вставьте текст:<br><b>долгое нажатие → Вставить → Отправить</b>'
-            : 'Öffnen Sie den Chat in Telegram und fügen Sie den Text ein:<br><b>lange drücken → Einfügen → Senden</b>') +
+            : (lang === 'en'
+              ? 'Open the Telegram chat and paste the text:<br><b>long press → Paste → Send</b>'
+              : 'Öffnen Sie den Chat in Telegram und fügen Sie den Text ein:<br><b>lange drücken → Einfügen → Senden</b>')) +
         '</div>' +
         '<a href="https://t.me/natali_6432" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#fff;padding:14px 32px;border-radius:30px;text-decoration:none;font-family:var(--sans);font-size:15px;font-weight:600">' +
           '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>' +
-          (lang === 'ru' ? 'Открыть Telegram' : 'Telegram öffnen') +
+          (lang === 'ru' ? 'Открыть Telegram' : (lang === 'en' ? 'Open Telegram' : 'Telegram öffnen')) +
         '</a>' +
         '<div style="margin-top:16px">' +
           '<button onclick="document.getElementById(\'tgOverlay\').remove()" style="background:none;border:none;color:#A89888;font-size:13px;cursor:pointer;font-family:var(--sans)">' +
-            (lang === 'ru' ? 'Закрыть' : 'Schließen') +
+            (lang === 'ru' ? 'Закрыть' : (lang === 'en' ? 'Close' : 'Schlie\u00DFen')) +
           '</button>' +
         '</div>' +
       '</div>' +
