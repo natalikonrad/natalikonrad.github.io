@@ -1470,7 +1470,9 @@ function sendBrief() {
     var nameEl = item.querySelector('.svc-name');
     var nameSpan = nameEl.querySelector('[data-' + lang + ']');
     var name = nameSpan ? nameSpan.textContent.trim() : nameEl.textContent.trim();
-    var price = item.querySelector('.svc-price').textContent.trim();
+    var priceEl = item.querySelector('.svc-price');
+    var priceSpan = priceEl.querySelector('[data-' + lang + ']');
+    var price = (priceSpan ? priceSpan : priceEl).textContent.trim();
     lines.push('  \u2713 ' + name + ' (' + price + ')');
   }
   if (!svcChecked.length) lines.push('  \u2014');
@@ -1478,7 +1480,7 @@ function sendBrief() {
 
   /* Section 2: About project - text fields */
   lines.push(lang === 'ru' ? '\uD83C\uDFE2 \u041E \u041F\u0420\u041E\u0415\u041A\u0422\u0415:' : (lang === 'en' ? '\uD83C\uDFE2 ABOUT THE PROJECT:' : '\uD83C\uDFE2 \u00DCBER DAS PROJEKT:'));
-  var textFields = document.querySelectorAll('.text-line, .text-area');
+  var textFields = document.querySelectorAll('.section:not(#section-contact) .text-line, .section:not(#section-contact) .text-area');
   for (var i = 0; i < textFields.length; i++) {
     var f = textFields[i];
     if (f.value && f.value.trim()) {
