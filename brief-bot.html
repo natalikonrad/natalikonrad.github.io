@@ -1276,45 +1276,68 @@ function validate(){
 /* ── Build Telegram message ── */
 function buildMsg(){
   const funcs = getChecked('func-checks');
-  if(v('inp-func-other')) funcs.push('Sonstiges: '+v('inp-func-other'));
+  if(v('inp-func-other')) funcs.push(v('inp-func-other'));
   const langs = getChips('lang-chips');
+  const L = {
+    title:   {ru:'НОВЫЙ БРИФ — TELEGRAM БОТ', de:'NEUER TELEGRAM BOT BRIEF',  en:'NEW TELEGRAM BOT BRIEF'},
+    contact: {ru:'Контакт',    de:'Kontakt',    en:'Contact'},
+    niche:   {ru:'Ниша',       de:'Nische',     en:'Niche'},
+    web:     {ru:'Instagram/Сайт', de:'Instagram/Web', en:'Instagram/Web'},
+    langs:   {ru:'Языки бота', de:'Sprachen',   en:'Bot languages'},
+    funcs:   {ru:'Функции бота', de:'Bot-Funktionen', en:'Bot functions'},
+    option:  {ru:'Вариант',    de:'Option',     en:'Option'},
+    style:   {ru:'Стиль',      de:'Stil',       en:'Style'},
+    tone:    {ru:'Тон',        de:'Ton',        en:'Tone'},
+    name:    {ru:'Имя бота',   de:'Bot-Name',   en:'Bot name'},
+    avatar:  {ru:'Аватар',     de:'Avatar',     en:'Avatar'},
+    content: {ru:'Контент',    de:'Content',    en:'Content'},
+    faq:     {ru:'Готовые FAQ',de:'FAQ/Texte',  en:'Existing FAQ'},
+    must:    {ru:'Обязательно знать', de:'Must-know', en:'Must know'},
+    donot:   {ru:'Не делать',  de:'Nicht tun',  en:'Do not do'},
+    timeline:{ru:'Сроки и бюджет', de:'Timeline & Budget', en:'Timeline & Budget'},
+    when:    {ru:'Когда',      de:'Wann',       en:'When'},
+    budget:  {ru:'Бюджет',     de:'Budget',     en:'Budget'},
+    source:  {ru:'Источник',   de:'Quelle',     en:'Source'},
+    notes:   {ru:'Заметки',    de:'Notizen',    en:'Notes'},
+  };
+  const t = l => L[l][curLang] || L[l].de;
+  // Map feature keys to readable names
+  const funcNames = funcs.map(f => '• ' + ((CALC_NAMES[f]||{})[curLang] || f));
   const lines = [
-    '📋 <b>NEUER TELEGRAM BOT BRIEF</b>',
+    `📋 <b>${t('title')}</b>`,
     '',
-    '👤 <b>Kontakt</b>',
+    `👤 <b>${t('contact')}</b>`,
     `Name: ${v('inp-name')||'—'}`,
     `Business: ${v('inp-business')||'—'}`,
-    `Nische: ${v('inp-niche')||'—'}`,
-    `Instagram/Web: ${v('inp-website')||'—'}`,
+    `${t('niche')}: ${v('inp-niche')||'—'}`,
+    `${t('web')}: ${v('inp-website')||'—'}`,
     `Telegram: ${v('inp-tg')||'—'}`,
     `E-Mail: ${v('inp-email')||'—'}`,
-    `Sprachen: ${langs.join(', ')||'—'}`,
+    `${t('langs')}: ${langs.join(', ')||'—'}`,
     '',
-    '🤖 <b>Bot-Funktionen</b>',
-    funcs.length ? funcs.join('\n• ') : '—',
+    `🤖 <b>${t('funcs')}</b>`,
+    funcNames.length ? funcNames.join('\n') : '—',
     '',
-    '💰 <b>Option</b>',
-    getRadio('support'),
+    `💰 <b>${t('option')}</b>`,
+    getRadio('support')||'—',
     '',
-    '🎭 <b>Stil</b>',
-    `Ton: ${getTone()}`,
-    `Bot-Name: ${v('inp-botname')||'—'}`,
-    `Avatar: ${v('inp-avatar')||'—'}`,
+    `🎭 <b>${t('style')}</b>`,
+    `${t('tone')}: ${getTone()}`,
+    `${t('name')}: ${v('inp-botname')||'—'}`,
+    `${t('avatar')}: ${v('inp-avatar')||'—'}`,
     '',
-    '📝 <b>Content</b>',
-    `FAQ/Texte:\n${v('inp-faq')||'—'}`,
-    `Must-know:\n${v('inp-mustknow')||'—'}`,
-    `Nicht tun:\n${v('inp-donot')||'—'}`,
+    `📝 <b>${t('content')}</b>`,
+    `${t('faq')}:\n${v('inp-faq')||'—'}`,
+    `${t('must')}:\n${v('inp-mustknow')||'—'}`,
+    `${t('donot')}:\n${v('inp-donot')||'—'}`,
     '',
-    '📅 <b>Timeline &amp; Budget</b>',
-    `Wann: ${getRadio('timeline')}`,
-    `Budget: ${getRadio('budget')}`,
-    `Quelle: ${v('inp-source')||'—'}`,
-    `Notizen:\n${v('inp-notes')||'—'}`,
+    `📅 <b>${t('timeline')}</b>`,
+    `${t('when')}: ${getRadio('timeline')||'—'}`,
+    `${t('budget')}: ${getRadio('budget')||'—'}`,
+    `${t('source')}: ${v('inp-source')||'—'}`,
+    `${t('notes')}:\n${v('inp-notes')||'—'}`,
   ];
-  // funcs needs bullet formatting fix
-  const msg = lines.join('\n');
-  return msg.replace(/(FAQ|Booking|Portfolio|LeadForm|Payment|Orders|AI|Sonstiges[^\n]*)(\n)/g, '• $1$2');
+  return lines.join('\n');
 }
 
 /* ── PRICE CALCULATOR ── */
