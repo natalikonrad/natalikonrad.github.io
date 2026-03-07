@@ -81,7 +81,9 @@ h1 em{font-style:italic;color:var(--gold)}
 label{font-size:13px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.02em}
 label .req{color:var(--gold);margin-left:2px}
 input[type=text],input[type=email],input[type=url],textarea,select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;color:#fff;font-family:var(--sans);font-size:14px;outline:none;transition:border-color var(--tr);resize:vertical}
-input::placeholder,textarea::placeholder{color:rgba(255,255,255,.25)}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.22)}
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:rgba(255,255,255,.22)}
+input::-moz-placeholder,textarea::-moz-placeholder{color:rgba(255,255,255,.22);opacity:1}
 input:focus,textarea:focus{border-color:rgba(196,169,125,.45);background:rgba(196,169,125,.04)}
 textarea{min-height:100px}
 
@@ -651,7 +653,7 @@ footer a:hover{opacity:1}
               <span data-ru>Имя</span><span data-de style="display:none">Name</span><span data-en style="display:none">Name</span>
               <span class="req">*</span>
             </label>
-            <input type="text" id="inp-name" placeholder="Anna Müller">
+            <input type="text" id="inp-name">
             <span class="err-msg">
               <span data-ru>Пожалуйста, введи имя</span>
               <span data-de style="display:none">Bitte Namen eingeben</span>
@@ -662,7 +664,7 @@ footer a:hover{opacity:1}
             <label>
               <span data-ru>Название бизнеса / проекта</span><span data-de style="display:none">Business / Projektname</span><span data-en style="display:none">Business / project name</span>
             </label>
-            <input type="text" id="inp-business" placeholder="Beauty Studio @meinestudio">
+            <input type="text" id="inp-business">
           </div>
         </div>
 
@@ -672,7 +674,7 @@ footer a:hover{opacity:1}
             <span data-de style="display:none">Was machst du? (Nische, Leistungen)</span>
             <span data-en style="display:none">What do you do? (niche, services)</span>
           </label>
-          <input type="text" id="inp-niche" placeholder="Nail Studio, Online-Coaching, Friseur, Fotografie...">
+          <input type="text" id="inp-niche">
         </div>
 
         <div class="row">
@@ -682,7 +684,7 @@ footer a:hover{opacity:1}
               <span data-de style="display:none">Instagram / Website</span>
               <span data-en style="display:none">Instagram / website</span>
             </label>
-            <input type="text" id="inp-website" placeholder="@dein_account oder https://...">
+            <input type="text" id="inp-website">
           </div>
           <div class="field">
             <label>
@@ -706,7 +708,7 @@ footer a:hover{opacity:1}
             <span data-de style="display:none">E-Mail (optional)</span>
             <span data-en style="display:none">Email (optional)</span>
           </label>
-          <input type="email" id="inp-email" placeholder="anna@beispiel.de">
+          <input type="email" id="inp-email">
         </div>
 
         <div class="field">
@@ -1131,6 +1133,31 @@ const CHAT_ID   = 'YOUR_CHAT_ID_HERE';
 /* ── Language switcher ── */
 let curLang = 'de';
 const PLACEHOLDERS = {
+  'inp-name': {
+    ru: 'Анна Мюллер',
+    de: 'Anna Müller',
+    en: 'Anna Müller'
+  },
+  'inp-business': {
+    ru: 'Beauty Studio @моя_студия',
+    de: 'Beauty Studio @meinestudio',
+    en: 'Beauty Studio @mystudio'
+  },
+  'inp-niche': {
+    ru: 'Nail-студия, онлайн-коучинг, парикмахер, фотограф...',
+    de: 'Nail Studio, Online-Coaching, Friseur, Fotografie...',
+    en: 'Nail studio, online coaching, hairdresser, photography...'
+  },
+  'inp-website': {
+    ru: '@мой_аккаунт или https://...',
+    de: '@dein_account oder https://...',
+    en: '@my_account or https://...'
+  },
+  'inp-email': {
+    ru: 'anna@example.com',
+    de: 'anna@beispiel.de',
+    en: 'anna@example.com'
+  },
   'inp-botname': {
     ru: 'напр. Нина, Помощник студии...',
     de: 'z.B. Nina, Studio Assistant...',
