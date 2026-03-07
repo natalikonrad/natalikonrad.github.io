@@ -1570,18 +1570,18 @@ function sendBrief() {
       var overlay = document.createElement('div');
       overlay.id = 'tgOverlay';
       overlay.innerHTML =
-        '<div style="position:fixed;inset:0;background:rgba(35,35,35,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">' +
-          '<div style="background:#fff;border-radius:16px;padding:40px 32px;max-width:400px;width:100%;text-align:center;box-shadow:0 12px 48px rgba(0,0,0,0.2)">' +
-            '<div style="font-size:48px;margin-bottom:16px">💛</div>' +
-            '<div style="font-family:var(--serif);font-size:24px;font-weight:700;color:var(--esp);margin-bottom:12px">' +
+        '<div style="position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">' +
+          '<div style="background:linear-gradient(160deg,#1A1612,#201C18);border:1px solid rgba(196,169,125,0.25);border-radius:24px;padding:48px 40px;max-width:420px;width:100%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,0.5)">' +
+            '<div style="font-size:48px;margin-bottom:16px">✨</div>' +
+            '<div style="font-family:var(--serif);font-size:28px;font-weight:700;color:#C9A96E;margin-bottom:12px">' +
               (lang === 'ru' ? 'Бриф отправлен!' : (lang === 'en' ? 'Brief sent!' : 'Brief gesendet!')) +
             '</div>' +
-            '<div style="font-size:14px;color:#6B5E54;margin-bottom:24px;line-height:1.6">' +
-              (lang === 'ru' ? 'Я получила ваш бриф и свяжусь с вами в ближайшее время.' :
-               lang === 'en' ? 'I received your brief and will be in touch soon.' :
-               'Ich habe Ihr Briefing erhalten und melde mich bald.') +
+            '<div style="font-size:15px;color:rgba(255,255,255,0.5);margin-bottom:32px;line-height:1.7">' +
+              (lang === 'ru' ? 'Спасибо! Я получила ваши данные и свяжусь с вами в ближайшее время. 💛' :
+               lang === 'en' ? 'Thank you! I\'ve received your brief and will be in touch soon. 💛' :
+               'Danke! Ich habe Ihre Angaben erhalten und melde mich bald. 💛') +
             '</div>' +
-            '<button onclick="document.getElementById(\'tgOverlay\').remove()" style="background:var(--gold);border:none;color:#fff;padding:12px 32px;border-radius:30px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--sans)">' +
+            '<button onclick="document.getElementById(\'tgOverlay\').remove()" style="background:rgba(196,169,125,0.15);border:1px solid rgba(196,169,125,0.4);color:#C9A96E;padding:12px 36px;border-radius:30px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--sans);letter-spacing:0.5px">' +
               (lang === 'ru' ? 'Закрыть' : (lang === 'en' ? 'Close' : 'Schließen')) +
             '</button>' +
           '</div>' +
