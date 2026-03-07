@@ -184,6 +184,8 @@ footer a:hover{opacity:1}
 .crb-feat-row{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,.6)}
 .crb-feat-row::before{content:'✓';color:var(--gold);font-size:10px;font-weight:700;flex-shrink:0}
 .crb-note{font-size:11px;color:rgba(255,255,255,.25);font-style:italic;line-height:1.5;margin-bottom:16px}
+.crb-disclaimer{background:rgba(196,169,125,.07);border:1px solid rgba(196,169,125,.18);border-radius:10px;padding:10px 12px;margin-bottom:14px;font-size:11px;color:rgba(255,255,255,.5);line-height:1.6}
+.crb-disclaimer strong{color:rgba(196,169,125,.8);font-weight:600}
 .crb-cta{display:block;text-align:center;padding:12px 18px;border-radius:100px;background:linear-gradient(135deg,var(--esp),var(--esp2));color:#fff;font-size:13px;font-weight:600;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(91,74,62,.35);cursor:pointer;border:none;width:100%;font-family:var(--sans)}
 .crb-cta:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(91,74,62,.45)}
 @media(max-width:860px){.calc-result-box{position:relative;top:0;margin-top:20px}}
@@ -585,9 +587,9 @@ footer a:hover{opacity:1}
       <!-- RESULT BOX -->
       <div class="calc-result-box">
         <div class="crb-heading">
-          <span data-ru>Примерная стоимость</span>
-          <span data-de style="display:none">Ungefährer Preis</span>
-          <span data-en style="display:none">Approximate cost</span>
+          <span data-ru>~ Примерная стоимость</span>
+          <span data-de style="display:none">~ Ungefährer Preis</span>
+          <span data-en style="display:none">~ Approximate cost</span>
         </div>
         <div class="crb-price" id="crPrice">€290</div>
         <div class="crb-price-sub" id="crPriceSub"></div>
@@ -601,6 +603,11 @@ footer a:hover{opacity:1}
         </div>
         <div class="crb-feats" id="crFeats"></div>
         <div class="crb-note" id="crNote"></div>
+        <div class="crb-disclaimer">
+          <span data-ru><strong>Это ориентировочная цена.</strong> Итоговая стоимость уточняется индивидуально — после изучения вашего проекта и всех деталей.</span>
+          <span data-de style="display:none"><strong>Dies ist ein Richtwert.</strong> Der endgültige Preis wird individuell festgelegt — nach Analyse Ihres Projekts und aller Details.</span>
+          <span data-en style="display:none"><strong>This is an estimate only.</strong> The final price is confirmed individually — after reviewing your project and all details.</span>
+        </div>
         <button class="crb-cta" onclick="calcGoToForm()">
           <span data-ru>Заполнить бриф →</span>
           <span data-de style="display:none">Zum Formular →</span>
