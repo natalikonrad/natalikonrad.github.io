@@ -44,14 +44,16 @@ h1 em{font-style:italic;color:var(--gold)}
 .section{padding:48px 0}
 .section-title{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:400;margin-bottom:8px;color:var(--gold2)}
 .section-sub{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:32px}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:600px){.opts{grid-template-columns:1fr}}
-.opt-card{background:#1a1a1a;border:1px solid rgba(196,169,125,.12);border-radius:20px;padding:28px 24px;position:relative;overflow:hidden;transition:border-color var(--tr)}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:820px){.opts{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.opts{grid-template-columns:1fr}}
+.opt-card{background:linear-gradient(145deg,#1E1814,#262118);border:1px solid rgba(196,169,125,.14);border-radius:20px;padding:28px 24px;position:relative;overflow:hidden;transition:border-color var(--tr)}
 .opt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
 .opt-card:hover{border-color:rgba(196,169,125,.3)}
 .opt-badge{display:inline-block;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
 .opt-badge.once{background:rgba(196,169,125,.12);color:var(--gold)}
 .opt-badge.monthly{background:rgba(91,74,62,.35);color:var(--gold2)}
+.opt-badge.premium{background:linear-gradient(135deg,rgba(196,169,125,.25),rgba(232,213,176,.12));color:var(--gold2);border:1px solid rgba(196,169,125,.3)}
 .opt-title{font-family:var(--serif);font-size:22px;font-weight:600;margin-bottom:6px}
 .opt-price{font-size:26px;font-weight:700;color:var(--gold);font-family:var(--serif);margin-bottom:16px}
 .opt-price span{font-size:14px;color:rgba(255,255,255,.45);font-family:var(--sans);font-weight:400}
@@ -64,7 +66,7 @@ h1 em{font-style:italic;color:var(--gold)}
 .price-note{text-align:center;margin-top:20px;font-size:12px;color:rgba(255,255,255,.35);font-style:italic}
 
 /* ── FORM ── */
-.form-wrap{background:#1a1a1a;border:1px solid rgba(196,169,125,.1);border-radius:24px;padding:40px 36px;margin-bottom:48px}
+.form-wrap{background:linear-gradient(160deg,#1A1612,#201C18);border:1px solid rgba(196,169,125,.1);border-radius:24px;padding:40px 36px;margin-bottom:48px}
 @media(max-width:600px){.form-wrap{padding:24px 18px}}
 .block{margin-bottom:36px}
 .block-title{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--gold2);margin-bottom:6px;padding-bottom:10px;border-bottom:1px solid rgba(196,169,125,.1)}
@@ -126,7 +128,7 @@ textarea{min-height:100px}
 .submit-note{margin-top:12px;font-size:12px;color:rgba(255,255,255,.3);font-style:italic}
 
 /* success */
-.success-box{display:none;text-align:center;padding:48px 24px;background:#1a1a1a;border:1px solid rgba(196,169,125,.2);border-radius:24px}
+.success-box{display:none;text-align:center;padding:48px 24px;background:linear-gradient(160deg,#1A1612,#201C18);border:1px solid rgba(196,169,125,.2);border-radius:24px}
 .success-box.show{display:block}
 .success-icon{font-size:48px;margin-bottom:16px}
 .success-title{font-family:var(--serif);font-size:28px;color:var(--gold);margin-bottom:8px}
@@ -301,6 +303,58 @@ footer a:hover{opacity:1}
           <span data-ru>Подходит, если хочешь просто пользоваться ботом и не думать о технической части.</span>
           <span data-de style="display:none">Ideal wenn du den Bot einfach nutzen willst — ohne technischen Aufwand.</span>
           <span data-en style="display:none">Best if you just want to use the bot without worrying about the technical side.</span>
+        </div>
+      </div>
+      <!-- OPTION C -->
+      <div class="opt-card">
+        <div class="opt-badge premium">
+          <span data-ru>Всё включено</span>
+          <span data-de style="display:none">Komplett-Setup</span>
+          <span data-en style="display:none">All-in Setup</span>
+        </div>
+        <div class="opt-title">
+          <span data-ru>Полная настройка</span>
+          <span data-de style="display:none">Komplett-Einrichtung</span>
+          <span data-en style="display:none">Full Setup</span>
+        </div>
+        <div class="opt-price">
+          ab €490 <span>
+            <span data-ru>единоразово</span>
+            <span data-de style="display:none">einmalig</span>
+            <span data-en style="display:none">once</span>
+          </span>
+        </div>
+        <ul class="opt-list">
+          <li>
+            <span data-ru>Я наполняю бот всем контентом: FAQ, тексты, ответы</span>
+            <span data-de style="display:none">Ich befülle den Bot mit allem: FAQ, Texte, Antworten</span>
+            <span data-en style="display:none">I fill the bot with all content: FAQ, texts, answers</span>
+          </li>
+          <li>
+            <span data-ru>Разворачиваю на твоём сервере (VPS)</span>
+            <span data-de style="display:none">Bereitstellung auf deinem eigenen Server (VPS)</span>
+            <span data-en style="display:none">Deployed on your own server (VPS)</span>
+          </li>
+          <li>
+            <span data-ru>Передаю полностью — ты владеешь всем</span>
+            <span data-de style="display:none">Vollständige Übergabe — alles gehört dir</span>
+            <span data-en style="display:none">Full handover — you own everything</span>
+          </li>
+          <li>
+            <span data-ru>Никаких ежемесячных платежей мне</span>
+            <span data-de style="display:none">Keine monatlichen Zahlungen an mich</span>
+            <span data-en style="display:none">No monthly fees to me</span>
+          </li>
+          <li class="no">
+            <span data-ru>Хостинг оплачиваешь сам(а) ~€5–8/мес (Hetzner)</span>
+            <span data-de style="display:none">Hosting zahlst du selbst ~€5–8/Mo (z.B. Hetzner)</span>
+            <span data-en style="display:none">You pay hosting yourself ~€5–8/mo (e.g. Hetzner)</span>
+          </li>
+        </ul>
+        <div class="opt-note">
+          <span data-ru>Идеально, если хочешь получить готовый бот «под ключ» и стать полным владельцем — без лишних забот.</span>
+          <span data-de style="display:none">Ideal wenn du einen fertigen Bot "schlüsselfertig" willst und volle Kontrolle übernimmst.</span>
+          <span data-en style="display:none">Perfect if you want a fully ready bot handed to you — and want complete ownership.</span>
         </div>
       </div>
     </div>
@@ -548,6 +602,21 @@ footer a:hover{opacity:1}
                 <span data-ru>Я слежу за хостингом, обновлениями и техническими вопросами.</span>
                 <span data-de style="display:none">Ich kümmere mich um Hosting, Updates und technische Fragen.</span>
                 <span data-en style="display:none">I handle hosting, updates and technical issues.</span>
+              </small>
+            </div>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="support" value="Komplett" onchange="styleRadio(this)">
+            <div class="radio-item-text">
+              <strong>
+                <span data-ru>Полная настройка (всё под ключ) — от €490</span>
+                <span data-de style="display:none">Komplett-Einrichtung (alles fertig) — ab €490</span>
+                <span data-en style="display:none">Full setup (all-in, one-time) — from €490</span>
+              </strong>
+              <small>
+                <span data-ru>Я наполняю бот контентом, разворачиваю на твоём сервере и полностью передаю. Без ежемесячных платежей.</span>
+                <span data-de style="display:none">Ich befülle den Bot, deploye ihn auf deinem Server und übergebe alles. Keine monatlichen Zahlungen.</span>
+                <span data-en style="display:none">I fill the bot, deploy it on your server and hand over fully. No monthly fees.</span>
               </small>
             </div>
           </label>
