@@ -930,7 +930,7 @@ footer a:hover{opacity:1}
               <span data-de style="display:none">Bot-Name (falls du eine Idee hast)</span>
               <span data-en style="display:none">Bot name (if you have an idea)</span>
             </label>
-            <input type="text" id="inp-botname" placeholder="z.B. Nina, Studio Assistant...">
+            <input type="text" id="inp-botname">
           </div>
           <div class="field">
             <label>
@@ -938,7 +938,7 @@ footer a:hover{opacity:1}
               <span data-de style="display:none">Logo / Avatar für den Bot</span>
               <span data-en style="display:none">Logo / avatar for the bot</span>
             </label>
-            <input type="text" id="inp-avatar" placeholder="Link zum Bild / schicke ich später">
+            <input type="text" id="inp-avatar">
           </div>
         </div>
       </div>
@@ -957,7 +957,7 @@ footer a:hover{opacity:1}
             <span data-de style="display:none">Vorhandene FAQ / Texte (hier einfügen)</span>
             <span data-en style="display:none">Existing FAQ / texts (paste here)</span>
           </label>
-          <textarea id="inp-faq" placeholder="Frage: Was kostet eine Behandlung?&#10;Antwort: Ab 50€...&#10;&#10;Frage: Wie kann ich buchen?&#10;Antwort: ..."></textarea>
+          <textarea id="inp-faq"></textarea>
         </div>
 
         <div class="field">
@@ -1061,7 +1061,7 @@ footer a:hover{opacity:1}
             <span data-de style="display:none">Wie bist du auf mich aufmerksam geworden?</span>
             <span data-en style="display:none">How did you find me?</span>
           </label>
-          <input type="text" id="inp-source" placeholder="Instagram, Empfehlung, Google...">
+          <input type="text" id="inp-source">
         </div>
 
         <div class="field">
@@ -1130,12 +1130,49 @@ const CHAT_ID   = 'YOUR_CHAT_ID_HERE';
 
 /* ── Language switcher ── */
 let curLang = 'de';
+const PLACEHOLDERS = {
+  'inp-botname': {
+    ru: 'напр. Нина, Помощник студии...',
+    de: 'z.B. Nina, Studio Assistant...',
+    en: 'e.g. Nina, Studio Assistant...'
+  },
+  'inp-avatar': {
+    ru: 'Ссылка на фото / пришлю позже',
+    de: 'Link zum Bild / schicke ich später',
+    en: 'Link to image / I\'ll send it later'
+  },
+  'inp-source': {
+    ru: 'Instagram, рекомендация, Google...',
+    de: 'Instagram, Empfehlung, Google...',
+    en: 'Instagram, recommendation, Google...'
+  },
+  'inp-faq': {
+    ru: 'Вопрос: Сколько стоит процедура?\nОтвет: От 50€...\n\nВопрос: Как записаться?\nОтвет: Пишите мне в Telegram...',
+    de: 'Frage: Was kostet eine Behandlung?\nAntwort: Ab 50€...\n\nFrage: Wie kann ich buchen?\nAntwort: Schreib mir auf Telegram...',
+    en: 'Q: How much does a session cost?\nA: From €50...\n\nQ: How do I book?\nA: Message me on Telegram...'
+  },
+  'inp-mustknow': {
+    ru: 'Я мастер маникюра в Берлине, принимаю по записи. Цены: маникюр от 40€, педикюр от 60€. Запись через Telegram @мой_аккаунт. Работаю пн–сб, 10:00–19:00',
+    de: 'Ich bin Nageldesignerin in Berlin, Termine nach Vereinbarung. Preise: Maniküre ab 40€, Pediküre ab 60€. Buchung über Telegram @mein_account. Mo–Sa, 10–19 Uhr',
+    en: 'I\'m a nail artist in Berlin, by appointment. Prices: manicure from €40, pedicure from €60. Book via Telegram @my_account. Mon–Sat, 10am–7pm'
+  },
+  'inp-donot': {
+    ru: 'Не давать скидки самостоятельно. Не обещать точные даты записи — только направлять ко мне. Не обсуждать цены других мастеров',
+    de: 'Keine Rabatte eigenständig vergeben. Keine konkreten Termine zusagen — nur an mich weiterleiten. Preise der Konkurrenz nicht erwähnen',
+    en: 'Don\'t offer discounts on your own. Don\'t promise specific slots — redirect to me. Don\'t discuss other artists\' prices'
+  }
+};
+
 function setLang(l){
   curLang = l;
   document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('active', b.dataset.l===l));
   document.querySelectorAll('[data-ru],[data-de],[data-en]').forEach(el=>{
     const key = el.hasAttribute('data-ru')?'ru': el.hasAttribute('data-de')?'de':'en';
     el.style.display = (key===l)?'':'none';
+  });
+  Object.entries(PLACEHOLDERS).forEach(([id, map])=>{
+    const el = document.getElementById(id);
+    if(el && map[l]) el.placeholder = map[l];
   });
 }
 setLang('de');
