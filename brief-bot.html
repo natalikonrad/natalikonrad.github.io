@@ -1225,24 +1225,22 @@ function v(id){ return (document.getElementById(id)||{}).value?.trim()||''; }
 /* ── Validate ── */
 function validate(){
   let ok = true;
+  let firstErr = null;
   // Name
   const nameF = document.getElementById('f-name');
-  if(!v('inp-name')){ nameF.classList.add('has-err'); ok=false; }
+  if(!v('inp-name')){ nameF.classList.add('has-err'); ok=false; if(!firstErr) firstErr=nameF; }
   else nameF.classList.remove('has-err');
   // Telegram
   const tgF = document.getElementById('inp-tg').closest('.field');
-  if(!v('inp-tg')){ tgF.classList.add('has-err'); ok=false; }
+  if(!v('inp-tg')){ tgF.classList.add('has-err'); ok=false; if(!firstErr) firstErr=tgF; }
   else tgF.classList.remove('has-err');
-  // Languages
-  const langs = getChips('lang-chips');
-  const errLang = document.getElementById('err-lang');
-  if(langs.length===0){ errLang.style.display='block'; ok=false; }
-  else errLang.style.display='none';
   // Functions
   const funcs = getChecked('func-checks');
   const errFuncs = document.getElementById('err-funcs');
-  if(funcs.length===0 && !v('inp-func-other')){ errFuncs.style.display='block'; ok=false; }
+  if(funcs.length===0 && !v('inp-func-other')){ errFuncs.style.display='block'; ok=false; if(!firstErr) firstErr=errFuncs; }
   else errFuncs.style.display='none';
+  // Scroll to first error
+  if(!ok && firstErr) firstErr.scrollIntoView({behavior:'smooth', block:'center'});
   return ok;
 }
 
