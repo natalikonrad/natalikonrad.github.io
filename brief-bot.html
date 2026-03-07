@@ -164,7 +164,7 @@ footer a:hover{opacity:1}
 .cf-name{font-size:13px;font-weight:600;color:rgba(255,255,255,.9);line-height:1.3;margin-bottom:4px}
 .cf-desc{font-size:11px;color:rgba(255,255,255,.38);line-height:1.4}
 .cf-ptag{margin-top:10px;font-size:12px;font-weight:700}
-.cf-ptag.base{color:rgba(196,169,125,.55)}
+.cf-ptag.base{color:var(--gold);font-size:11px;letter-spacing:.03em}
 .cf-ptag.plus{color:rgba(196,169,125,.7)}
 .calc-feat.cf-active .cf-ptag.plus{color:var(--gold)}
 /* Result box */
@@ -431,7 +431,8 @@ footer a:hover{opacity:1}
       <!-- FEATURE GRID -->
       <div class="calc-grid" id="calcGrid">
 
-        <div class="calc-feat cf-base cf-active" data-feature="FAQ" data-price="0">
+        <div class="calc-feat cf-base cf-active" data-feature="FAQ" data-price="0"
+             title="Diese Funktion ist in jedem Bot enthalten">
           <div class="cf-tick">✓</div>
           <svg class="cf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           <div class="cf-name">
@@ -442,12 +443,12 @@ footer a:hover{opacity:1}
           <div class="cf-desc">
             <span data-ru>Чат с ответами на вопросы</span>
             <span data-de style="display:none">Chat mit Antworten</span>
-            <span data-en style="display:none">Chat with Q&amp;A answers</span>
+            <span data-en style="display:none">Chat mit Q&amp;A</span>
           </div>
           <div class="cf-ptag base">
-            <span data-ru>основа</span>
-            <span data-de style="display:none">inklusive</span>
-            <span data-en style="display:none">base</span>
+            <span data-ru>✓ всегда включено</span>
+            <span data-de style="display:none">✓ immer dabei</span>
+            <span data-en style="display:none">✓ always included</span>
           </div>
         </div>
 
