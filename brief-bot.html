@@ -1382,6 +1382,8 @@ function buildMsg(){
     `${t('budget')}: ${getRadio('budget')||'—'}`,
     `${t('source')}: ${v('inp-source')||'—'}`,
     `${t('notes')}:\n${v('inp-notes')||'—'}`,
+    '',
+    `💰 <b>${{ru:'Примерная стоимость по калькулятору', de:'Geschätzter Preis (Kalkulator)', en:'Estimated price (calculator)'}[curLang]}:</b> ${document.getElementById('crPrice')?.textContent||'—'}`,
   ];
   return lines.join('\n');
 }
