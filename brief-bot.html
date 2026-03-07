@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brief — Telegram Bot | Natali Konrad</title>
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/cormorant-normal.woff2) format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400 700;font-display:swap;src:url(fonts/cormorant-italic.woff2) format('woff2')}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 600;font-display:swap;src:url(fonts/dmsans.woff2) format('woff2')}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C4A97D;--gold2:#E8D5B0;
+  --esp:#5B4A3E;--esp2:#7A6357;
+  --dark:#232323;--dark2:#1A1A1A;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --r:16px;--tr:0.3s ease;
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:#fff;font-family:var(--sans);font-size:15px;line-height:1.6;min-height:100vh}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(26,26,26,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(196,169,125,.1);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.n-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.n-nk{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--esp));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;letter-spacing:1px;flex-shrink:0}
+.n-name{font-family:var(--serif);font-size:17px;color:#fff;font-style:italic}
+.n-name em{color:var(--gold);font-style:normal}
+.ls{display:flex;gap:4px}
+.lb{padding:5px 12px;border-radius:100px;border:1px solid rgba(196,169,125,.25);background:transparent;color:rgba(255,255,255,.55);font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;transition:all var(--tr)}
+.lb:hover{color:#fff;border-color:rgba(196,169,125,.5)}
+.lb.active{background:var(--esp);border-color:var(--esp);color:#fff}
+
+/* ── HERO ── */
+.hero{padding:64px 24px 48px;max-width:760px;margin:0 auto;text-align:center}
+.ey{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:10px}
+.ey::before,.ey::after{content:'';width:32px;height:1px;background:var(--gold);opacity:.5}
+h1{font-family:var(--serif);font-size:clamp(36px,6vw,58px);font-weight:400;line-height:1.1;margin-bottom:20px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{color:rgba(255,255,255,.6);font-size:16px;max-width:520px;margin:0 auto}
+
+/* ── OPTION CARDS ── */
+.cont{max-width:900px;margin:0 auto;padding:0 20px}
+.section{padding:48px 0}
+.section-title{font-family:var(--serif);font-size:clamp(22px,4vw,32px);font-weight:400;margin-bottom:8px;color:var(--gold2)}
+.section-sub{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:32px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:600px){.opts{grid-template-columns:1fr}}
+.opt-card{background:#1a1a1a;border:1px solid rgba(196,169,125,.12);border-radius:20px;padding:28px 24px;position:relative;overflow:hidden;transition:border-color var(--tr)}
+.opt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
+.opt-card:hover{border-color:rgba(196,169,125,.3)}
+.opt-badge{display:inline-block;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.opt-badge.once{background:rgba(196,169,125,.12);color:var(--gold)}
+.opt-badge.monthly{background:rgba(91,74,62,.35);color:var(--gold2)}
+.opt-title{font-family:var(--serif);font-size:22px;font-weight:600;margin-bottom:6px}
+.opt-price{font-size:26px;font-weight:700;color:var(--gold);font-family:var(--serif);margin-bottom:16px}
+.opt-price span{font-size:14px;color:rgba(255,255,255,.45);font-family:var(--sans);font-weight:400}
+.opt-list{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;color:rgba(255,255,255,.7)}
+.opt-list li{display:flex;gap:8px;align-items:flex-start}
+.opt-list li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0;margin-top:1px}
+.opt-list li.no::before{content:'✗';color:rgba(255,255,255,.3)}
+.opt-list li.no{color:rgba(255,255,255,.35)}
+.opt-note{margin-top:20px;padding:12px 14px;background:rgba(91,74,62,.15);border-left:3px solid var(--esp);border-radius:0 8px 8px 0;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5}
+.price-note{text-align:center;margin-top:20px;font-size:12px;color:rgba(255,255,255,.35);font-style:italic}
+
+/* ── FORM ── */
+.form-wrap{background:#1a1a1a;border:1px solid rgba(196,169,125,.1);border-radius:24px;padding:40px 36px;margin-bottom:48px}
+@media(max-width:600px){.form-wrap{padding:24px 18px}}
+.block{margin-bottom:36px}
+.block-title{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--gold2);margin-bottom:6px;padding-bottom:10px;border-bottom:1px solid rgba(196,169,125,.1)}
+.block-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:18px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field:last-child{margin-bottom:0}
+label{font-size:13px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.02em}
+label .req{color:var(--gold);margin-left:2px}
+input[type=text],input[type=email],input[type=url],textarea,select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;color:#fff;font-family:var(--sans);font-size:14px;outline:none;transition:border-color var(--tr);resize:vertical}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.25)}
+input:focus,textarea:focus{border-color:rgba(196,169,125,.45);background:rgba(196,169,125,.04)}
+textarea{min-height:100px}
+
+/* checkboxes & radios */
+.checks{display:flex;flex-direction:column;gap:10px}
+.check-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.07);transition:all var(--tr)}
+.check-item:hover{background:rgba(196,169,125,.05);border-color:rgba(196,169,125,.2)}
+.check-item input{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0;cursor:pointer}
+.check-item span{font-size:14px;color:rgba(255,255,255,.75)}
+.check-item.selected{background:rgba(196,169,125,.07);border-color:rgba(196,169,125,.3)}
+.radios{display:flex;flex-direction:column;gap:10px}
+.radio-item{display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.07);transition:all var(--tr)}
+.radio-item:hover{background:rgba(196,169,125,.05);border-color:rgba(196,169,125,.2)}
+.radio-item input{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0;margin-top:3px;cursor:pointer}
+.radio-item-text{display:flex;flex-direction:column;gap:2px}
+.radio-item-text strong{font-size:14px;color:#fff}
+.radio-item-text small{font-size:12px;color:rgba(255,255,255,.4)}
+.radio-item.selected{background:rgba(91,74,62,.2);border-color:rgba(196,169,125,.35)}
+
+/* lang chips */
+.lang-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lang-chip{padding:8px 16px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.55);font-size:13px;cursor:pointer;transition:all var(--tr);font-family:var(--sans)}
+.lang-chip:hover{border-color:rgba(196,169,125,.4);color:#fff}
+.lang-chip.selected{background:rgba(91,74,62,.4);border-color:var(--esp2);color:#fff}
+
+/* tone chips */
+.tone-chips{display:flex;flex-wrap:wrap;gap:10px}
+.tone-chip{padding:10px 18px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.55);font-size:13px;font-weight:600;cursor:pointer;transition:all var(--tr);font-family:var(--sans)}
+.tone-chip:hover{border-color:rgba(196,169,125,.4);color:#fff}
+.tone-chip.selected{background:rgba(91,74,62,.4);border-color:var(--gold);color:var(--gold2)}
+
+/* timeline/budget radios horizontal */
+.mini-radios{display:flex;flex-wrap:wrap;gap:8px}
+.mini-radio{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.1);cursor:pointer;transition:all var(--tr)}
+.mini-radio:hover{border-color:rgba(196,169,125,.35)}
+.mini-radio input{width:13px;height:13px;accent-color:var(--gold);cursor:pointer}
+.mini-radio span{font-size:13px;color:rgba(255,255,255,.65)}
+.mini-radio.selected{background:rgba(91,74,62,.2);border-color:rgba(196,169,125,.35)}
+.mini-radio.selected span{color:#fff}
+
+/* submit */
+.submit-wrap{text-align:center;padding-top:8px}
+.btn-submit{display:inline-flex;align-items:center;gap:10px;padding:16px 48px;border-radius:100px;background:linear-gradient(135deg,var(--esp),var(--esp2));color:#fff;font-family:var(--sans);font-size:15px;font-weight:600;border:none;cursor:pointer;transition:all .3s;box-shadow:0 4px 24px rgba(91,74,62,.4);letter-spacing:.02em}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(91,74,62,.5)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-submit svg{width:18px;height:18px;stroke:currentColor;fill:none}
+.submit-note{margin-top:12px;font-size:12px;color:rgba(255,255,255,.3);font-style:italic}
+
+/* success */
+.success-box{display:none;text-align:center;padding:48px 24px;background:#1a1a1a;border:1px solid rgba(196,169,125,.2);border-radius:24px}
+.success-box.show{display:block}
+.success-icon{font-size:48px;margin-bottom:16px}
+.success-title{font-family:var(--serif);font-size:28px;color:var(--gold);margin-bottom:8px}
+.success-sub{color:rgba(255,255,255,.5);font-size:15px}
+
+/* error */
+.err-msg{font-size:12px;color:#e07070;margin-top:4px;display:none}
+.field.has-err input,.field.has-err textarea{border-color:#e07070}
+.field.has-err .err-msg{display:block}
+
+/* footer */
+footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.25);font-size:13px}
+footer a{color:var(--gold);text-decoration:none;opacity:.7}
+footer a:hover{opacity:1}
+
+/* divider */
+.divider{height:1px;background:rgba(196,169,125,.08);margin:0}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="n-logo" href="index.html">
+    <div class="n-nk">NK</div>
+    <span class="n-name">Natali <em>Konrad</em></span>
+  </a>
+  <div class="ls">
+    <button class="lb" onclick="setLang('ru')" data-l="ru">RU</button>
+    <button class="lb active" onclick="setLang('de')" data-l="de">DE</button>
+    <button class="lb" onclick="setLang('en')" data-l="en">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="ey"><span data-ru>Заказ</span><span data-de style="display:none">Auftrag</span><span data-en style="display:none">Order</span></div>
+  <h1>
+    <span data-ru>Бриф — <em>Telegram Бот</em></span>
+    <span data-de style="display:none">Brief — <em>Telegram Bot</em></span>
+    <span data-en style="display:none">Brief — <em>Telegram Bot</em></span>
+  </h1>
+  <p class="hero-sub">
+    <span data-ru>Заполни форму — я получу всю информацию и смогу сразу приступить к работе. Без лишних переписок.</span>
+    <span data-de style="display:none">Füll das Formular aus — ich erhalte alle Infos und kann sofort loslegen. Keine langen Hin-und-her-Nachrichten.</span>
+    <span data-en style="display:none">Fill in the form — I'll get all the info and can start right away. No endless back-and-forth messages.</span>
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- OPTIONS EXPLANATION -->
+<div class="cont">
+  <div class="section">
+    <div class="section-title">
+      <span data-ru>Что такое Telegram бот и какой вариант выбрать?</span>
+      <span data-de style="display:none">Was ist ein Telegram Bot und welche Option passt zu dir?</span>
+      <span data-en style="display:none">What is a Telegram Bot and which option fits you?</span>
+    </div>
+    <p class="section-sub">
+      <span data-ru>Telegram бот — это автоматический помощник в Telegram, который отвечает клиентам 24/7, рассказывает о твоих услугах, принимает заявки и освобождает тебя от рутины. Выбери подходящий вариант:</span>
+      <span data-de style="display:none">Ein Telegram Bot ist ein automatischer Assistent in Telegram, der deine Kunden 24/7 bedient, über deine Leistungen informiert, Anfragen aufnimmt — und dich von Routinearbeit befreit. Wähle deine Option:</span>
+      <span data-en style="display:none">A Telegram Bot is an automatic assistant in Telegram that serves your clients 24/7, tells them about your services, captures leads — and frees you from repetitive tasks. Choose your option:</span>
+    </p>
+
+    <div class="opts">
+      <!-- OPTION A -->
+      <div class="opt-card">
+        <div class="opt-badge once">
+          <span data-ru>Без поддержки</span>
+          <span data-de style="display:none">Einmalig</span>
+          <span data-en style="display:none">One-time</span>
+        </div>
+        <div class="opt-title">
+          <span data-ru>Разовая оплата</span>
+          <span data-de style="display:none">Einmalzahlung</span>
+          <span data-en style="display:none">One-time payment</span>
+        </div>
+        <div class="opt-price">
+          ab €290 <span>
+            <span data-ru>единоразово</span>
+            <span data-de style="display:none">einmalig</span>
+            <span data-en style="display:none">once</span>
+          </span>
+        </div>
+        <ul class="opt-list">
+          <li>
+            <span data-ru>Бот полностью создан и передан тебе</span>
+            <span data-de style="display:none">Bot wird fertig gebaut und übergeben</span>
+            <span data-en style="display:none">Bot is fully built and handed over to you</span>
+          </li>
+          <li>
+            <span data-ru>Ты владеешь им на 100%</span>
+            <span data-de style="display:none">Du besitzt den Bot zu 100%</span>
+            <span data-en style="display:none">You own it 100%</span>
+          </li>
+          <li>
+            <span data-ru>Инструкция по управлению в комплекте</span>
+            <span data-de style="display:none">Bedienungsanleitung inklusive</span>
+            <span data-en style="display:none">Management instructions included</span>
+          </li>
+          <li class="no">
+            <span data-ru>Техподдержка и обновления — не включены</span>
+            <span data-de style="display:none">Kein technischer Support oder Updates</span>
+            <span data-en style="display:none">No technical support or updates included</span>
+          </li>
+          <li class="no">
+            <span data-ru>Хостинг — настраиваешь сам(а)</span>
+            <span data-de style="display:none">Hosting — selbst einzurichten</span>
+            <span data-en style="display:none">Hosting — you set it up yourself</span>
+          </li>
+        </ul>
+        <div class="opt-note">
+          <span data-ru>Подходит, если у тебя есть технический специалист или ты сам(а) разбираешься.</span>
+          <span data-de style="display:none">Ideal wenn du jemand Technisches hast oder selbst Bescheid weißt.</span>
+          <span data-en style="display:none">Best if you have a tech person or know your way around.</span>
+        </div>
+      </div>
+
+      <!-- OPTION B -->
+      <div class="opt-card">
+        <div class="opt-badge monthly">
+          <span data-ru>С поддержкой</span>
+          <span data-de style="display:none">Mit Betreuung</span>
+          <span data-en style="display:none">With Support</span>
+        </div>
+        <div class="opt-title">
+          <span data-ru>Настройка + ежемесячное обслуживание</span>
+          <span data-de style="display:none">Setup + monatliche Wartung</span>
+          <span data-en style="display:none">Setup + monthly maintenance</span>
+        </div>
+        <div class="opt-price">
+          ab €199 <span>
+            <span data-ru>setup</span>
+            <span data-de style="display:none">Setup</span>
+            <span data-en style="display:none">setup</span>
+          </span>
+          &nbsp;+&nbsp;ab €59<span>/
+            <span data-ru>мес</span>
+            <span data-de style="display:none">Mo</span>
+            <span data-en style="display:none">mo</span>
+          </span>
+        </div>
+        <ul class="opt-list">
+          <li>
+            <span data-ru>Я управляю хостингом и сервером</span>
+            <span data-de style="display:none">Ich verwalte Hosting und Server</span>
+            <span data-en style="display:none">I manage hosting and server</span>
+          </li>
+          <li>
+            <span data-ru>1 обновление контента в месяц включено</span>
+            <span data-de style="display:none">1 Content-Update pro Monat inklusive</span>
+            <span data-en style="display:none">1 content update per month included</span>
+          </li>
+          <li>
+            <span data-ru>Технические неполадки — исправляю я</span>
+            <span data-de style="display:none">Technische Probleme — ich kümmere mich</span>
+            <span data-en style="display:none">Technical issues — I handle them</span>
+          </li>
+          <li>
+            <span data-ru>Бот всегда работает, ты просто пользуешься</span>
+            <span data-de style="display:none">Bot läuft immer, du nutzt ihn einfach</span>
+            <span data-en style="display:none">Bot always runs, you just use it</span>
+          </li>
+          <li class="no">
+            <span data-ru>Ежемесячная оплата — это текущие расходы</span>
+            <span data-de style="display:none">Monatliche Zahlung — laufende Kosten</span>
+            <span data-en style="display:none">Monthly payment — ongoing cost</span>
+          </li>
+        </ul>
+        <div class="opt-note">
+          <span data-ru>Подходит, если хочешь просто пользоваться ботом и не думать о технической части.</span>
+          <span data-de style="display:none">Ideal wenn du den Bot einfach nutzen willst — ohne technischen Aufwand.</span>
+          <span data-en style="display:none">Best if you just want to use the bot without worrying about the technical side.</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="price-note">
+      <span data-ru>* Итоговая цена — после изучения вашего запроса. Указанные цены — стартовые ориентиры.</span>
+      <span data-de style="display:none">* Endpreis nach Analyse deiner Anfrage. Genannte Preise sind Richtwerte.</span>
+      <span data-en style="display:none">* Final price after reviewing your request. Prices shown are starting estimates.</span>
+    </p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FORM -->
+<div class="cont">
+  <div class="section">
+    <div class="section-title">
+      <span data-ru>Заполни бриф</span>
+      <span data-de style="display:none">Brief ausfüllen</span>
+      <span data-en style="display:none">Fill in the brief</span>
+    </div>
+    <p class="section-sub">
+      <span data-ru>Чем подробнее — тем точнее я смогу подготовить предложение. Отмеченные * поля обязательны.</span>
+      <span data-de style="display:none">Je detaillierter, desto genauer kann ich ein Angebot erstellen. Mit * markierte Felder sind Pflichtfelder.</span>
+      <span data-en style="display:none">The more detail, the more accurate my offer will be. Fields marked * are required.</span>
+    </p>
+
+    <div class="form-wrap" id="theForm">
+
+      <!-- BLOCK 1: CLIENT INFO -->
+      <div class="block">
+        <div class="block-title">
+          <span data-ru>О тебе и твоём бизнесе</span>
+          <span data-de style="display:none">Über dich und dein Business</span>
+          <span data-en style="display:none">About you and your business</span>
+        </div>
+
+        <div class="row">
+          <div class="field" id="f-name">
+            <label>
+              <span data-ru>Имя</span><span data-de style="display:none">Name</span><span data-en style="display:none">Name</span>
+              <span class="req">*</span>
+            </label>
+            <input type="text" id="inp-name" placeholder="Anna Müller">
+            <span class="err-msg">
+              <span data-ru>Пожалуйста, введи имя</span>
+              <span data-de style="display:none">Bitte Namen eingeben</span>
+              <span data-en style="display:none">Please enter your name</span>
+            </span>
+          </div>
+          <div class="field">
+            <label>
+              <span data-ru>Название бизнеса / проекта</span><span data-de style="display:none">Business / Projektname</span><span data-en style="display:none">Business / project name</span>
+            </label>
+            <input type="text" id="inp-business" placeholder="Beauty Studio @meinestudio">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-ru>Чем занимаешься? (ниша, услуги)</span>
+            <span data-de style="display:none">Was machst du? (Nische, Leistungen)</span>
+            <span data-en style="display:none">What do you do? (niche, services)</span>
+          </label>
+          <input type="text" id="inp-niche" placeholder="Nail Studio, Online-Coaching, Friseur, Fotografie...">
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>
+              <span data-ru>Instagram / сайт</span>
+              <span data-de style="display:none">Instagram / Website</span>
+              <span data-en style="display:none">Instagram / website</span>
+            </label>
+            <input type="text" id="inp-website" placeholder="@dein_account oder https://...">
+          </div>
+          <div class="field">
+            <label>
+              <span data-ru>Telegram-username</span>
+              <span data-de style="display:none">Telegram-Username</span>
+              <span data-en style="display:none">Telegram username</span>
+              <span class="req">*</span>
+            </label>
+            <input type="text" id="inp-tg" placeholder="@username">
+            <span class="err-msg">
+              <span data-ru>Нужен Telegram для связи</span>
+              <span data-de style="display:none">Telegram-Username für Rückfragen</span>
+              <span data-en style="display:none">Telegram needed for follow-up</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-ru>Email (необязательно)</span>
+            <span data-de style="display:none">E-Mail (optional)</span>
+            <span data-en style="display:none">Email (optional)</span>
+          </label>
+          <input type="email" id="inp-email" placeholder="anna@beispiel.de">
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-ru>На каком языке должен работать бот?</span>
+            <span data-de style="display:none">In welcher Sprache soll der Bot arbeiten?</span>
+            <span data-en style="display:none">What language(s) should the bot speak?</span>
+            <span class="req">*</span>
+          </label>
+          <div class="lang-chips" id="lang-chips">
+            <button type="button" class="lang-chip" data-val="RU" onclick="toggleChip(this,'lang-chips')">🇷🇺 Русский</button>
+            <button type="button" class="lang-chip" data-val="DE" onclick="toggleChip(this,'lang-chips')">🇩🇪 Deutsch</button>
+            <button type="button" class="lang-chip" data-val="EN" onclick="toggleChip(this,'lang-chips')">🇬🇧 English</button>
+            <button type="button" class="lang-chip" data-val="Multi" onclick="toggleChip(this,'lang-chips')">
+              <span data-ru>Несколько языков</span>
+              <span data-de style="display:none">Mehrsprachig</span>
+              <span data-en style="display:none">Multilingual</span>
+            </button>
+          </div>
+          <span class="err-msg" id="err-lang">
+            <span data-ru>Выбери хотя бы один язык</span>
+            <span data-de style="display:none">Bitte mindestens eine Sprache wählen</span>
+            <span data-en style="display:none">Please select at least one language</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- BLOCK 2: BOT FUNCTIONS -->
+      <div class="block">
+        <div class="block-title">
+          <span data-ru>Что должен делать бот?</span>
+          <span data-de style="display:none">Was soll der Bot können?</span>
+          <span data-en style="display:none">What should the bot do?</span>
+        </div>
+        <p class="block-sub">
+          <span data-ru>Можно выбрать несколько. Обязательно выбери хотя бы одно.</span>
+          <span data-de style="display:none">Mehrere Auswahl möglich. Bitte mindestens eine auswählen.</span>
+          <span data-en style="display:none">Multiple choices possible. Select at least one.</span>
+        </p>
+        <div class="checks" id="func-checks">
+          <label class="check-item">
+            <input type="checkbox" value="FAQ" onchange="styleCheck(this)">
+            <span>
+              <span data-ru>Отвечать на частые вопросы (FAQ)</span>
+              <span data-de style="display:none">Häufige Fragen beantworten (FAQ)</span>
+              <span data-en style="display:none">Answer frequently asked questions (FAQ)</span>
+            </span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" value="Booking" onchange="styleCheck(this)">
+            <span>
+              <span data-ru>Запись на приём / бронирование</span>
+              <span data-de style="display:none">Terminbuchung / Reservierungen</span>
+              <span data-en style="display:none">Appointments / booking</span>
+            </span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" value="Portfolio" onchange="styleCheck(this)">
+            <span>
+              <span data-ru>Показывать портфолио / прайс-лист</span>
+              <span data-de style="display:none">Portfolio / Preisliste zeigen</span>
+              <span data-en style="display:none">Show portfolio / price list</span>
+            </span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" value="LeadForm" onchange="styleCheck(this)">
+            <span>
+              <span data-ru>Принимать заявки от новых клиентов</span>
+              <span data-de style="display:none">Neue Kundenanfragen aufnehmen</span>
+              <span data-en style="display:none">Capture new client leads</span>
+            </span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" value="Payment" onchange="styleCheck(this)">
+            <span>
+              <span data-ru>Информация об оплате / реквизиты</span>
+              <span data-de style="display:none">Zahlungsinfos senden</span>
+              <span data-en style="display:none">Send payment information</span>
+            </span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" value="Orders" onchange="styleCheck(this)">
+            <span>
+              <span data-ru>Управление заказами / каталог</span>
+              <span data-de style="display:none">Bestellungen verwalten / Katalog</span>
+              <span data-en style="display:none">Manage orders / catalog</span>
+            </span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" value="AI" onchange="styleCheck(this)">
+            <span>
+              <span data-ru>ИИ-ответы (Claude AI — умный чат-бот)</span>
+              <span data-de style="display:none">KI-Antworten (Claude AI — intelligenter Chatbot)</span>
+              <span data-en style="display:none">AI responses (Claude AI — smart chatbot)</span>
+            </span>
+          </label>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>
+            <span data-ru>Другое / дополнительно:</span>
+            <span data-de style="display:none">Sonstiges / Ergänzungen:</span>
+            <span data-en style="display:none">Other / additions:</span>
+          </label>
+          <input type="text" id="inp-func-other" placeholder="...">
+        </div>
+        <span class="err-msg" id="err-funcs">
+          <span data-ru>Выбери хотя бы одну функцию</span>
+          <span data-de style="display:none">Bitte mindestens eine Funktion auswählen</span>
+          <span data-en style="display:none">Please select at least one function</span>
+        </span>
+      </div>
+
+      <!-- BLOCK 3: SUPPORT CHOICE -->
+      <div class="block">
+        <div class="block-title">
+          <span data-ru>Какой вариант тебе подходит?</span>
+          <span data-de style="display:none">Welche Option passt zu dir?</span>
+          <span data-en style="display:none">Which option fits you?</span>
+        </div>
+        <div class="radios" id="support-radios">
+          <label class="radio-item">
+            <input type="radio" name="support" value="Einmalig" onchange="styleRadio(this)">
+            <div class="radio-item-text">
+              <strong>
+                <span data-ru>Без поддержки (разовая оплата) — от €290</span>
+                <span data-de style="display:none">Ohne Betreuung (Einmalzahlung) — ab €290</span>
+                <span data-en style="display:none">Without support (one-time) — from €290</span>
+              </strong>
+              <small>
+                <span data-ru>Бот готов, передан тебе. Управляешь сам(а).</span>
+                <span data-de style="display:none">Bot fertig übergeben. Du verwaltest selbst.</span>
+                <span data-en style="display:none">Bot delivered. You manage it yourself.</span>
+              </small>
+            </div>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="support" value="Betreuung" onchange="styleRadio(this)">
+            <div class="radio-item-text">
+              <strong>
+                <span data-ru>С поддержкой — Setup от €199 + €59/мес</span>
+                <span data-de style="display:none">Mit Betreuung — Setup ab €199 + €59/Mo</span>
+                <span data-en style="display:none">With support — Setup from €199 + €59/mo</span>
+              </strong>
+              <small>
+                <span data-ru>Я слежу за хостингом, обновлениями и техническими вопросами.</span>
+                <span data-de style="display:none">Ich kümmere mich um Hosting, Updates und technische Fragen.</span>
+                <span data-en style="display:none">I handle hosting, updates and technical issues.</span>
+              </small>
+            </div>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="support" value="Unsicher" onchange="styleRadio(this)">
+            <div class="radio-item-text">
+              <strong>
+                <span data-ru>Ещё не уверен(а) — помоги разобраться</span>
+                <span data-de style="display:none">Noch unsicher — bitte erkläre mir</span>
+                <span data-en style="display:none">Not sure yet — please explain</span>
+              </strong>
+              <small>
+                <span data-ru>Расскажи мне о своей ситуации — я посоветую.</span>
+                <span data-de style="display:none">Beschreib mir deine Lage — ich berate dich.</span>
+                <span data-en style="display:none">Tell me your situation — I'll advise you.</span>
+              </small>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- BLOCK 4: BOT PERSONALITY -->
+      <div class="block">
+        <div class="block-title">
+          <span data-ru>Стиль и личность бота</span>
+          <span data-de style="display:none">Stil und Persönlichkeit des Bots</span>
+          <span data-en style="display:none">Bot style and personality</span>
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-ru>Как должен звучать бот?</span>
+            <span data-de style="display:none">Wie soll der Bot klingen?</span>
+            <span data-en style="display:none">What tone should the bot use?</span>
+          </label>
+          <div class="tone-chips" id="tone-chips">
+            <button type="button" class="tone-chip" data-val="Professionell" onclick="selectTone(this)">
+              <span data-ru>Профессионально</span>
+              <span data-de style="display:none">Professionell</span>
+              <span data-en style="display:none">Professional</span>
+            </button>
+            <button type="button" class="tone-chip" data-val="Freundlich" onclick="selectTone(this)">
+              <span data-ru>Дружелюбно</span>
+              <span data-de style="display:none">Freundlich & locker</span>
+              <span data-en style="display:none">Friendly & casual</span>
+            </button>
+            <button type="button" class="tone-chip" data-val="Formal" onclick="selectTone(this)">
+              <span data-ru>Формально</span>
+              <span data-de style="display:none">Formal</span>
+              <span data-en style="display:none">Formal</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>
+              <span data-ru>Имя бота (если есть идея)</span>
+              <span data-de style="display:none">Bot-Name (falls du eine Idee hast)</span>
+              <span data-en style="display:none">Bot name (if you have an idea)</span>
+            </label>
+            <input type="text" id="inp-botname" placeholder="z.B. Nina, Studio Assistant...">
+          </div>
+          <div class="field">
+            <label>
+              <span data-ru>Логотип / аватар для бота</span>
+              <span data-de style="display:none">Logo / Avatar für den Bot</span>
+              <span data-en style="display:none">Logo / avatar for the bot</span>
+            </label>
+            <input type="text" id="inp-avatar" placeholder="Link zum Bild / schicke ich später">
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK 5: CONTENT -->
+      <div class="block">
+        <div class="block-title">
+          <span data-ru>Контент и информация</span>
+          <span data-de style="display:none">Content und Informationen</span>
+          <span data-en style="display:none">Content and information</span>
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-ru>Уже готовые FAQ / тексты (вставь сюда)</span>
+            <span data-de style="display:none">Vorhandene FAQ / Texte (hier einfügen)</span>
+            <span data-en style="display:none">Existing FAQ / texts (paste here)</span>
+          </label>
+          <textarea id="inp-faq" placeholder="Frage: Was kostet eine Behandlung?&#10;Antwort: Ab 50€...&#10;&#10;Frage: Wie kann ich buchen?&#10;Antwort: ..."></textarea>
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-ru>Что бот должен знать обязательно? (о тебе, услугах, ценах)</span>
+            <span data-de style="display:none">Was muss der Bot unbedingt wissen? (über dich, Leistungen, Preise)</span>
+            <span data-en style="display:none">What must the bot know? (about you, services, prices)</span>
+          </label>
+          <textarea id="inp-mustknow" placeholder="..."></textarea>
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-ru>Что бот НЕ должен делать?</span>
+            <span data-de style="display:none">Was soll der Bot NICHT tun?</span>
+            <span data-en style="display:none">What should the bot NOT do?</span>
+          </label>
+          <textarea id="inp-donot" placeholder="..."></textarea>
+        </div>
+      </div>
+
+      <!-- BLOCK 6: TIMELINE & BUDGET -->
+      <div class="block">
+        <div class="block-title">
+          <span data-ru>Сроки и бюджет</span>
+          <span data-de style="display:none">Zeitplan und Budget</span>
+          <span data-en style="display:none">Timeline and budget</span>
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-ru>Когда нужен бот?</span>
+            <span data-de style="display:none">Wann brauchst du den Bot?</span>
+            <span data-en style="display:none">When do you need the bot?</span>
+          </label>
+          <div class="mini-radios" id="timeline-radios">
+            <label class="mini-radio">
+              <input type="radio" name="timeline" value="ASAP" onchange="styleMiniRadio(this)">
+              <span>
+                <span data-ru>Как можно скорее</span>
+                <span data-de style="display:none">So schnell wie möglich</span>
+                <span data-en style="display:none">ASAP</span>
+              </span>
+            </label>
+            <label class="mini-radio">
+              <input type="radio" name="timeline" value="2Wochen" onchange="styleMiniRadio(this)">
+              <span>
+                <span data-ru>Через 2 недели</span>
+                <span data-de style="display:none">In 2 Wochen</span>
+                <span data-en style="display:none">In 2 weeks</span>
+              </span>
+            </label>
+            <label class="mini-radio">
+              <input type="radio" name="timeline" value="Kein Eile" onchange="styleMiniRadio(this)">
+              <span>
+                <span data-ru>Не спешим</span>
+                <span data-de style="display:none">Keine Eile</span>
+                <span data-en style="display:none">No rush</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-ru>Бюджет (ориентировочно)</span>
+            <span data-de style="display:none">Budget (ungefähr)</span>
+            <span data-en style="display:none">Budget (approximate)</span>
+          </label>
+          <div class="mini-radios" id="budget-radios">
+            <label class="mini-radio">
+              <input type="radio" name="budget" value="<300" onchange="styleMiniRadio(this)">
+              <span>Unter €300</span>
+            </label>
+            <label class="mini-radio">
+              <input type="radio" name="budget" value="300-500" onchange="styleMiniRadio(this)">
+              <span>€300–500</span>
+            </label>
+            <label class="mini-radio">
+              <input type="radio" name="budget" value="500-1000" onchange="styleMiniRadio(this)">
+              <span>€500–1000</span>
+            </label>
+            <label class="mini-radio">
+              <input type="radio" name="budget" value=">1000" onchange="styleMiniRadio(this)">
+              <span>Über €1000</span>
+            </label>
+            <label class="mini-radio">
+              <input type="radio" name="budget" value="Unklar" onchange="styleMiniRadio(this)">
+              <span>
+                <span data-ru>Не знаю</span>
+                <span data-de style="display:none">Noch unklar</span>
+                <span data-en style="display:none">Not sure</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-ru>Как ты узнал(а) обо мне?</span>
+            <span data-de style="display:none">Wie bist du auf mich aufmerksam geworden?</span>
+            <span data-en style="display:none">How did you find me?</span>
+          </label>
+          <input type="text" id="inp-source" placeholder="Instagram, Empfehlung, Google...">
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-ru>Дополнительные пожелания / комментарии</span>
+            <span data-de style="display:none">Zusätzliche Wünsche / Anmerkungen</span>
+            <span data-en style="display:none">Additional wishes / comments</span>
+          </label>
+          <textarea id="inp-notes" placeholder="..."></textarea>
+        </div>
+      </div>
+
+      <!-- SUBMIT -->
+      <div class="submit-wrap">
+        <button type="button" class="btn-submit" id="submitBtn" onclick="submitBrief()">
+          <span data-ru>Отправить бриф</span>
+          <span data-de style="display:none">Brief absenden</span>
+          <span data-en style="display:none">Send brief</span>
+          <svg viewBox="0 0 24 24" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <p class="submit-note">
+          <span data-ru>Я отвечу в течение 24 часов в Telegram.</span>
+          <span data-de style="display:none">Ich melde mich innerhalb von 24 Std. per Telegram.</span>
+          <span data-en style="display:none">I'll reply within 24 hours via Telegram.</span>
+        </p>
+      </div>
+
+    </div><!-- /form-wrap -->
+
+    <!-- SUCCESS -->
+    <div class="success-box" id="successBox">
+      <div class="success-icon">✨</div>
+      <div class="success-title">
+        <span data-ru>Бриф отправлен!</span>
+        <span data-de style="display:none">Brief gesendet!</span>
+        <span data-en style="display:none">Brief sent!</span>
+      </div>
+      <p class="success-sub">
+        <span data-ru>Спасибо! Я получила твои данные и скоро свяжусь с тобой в Telegram. 💛</span>
+        <span data-de style="display:none">Danke! Ich habe deine Angaben erhalten und melde mich bald per Telegram. 💛</span>
+        <span data-en style="display:none">Thank you! I've received your brief and will reach out on Telegram soon. 💛</span>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <a href="index.html">← Natali Konrad</a> &nbsp;·&nbsp;
+  <span data-ru>Telegram Бот Бриф</span>
+  <span data-de style="display:none">Telegram Bot Brief</span>
+  <span data-en style="display:none">Telegram Bot Brief</span>
+</footer>
+
+<script>
+/* ─────────────────────────────────────────────
+   НАСТРОЙКА: вставь сюда токен бота и свой chat_id
+   Как получить:
+   1. Напиши @BotFather в Telegram → /newbot → получи TOKEN
+   2. Напиши любое сообщение своему боту, потом открой:
+      https://api.telegram.org/bot{TOKEN}/getUpdates
+      — там увидишь свой chat_id (число)
+   ────────────────────────────────────────────── */
+const BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE';
+const CHAT_ID   = 'YOUR_CHAT_ID_HERE';
+
+/* ── Language switcher ── */
+let curLang = 'de';
+function setLang(l){
+  curLang = l;
+  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('active', b.dataset.l===l));
+  document.querySelectorAll('[data-ru],[data-de],[data-en]').forEach(el=>{
+    const key = el.hasAttribute('data-ru')?'ru': el.hasAttribute('data-de')?'de':'en';
+    el.style.display = (key===l)?'':'none';
+  });
+}
+setLang('de');
+
+/* ── Multi-select chips ── */
+function toggleChip(btn, groupId){
+  btn.classList.toggle('selected');
+}
+
+/* ── Tone single-select ── */
+function selectTone(btn){
+  btn.closest('.tone-chips').querySelectorAll('.tone-chip').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+/* ── Checkbox style ── */
+function styleCheck(inp){
+  inp.closest('.check-item').classList.toggle('selected', inp.checked);
+}
+
+/* ── Radio style (cards) ── */
+function styleRadio(inp){
+  inp.closest('.radios').querySelectorAll('.radio-item').forEach(r=>r.classList.remove('selected'));
+  inp.closest('.radio-item').classList.add('selected');
+}
+
+/* ── Mini radio style ── */
+function styleMiniRadio(inp){
+  inp.closest('.mini-radios').querySelectorAll('.mini-radio').forEach(r=>r.classList.remove('selected'));
+  inp.closest('.mini-radio').classList.add('selected');
+}
+
+/* ── Collect form values ── */
+function getChecked(groupId){
+  return Array.from(document.querySelectorAll('#'+groupId+' input[type=checkbox]:checked')).map(i=>i.value);
+}
+function getRadio(name){
+  const r = document.querySelector('input[name='+name+']:checked');
+  return r ? r.value : '—';
+}
+function getChips(groupId){
+  return Array.from(document.querySelectorAll('#'+groupId+' .lang-chip.selected')).map(b=>b.dataset.val);
+}
+function getTone(){
+  const t = document.querySelector('#tone-chips .tone-chip.selected');
+  return t ? t.dataset.val : '—';
+}
+function v(id){ return (document.getElementById(id)||{}).value?.trim()||''; }
+
+/* ── Validate ── */
+function validate(){
+  let ok = true;
+  // Name
+  const nameF = document.getElementById('f-name');
+  if(!v('inp-name')){ nameF.classList.add('has-err'); ok=false; }
+  else nameF.classList.remove('has-err');
+  // Telegram
+  const tgF = document.getElementById('inp-tg').closest('.field');
+  if(!v('inp-tg')){ tgF.classList.add('has-err'); ok=false; }
+  else tgF.classList.remove('has-err');
+  // Languages
+  const langs = getChips('lang-chips');
+  const errLang = document.getElementById('err-lang');
+  if(langs.length===0){ errLang.style.display='block'; ok=false; }
+  else errLang.style.display='none';
+  // Functions
+  const funcs = getChecked('func-checks');
+  const errFuncs = document.getElementById('err-funcs');
+  if(funcs.length===0 && !v('inp-func-other')){ errFuncs.style.display='block'; ok=false; }
+  else errFuncs.style.display='none';
+  return ok;
+}
+
+/* ── Build Telegram message ── */
+function buildMsg(){
+  const funcs = getChecked('func-checks');
+  if(v('inp-func-other')) funcs.push('Sonstiges: '+v('inp-func-other'));
+  const langs = getChips('lang-chips');
+  const lines = [
+    '📋 <b>NEUER TELEGRAM BOT BRIEF</b>',
+    '',
+    '👤 <b>Kontakt</b>',
+    `Name: ${v('inp-name')||'—'}`,
+    `Business: ${v('inp-business')||'—'}`,
+    `Nische: ${v('inp-niche')||'—'}`,
+    `Instagram/Web: ${v('inp-website')||'—'}`,
+    `Telegram: ${v('inp-tg')||'—'}`,
+    `E-Mail: ${v('inp-email')||'—'}`,
+    `Sprachen: ${langs.join(', ')||'—'}`,
+    '',
+    '🤖 <b>Bot-Funktionen</b>',
+    funcs.length ? funcs.join('\n• ') : '—',
+    '',
+    '💰 <b>Option</b>',
+    getRadio('support'),
+    '',
+    '🎭 <b>Stil</b>',
+    `Ton: ${getTone()}`,
+    `Bot-Name: ${v('inp-botname')||'—'}`,
+    `Avatar: ${v('inp-avatar')||'—'}`,
+    '',
+    '📝 <b>Content</b>',
+    `FAQ/Texte:\n${v('inp-faq')||'—'}`,
+    `Must-know:\n${v('inp-mustknow')||'—'}`,
+    `Nicht tun:\n${v('inp-donot')||'—'}`,
+    '',
+    '📅 <b>Timeline &amp; Budget</b>',
+    `Wann: ${getRadio('timeline')}`,
+    `Budget: ${getRadio('budget')}`,
+    `Quelle: ${v('inp-source')||'—'}`,
+    `Notizen:\n${v('inp-notes')||'—'}`,
+  ];
+  // funcs needs bullet formatting fix
+  const msg = lines.join('\n');
+  return msg.replace(/(FAQ|Booking|Portfolio|LeadForm|Payment|Orders|AI|Sonstiges[^\n]*)(\n)/g, '• $1$2');
+}
+
+/* ── Submit ── */
+async function submitBrief(){
+  if(!validate()) return;
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+
+  const text = buildMsg();
+
+  // If tokens are not set, show success anyway (demo mode)
+  if(BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE' || CHAT_ID === 'YOUR_CHAT_ID_HERE'){
+    console.log('=== BRIEF (demo mode — no token set) ===\n'+text);
+    showSuccess();
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode:'HTML' })
+    });
+    const data = await res.json();
+    if(data.ok){ showSuccess(); }
+    else {
+      alert('Fehler beim Senden. Bitte versuche es erneut oder schreib mir direkt.');
+      btn.disabled = false;
+    }
+  } catch(e){
+    alert('Netzwerkfehler. Bitte prüfe deine Verbindung.');
+    btn.disabled = false;
+  }
+}
+
+function showSuccess(){
+  document.getElementById('theForm').style.display='none';
+  const s = document.getElementById('successBox');
+  s.classList.add('show');
+  s.scrollIntoView({behavior:'smooth', block:'center'});
+}
+</script>
+</body>
+</html>
