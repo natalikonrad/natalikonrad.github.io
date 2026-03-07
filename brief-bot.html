@@ -147,6 +147,47 @@ footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(91,74,62,.1
 footer a{color:var(--esp);text-decoration:none;opacity:.7}
 footer a:hover{opacity:1}
 
+/* ── PRICE CALCULATOR ── */
+.calc-section{padding:48px 0}
+.calc-box{display:grid;grid-template-columns:1fr 272px;gap:24px;align-items:start}
+@media(max-width:860px){.calc-box{grid-template-columns:1fr}}
+.calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.calc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:380px){.calc-grid{grid-template-columns:1fr}}
+.calc-feat{background:linear-gradient(145deg,#1E1814,#262118);border:2px solid rgba(196,169,125,.12);border-radius:16px;padding:16px 14px;cursor:pointer;transition:all .22s;position:relative;user-select:none;-webkit-tap-highlight-color:transparent}
+.calc-feat:hover{border-color:rgba(196,169,125,.3);transform:translateY(-1px)}
+.calc-feat.cf-active{background:linear-gradient(145deg,#2C2218,#362E22);border-color:rgba(196,169,125,.5);box-shadow:0 0 0 1px rgba(196,169,125,.12),0 4px 20px rgba(0,0,0,.25)}
+.calc-feat.cf-base{border-color:rgba(196,169,125,.28);cursor:default}
+.cf-tick{position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(196,169,125,.3);display:flex;align-items:center;justify-content:center;font-size:10px;transition:all .22s;line-height:1;color:transparent}
+.calc-feat.cf-active .cf-tick,.calc-feat.cf-base .cf-tick{background:var(--gold);border-color:var(--gold);color:#1A1612}
+.cf-emoji{font-size:26px;margin-bottom:8px;line-height:1}
+.cf-name{font-size:13px;font-weight:600;color:rgba(255,255,255,.9);line-height:1.3;margin-bottom:4px}
+.cf-desc{font-size:11px;color:rgba(255,255,255,.38);line-height:1.4}
+.cf-ptag{margin-top:10px;font-size:12px;font-weight:700}
+.cf-ptag.base{color:rgba(196,169,125,.55)}
+.cf-ptag.plus{color:rgba(196,169,125,.7)}
+.calc-feat.cf-active .cf-ptag.plus{color:var(--gold)}
+/* Result box */
+.calc-result-box{background:linear-gradient(160deg,#1A1612,#201C18);border:1px solid rgba(196,169,125,.14);border-radius:20px;padding:26px 22px;position:sticky;top:80px}
+.crb-heading{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px}
+.crb-price{font-family:var(--serif);font-size:34px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:2px}
+.crb-price-sub{font-size:11px;color:rgba(255,255,255,.28);margin-bottom:12px}
+.crb-tier{display:inline-flex;align-items:center;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;transition:all .3s}
+.tier-simple{background:rgba(100,170,100,.12);color:#90c88a}
+.tier-medium{background:rgba(196,169,125,.12);color:var(--gold)}
+.tier-advanced{background:rgba(210,130,80,.1);color:#d4956a}
+.tier-premium{background:linear-gradient(135deg,rgba(196,169,125,.18),rgba(232,213,176,.08));color:var(--gold2);border:1px solid rgba(196,169,125,.2)}
+.crb-desc{font-size:12px;color:rgba(255,255,255,.4);line-height:1.5;margin-bottom:12px}
+.crb-divider{height:1px;background:rgba(196,169,125,.08);margin:12px 0}
+.crb-feats-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:8px}
+.crb-feats{display:flex;flex-direction:column;gap:5px;min-height:36px;margin-bottom:12px}
+.crb-feat-row{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,.6)}
+.crb-feat-row::before{content:'✓';color:var(--gold);font-size:10px;font-weight:700;flex-shrink:0}
+.crb-note{font-size:11px;color:rgba(255,255,255,.25);font-style:italic;line-height:1.5;margin-bottom:16px}
+.crb-cta{display:block;text-align:center;padding:12px 18px;border-radius:100px;background:linear-gradient(135deg,var(--esp),var(--esp2));color:#fff;font-size:13px;font-weight:600;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(91,74,62,.35);cursor:pointer;border:none;width:100%;font-family:var(--sans)}
+.crb-cta:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(91,74,62,.45)}
+@media(max-width:860px){.calc-result-box{position:relative;top:0;margin-top:20px}}
+
 /* divider */
 .divider{height:1px;background:rgba(91,74,62,.12);margin:0}
 </style>
@@ -211,7 +252,7 @@ footer a:hover{opacity:1}
           <span data-en style="display:none">One-time payment</span>
         </div>
         <div class="opt-price">
-          ab €290 <span>
+          <span data-ru>от</span><span data-de style="display:none">ab</span><span data-en style="display:none">from</span> €290 <span>
             <span data-ru>единоразово</span>
             <span data-de style="display:none">einmalig</span>
             <span data-en style="display:none">once</span>
@@ -264,12 +305,12 @@ footer a:hover{opacity:1}
           <span data-en style="display:none">Setup + monthly maintenance</span>
         </div>
         <div class="opt-price">
-          ab €199 <span>
+          <span data-ru>от</span><span data-de style="display:none">ab</span><span data-en style="display:none">from</span> €199 <span>
             <span data-ru>setup</span>
             <span data-de style="display:none">Setup</span>
             <span data-en style="display:none">setup</span>
           </span>
-          &nbsp;+&nbsp;ab €59<span>/
+          &nbsp;+&nbsp;<span data-ru>от</span><span data-de style="display:none">ab</span><span data-en style="display:none">from</span> €59<span>/
             <span data-ru>мес</span>
             <span data-de style="display:none">Mo</span>
             <span data-en style="display:none">mo</span>
@@ -321,7 +362,7 @@ footer a:hover{opacity:1}
           <span data-en style="display:none">Full Setup</span>
         </div>
         <div class="opt-price">
-          ab €490 <span>
+          <span data-ru>от</span><span data-de style="display:none">ab</span><span data-en style="display:none">from</span> €490 <span>
             <span data-ru>единоразово</span>
             <span data-de style="display:none">einmalig</span>
             <span data-en style="display:none">once</span>
@@ -367,6 +408,206 @@ footer a:hover{opacity:1}
       <span data-de style="display:none">* Endpreis nach Analyse deiner Anfrage. Genannte Preise sind Richtwerte.</span>
       <span data-en style="display:none">* Final price after reviewing your request. Prices shown are starting estimates.</span>
     </p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PRICE CALCULATOR -->
+<div class="cont">
+  <div class="calc-section">
+    <div class="section-title">
+      <span data-ru>Сколько будет стоить мой бот?</span>
+      <span data-de style="display:none">Was kostet mein Bot?</span>
+      <span data-en style="display:none">How much will my bot cost?</span>
+    </div>
+    <p class="section-sub">
+      <span data-ru>Выбери нужные функции — увидишь примерную стоимость. Нажми «К форме» — и выбранные функции автоматически перенесутся в бриф.</span>
+      <span data-de style="display:none">Wähle die gewünschten Funktionen — sieh den ungefähren Preis. Klick auf „Zum Formular" — die Auswahl wird automatisch ins Briefing übertragen.</span>
+      <span data-en style="display:none">Select the features you need — see the approximate cost. Click "To brief" and your selection transfers automatically to the form below.</span>
+    </p>
+
+    <div class="calc-box">
+      <!-- FEATURE GRID -->
+      <div class="calc-grid" id="calcGrid">
+
+        <div class="calc-feat cf-base cf-active" data-feature="FAQ" data-price="0">
+          <div class="cf-tick">✓</div>
+          <div class="cf-emoji">💬</div>
+          <div class="cf-name">
+            <span data-ru>FAQ / ответы</span>
+            <span data-de style="display:none">FAQ / Antworten</span>
+            <span data-en style="display:none">FAQ / Answers</span>
+          </div>
+          <div class="cf-desc">
+            <span data-ru>Чат с ответами на вопросы</span>
+            <span data-de style="display:none">Chat mit Antworten</span>
+            <span data-en style="display:none">Chat with Q&amp;A answers</span>
+          </div>
+          <div class="cf-ptag base">
+            <span data-ru>основа</span>
+            <span data-de style="display:none">inklusive</span>
+            <span data-en style="display:none">base</span>
+          </div>
+        </div>
+
+        <div class="calc-feat" data-feature="Booking" data-price="60" onclick="toggleCalcFeat(this)">
+          <div class="cf-tick">✓</div>
+          <div class="cf-emoji">📅</div>
+          <div class="cf-name">
+            <span data-ru>Запись / бронирование</span>
+            <span data-de style="display:none">Terminbuchung</span>
+            <span data-en style="display:none">Appointments</span>
+          </div>
+          <div class="cf-desc">
+            <span data-ru>Принимает записи клиентов</span>
+            <span data-de style="display:none">Nimmt Termine online an</span>
+            <span data-en style="display:none">Takes client appointments</span>
+          </div>
+          <div class="cf-ptag plus">+€60</div>
+        </div>
+
+        <div class="calc-feat" data-feature="Portfolio" data-price="30" onclick="toggleCalcFeat(this)">
+          <div class="cf-tick">✓</div>
+          <div class="cf-emoji">🖼️</div>
+          <div class="cf-name">
+            <span data-ru>Портфолио / прайс</span>
+            <span data-de style="display:none">Portfolio / Preisliste</span>
+            <span data-en style="display:none">Portfolio / prices</span>
+          </div>
+          <div class="cf-desc">
+            <span data-ru>Показывает работы и цены</span>
+            <span data-de style="display:none">Zeigt Arbeiten und Preise</span>
+            <span data-en style="display:none">Shows works and prices</span>
+          </div>
+          <div class="cf-ptag plus">+€30</div>
+        </div>
+
+        <div class="calc-feat" data-feature="LeadForm" data-price="40" onclick="toggleCalcFeat(this)">
+          <div class="cf-tick">✓</div>
+          <div class="cf-emoji">📨</div>
+          <div class="cf-name">
+            <span data-ru>Приём заявок</span>
+            <span data-de style="display:none">Anfragen aufnehmen</span>
+            <span data-en style="display:none">Lead capture</span>
+          </div>
+          <div class="cf-desc">
+            <span data-ru>Собирает данные новых клиентов</span>
+            <span data-de style="display:none">Sammelt neue Kundenanfragen</span>
+            <span data-en style="display:none">Collects new client leads</span>
+          </div>
+          <div class="cf-ptag plus">+€40</div>
+        </div>
+
+        <div class="calc-feat" data-feature="Payment" data-price="20" onclick="toggleCalcFeat(this)">
+          <div class="cf-tick">✓</div>
+          <div class="cf-emoji">💳</div>
+          <div class="cf-name">
+            <span data-ru>Инфо об оплате</span>
+            <span data-de style="display:none">Zahlungsinfos</span>
+            <span data-en style="display:none">Payment info</span>
+          </div>
+          <div class="cf-desc">
+            <span data-ru>Реквизиты и способы оплаты</span>
+            <span data-de style="display:none">Zahlungswege &amp; Details</span>
+            <span data-en style="display:none">Payment details &amp; methods</span>
+          </div>
+          <div class="cf-ptag plus">+€20</div>
+        </div>
+
+        <div class="calc-feat" data-feature="Orders" data-price="80" onclick="toggleCalcFeat(this)">
+          <div class="cf-tick">✓</div>
+          <div class="cf-emoji">🛒</div>
+          <div class="cf-name">
+            <span data-ru>Каталог / заказы</span>
+            <span data-de style="display:none">Katalog / Bestellungen</span>
+            <span data-en style="display:none">Catalog / orders</span>
+          </div>
+          <div class="cf-desc">
+            <span data-ru>Просмотр и заказ товаров</span>
+            <span data-de style="display:none">Produkte ansehen und bestellen</span>
+            <span data-en style="display:none">Browse and order products</span>
+          </div>
+          <div class="cf-ptag plus">+€80</div>
+        </div>
+
+        <div class="calc-feat" data-feature="AI" data-price="120" onclick="toggleCalcFeat(this)">
+          <div class="cf-tick">✓</div>
+          <div class="cf-emoji">🤖</div>
+          <div class="cf-name">
+            <span data-ru>ИИ-ответы (Claude AI)</span>
+            <span data-de style="display:none">KI-Antworten (Claude AI)</span>
+            <span data-en style="display:none">AI responses (Claude AI)</span>
+          </div>
+          <div class="cf-desc">
+            <span data-ru>Умный бот, понимает любые вопросы</span>
+            <span data-de style="display:none">Intelligenter Bot versteht alles</span>
+            <span data-en style="display:none">Smart bot understands anything</span>
+          </div>
+          <div class="cf-ptag plus">+€120</div>
+        </div>
+
+        <div class="calc-feat" data-feature="DocProcess" data-price="100" onclick="toggleCalcFeat(this)">
+          <div class="cf-tick">✓</div>
+          <div class="cf-emoji">📄</div>
+          <div class="cf-name">
+            <span data-ru>Работа с документами</span>
+            <span data-de style="display:none">Dokumentenverarbeitung</span>
+            <span data-en style="display:none">Document processing</span>
+          </div>
+          <div class="cf-desc">
+            <span data-ru>Читает и обрабатывает файлы</span>
+            <span data-de style="display:none">Liest und verarbeitet Dateien</span>
+            <span data-en style="display:none">Reads and processes files</span>
+          </div>
+          <div class="cf-ptag plus">+€100</div>
+        </div>
+
+        <div class="calc-feat" data-feature="Multi" data-price="50" onclick="toggleCalcFeat(this)">
+          <div class="cf-tick">✓</div>
+          <div class="cf-emoji">🌍</div>
+          <div class="cf-name">
+            <span data-ru>Мультиязычность</span>
+            <span data-de style="display:none">Mehrsprachigkeit</span>
+            <span data-en style="display:none">Multilingual</span>
+          </div>
+          <div class="cf-desc">
+            <span data-ru>Бот говорит на 2+ языках</span>
+            <span data-de style="display:none">Bot spricht 2+ Sprachen</span>
+            <span data-en style="display:none">Bot speaks 2+ languages</span>
+          </div>
+          <div class="cf-ptag plus">+€50</div>
+        </div>
+
+      </div><!-- /calc-grid -->
+
+      <!-- RESULT BOX -->
+      <div class="calc-result-box">
+        <div class="crb-heading">
+          <span data-ru>Примерная стоимость</span>
+          <span data-de style="display:none">Ungefährer Preis</span>
+          <span data-en style="display:none">Approximate cost</span>
+        </div>
+        <div class="crb-price" id="crPrice">€290</div>
+        <div class="crb-price-sub" id="crPriceSub"></div>
+        <div class="crb-tier" id="crTier"></div>
+        <div class="crb-desc" id="crDesc"></div>
+        <div class="crb-divider"></div>
+        <div class="crb-feats-lbl">
+          <span data-ru>Выбранные функции:</span>
+          <span data-de style="display:none">Ausgewählte Funktionen:</span>
+          <span data-en style="display:none">Selected features:</span>
+        </div>
+        <div class="crb-feats" id="crFeats"></div>
+        <div class="crb-note" id="crNote"></div>
+        <button class="crb-cta" onclick="calcGoToForm()">
+          <span data-ru>Заполнить бриф →</span>
+          <span data-de style="display:none">Zum Formular →</span>
+          <span data-en style="display:none">Fill the brief →</span>
+        </button>
+      </div>
+
+    </div><!-- /calc-box -->
   </div>
 </div>
 
@@ -888,6 +1129,7 @@ function setLang(l){
     const key = el.hasAttribute('data-ru')?'ru': el.hasAttribute('data-de')?'de':'en';
     el.style.display = (key===l)?'':'none';
   });
+  if(typeof updateCalcResult==='function') updateCalcResult();
 }
 setLang('de');
 
@@ -1002,6 +1244,97 @@ function buildMsg(){
   // funcs needs bullet formatting fix
   const msg = lines.join('\n');
   return msg.replace(/(FAQ|Booking|Portfolio|LeadForm|Payment|Orders|AI|Sonstiges[^\n]*)(\n)/g, '• $1$2');
+}
+
+/* ── PRICE CALCULATOR ── */
+const CALC_NAMES = {
+  FAQ:        {ru:'FAQ / ответы на вопросы',        de:'FAQ / Fragen beantworten',             en:'FAQ / Q&A answers'},
+  Booking:    {ru:'Запись и бронирование',           de:'Terminbuchung',                        en:'Appointments & booking'},
+  Portfolio:  {ru:'Портфолио и прайс-лист',          de:'Portfolio & Preisliste',                en:'Portfolio & price list'},
+  LeadForm:   {ru:'Приём заявок от клиентов',        de:'Kundenanfragen aufnehmen',             en:'Lead capture form'},
+  Payment:    {ru:'Информация об оплате',             de:'Zahlungsinformationen',                en:'Payment info'},
+  Orders:     {ru:'Каталог и управление заказами',   de:'Katalog & Bestellverwaltung',          en:'Catalog & order management'},
+  AI:         {ru:'ИИ-ответы (Claude AI)',            de:'KI-Antworten (Claude AI)',             en:'AI responses (Claude AI)'},
+  DocProcess: {ru:'Обработка документов',             de:'Dokumentenverarbeitung',               en:'Document processing'},
+  Multi:      {ru:'Мультиязычность (2+ языка)',       de:'Mehrsprachigkeit (2+ Sprachen)',       en:'Multilingual (2+ languages)'},
+};
+const TIERS = [
+  {max:370,   key:'simple',
+   label:{ru:'Простой бот',             de:'Einfacher Bot',              en:'Simple bot'},
+   desc: {ru:'Базовый информационный ассистент — отвечает на вопросы и рассказывает об услугах.',
+          de:'Grundlegender Informationsassistent — beantwortet Fragen und erklärt deine Leistungen.',
+          en:'Basic info assistant — answers questions and explains your services.'},
+   note: {ru:'Идеально для старта — быстро, просто, эффективно.',
+          de:'Ideal für den Einstieg — schnell, einfach, effektiv.',
+          en:'Perfect to start — fast, simple, effective.'}},
+  {max:510,   key:'medium',
+   label:{ru:'Функциональный бот',      de:'Funktionaler Bot',           en:'Functional bot'},
+   desc: {ru:'Несколько функций — запись клиентов, показ портфолио, приём заявок.',
+          de:'Mehrere Funktionen — Termine buchen, Portfolio zeigen, Anfragen aufnehmen.',
+          en:'Multi-function bot — bookings, portfolio, lead capture.'},
+   note: {ru:'Отлично подходит для малого и среднего бизнеса.',
+          de:'Gut geeignet für kleine und mittlere Unternehmen.',
+          en:'Great for small and medium businesses.'}},
+  {max:700,   key:'advanced',
+   label:{ru:'Продвинутый бот',         de:'Erweiterter Bot',            en:'Advanced bot'},
+   desc: {ru:'Умный бот с ИИ — понимает любые вопросы, работает с документами и интеграциями.',
+          de:'Intelligenter Bot mit KI — versteht alles, verarbeitet Dokumente.',
+          en:'Smart bot with AI — understands any question, processes documents.'},
+   note: {ru:'Идеально для сложных бизнес-процессов.',
+          de:'Ideal für komplexe Geschäftsprozesse.',
+          en:'Ideal for complex business processes.'}},
+  {max:99999, key:'premium',
+   label:{ru:'Премиум-автоматизация',   de:'Premium-Automatisierung',   en:'Premium automation'},
+   desc: {ru:'Полная автоматизация — ИИ, каталог, заказы, мультиязычность. Бот заменяет целый отдел.',
+          de:'Vollautomatisierung — KI, Katalog, Bestellungen, Mehrsprachig. Bot ersetzt eine Abteilung.',
+          en:'Full automation — AI, catalog, orders, multilingual. Bot replaces an entire department.'},
+   note: {ru:'Максимум возможностей для масштабирования бизнеса.',
+          de:'Maximale Möglichkeiten zur Geschäftsskalierung.',
+          en:'Maximum capabilities for business scaling.'}},
+];
+
+const calcActive = new Set(['FAQ']);
+
+function toggleCalcFeat(el){
+  if(el.classList.contains('cf-base')) return;
+  const feat = el.dataset.feature;
+  el.classList.toggle('cf-active');
+  if(calcActive.has(feat)) calcActive.delete(feat);
+  else calcActive.add(feat);
+  updateCalcResult();
+}
+
+function updateCalcResult(){
+  let total = 0;
+  calcActive.forEach(f=>{
+    const el = document.querySelector('[data-feature="'+f+'"]');
+    if(el) total += parseInt(el.dataset.price)||0;
+  });
+  total += 290; // base price
+  const hi = Math.round(total * 1.25 / 10) * 10;
+
+  const tier = TIERS.find(t=>total < t.max) || TIERS[TIERS.length-1];
+
+  document.getElementById('crPrice').textContent = '€'+total+'–€'+hi;
+  document.getElementById('crPriceSub').textContent =
+    {ru:'ориентировочная стоимость',de:'ungefähre Kosten',en:'approximate cost'}[curLang];
+  const tierEl = document.getElementById('crTier');
+  tierEl.className = 'crb-tier tier-'+tier.key;
+  tierEl.textContent = tier.label[curLang];
+  document.getElementById('crDesc').textContent = tier.desc[curLang];
+  document.getElementById('crFeats').innerHTML =
+    [...calcActive].map(f=>'<div class="crb-feat-row">'+(CALC_NAMES[f]||{})[curLang]||f+'</div>').join('');
+  document.getElementById('crNote').textContent = tier.note[curLang];
+}
+
+function calcGoToForm(){
+  // Sync selections → form checkboxes
+  document.querySelectorAll('#func-checks input[type=checkbox]').forEach(inp=>{
+    const on = calcActive.has(inp.value);
+    inp.checked = on;
+    inp.closest('.check-item').classList.toggle('selected', on);
+  });
+  document.getElementById('theForm').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 /* ── Submit ── */
