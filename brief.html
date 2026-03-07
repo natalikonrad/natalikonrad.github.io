@@ -700,6 +700,52 @@ body.lang-ru [data-en]{display:none}
     </div>
   </header>
 
+  <!-- ==================== SECTION 0: CONTACT ==================== -->
+  <div class="section" id="section-contact">
+    <div class="section-number">
+      <span data-de>Ihre Kontaktdaten</span><span data-ru>Ваши контакты</span><span data-en>Your Contact Info</span>
+    </div>
+    <h2 class="section-title">
+      <span data-de>Wie kann ich Sie erreichen?</span><span data-ru>Как с вами связаться?</span><span data-en>How can I reach you?</span>
+    </h2>
+
+    <div class="field" id="f-contact-name">
+      <span class="field-label">
+        <span data-de>Name <span style="color:#C4A97D">*</span></span>
+        <span data-ru>Имя <span style="color:#C4A97D">*</span></span>
+        <span data-en>Name <span style="color:#C4A97D">*</span></span>
+      </span>
+      <input type="text" id="inp-contact-name" class="text-line" placeholder="">
+      <span class="field-err" id="err-contact-name" style="display:none;font-size:12px;color:#c0392b;margin-top:4px">
+        <span data-de>Bitte Namen eingeben</span><span data-ru>Пожалуйста, введите имя</span><span data-en>Please enter your name</span>
+      </span>
+    </div>
+
+    <div class="field" id="f-contact-phone">
+      <span class="field-label">
+        <span data-de>Telefon <span style="color:#C4A97D">*</span></span>
+        <span data-ru>Телефон <span style="color:#C4A97D">*</span></span>
+        <span data-en>Phone <span style="color:#C4A97D">*</span></span>
+      </span>
+      <input type="tel" id="inp-contact-phone" class="text-line" placeholder="">
+      <span class="field-err" id="err-contact-phone" style="display:none;font-size:12px;color:#c0392b;margin-top:4px">
+        <span data-de>Bitte Telefonnummer eingeben</span><span data-ru>Пожалуйста, введите номер телефона</span><span data-en>Please enter your phone number</span>
+      </span>
+    </div>
+
+    <div class="field" id="f-contact-tg">
+      <span class="field-label">
+        <span data-de>Telegram <span style="color:#C4A97D">*</span></span>
+        <span data-ru>Telegram <span style="color:#C4A97D">*</span></span>
+        <span data-en>Telegram <span style="color:#C4A97D">*</span></span>
+      </span>
+      <input type="text" id="inp-contact-tg" class="text-line" placeholder="@username">
+      <span class="field-err" id="err-contact-tg" style="display:none;font-size:12px;color:#c0392b;margin-top:4px">
+        <span data-de>Bitte Telegram-Username eingeben</span><span data-ru>Пожалуйста, введите Telegram</span><span data-en>Please enter your Telegram</span>
+      </span>
+    </div>
+  </div>
+
   <!-- ==================== SECTION 1: SERVICES ==================== -->
   <div class="section">
     <div class="section-number">
@@ -1387,11 +1433,33 @@ function limitPalettes(el) {
 /* ========== SEND BRIEF VIA TELEGRAM ========== */
 function sendBrief() {
   var lang = document.body.classList.contains('lang-ru') ? 'ru' : (document.body.classList.contains('lang-en') ? 'en' : 'de');
+
+  /* Validate required contact fields */
+  var contactName  = (document.getElementById('inp-contact-name').value||'').trim();
+  var contactPhone = (document.getElementById('inp-contact-phone').value||'').trim();
+  var contactTg    = (document.getElementById('inp-contact-tg').value||'').trim();
+  var hasErr = false;
+  var firstErrEl = null;
+  function markErr(inputId, errId, show) {
+    document.getElementById(inputId).style.borderColor = show ? '#c0392b' : '';
+    document.getElementById(errId).style.display = show ? 'block' : 'none';
+    if(show && !firstErrEl) firstErrEl = document.getElementById(inputId);
+  }
+  markErr('inp-contact-name',  'err-contact-name',  !contactName);  if(!contactName)  hasErr=true;
+  markErr('inp-contact-phone', 'err-contact-phone', !contactPhone); if(!contactPhone) hasErr=true;
+  markErr('inp-contact-tg',    'err-contact-tg',    !contactTg);    if(!contactTg)    hasErr=true;
+  if(hasErr){ firstErrEl.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+
   var lines = [];
 
-  /* Title */
-  lines.push(lang === 'ru' ? '\u0411\u0420\u0418\u0424 \u041D\u0410 \u041F\u0420\u041E\u0415\u041A\u0422' : (lang === 'en' ? 'PROJECT BRIEF' : 'PROJEKTBRIEFING'));
-  lines.push('\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550');
+  /* Title + Contact */
+  lines.push(lang === 'ru' ? 'БРИФ НА ПРОЕКТ' : (lang === 'en' ? 'PROJECT BRIEF' : 'PROJEKTBRIEFING'));
+  lines.push('════════════════════');
+  lines.push('');
+  lines.push(lang === 'ru' ? '👤 КОНТАКТ:' : (lang === 'en' ? '👤 CONTACT:' : '👤 KONTAKT:'));
+  lines.push((lang === 'ru' ? 'Имя: ' : (lang === 'en' ? 'Name: ' : 'Name: ')) + contactName);
+  lines.push('📞 ' + contactPhone);
+  lines.push('Telegram: ' + contactTg);
   lines.push('');
 
   /* Section 1: Services */

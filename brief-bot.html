@@ -702,13 +702,29 @@ footer a:hover{opacity:1}
           </div>
         </div>
 
-        <div class="field">
-          <label>
-            <span data-ru>Email (необязательно)</span>
-            <span data-de style="display:none">E-Mail (optional)</span>
-            <span data-en style="display:none">Email (optional)</span>
-          </label>
-          <input type="email" id="inp-email">
+        <div class="row">
+          <div class="field" id="f-phone">
+            <label>
+              <span data-ru>Номер телефона</span>
+              <span data-de style="display:none">Telefonnummer</span>
+              <span data-en style="display:none">Phone number</span>
+              <span class="req">*</span>
+            </label>
+            <input type="tel" id="inp-phone">
+            <span class="err-msg">
+              <span data-ru>Пожалуйста, введи номер телефона</span>
+              <span data-de style="display:none">Bitte Telefonnummer eingeben</span>
+              <span data-en style="display:none">Please enter your phone number</span>
+            </span>
+          </div>
+          <div class="field">
+            <label>
+              <span data-ru>Email (необязательно)</span>
+              <span data-de style="display:none">E-Mail (optional)</span>
+              <span data-en style="display:none">Email (optional)</span>
+            </label>
+            <input type="email" id="inp-email">
+          </div>
         </div>
 
         <div class="field">
@@ -1138,6 +1154,11 @@ const PLACEHOLDERS = {
     de: 'Anna Müller',
     en: 'Anna Müller'
   },
+  'inp-phone': {
+    ru: '+7 900 000 00 00 / +49 151 000 000',
+    de: '+49 151 000 000',
+    en: '+1 555 000 0000'
+  },
   'inp-business': {
     ru: 'Beauty Studio @моя_студия',
     de: 'Beauty Studio @meinestudio',
@@ -1259,6 +1280,10 @@ function validate(){
   const nameF = document.getElementById('f-name');
   if(!v('inp-name')){ nameF.classList.add('has-err'); ok=false; if(!firstErr) firstErr=nameF; }
   else nameF.classList.remove('has-err');
+  // Phone
+  const phoneF = document.getElementById('f-phone');
+  if(!v('inp-phone')){ phoneF.classList.add('has-err'); ok=false; if(!firstErr) firstErr=phoneF; }
+  else phoneF.classList.remove('has-err');
   // Telegram
   const tgF = document.getElementById('inp-tg').closest('.field');
   if(!v('inp-tg')){ tgF.classList.add('has-err'); ok=false; if(!firstErr) firstErr=tgF; }
@@ -1329,6 +1354,7 @@ function buildMsg(){
     `Business: ${v('inp-business')||'—'}`,
     `${t('niche')}: ${v('inp-niche')||'—'}`,
     `${t('web')}: ${v('inp-website')||'—'}`,
+    `📞 ${v('inp-phone')||'—'}`,
     `Telegram: ${v('inp-tg')||'—'}`,
     `E-Mail: ${v('inp-email')||'—'}`,
     `${t('langs')}: ${langs.join(', ')||'—'}`,
