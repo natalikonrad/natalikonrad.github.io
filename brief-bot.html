@@ -1301,6 +1301,24 @@ function buildMsg(){
     notes:   {ru:'Заметки',    de:'Notizen',    en:'Notes'},
   };
   const t = l => L[l][curLang] || L[l].de;
+  // Translate radio/chip values
+  const SUPPORT_MAP = {
+    Einmalig:  {ru:'Без поддержки (разовая) — от €290', de:'Einmalig — ab €290', en:'One-time — from €290'},
+    Betreuung: {ru:'С поддержкой — Setup от €199 + €59/мес', de:'Mit Betreuung — Setup ab €199 + €59/Mo', en:'With support — Setup from €199 + €59/mo'},
+    Komplett:  {ru:'Полная настройка (под ключ) — от €490', de:'Komplett (Rundum-Sorglos) — ab €490', en:'Full setup (turnkey) — from €490'},
+    Unsicher:  {ru:'Ещё не уверен(а) — помоги разобраться', de:'Noch unsicher — bitte beraten', en:'Not sure yet — please advise'},
+  };
+  const TIMELINE_MAP = {
+    ASAP:      {ru:'Как можно скорее', de:'So schnell wie möglich', en:'ASAP'},
+    '2Wochen': {ru:'Через 2 недели',   de:'In 2 Wochen',            en:'In 2 weeks'},
+    'Kein Eile':{ru:'Не спешим',       de:'Keine Eile',             en:'No rush'},
+  };
+  const TONE_MAP = {
+    Professionell:{ru:'Профессионально', de:'Professionell', en:'Professional'},
+    Freundlich:   {ru:'Дружелюбно',      de:'Freundlich & locker', en:'Friendly & casual'},
+    Formal:       {ru:'Формально',       de:'Formal', en:'Formal'},
+  };
+  const tr = (map, val) => (map[val]||{})[curLang] || val || '—';
   // Map feature keys to readable names
   const funcNames = funcs.map(f => '• ' + ((CALC_NAMES[f]||{})[curLang] || f));
   const lines = [
@@ -1319,10 +1337,10 @@ function buildMsg(){
     funcNames.length ? funcNames.join('\n') : '—',
     '',
     `💰 <b>${t('option')}</b>`,
-    getRadio('support')||'—',
+    tr(SUPPORT_MAP, getRadio('support')),
     '',
     `🎭 <b>${t('style')}</b>`,
-    `${t('tone')}: ${getTone()}`,
+    `${t('tone')}: ${tr(TONE_MAP, getTone())}`,
     `${t('name')}: ${v('inp-botname')||'—'}`,
     `${t('avatar')}: ${v('inp-avatar')||'—'}`,
     '',
@@ -1332,7 +1350,7 @@ function buildMsg(){
     `${t('donot')}:\n${v('inp-donot')||'—'}`,
     '',
     `📅 <b>${t('timeline')}</b>`,
-    `${t('when')}: ${getRadio('timeline')||'—'}`,
+    `${t('when')}: ${tr(TIMELINE_MAP, getRadio('timeline'))}`,
     `${t('budget')}: ${getRadio('budget')||'—'}`,
     `${t('source')}: ${v('inp-source')||'—'}`,
     `${t('notes')}:\n${v('inp-notes')||'—'}`,
