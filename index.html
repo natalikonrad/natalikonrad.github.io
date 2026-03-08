@@ -660,6 +660,25 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
+    <div class="pc an" onclick="openLightbox(this)">
+      <div style="overflow:hidden;height:300px">
+        <video class="pc-img" src="portfolio-instagram.mp4" autoplay muted loop playsinline style="height:100%;width:100%;object-fit:cover;object-position:center top"></video>
+      </div>
+      <div class="pc-b">
+        <div class="p-tags"><span class="ptag">Instagram</span><span class="ptag">Reels</span><span class="ptag">Content</span></div>
+        <div class="pc-t">
+          <span data-ru>Видео-контент для Instagram</span>
+          <span data-de>Video-Content für Instagram</span>
+          <span data-en>Instagram Video Content</span>
+        </div>
+        <p class="pc-d">
+          <span data-ru>Съёмка Reels и видео-контента для социальных сетей. Атмосфера, движение, стиль.</span>
+          <span data-de>Dreh von Reels und Video-Content für Social Media. Atmosphäre, Bewegung, Stil.</span>
+          <span data-en>Shooting Reels and video content for social media. Atmosphere, movement, style.</span>
+        </p>
+      </div>
+    </div>
+
   </div>
   <div class="c-nav">
     <button class="ca" onclick="scrollCar(-1)"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
@@ -1070,14 +1089,26 @@ function sendReview(){
 
 // LIGHTBOX
 function openLightbox(card){
-  const img=card.querySelector('.pc-img');
-  if(img){
-    document.getElementById('lb-img').src=img.src;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow='hidden';
+  const img=card.querySelector('img.pc-img');
+  const vid=card.querySelector('video.pc-img');
+  const lbImg=document.getElementById('lb-img');
+  const lbVid=document.getElementById('lb-vid');
+  if(vid){
+    lbVid.src=vid.src;
+    lbVid.style.display='block';
+    lbImg.style.display='none';
+    lbVid.play();
+  } else if(img){
+    lbImg.src=img.src;
+    lbImg.style.display='block';
+    lbVid.style.display='none';
   }
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
 }
 function closeLightbox(){
+  const lbVid=document.getElementById('lb-vid');
+  if(lbVid){lbVid.pause();lbVid.src='';}
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow='';
 }
@@ -1087,6 +1118,7 @@ function closeLightbox(){
 <div class="lb-overlay" id="lightbox" onclick="closeLightbox()">
   <button class="lb-close" onclick="closeLightbox()"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
   <img id="lb-img" src="" alt="">
+  <video id="lb-vid" autoplay muted loop playsinline style="display:none;max-height:90vh;max-width:90vw;border-radius:12px"></video>
 </div>
 </body>
 </html>
