@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+<head><meta name="google-site-verification" content="tkw_lulUJqa_uOpbTQgsP6TJ0IOL0vQ_Djbkssr7_qI" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
-<title>Natali Konrad — Digital Creator</title>
+<title>Natali Konrad — Digital Business Architect</title>
 <meta name="description" content="Natali Konrad — Webdesign, Telegram-Bots, Content-Erstellung. Ihr digitaler Partner in Kempten.">
-<meta property="og:title" content="Natali Konrad — Digital Creator">
+<meta property="og:title" content="Natali Konrad — Digital Business Architect">
 <meta property="og:description" content="Websites, Telegram-Bots und Content, die Kunden bringen. Kempten, Deutschland.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://natalikonrad.github.io">
@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Natali Konrad">
 <meta property="og:locale" content="de_DE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Natali Konrad — Digital Creator">
+<meta name="twitter:title" content="Natali Konrad — Digital Business Architect">
 <meta name="twitter:description" content="Websites, Telegram-Bots und Content, die Kunden bringen.">
 <meta name="twitter:image" content="https://natalikonrad.github.io/og-image.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -180,6 +180,13 @@ h2.st-w em{color:var(--gold)}
 .sc:hover .sc-more{color:var(--gold)}
 .sc-more svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}
 .sc:hover .sc-more svg{transform:translateX(3px)}
+
+/* PORTFOLIO FILTERS */
+.pf-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.pf-tab{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid rgba(196,169,125,.18);font-family:var(--sans);font-size:13px;font-weight:600;color:rgba(255,255,255,.45);cursor:pointer;transition:all .3s;backdrop-filter:blur(8px)}
+.pf-tab:hover{color:#fff;border-color:rgba(196,169,125,.4);background:rgba(196,169,125,.08)}
+.pf-tab.active{background:var(--esp);border-color:var(--esp);color:#fff;box-shadow:0 4px 16px rgba(91,74,62,.4)}
+.pc.pf-hidden{display:none}
 
 /* PORTFOLIO */
 #portfolio{background:var(--dark)}
@@ -353,9 +360,17 @@ a[href^="tel"]{color:inherit;text-decoration:none}
   .h-right{height:40vh;min-height:260px}
   .h-left{padding:30px 20px 56px}
   .h-stats{gap:20px}
-  nav{padding:0 20px}
+  nav{padding:0 12px}
   .ab-feats{grid-template-columns:1fr}
   .h-name{font-size:clamp(48px,13vw,72px)}
+  .btn-glass{display:none}
+  .lang-sw{gap:1px;padding:2px}
+  .lb{padding:4px 10px;font-size:10px}
+  .n-logo{font-size:18px;gap:6px}
+  .n-nk{width:30px;height:30px;font-size:10px}
+  .pf-tabs{gap:6px}
+  .pf-tab{padding:6px 14px;font-size:12px}
+  .pc{flex:0 0 300px}
 }
 
 /* LIGHTBOX */
@@ -413,7 +428,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
   <a href="#reviews" onclick="toggleMenu()"><span data-ru>Отзывы</span><span data-de>Bewertungen</span><span data-en>Reviews</span></a>
   <a href="#contact" onclick="toggleMenu()"><span data-ru>Контакты</span><span data-de>Kontakt</span><span data-en>Contact</span></a>
   <div class="mob-ls">
-    <button onclick="setLang('de');toggleMenu()">RU</button>
+    <button onclick="setLang('ru');toggleMenu()">RU</button>
     <button class="active" onclick="setLang('de');toggleMenu()">DE</button>
     <button onclick="setLang('en');toggleMenu()">EN</button>
   </div>
@@ -426,16 +441,15 @@ a[href^="tel"]{color:inherit;text-decoration:none}
   <div class="orb orb3"></div>
   <div class="h-left">
     <div class="h-badges">
-      <div class="badge"><div class="bdot"></div>Digital Creator</div>
+      <div class="badge"><div class="bdot"></div><span data-ru>Архитектор цифрового бизнеса</span><span data-de>Digitaler Business-Architekt</span><span data-en>Digital Business Architect</span></div>
       <div class="badge"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Kempten, DE</div>
-      <div class="badge">RU · DE · EN</div>
     </div>
     <div class="h-name">
       <span data-ru>Natali<br><em>Konrad</em></span>
       <span data-de>Natali<br><em>Konrad</em></span>
       <span data-en>Natali<br><em>Konrad</em></span>
     </div>
-    <div class="h-sub">Digital Creator</div>
+    <div class="h-sub"><span data-ru>Архитектор цифрового бизнеса</span><span data-de>Digitaler Business-Architekt</span><span data-en>Digital Business Architect</span></div>
     <p class="h-tag">
       <span data-ru>Ваш бизнес заслуживает мощного онлайн-присутствия. Я создаю сайты, которые продают, ботов, которые работают за вас, и контент, который привлекает клиентов.</span>
       <span data-de>Ihr Business verdient eine starke Online-Präsenz. Ich baue Websites, die verkaufen, Bots, die für Sie arbeiten, und Content, der Kunden anzieht.</span>
@@ -454,7 +468,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       <div class="hst"><div class="hst-n">30<span>+</span></div><div class="hst-l" data-ru>проектов</div><div class="hst-l" data-de>Projekte</div><div class="hst-l" data-en>projects</div></div>
       <div class="hst"><div class="hst-n">3</div><div class="hst-l" data-ru>языка</div><div class="hst-l" data-de>Sprachen</div><div class="hst-l" data-en>languages</div></div>
       <div class="hst"><div class="hst-n">24<span>/7</span></div><div class="hst-l" data-ru>боты работают</div><div class="hst-l" data-de>Bots laufen</div><div class="hst-l" data-en>bots running</div></div>
-      <div class="hst"><div class="hst-n">5<span>–7</span></div><div class="hst-l" data-ru>дней до результата</div><div class="hst-l" data-de>Tage bis Ergebnis</div><div class="hst-l" data-en>days to result</div></div>
+      <div class="hst"><div class="hst-n">10<span>–14</span></div><div class="hst-l" data-ru>дней до результата</div><div class="hst-l" data-de>Tage bis Ergebnis</div><div class="hst-l" data-en>days to result</div></div>
     </div>
   </div>
   <div class="h-right">
@@ -476,7 +490,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       <span class="sc-n">01</span>
       <div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <div class="sc-t"><span data-ru>Сайты и лендинги</span><span data-de>Websites & Landingpages</span><span data-en>Websites & Landing Pages</span></div>
-      <p class="sc-d"><span data-ru>Продающие страницы с нуля — мобильная адаптация, SEO, формы, интеграции с мессенджерами. Результат за 5–7 дней.</span><span data-de>Verkaufsstarke Seiten von Grund auf — mobil optimiert, SEO, Formulare, Messenger-Integration. Ergebnis in 5–7 Tagen.</span><span data-en>High-converting pages from scratch — mobile-optimized, SEO, forms, messenger integration. Results in 5–7 days.</span></p>
+      <p class="sc-d"><span data-ru>Продающие страницы с нуля — мобильная адаптация, SEO, формы, интеграции с мессенджерами. Результат за 10–14 дней.</span><span data-de>Verkaufsstarke Seiten von Grund auf — mobil optimiert, SEO, Formulare, Messenger-Integration. Ergebnis in 10–14 Tagen.</span><span data-en>High-converting pages from scratch — mobile-optimized, SEO, forms, messenger integration. Results in 10–14 days.</span></p>
       <div class="sc-footer">
         <div class="sc-p">от 300 €</div>
         <span class="sc-more"><span data-ru>Подробнее</span><span data-de>Details</span><span data-en>Details</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
@@ -550,9 +564,16 @@ a[href^="tel"]{color:inherit;text-decoration:none}
   <div class="ey ey-gold an"><span data-ru>Портфолио</span><span data-de>Portfolio</span><span data-en>Portfolio</span></div>
   <h2 class="st st-w an d1"><span data-ru>Реальные <em>проекты</em></span><span data-de>Echte <em>Projekte</em></span><span data-en>Real <em>projects</em></span></h2>
   <p class="sd sd-w an d2"><span data-ru>Листайте вправо — нажмите на карточку, чтобы увеличить.</span><span data-de>Nach rechts scrollen — klicken Sie auf die Karte zum Vergrößern.</span><span data-en>Scroll right — click a card to enlarge.</span></p>
+  <div class="pf-tabs an d2">
+    <button class="pf-tab active" onclick="filterPortfolio('all')"><span data-ru>Все</span><span data-de>Alle</span><span data-en>All</span></button>
+    <button class="pf-tab" onclick="filterPortfolio('web')"><span data-ru>Сайты и боты</span><span data-de>Web & Bots</span><span data-en>Web & Bots</span></button>
+    <button class="pf-tab" onclick="filterPortfolio('content')"><span data-ru>Контент</span><span data-de>Content</span><span data-en>Content</span></button>
+    <button class="pf-tab" onclick="filterPortfolio('design')"><span data-ru>Дизайн</span><span data-de>Design</span><span data-en>Design</span></button>
+  </div>
   <div class="p-car" id="car">
 
-    <div class="pc an" onclick="openLightbox(this)">
+    <!-- WEB & BOTS -->
+    <div class="pc an" data-cat="web" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px;background:#1a1a1a"><img src="IMG_0331.PNG" alt="Landingpage" class="pc-img" style="height:100%;object-fit:contain"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Webdesign</span><span class="ptag">Landing</span></div>
@@ -561,7 +582,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="pc an d1" onclick="openLightbox(this)">
+    <div class="pc an d1" data-cat="web" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px;background:#1a1a1a"><img src="D4ADBF25-846F-43CD-812A-804DE10C609F.PNG" alt="Premium Webdesign" class="pc-img" style="height:100%;object-fit:contain"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Webdesign</span><span class="ptag">Marketing</span></div>
@@ -570,7 +591,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="pc an d2" onclick="openLightbox(this)">
+    <div class="pc an d2" data-cat="web" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px;background:#1a1a1a"><img src="CB936954-9801-49AA-925F-EB601B4DB2FD.PNG" alt="MAG Bot" class="pc-img" style="height:100%;object-fit:contain"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Telegram Bot</span><span class="ptag">Claude AI</span><span class="ptag">Python</span></div>
@@ -579,7 +600,8 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="pc an d3" onclick="openLightbox(this)">
+    <!-- CONTENT -->
+    <div class="pc an d3" data-cat="content" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px;background:#1a1a1a"><img src="IMG_8862.JPG" alt="Instagram Mockup" class="pc-img" style="height:100%;object-fit:contain"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Instagram</span><span class="ptag">Mockup</span></div>
@@ -588,7 +610,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="pc an d4" onclick="openLightbox(this)">
+    <div class="pc an d4" data-cat="content" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px"><img src="8FB0DA8C-2105-49E3-9DFC-F6E6739220A5.jpg" alt="Content Fotoshooting" class="pc-img" style="height:100%;object-fit:cover;object-position:center top"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Instagram</span><span class="ptag">Content</span><span class="ptag">Fotografie</span></div>
@@ -597,7 +619,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="pc an d5" onclick="openLightbox(this)">
+    <div class="pc an d5" data-cat="content" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px"><img src="ED451FE1-62AF-40B5-BA7F-852C2D1AFDBF.jpg" alt="Business Portrait" class="pc-img" style="height:100%;object-fit:cover;object-position:center top"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Fotografie</span><span class="ptag">Portrait</span></div>
@@ -606,7 +628,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="pc an" onclick="openLightbox(this)">
+    <div class="pc an" data-cat="content" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px"><img src="45B0392B-9080-45A6-ACDA-38D5866851DA.PNG" alt="Schwarz-Weiß Portrait" class="pc-img" style="height:100%;object-fit:cover;object-position:center top"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Fotografie</span><span class="ptag">S/W</span></div>
@@ -615,7 +637,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="pc an d1" onclick="openLightbox(this)">
+    <div class="pc an d1" data-cat="content" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px;background:#1a1a1a"><img src="IMG_9122.jpg" alt="Valentine Content" class="pc-img" style="height:100%;object-fit:contain"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Instagram</span><span class="ptag">SMM</span><span class="ptag">Content</span></div>
@@ -624,7 +646,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="pc an d2" onclick="openLightbox(this)">
+    <div class="pc an d2" data-cat="content" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px;background:#1a1a1a"><img src="IMG_0136.PNG" alt="Style Content" class="pc-img" style="height:100%;object-fit:contain"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Instagram</span><span class="ptag">Styling</span><span class="ptag">Content</span></div>
@@ -633,7 +655,8 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="pc an d3" onclick="openLightbox(this)">
+    <!-- DESIGN -->
+    <div class="pc an d3" data-cat="design" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px;background:#1a1a1a"><img src="490B7D6C-9B44-42B3-9FC1-5D670C975B00.PNG" alt="Infografik" class="pc-img" style="height:100%;object-fit:contain"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Design</span><span class="ptag">Infografik</span></div>
@@ -642,7 +665,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="pc an d4" onclick="openLightbox(this)">
+    <div class="pc an d4" data-cat="design" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px;background:#1a1a1a"><img src="77360336-A45E-4374-9206-73D3BCFDA1F6.PNG" alt="Сертификат наращивание нижних ресниц" class="pc-img" style="height:100%;object-fit:contain"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Zertifikat</span><span class="ptag">Bildung</span></div>
@@ -651,31 +674,12 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
 
-    <div class="pc an d5" onclick="openLightbox(this)">
+    <div class="pc an d5" data-cat="design" onclick="openLightbox(this)">
       <div style="overflow:hidden;height:300px;background:#1a1a1a"><img src="IMG_0378.PNG" alt="Zertifikat Klassische Wimpernverlängerung 2D" class="pc-img" style="height:100%;object-fit:contain"></div>
       <div class="pc-b">
         <div class="p-tags"><span class="ptag">Zertifikat</span><span class="ptag">Bildung</span></div>
         <div class="pc-t"><span data-ru>Классическое наращивание 2D</span><span data-de>Klassische Wimpernverlängerung 2D</span><span data-en>Classic 2D Lash Extensions</span></div>
         <p class="pc-d"><span data-ru>Сертификат о прохождении курса классического наращивания и 2D-объёма.</span><span data-de>Zertifikat über den Abschluss des Kurses für klassische Verlängerung und 2D-Volumen.</span><span data-en>Certificate for classic lash extension and 2D volume course completion.</span></p>
-      </div>
-    </div>
-
-    <div class="pc an" onclick="openLightbox(this)">
-      <div style="overflow:hidden;height:300px">
-        <video class="pc-img" src="portfolio-instagram.mp4" autoplay muted loop playsinline style="height:100%;width:100%;object-fit:cover;object-position:center top"></video>
-      </div>
-      <div class="pc-b">
-        <div class="p-tags"><span class="ptag">Instagram</span><span class="ptag">Reels</span><span class="ptag">Content</span></div>
-        <div class="pc-t">
-          <span data-ru>Видео-контент для Instagram</span>
-          <span data-de>Video-Content für Instagram</span>
-          <span data-en>Instagram Video Content</span>
-        </div>
-        <p class="pc-d">
-          <span data-ru>Съёмка Reels и видео-контента для социальных сетей. Атмосфера, движение, стиль.</span>
-          <span data-de>Dreh von Reels und Video-Content für Social Media. Atmosphäre, Bewegung, Stil.</span>
-          <span data-en>Shooting Reels and video content for social media. Atmosphere, movement, style.</span>
-        </p>
       </div>
     </div>
 
@@ -704,12 +708,10 @@ a[href^="tel"]{color:inherit;text-decoration:none}
     <div class="ab-txt">
       <div class="ey an"><span data-ru>Обо мне</span><span data-de>Über mich</span><span data-en>About me</span></div>
       <h2 class="st an d1"><span data-ru>Привет, я <em>Натали</em></span><span data-de>Hallo, ich bin <em>Natali</em></span><span data-en>Hi, I'm <em>Natali</em></span></h2>
-      <p class="ab-p2 an d2"><span data-ru>Ваш бизнес заслуживает сильного онлайн-присутствия — и именно это я создаю. Я digital creator из Германии, и моя специализация — превращать идеи в работающие цифровые инструменты. Профессиональные сайты, которые продают. Умные Telegram-боты на Claude AI, которые работают за вас 24/7. Стильный контент для Instagram, который привлекает клиентов. Системы автоматизации, которые экономят ваше время. Работаю напрямую, без агентств и посредников. Говорю на трёх языках и понимаю как немецкий, так и русскоязычный рынок. От идеи до результата — за 5–7 дней.</span><span data-de>Ihr Unternehmen verdient eine starke Online-Präsenz — und genau das schaffe ich. Ich bin Digital Creator aus Deutschland, und meine Spezialisierung ist es, Ideen in funktionierende digitale Werkzeuge zu verwandeln. Professionelle Websites, die verkaufen. Intelligente Telegram-Bots mit Claude AI, die 24/7 für Sie arbeiten. Stilvoller Instagram-Content, der Kunden anzieht. Automatisierungssysteme, die Ihnen Zeit sparen. Ich arbeite direkt mit Ihnen — ohne Agenturen und Vermittler. Ich spreche drei Sprachen und verstehe sowohl den deutschen als auch den russischsprachigen Markt. Von der Idee zum Ergebnis — in 5–7 Tagen.</span><span data-en>Your business deserves a strong online presence — and that's exactly what I create. I'm a digital creator based in Germany, specializing in turning ideas into working digital tools. Professional websites that sell. Smart Telegram bots powered by Claude AI that work for you 24/7. Stylish Instagram content that attracts clients. Automation systems that save your time. I work directly with you — no agencies, no middlemen. I speak three languages and understand both the German and Russian-speaking markets. From idea to result — in 5–7 days.</span></p>
+      <p class="ab-p2 an d2"><span data-ru>Ваш бизнес заслуживает сильного онлайн-присутствия — и именно это я создаю. Я архитектор цифрового бизнеса из Германии, и моя специализация — превращать идеи в работающие цифровые инструменты. Профессиональные сайты, которые продают. Умные Telegram-боты на Claude AI, которые работают за вас 24/7. Стильный контент для Instagram, который привлекает клиентов. Системы автоматизации, которые экономят ваше время. Работаю напрямую, без агентств и посредников. Говорю на трёх языках и понимаю как немецкий, так и русскоязычный рынок. От идеи до результата — за 10–14 дней.</span><span data-de>Ihr Unternehmen verdient eine starke Online-Präsenz — und genau das schaffe ich. Ich bin Digitaler Business-Architekt aus Deutschland, und meine Spezialisierung ist es, Ideen in funktionierende digitale Werkzeuge zu verwandeln. Professionelle Websites, die verkaufen. Intelligente Telegram-Bots mit Claude AI, die 24/7 für Sie arbeiten. Stilvoller Instagram-Content, der Kunden anzieht. Automatisierungssysteme, die Ihnen Zeit sparen. Ich arbeite direkt mit Ihnen — ohne Agenturen und Vermittler. Ich spreche drei Sprachen und verstehe sowohl den deutschen als auch den russischsprachigen Markt. Von der Idee zum Ergebnis — in 10–14 Tagen.</span><span data-en>Your business deserves a strong online presence — and that's exactly what I create. I'm a Digital Business Architect based in Germany, specializing in turning ideas into working digital tools. Professional websites that sell. Smart Telegram bots powered by Claude AI that work for you 24/7. Stylish Instagram content that attracts clients. Automation systems that save your time. I work directly with you — no agencies, no middlemen. I speak three languages and understand both the German and Russian-speaking markets. From idea to result — in 10–14 days.</span></p>
       <div class="ab-feats an d3">
         <div class="af"><div class="af-d"></div><div class="af-t"><span data-ru>Германия + рынки СНГ и Европы</span><span data-de>Deutschland + GUS- und EU-Märkte</span><span data-en>Germany + CIS & EU markets</span></div></div>
-        <div class="af"><div class="af-d"></div><div class="af-t">RU · DE · EN</div></div>
         <div class="af"><div class="af-d"></div><div class="af-t"><span data-ru>Настоящий ИИ (Claude API)</span><span data-de>Echte KI (Claude API)</span><span data-en>Real AI (Claude API)</span></div></div>
-        <div class="af"><div class="af-d"></div><div class="af-t"><span data-ru>Результат за 5–7 дней</span><span data-de>Ergebnis in 5–7 Tagen</span><span data-en>Result in 5–7 days</span></div></div>
       </div>
     </div>
   </div>
@@ -745,8 +747,8 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       <div class="wi an d2">
         <div class="wi-n">03</div>
         <div class="wi-c">
-          <div class="wi-t"><span data-ru>Результат за 5–7 дней</span><span data-de>Ergebnis in 5–7 Tagen</span><span data-en>Results in 5–7 days</span></div>
-          <p class="wi-d"><span data-ru>Пока другие проводят совещания, я уже работаю над вашим проектом. Первый результат — сайт, бот или контент-пакет — вы получаете через 5–7 рабочих дней. Без месяцев ожидания.</span><span data-de>Während andere Meetings halten, arbeite ich bereits an Ihrem Projekt. Das erste Ergebnis — Website, Bot oder Content-Paket — erhalten Sie in 5–7 Werktagen. Ohne monatelanges Warten.</span><span data-en>While others hold meetings, I'm already working on your project. Your first result — website, bot, or content package — arrives in 5–7 working days. No months of waiting.</span></p>
+          <div class="wi-t"><span data-ru>Результат за 10–14 дней</span><span data-de>Ergebnis in 10–14 Tagen</span><span data-en>Results in 10–14 days</span></div>
+          <p class="wi-d"><span data-ru>Пока другие проводят совещания, я уже работаю над вашим проектом. Первый результат — сайт, бот или контент-пакет — вы получаете через 10–14 рабочих дней. Без месяцев ожидания.</span><span data-de>Während andere Meetings halten, arbeite ich bereits an Ihrem Projekt. Das erste Ergebnis — Website, Bot oder Content-Paket — erhalten Sie in 10–14 Werktagen. Ohne monatelanges Warten.</span><span data-en>While others hold meetings, I'm already working on your project. Your first result — website, bot, or content package — arrives in 10–14 working days. No months of waiting.</span></p>
         </div>
       </div>
       <div class="wi an d3">
@@ -852,7 +854,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:40px;align-items:start">
       <div>
         <span class="ft-logo"><em>Natali Konrad</em></span>
-        <p style="color:rgba(255,255,255,.6);font-size:14px;line-height:1.6;margin-top:12px"><span data-ru>Digital Creator</span><span data-de>Digital Creator</span><span data-en>Digital Creator</span><br>Kempten, Deutschland<br><span data-ru>Работаю онлайн и лично</span><span data-de>Online & Persönlich</span><span data-en>Online & In-person</span></p>
+        <p style="color:rgba(255,255,255,.6);font-size:14px;line-height:1.6;margin-top:12px"><span data-ru>Архитектор цифрового бизнеса</span><span data-de>Digitaler Business-Architekt</span><span data-en>Digital Business Architect</span><br>Kempten, Deutschland<br><span data-ru>Работаю онлайн и лично</span><span data-de>Online & Persönlich</span><span data-en>Online & In-person</span></p>
       </div>
       <div>
         <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:#C4A97D;margin-bottom:16px"><span data-ru>Контакты</span><span data-de>Kontakt</span><span data-en>Contact</span></div>
@@ -948,9 +950,9 @@ document.querySelectorAll('a,button,.pc,.sc,.rc').forEach(el=>{
 const svcData = {
   1: {
     num:'01', price:{ru:'от 500 €',de:'ab 500 €',en:'from 500 €'},
-    ru:{title:'Сайты и лендинги', desc:'Ваш сайт — это не просто страница, а инструмент, который приводит клиентов. Я продумываю каждый элемент: от структуры и текстов до кнопок и форм связи. Результат — стильная, быстрая и удобная страница, которая одинаково хорошо смотрится на телефоне и компьютере.', items:['Изучаю вашу нишу, конкурентов и целевую аудиторию','Создаю уникальный дизайн без шаблонов и конструкторов','Чистая вёрстка на HTML / CSS / JavaScript','Адаптация под все экраны — смартфон, планшет, десктоп','SEO-настройка: мета-теги, заголовки, скорость загрузки','Форма обратной связи с мгновенным уведомлением в Telegram','Кнопки WhatsApp, Telegram, e-mail — клиент сразу на связи','Подключение Google Analytics для отслеживания посещений','Помогу выбрать и подключить домен и хостинг','Готово за 5–7 рабочих дней']},
-    de:{title:'Websites & Landingpages', desc:'Ihre Website ist nicht nur eine Seite, sondern ein Werkzeug, das Kunden bringt. Ich durchdenke jedes Detail: von der Struktur und den Texten bis zu Buttons und Kontaktformularen. Das Ergebnis — eine stilvolle, schnelle und benutzerfreundliche Seite, die auf Handy und Desktop gleich gut aussieht.', items:['Analyse Ihrer Nische, Wettbewerber und Zielgruppe','Einzigartiges Design ohne Vorlagen und Baukästen','Saubere Entwicklung in HTML / CSS / JavaScript','Optimiert für alle Bildschirme — Smartphone, Tablet, Desktop','SEO-Einrichtung: Meta-Tags, Überschriften, Ladezeit','Kontaktformular mit sofortiger Telegram-Benachrichtigung','WhatsApp-, Telegram-, E-Mail-Buttons — direkte Verbindung','Google Analytics für Besucherstatistiken','Beratung und Einrichtung von Domain und Hosting','Fertig in 5–7 Werktagen']},
-    en:{title:'Websites & Landing Pages', desc:'Your website is not just a page — it\'s a tool that brings clients. I think through every detail: from structure and copy to buttons and contact forms. The result is a sleek, fast, and user-friendly page that looks equally great on mobile and desktop.', items:['Research your niche, competitors, and target audience','Unique design — no templates or page builders','Clean code in HTML / CSS / JavaScript','Optimized for every screen — phone, tablet, desktop','SEO setup: meta tags, headings, loading speed','Contact form with instant Telegram notification','WhatsApp, Telegram, email buttons — instant connection','Google Analytics for visitor tracking','Help choosing and setting up domain and hosting','Ready in 5–7 working days']}
+    ru:{title:'Сайты и лендинги', desc:'Ваш сайт — это не просто страница, а инструмент, который приводит клиентов. Я продумываю каждый элемент: от структуры и текстов до кнопок и форм связи. Результат — стильная, быстрая и удобная страница, которая одинаково хорошо смотрится на телефоне и компьютере.', items:['Изучаю вашу нишу, конкурентов и целевую аудиторию','Создаю уникальный дизайн без шаблонов и конструкторов','Чистая вёрстка на HTML / CSS / JavaScript','Адаптация под все экраны — смартфон, планшет, десктоп','SEO-настройка: мета-теги, заголовки, скорость загрузки','Форма обратной связи с мгновенным уведомлением в Telegram','Кнопки WhatsApp, Telegram, e-mail — клиент сразу на связи','Подключение Google Analytics для отслеживания посещений','Помогу выбрать и подключить домен и хостинг','Готово за 10–14 рабочих дней']},
+    de:{title:'Websites & Landingpages', desc:'Ihre Website ist nicht nur eine Seite, sondern ein Werkzeug, das Kunden bringt. Ich durchdenke jedes Detail: von der Struktur und den Texten bis zu Buttons und Kontaktformularen. Das Ergebnis — eine stilvolle, schnelle und benutzerfreundliche Seite, die auf Handy und Desktop gleich gut aussieht.', items:['Analyse Ihrer Nische, Wettbewerber und Zielgruppe','Einzigartiges Design ohne Vorlagen und Baukästen','Saubere Entwicklung in HTML / CSS / JavaScript','Optimiert für alle Bildschirme — Smartphone, Tablet, Desktop','SEO-Einrichtung: Meta-Tags, Überschriften, Ladezeit','Kontaktformular mit sofortiger Telegram-Benachrichtigung','WhatsApp-, Telegram-, E-Mail-Buttons — direkte Verbindung','Google Analytics für Besucherstatistiken','Beratung und Einrichtung von Domain und Hosting','Fertig in 10–14 Werktagen']},
+    en:{title:'Websites & Landing Pages', desc:'Your website is not just a page — it\'s a tool that brings clients. I think through every detail: from structure and copy to buttons and contact forms. The result is a sleek, fast, and user-friendly page that looks equally great on mobile and desktop.', items:['Research your niche, competitors, and target audience','Unique design — no templates or page builders','Clean code in HTML / CSS / JavaScript','Optimized for every screen — phone, tablet, desktop','SEO setup: meta tags, headings, loading speed','Contact form with instant Telegram notification','WhatsApp, Telegram, email buttons — instant connection','Google Analytics for visitor tracking','Help choosing and setting up domain and hosting','Ready in 10–14 working days']}
   },
   2: {
     num:'02', price:{ru:'от 1 200 €',de:'ab 1.200 €',en:'from 1,200 €'},
@@ -1046,6 +1048,17 @@ car.addEventListener('mouseup',()=>drag=false);
 car.addEventListener('mousemove',e=>{if(!drag)return;e.preventDefault();car.scrollLeft=sl-(e.pageX-car.offsetLeft-sx)*1.5});
 function scrollCar(d){car.scrollBy({left:d*390,behavior:'smooth'})}
 
+// PORTFOLIO FILTER
+function filterPortfolio(cat){
+  document.querySelectorAll('.pf-tab').forEach(t=>t.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.querySelectorAll('.pc[data-cat]').forEach(c=>{
+    if(cat==='all'||c.dataset.cat===cat){c.classList.remove('pf-hidden')}
+    else{c.classList.add('pf-hidden')}
+  });
+  car.scrollTo({left:0,behavior:'smooth'});
+}
+
 // FORM
 function sendForm(){
   const n=document.getElementById('fn').value.trim();
@@ -1089,26 +1102,14 @@ function sendReview(){
 
 // LIGHTBOX
 function openLightbox(card){
-  const img=card.querySelector('img.pc-img');
-  const vid=card.querySelector('video.pc-img');
-  const lbImg=document.getElementById('lb-img');
-  const lbVid=document.getElementById('lb-vid');
-  if(vid){
-    lbVid.src=vid.src;
-    lbVid.style.display='block';
-    lbImg.style.display='none';
-    lbVid.play();
-  } else if(img){
-    lbImg.src=img.src;
-    lbImg.style.display='block';
-    lbVid.style.display='none';
+  const img=card.querySelector('.pc-img');
+  if(img){
+    document.getElementById('lb-img').src=img.src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow='hidden';
   }
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow='hidden';
 }
 function closeLightbox(){
-  const lbVid=document.getElementById('lb-vid');
-  if(lbVid){lbVid.pause();lbVid.src='';}
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow='';
 }
@@ -1118,7 +1119,6 @@ function closeLightbox(){
 <div class="lb-overlay" id="lightbox" onclick="closeLightbox()">
   <button class="lb-close" onclick="closeLightbox()"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
   <img id="lb-img" src="" alt="">
-  <video id="lb-vid" autoplay muted loop playsinline style="display:none;max-height:90vh;max-width:90vw;border-radius:12px"></video>
 </div>
 </body>
 </html>

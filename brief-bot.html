@@ -69,7 +69,10 @@ h1 em{font-style:italic;color:var(--gold)}
 .price-note{text-align:center;margin-top:20px;font-size:12px;color:rgba(42,31,22,.4);font-style:italic}
 
 /* ── FORM ── */
-.form-wrap{background:linear-gradient(160deg,#1A1612,#201C18);border:1px solid rgba(196,169,125,.1);border-radius:24px;padding:40px 36px;margin-bottom:48px}
+.form-wrap{background:linear-gradient(160deg,#1A1612,#201C18);border:1px solid rgba(196,169,125,.1);border-radius:24px;padding:40px 36px;margin-bottom:48px;overflow:hidden}
+.form-wrap::-webkit-scrollbar{width:6px}
+.form-wrap::-webkit-scrollbar-track{background:transparent}
+.form-wrap::-webkit-scrollbar-thumb{background:rgba(196,169,125,.25);border-radius:3px}
 @media(max-width:600px){.form-wrap{padding:24px 18px}}
 .block{margin-bottom:36px}
 .block-title{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--gold2);margin-bottom:6px;padding-bottom:10px;border-bottom:1px solid rgba(196,169,125,.1)}
@@ -80,12 +83,14 @@ h1 em{font-style:italic;color:var(--gold)}
 .field:last-child{margin-bottom:0}
 label{font-size:13px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.02em}
 label .req{color:var(--gold);margin-left:2px}
-input[type=text],input[type=email],input[type=url],input[type=tel],textarea,select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;color:#fff;font-family:var(--sans);font-size:14px;outline:none;transition:border-color var(--tr);resize:vertical}
+input[type=text],input[type=email],input[type=url],input[type=tel],textarea,select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;color:#fff;font-family:var(--sans);font-size:14px;outline:none;transition:border-color var(--tr)}
 input::placeholder,textarea::placeholder{color:rgba(255,255,255,.22)}
 input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:rgba(255,255,255,.22)}
 input::-moz-placeholder,textarea::-moz-placeholder{color:rgba(255,255,255,.22);opacity:1}
 input:focus,textarea:focus{border-color:rgba(196,169,125,.45);background:rgba(196,169,125,.04)}
-textarea{min-height:100px}
+textarea{min-height:100px;resize:none;overflow-y:auto}
+textarea::-webkit-scrollbar{width:0;display:none}
+textarea{scrollbar-width:none;-ms-overflow-style:none}
 
 /* checkboxes & radios */
 .checks{display:flex;flex-direction:column;gap:10px}
