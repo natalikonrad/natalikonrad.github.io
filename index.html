@@ -104,7 +104,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
 /* 3D SPHERE */
 .sphere-c{position:absolute;top:50%;left:38%;transform:translate(-50%,-50%);width:500px;height:500px;pointer-events:none;z-index:0}
 .sphere-glow{position:absolute;inset:-55%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(196,169,125,.16) 0%,rgba(196,169,125,.07) 45%,transparent 70%);animation:glow-pulse 6s ease-in-out infinite}
-.sphere-ball{width:100%;height:100%;border-radius:50%;position:relative;
+.sphere-ball{width:100%;height:100%;border-radius:50%;position:relative;overflow:hidden;
   background:radial-gradient(circle at 36% 30%,
     rgba(255,250,235,.92) 0%,
     rgba(232,213,176,.78) 16%,
@@ -121,15 +121,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
     inset -45px -45px 110px rgba(0,0,0,.72),
     inset 18px 18px 55px rgba(255,250,235,.13);
   animation:ball-breathe 6s ease-in-out infinite}
-.sphere-ball::before{content:'';position:absolute;top:8%;left:10%;width:40%;height:33%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.52) 0%,transparent 70%);transform:rotate(-15deg);filter:blur(7px)}
+.sphere-ball::before{content:'';position:absolute;top:8%;left:10%;width:40%;height:33%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.52) 0%,transparent 70%);transform:rotate(-15deg);filter:blur(7px);z-index:2}
+/* Sweeping shimmer on sphere surface */
+.sphere-sheen{position:absolute;inset:0;border-radius:50%;z-index:1;
+  background:conic-gradient(from 200deg at 35% 28%,rgba(255,255,255,.2) 0deg,transparent 48deg,transparent 360deg);
+  animation:sheen-sw 5s ease-in-out infinite}
+@keyframes sheen-sw{0%,100%{transform:rotate(-28deg);opacity:.35}50%{transform:rotate(22deg);opacity:.95}}
 .sphere-ring{position:absolute;top:50%;left:50%;width:136%;height:136%;border-radius:50%;border:1px solid rgba(196,169,125,.3);box-shadow:0 0 22px rgba(196,169,125,.14);transform:translate(-50%,-50%) rotateX(72deg);animation:ring-spin 22s linear infinite}
 .sphere-ring2{position:absolute;top:50%;left:50%;width:168%;height:168%;border-radius:50%;border:1px solid rgba(196,169,125,.14);transform:translate(-50%,-50%) rotateX(68deg) rotateZ(55deg);animation:ring-spin 35s linear infinite reverse}
+/* Orbiting particles */
+.spo{position:absolute;top:50%;left:50%;width:0;height:0;animation:spo-spin var(--d,14s) linear infinite var(--dl,0s)}
+.spp{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,250,235,1) 0%,rgba(196,169,125,.8) 55%,transparent 100%);box-shadow:0 0 8px rgba(196,169,125,.9),0 0 18px rgba(196,169,125,.5)}
 @keyframes glow-pulse{0%,100%{transform:scale(1);opacity:.72}50%{transform:scale(1.1);opacity:1}}
 @keyframes ball-breathe{
   0%,100%{box-shadow:0 0 70px rgba(196,169,125,.45),0 0 140px rgba(196,169,125,.25),0 0 300px rgba(196,169,125,.13),0 0 560px rgba(196,169,125,.07),inset -45px -45px 110px rgba(0,0,0,.72),inset 18px 18px 55px rgba(255,250,235,.13)}
   50%{box-shadow:0 0 110px rgba(196,169,125,.65),0 0 220px rgba(196,169,125,.38),0 0 440px rgba(196,169,125,.22),0 0 800px rgba(196,169,125,.1),inset -45px -45px 110px rgba(0,0,0,.72),inset 18px 18px 55px rgba(255,250,235,.2)}
 }
 @keyframes ring-spin{from{transform:translate(-50%,-50%) rotateX(72deg) rotateZ(0deg)}to{transform:translate(-50%,-50%) rotateX(72deg) rotateZ(360deg)}}
+@keyframes spo-spin{from{transform:var(--ti,rotateX(72deg)) rotateZ(0deg)}to{transform:var(--ti,rotateX(72deg)) rotateZ(360deg)}}
 /* grid */
 .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(196,169,125,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(196,169,125,.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
 .h-left{padding:120px 60px 80px 80px;position:relative;z-index:1}
@@ -469,9 +478,19 @@ a[href^="tel"]{color:inherit;text-decoration:none}
   <div class="orb orb3"></div>
   <div class="sphere-c">
     <div class="sphere-glow"></div>
-    <div class="sphere-ball"></div>
+    <div class="sphere-ball"><div class="sphere-sheen"></div></div>
     <div class="sphere-ring"></div>
     <div class="sphere-ring2"></div>
+    <!-- Orbit 1: наклон 72°, 3 частицы -->
+    <div class="spo" style="--d:13s;--dl:0s;--ti:rotateX(72deg)"><div class="spp" style="width:5px;height:5px;top:-2.5px;left:-2.5px;transform:translateX(273px)"></div></div>
+    <div class="spo" style="--d:13s;--dl:-4.3s;--ti:rotateX(72deg)"><div class="spp" style="width:4px;height:4px;top:-2px;left:-2px;transform:translateX(273px)"></div></div>
+    <div class="spo" style="--d:13s;--dl:-8.6s;--ti:rotateX(72deg)"><div class="spp" style="width:6px;height:6px;top:-3px;left:-3px;transform:translateX(273px)"></div></div>
+    <!-- Orbit 2: другой угол, 2 частицы -->
+    <div class="spo" style="--d:20s;--dl:-5s;--ti:rotateX(50deg) rotateZ(38deg)"><div class="spp" style="width:4px;height:4px;top:-2px;left:-2px;transform:translateX(290px)"></div></div>
+    <div class="spo" style="--d:20s;--dl:-13s;--ti:rotateX(50deg) rotateZ(38deg)"><div class="spp" style="width:3px;height:3px;top:-1.5px;left:-1.5px;transform:translateX(290px)"></div></div>
+    <!-- Orbit 3: почти вертикальная, 2 частицы -->
+    <div class="spo" style="--d:28s;--dl:-9s;--ti:rotateX(22deg) rotateZ(68deg)"><div class="spp" style="width:4px;height:4px;top:-2px;left:-2px;transform:translateX(260px)"></div></div>
+    <div class="spo" style="--d:28s;--dl:-19s;--ti:rotateX(22deg) rotateZ(68deg)"><div class="spp" style="width:5px;height:5px;top:-2.5px;left:-2.5px;transform:translateX(260px)"></div></div>
   </div>
   <div class="h-left">
     <div class="h-badges">
