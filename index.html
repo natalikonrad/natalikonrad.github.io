@@ -9,8 +9,8 @@
 <meta property="og:title" content="Natali Konrad — Digital Business Architect">
 <meta property="og:description" content="Websites, Telegram-Bots und Content, die Kunden bringen. Kempten, Deutschland.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://natalikonrad.github.io">
-<meta property="og:image" content="https://natalikonrad.github.io/og-image.png">
+<meta property="og:url" content="https://natalikonrad.com">
+<meta property="og:image" content="https://natalikonrad.com/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -19,7 +19,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Natali Konrad — Digital Business Architect">
 <meta name="twitter:description" content="Websites, Telegram-Bots und Content, die Kunden bringen.">
-<meta name="twitter:image" content="https://natalikonrad.github.io/og-image.png">
+<meta name="twitter:image" content="https://natalikonrad.com/og-image.png">
+<link rel="canonical" href="https://natalikonrad.com">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <style>
@@ -59,7 +60,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
 .n-logo{font-family:var(--serif);font-size:22px;font-weight:700;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
 .n-nk{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--esp));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;letter-spacing:1px;flex-shrink:0}
 .n-logo em{font-style:italic;color:var(--gold)}
-.n-links{display:none}
+.n-links{display:flex;align-items:center;gap:32px;list-style:none}
 .n-links a{font-size:13px;font-weight:500;color:rgba(255,255,255,.45);text-decoration:none;transition:color .3s;position:relative}
 .n-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
 .n-links a:hover{color:#fff}
@@ -93,16 +94,42 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
 
 /* HERO */
 .hero{min-height:100vh;background:var(--dark);position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;align-items:center}
-/* 3D orbs - Perplexity style */
+/* AMBIENT ORBS */
 .orb{position:absolute;border-radius:50%;pointer-events:none}
-.orb1{top:50%;left:38%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(ellipse at 35% 35%,rgba(196,169,125,.13) 0%,rgba(91,74,62,.06) 45%,transparent 70%);animation:pulse 7s ease-in-out infinite}
-.orb2{bottom:-80px;right:5%;width:450px;height:450px;background:radial-gradient(ellipse at 50% 50%,rgba(91,74,62,.1) 0%,transparent 65%);animation:pulse 9s ease-in-out infinite reverse}
-.orb3{top:10%;left:5%;width:300px;height:300px;background:radial-gradient(ellipse at 60% 40%,rgba(196,169,125,.07) 0%,transparent 70%);animation:pulse 11s ease-in-out infinite 2s}
-@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.7}50%{transform:translate(-50%,-50%) scale(1.1);opacity:1}}
-.orb2{animation:pulse2 9s ease-in-out infinite reverse}
+.orb2{bottom:-80px;right:5%;width:450px;height:450px;background:radial-gradient(ellipse at 50% 50%,rgba(91,74,62,.1) 0%,transparent 65%);animation:pulse2 9s ease-in-out infinite reverse}
+.orb3{top:10%;left:5%;width:300px;height:300px;background:radial-gradient(ellipse at 60% 40%,rgba(196,169,125,.07) 0%,transparent 70%);animation:pulse3 11s ease-in-out infinite 2s}
 @keyframes pulse2{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
-.orb3{animation:pulse3 11s ease-in-out infinite 2s}
 @keyframes pulse3{0%,100%{opacity:.5}50%{opacity:.9}}
+
+/* 3D SPHERE */
+.sphere-c{position:absolute;top:50%;left:38%;transform:translate(-50%,-50%);width:500px;height:500px;pointer-events:none;z-index:0}
+.sphere-glow{position:absolute;inset:-55%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(196,169,125,.16) 0%,rgba(196,169,125,.07) 45%,transparent 70%);animation:glow-pulse 6s ease-in-out infinite}
+.sphere-ball{width:100%;height:100%;border-radius:50%;position:relative;
+  background:radial-gradient(circle at 36% 30%,
+    rgba(255,250,235,.92) 0%,
+    rgba(232,213,176,.78) 16%,
+    rgba(196,169,125,.58) 36%,
+    rgba(139,105,20,.32) 60%,
+    rgba(60,40,20,.12) 80%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 70px rgba(196,169,125,.45),
+    0 0 140px rgba(196,169,125,.25),
+    0 0 300px rgba(196,169,125,.13),
+    0 0 560px rgba(196,169,125,.07),
+    inset -45px -45px 110px rgba(0,0,0,.72),
+    inset 18px 18px 55px rgba(255,250,235,.13);
+  animation:ball-breathe 6s ease-in-out infinite}
+.sphere-ball::before{content:'';position:absolute;top:8%;left:10%;width:40%;height:33%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.52) 0%,transparent 70%);transform:rotate(-15deg);filter:blur(7px)}
+.sphere-ring{position:absolute;top:50%;left:50%;width:136%;height:136%;border-radius:50%;border:1px solid rgba(196,169,125,.3);box-shadow:0 0 22px rgba(196,169,125,.14);transform:translate(-50%,-50%) rotateX(72deg);animation:ring-spin 22s linear infinite}
+.sphere-ring2{position:absolute;top:50%;left:50%;width:168%;height:168%;border-radius:50%;border:1px solid rgba(196,169,125,.14);transform:translate(-50%,-50%) rotateX(68deg) rotateZ(55deg);animation:ring-spin 35s linear infinite reverse}
+@keyframes glow-pulse{0%,100%{transform:scale(1);opacity:.72}50%{transform:scale(1.1);opacity:1}}
+@keyframes ball-breathe{
+  0%,100%{box-shadow:0 0 70px rgba(196,169,125,.45),0 0 140px rgba(196,169,125,.25),0 0 300px rgba(196,169,125,.13),0 0 560px rgba(196,169,125,.07),inset -45px -45px 110px rgba(0,0,0,.72),inset 18px 18px 55px rgba(255,250,235,.13)}
+  50%{box-shadow:0 0 110px rgba(196,169,125,.65),0 0 220px rgba(196,169,125,.38),0 0 440px rgba(196,169,125,.22),0 0 800px rgba(196,169,125,.1),inset -45px -45px 110px rgba(0,0,0,.72),inset 18px 18px 55px rgba(255,250,235,.2)}
+}
+@keyframes ring-spin{from{transform:translate(-50%,-50%) rotateX(72deg) rotateZ(0deg)}to{transform:translate(-50%,-50%) rotateX(72deg) rotateZ(360deg)}}
 /* grid */
 .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(196,169,125,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(196,169,125,.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
 .h-left{padding:120px 60px 80px 80px;position:relative;z-index:1}
@@ -352,6 +379,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
   .ft-r{align-items:flex-start}
   .svc-g{grid-template-columns:1fr 1fr}
   .rev-g{grid-template-columns:1fr}
+  .sphere-c{width:340px;height:340px;left:50%}
 }
 @media(max-width:640px){
   section{padding:56px 20px}
@@ -365,6 +393,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
   .h-name{font-size:clamp(48px,13vw,72px)}
   .btn-glass{display:none}
   .lang-sw{gap:1px;padding:2px}
+  .sphere-c{width:260px;height:260px;left:50%}
   .lb{padding:4px 10px;font-size:10px}
   .n-logo{font-size:18px;gap:6px}
   .n-nk{width:30px;height:30px;font-size:10px}
@@ -436,9 +465,14 @@ a[href^="tel"]{color:inherit;text-decoration:none}
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="orb orb1"></div>
   <div class="orb orb2"></div>
   <div class="orb orb3"></div>
+  <div class="sphere-c">
+    <div class="sphere-glow"></div>
+    <div class="sphere-ball"></div>
+    <div class="sphere-ring"></div>
+    <div class="sphere-ring2"></div>
+  </div>
   <div class="h-left">
     <div class="h-badges">
       <div class="badge"><div class="bdot"></div><span data-ru>Архитектор цифрового бизнеса</span><span data-de>Digitaler Business-Architekt</span><span data-en>Digital Business Architect</span></div>
@@ -565,10 +599,10 @@ a[href^="tel"]{color:inherit;text-decoration:none}
   <h2 class="st st-w an d1"><span data-ru>Реальные <em>проекты</em></span><span data-de>Echte <em>Projekte</em></span><span data-en>Real <em>projects</em></span></h2>
   <p class="sd sd-w an d2"><span data-ru>Листайте вправо — нажмите на карточку, чтобы увеличить.</span><span data-de>Nach rechts scrollen — klicken Sie auf die Karte zum Vergrößern.</span><span data-en>Scroll right — click a card to enlarge.</span></p>
   <div class="pf-tabs an d2">
-    <button class="pf-tab active" onclick="filterPortfolio('all')"><span data-ru>Все</span><span data-de>Alle</span><span data-en>All</span></button>
-    <button class="pf-tab" onclick="filterPortfolio('web')"><span data-ru>Сайты и боты</span><span data-de>Web & Bots</span><span data-en>Web & Bots</span></button>
-    <button class="pf-tab" onclick="filterPortfolio('content')"><span data-ru>Контент</span><span data-de>Content</span><span data-en>Content</span></button>
-    <button class="pf-tab" onclick="filterPortfolio('design')"><span data-ru>Дизайн</span><span data-de>Design</span><span data-en>Design</span></button>
+    <button class="pf-tab active" onclick="filterPortfolio('all',this)"><span data-ru>Все</span><span data-de>Alle</span><span data-en>All</span></button>
+    <button class="pf-tab" onclick="filterPortfolio('web',this)"><span data-ru>Сайты и боты</span><span data-de>Web & Bots</span><span data-en>Web & Bots</span></button>
+    <button class="pf-tab" onclick="filterPortfolio('content',this)"><span data-ru>Контент</span><span data-de>Content</span><span data-en>Content</span></button>
+    <button class="pf-tab" onclick="filterPortfolio('design',this)"><span data-ru>Дизайн</span><span data-de>Design</span><span data-en>Design</span></button>
   </div>
   <div class="p-car" id="car">
 
@@ -875,6 +909,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
   </div>
+</div><!-- /ft-w -->
 
 
 <!-- FLOAT BTNS -->
@@ -1013,6 +1048,7 @@ function setLang(l){
   document.body.className='lang-'+l;
   document.documentElement.lang=l;
   document.querySelectorAll('.lb,.mob-ls button').forEach(b=>b.classList.toggle('active',b.textContent.trim().toLowerCase()===l));
+  try{localStorage.setItem('lang',l)}catch(e){}
 }
 
 // BURGER
@@ -1049,9 +1085,9 @@ car.addEventListener('mousemove',e=>{if(!drag)return;e.preventDefault();car.scro
 function scrollCar(d){car.scrollBy({left:d*390,behavior:'smooth'})}
 
 // PORTFOLIO FILTER
-function filterPortfolio(cat){
+function filterPortfolio(cat,btn){
   document.querySelectorAll('.pf-tab').forEach(t=>t.classList.remove('active'));
-  event.currentTarget.classList.add('active');
+  btn.classList.add('active');
   document.querySelectorAll('.pc[data-cat]').forEach(c=>{
     if(cat==='all'||c.dataset.cat===cat){c.classList.remove('pf-hidden')}
     else{c.classList.add('pf-hidden')}
@@ -1084,14 +1120,20 @@ window.addEventListener('scroll',()=>{
 // ESC
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.mo.open').forEach(m=>m.classList.remove('open'));closeService();closeLightbox();}});
 
-setLang('de');
+setLang(localStorage.getItem('lang')||'de');
 
 // REVIEW FORM
 function sendReview(){
   const n=document.getElementById('rev-name').value.trim();
   const r=document.getElementById('rev-rating').value;
   const t=document.getElementById('rev-text').value.trim();
-  if(!n||!t){alert('Bitte füllen Sie Name und Bewertung aus.');return}
+  if(!n||!t){
+    const l=document.body.className;
+    if(l.includes('lang-ru'))alert('Пожалуйста, заполните имя и отзыв.');
+    else if(l.includes('lang-en'))alert('Please fill in name and review.');
+    else alert('Bitte füllen Sie Name und Bewertung aus.');
+    return;
+  }
   const stars='★'.repeat(parseInt(r))+'☆'.repeat(5-parseInt(r));
   window.open(`https://wa.me/4915141367080?text=${encodeURIComponent(`Новый отзыв!\nИмя: ${n}\nОценка: ${stars} (${r}/5)\nОтзыв: ${t}`)}`);
   document.getElementById('rev-mo').classList.remove('open');
