@@ -9,8 +9,8 @@
 <meta property="og:title" content="Natali Konrad — Digital Business Architect">
 <meta property="og:description" content="Websites, Telegram-Bots und Content, die Kunden bringen. Kempten, Deutschland.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://natalikonrad.github.io">
-<meta property="og:image" content="https://natalikonrad.github.io/og-image.png">
+<meta property="og:url" content="https://natalikonrad.com">
+<meta property="og:image" content="https://natalikonrad.com/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -19,7 +19,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Natali Konrad — Digital Business Architect">
 <meta name="twitter:description" content="Websites, Telegram-Bots und Content, die Kunden bringen.">
-<meta name="twitter:image" content="https://natalikonrad.github.io/og-image.png">
+<meta name="twitter:image" content="https://natalikonrad.com/og-image.png">
+<link rel="canonical" href="https://natalikonrad.com">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <style>
@@ -59,7 +60,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
 .n-logo{font-family:var(--serif);font-size:22px;font-weight:700;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
 .n-nk{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--esp));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;letter-spacing:1px;flex-shrink:0}
 .n-logo em{font-style:italic;color:var(--gold)}
-.n-links{display:none}
+.n-links{display:flex;align-items:center;gap:32px;list-style:none}
 .n-links a{font-size:13px;font-weight:500;color:rgba(255,255,255,.45);text-decoration:none;transition:color .3s;position:relative}
 .n-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
 .n-links a:hover{color:#fff}
@@ -565,10 +566,10 @@ a[href^="tel"]{color:inherit;text-decoration:none}
   <h2 class="st st-w an d1"><span data-ru>Реальные <em>проекты</em></span><span data-de>Echte <em>Projekte</em></span><span data-en>Real <em>projects</em></span></h2>
   <p class="sd sd-w an d2"><span data-ru>Листайте вправо — нажмите на карточку, чтобы увеличить.</span><span data-de>Nach rechts scrollen — klicken Sie auf die Karte zum Vergrößern.</span><span data-en>Scroll right — click a card to enlarge.</span></p>
   <div class="pf-tabs an d2">
-    <button class="pf-tab active" onclick="filterPortfolio('all')"><span data-ru>Все</span><span data-de>Alle</span><span data-en>All</span></button>
-    <button class="pf-tab" onclick="filterPortfolio('web')"><span data-ru>Сайты и боты</span><span data-de>Web & Bots</span><span data-en>Web & Bots</span></button>
-    <button class="pf-tab" onclick="filterPortfolio('content')"><span data-ru>Контент</span><span data-de>Content</span><span data-en>Content</span></button>
-    <button class="pf-tab" onclick="filterPortfolio('design')"><span data-ru>Дизайн</span><span data-de>Design</span><span data-en>Design</span></button>
+    <button class="pf-tab active" onclick="filterPortfolio('all',this)"><span data-ru>Все</span><span data-de>Alle</span><span data-en>All</span></button>
+    <button class="pf-tab" onclick="filterPortfolio('web',this)"><span data-ru>Сайты и боты</span><span data-de>Web & Bots</span><span data-en>Web & Bots</span></button>
+    <button class="pf-tab" onclick="filterPortfolio('content',this)"><span data-ru>Контент</span><span data-de>Content</span><span data-en>Content</span></button>
+    <button class="pf-tab" onclick="filterPortfolio('design',this)"><span data-ru>Дизайн</span><span data-de>Design</span><span data-en>Design</span></button>
   </div>
   <div class="p-car" id="car">
 
@@ -875,6 +876,7 @@ a[href^="tel"]{color:inherit;text-decoration:none}
       </div>
     </div>
   </div>
+</div><!-- /ft-w -->
 
 
 <!-- FLOAT BTNS -->
@@ -1013,6 +1015,7 @@ function setLang(l){
   document.body.className='lang-'+l;
   document.documentElement.lang=l;
   document.querySelectorAll('.lb,.mob-ls button').forEach(b=>b.classList.toggle('active',b.textContent.trim().toLowerCase()===l));
+  try{localStorage.setItem('lang',l)}catch(e){}
 }
 
 // BURGER
@@ -1049,9 +1052,9 @@ car.addEventListener('mousemove',e=>{if(!drag)return;e.preventDefault();car.scro
 function scrollCar(d){car.scrollBy({left:d*390,behavior:'smooth'})}
 
 // PORTFOLIO FILTER
-function filterPortfolio(cat){
+function filterPortfolio(cat,btn){
   document.querySelectorAll('.pf-tab').forEach(t=>t.classList.remove('active'));
-  event.currentTarget.classList.add('active');
+  btn.classList.add('active');
   document.querySelectorAll('.pc[data-cat]').forEach(c=>{
     if(cat==='all'||c.dataset.cat===cat){c.classList.remove('pf-hidden')}
     else{c.classList.add('pf-hidden')}
@@ -1084,14 +1087,20 @@ window.addEventListener('scroll',()=>{
 // ESC
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.mo.open').forEach(m=>m.classList.remove('open'));closeService();closeLightbox();}});
 
-setLang('de');
+setLang(localStorage.getItem('lang')||'de');
 
 // REVIEW FORM
 function sendReview(){
   const n=document.getElementById('rev-name').value.trim();
   const r=document.getElementById('rev-rating').value;
   const t=document.getElementById('rev-text').value.trim();
-  if(!n||!t){alert('Bitte füllen Sie Name und Bewertung aus.');return}
+  if(!n||!t){
+    const l=document.body.className;
+    if(l.includes('lang-ru'))alert('Пожалуйста, заполните имя и отзыв.');
+    else if(l.includes('lang-en'))alert('Please fill in name and review.');
+    else alert('Bitte füllen Sie Name und Bewertung aus.');
+    return;
+  }
   const stars='★'.repeat(parseInt(r))+'☆'.repeat(5-parseInt(r));
   window.open(`https://wa.me/4915141367080?text=${encodeURIComponent(`Новый отзыв!\nИмя: ${n}\nОценка: ${stars} (${r}/5)\nОтзыв: ${t}`)}`);
   document.getElementById('rev-mo').classList.remove('open');
