@@ -1,10 +1,745 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<title></title>
-</head>
-<body></body>
-</html>
+<title>Гардероб</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1d23;--paper:#f6f5f3;--card:#fff;--line:#e3e1dd;--muted:#8a8d94;--dust:#6e8ca0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:24px 16px 90px}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-weight:500}
+h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,7vw,40px);margin:0 0 4px;letter-spacing:-.01em}
+.count{color:var(--muted);font-size:13px}
+.count b{color:var(--ink);font-weight:600}
+
+.tabs{display:flex;gap:6px;margin:18px 0 4px;border-bottom:1px solid var(--line)}
+.tab{border:none;background:none;padding:9px 2px;margin-right:18px;font-size:14.5px;color:var(--muted);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;font-weight:500}
+.tab.on{color:var(--ink);border-bottom-color:var(--ink)}
+
+.frow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:14px}
+.flabel{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;width:100%;margin-bottom:2px}
+.pill{border:1px solid var(--line);background:var(--card);padding:6px 12px;border-radius:100px;font-size:12.5px;cursor:pointer;color:var(--ink);font-family:inherit;transition:.15s}
+.pill:hover{border-color:var(--dust)}
+.pill.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.divider{height:1px;background:var(--line);margin:20px 0}
+
+.secttl{display:flex;align-items:baseline;gap:9px;margin:26px 0 11px}
+.secttl:first-of-type{margin-top:6px}
+.secttl h2{font-family:'Fraunces',serif;font-weight:500;font-size:19px;margin:0}
+.secttl span{font-size:11.5px;color:var(--muted)}
+.seasontag{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px;font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:12px;perspective:900px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;
+  transform-style:preserve-3d;will-change:transform;
+  transition:transform .18s ease,border-color .15s,box-shadow .18s}
+.card:hover{border-color:var(--dust);box-shadow:0 14px 30px -16px rgba(26,29,35,.45)}
+/* Пока курсор внутри карточки, поворот считает скрипт — плавность там своя. */
+.card.tilting{transition:border-color .15s,box-shadow .18s}
+@media (prefers-reduced-motion:reduce){
+  .card,.card.tilting{transition:border-color .15s}
+  .card{transform:none!important}
+}
+/* Вписываем целиком, а не режем по квадрату: широкие вещи вроде очков
+   при обрезке теряли дужки и вылезали за карточку. */
+.card img{width:100%;aspect-ratio:1;object-fit:contain;display:block;background:#fff;padding:8px}
+.cb{padding:9px 11px 12px}
+.cn{font-size:12.8px;font-weight:500;line-height:1.3;margin-bottom:2px}
+.cm{font-size:11.5px;color:var(--muted)}
+
+/* конструктор */
+.slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:18px}
+.slot{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;text-align:center;cursor:pointer;transition:.15s;position:relative}
+.slot:hover{border-color:var(--dust)}
+.slot .ph{aspect-ratio:1;border-radius:9px;background:#f0efec;display:flex;align-items:center;justify-content:center;color:#b6b8bb;font-size:26px;font-weight:300}
+.slot img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:9px;display:block;background:#fff}
+.slot .lbl{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:7px}
+.slot .val{font-size:12px;margin-top:2px;line-height:1.25;min-height:15px}
+.slot .x{position:absolute;top:12px;right:12px;background:rgba(26,29,35,.75);color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:14px;line-height:1;cursor:pointer;display:none}
+.slot.filled .x{display:block}
+
+.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.btn{flex:1;min-width:130px;padding:12px;border-radius:11px;font-size:14px;cursor:pointer;font-family:inherit;font-weight:500;border:1px solid var(--ink);background:var(--ink);color:var(--paper)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:disabled{opacity:.4;cursor:default}
+
+.hint{margin-top:14px;padding:12px 14px;background:#eeece8;border-radius:11px;font-size:13px;line-height:1.5;color:#4a4d54;border-left:3px solid transparent}
+.hint b{color:var(--ink)}
+.hint ul{margin:6px 0 0;padding-left:18px}
+.hint li{margin:3px 0}
+.hint.bad{background:#fbf0ec;border-left-color:#c2593a;color:#7a3f2b}
+.hint.bad b{color:#a8452a}
+.hint.good{background:#eef3ee;border-left-color:#5f8a63;color:#3f5c42}
+.hint.good b{color:#3d6b42}
+
+.capsules{margin-top:12px}
+.capsule{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+.capsule-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
+.capsule-title{font-family:'Fraunces',serif;font-size:17px;font-weight:500}
+.capsule-season{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+/* Вещи вписываются целиком: фото на белом фоне, обрезать их нельзя. */
+.capsule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:#fbfaf9;border-radius:12px;padding:10px}
+.capsule-piece{display:flex;flex-direction:column;align-items:center}
+.capsule-piece img{width:100%;aspect-ratio:1;object-fit:contain;display:block;background:#fff;border-radius:9px;padding:6px}
+.capsule-piece .pn{font-size:10.5px;line-height:1.3;color:var(--muted);text-align:center;margin-top:5px}
+
+.capsule-note{font-size:12.5px;line-height:1.5;color:#4a4d54;margin:12px 0}
+.capsule-actions{display:flex;gap:8px}
+.capsule-actions .btn{padding:10px;font-size:13px;min-width:0}
+.tally{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+@media(max-width:420px){
+ .capsule{padding:12px}
+ .capsule-grid{gap:7px;padding:8px}
+ .capsule-piece .pn{font-size:9.5px}
+}
+
+.looks{margin-top:26px}
+.look{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
+.look-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.look-name{font-size:14px;font-weight:500}
+.look-del{background:none;border:none;color:var(--muted);font-size:12.5px;cursor:pointer;font-family:inherit;text-decoration:underline}
+.look-imgs{display:flex;gap:6px;overflow:auto}
+.look-imgs img{width:62px;height:62px;object-fit:contain;border-radius:8px;flex-shrink:0;background:#fff;padding:4px;border:1px solid var(--line)}
+
+.empty{text-align:center;padding:44px 20px;color:var(--muted);font-size:13.5px;line-height:1.6}
+
+.overlay{display:none;position:fixed;inset:0;background:rgba(26,29,35,.55);align-items:flex-end;justify-content:center;z-index:50}
+.overlay.open{display:flex}
+.sheet{background:var(--paper);width:100%;max-width:460px;border-radius:20px 20px 0 0;padding:20px 18px 28px;max-height:86vh;overflow:auto;animation:up .2s ease}
+@keyframes up{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
+.sheet>img{width:100%;border-radius:12px;margin-bottom:13px;background:#fff}
+
+/* просмотр вещи с нескольких ракурсов */
+.spin{position:relative;background:#fff;border-radius:12px;margin-bottom:13px;
+  cursor:grab;user-select:none;touch-action:pan-y;overflow:hidden}
+.spin.spinning{cursor:grabbing}
+.spin img{width:100%;display:block;pointer-events:none;-webkit-user-drag:none}
+.spin-hint{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);
+  background:rgba(26,29,35,.72);color:#fff;font-size:11px;letter-spacing:.03em;
+  padding:5px 11px;border-radius:100px;white-space:nowrap;transition:opacity .2s}
+.spin.spinning .spin-hint{opacity:0}
+.spin-dots{position:absolute;left:0;right:0;bottom:12px;display:flex;
+  justify-content:center;gap:5px}
+.spin-dots i{width:5px;height:5px;border-radius:50%;background:#c9c7c3;transition:background .15s}
+.spin-dots i.on{background:var(--ink)}
+.sn{font-family:'Fraunces',serif;font-size:22px;font-weight:500;margin-bottom:11px}
+.sr{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.sr span:first-child{color:var(--muted)}
+.sc{margin-top:15px;width:100%;padding:12px;border:none;border-radius:10px;background:var(--ink);color:var(--paper);font-size:14px;cursor:pointer;font-family:inherit;font-weight:500}
+.picker h3{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin:0 0 12px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.pitem{border:1px solid var(--line);border-radius:11px;overflow:hidden;cursor:pointer;background:var(--card)}
+.pitem img{width:100%;aspect-ratio:1;object-fit:contain;display:block;background:#fff;padding:5px}
+.pitem div{font-size:10.5px;padding:5px 6px;color:var(--muted);line-height:1.25}
+.foot{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+</style></head><body>
+<div class="wrap">
+<div class="eyebrow">Личный архив</div>
+<h1>Гардероб</h1>
+<div class="count"><b id="vc"></b> из <span id="tc"></span> вещей</div>
+
+<div class="tabs">
+  <button class="tab on" id="t1" onclick="setTab('closet')">Вещи</button>
+  <button class="tab" id="t2" onclick="setTab('build')">Собрать образ</button>
+  <button class="tab" id="t3" onclick="setTab('looks')">Мои образы</button>
+  <button class="tab" id="t4" onclick="setTab('gaps')">Чего не хватает</button>
+</div>
+
+<div id="v-closet">
+  <div class="frow" id="cf"><span class="flabel">Категория</span></div>
+  <div class="frow" id="sf"><span class="flabel">Сезон</span></div>
+  <div class="divider"></div>
+  <div id="grid"></div>
+  <div class="empty" id="empty" style="display:none">Ничего не найдено по этим фильтрам</div>
+</div>
+
+<div id="v-build" style="display:none">
+  <div class="frow" id="bf"><span class="flabel">Сезон образа</span></div>
+
+  <div class="secttl" style="margin-top:20px"><h2>Капсулы от стилиста</h2></div>
+  <div class="hint" style="margin-top:0">Подбираю по сочетанию цветов и сезону — всё локально, без интернета и ИИ.</div>
+  <div class="actions" style="margin-top:12px;align-items:center">
+    <button class="btn ghost" onclick="generateAndRenderCapsules()">Пересобрать</button>
+    <span class="tally" id="capTally"></span>
+  </div>
+  <div class="capsules" id="capsules"></div>
+  <div class="actions">
+    <button class="btn ghost" id="moreBtn" onclick="renderMoreCapsules()" hidden>Показать ещё</button>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="secttl"><h2>Собрать вручную</h2></div>
+  <div class="slots" id="slots"></div>
+  <div class="actions">
+    <button class="btn ghost" onclick="shuffle()">Собрать случайно</button>
+    <button class="btn" id="saveBtn" onclick="saveLook()">Сохранить образ</button>
+  </div>
+  <div class="hint" id="hint"></div>
+</div>
+
+<div id="v-looks" style="display:none">
+  <div class="looks" id="looks"></div>
+  <div class="empty" id="looksEmpty">Пока пусто.<br>Собери образ на соседней вкладке — он появится здесь.</div>
+</div>
+
+<div id="v-gaps" style="display:none">
+  <div id="gaps"></div>
+</div>
+
+<div class="foot">Тапни по вещи — откроются детали</div>
+</div>
+
+<div class="overlay" id="ov"><div class="sheet" id="sheet"></div></div>
+
+<script src="items.js"></script>
+<script>
+let items = [];
+
+const SLOTS=[
+ {key:"outer",label:"Верхняя одежда",cats:["Верхняя одежда"]},
+ {key:"top",label:"Верх",cats:["Верх"]},
+ {key:"bottom",label:"Низ / платье",cats:["Низ","Платье"]},
+ {key:"shoes",label:"Обувь",cats:["Обувь"]},
+ {key:"bag",label:"Сумка",cats:["Сумка"]},
+ {key:"jewel",label:"Украшение",cats:["Украшение"]},
+ {key:"extra",label:"Аксессуар",cats:["Аксессуар"]},
+];
+let outfit={outer:null,top:null,bottom:null,shoes:null,bag:null,jewel:null,extra:null};
+let buildSeason="Все";
+let looks=[];
+
+/* ---------- вкладки ---------- */
+function setTab(t){
+ const VIEWS={closet:'t1',build:'t2',looks:'t3',gaps:'t4'};
+ Object.entries(VIEWS).forEach(([v,tab])=>{
+  document.getElementById('v-'+v).style.display = t===v?'block':'none';
+  document.getElementById(tab).classList.toggle('on',t===v);
+ });
+ document.querySelector('.foot').style.display = t==='closet'?'block':'none';
+ if(t==='build'){ renderSlots(); if(!lastCapsules.length) generateAndRenderCapsules(); }
+ if(t==='looks') renderLooks();
+ if(t==='gaps') renderGaps();
+}
+
+/* ---------- фильтры каталога ---------- */
+let aCat="Все", aSeason="Все";
+function mkPills(box,arr,onPick){arr.forEach(v=>{const b=document.createElement('button');b.className='pill';b.textContent=v;b.onclick=()=>onPick(v);box.appendChild(b)})}
+function buildFilters(){
+ const cats=["Все",...new Set(items.map(i=>i.cat))];
+ const seas=["Все",...new Set(items.map(i=>i.season))];
+ mkPills(document.getElementById('cf'),cats,v=>{aCat=v;render()});
+ mkPills(document.getElementById('sf'),seas,v=>{aSeason=v;render()});
+ mkPills(document.getElementById('bf'),seas,v=>{buildSeason=v;renderSlots();generateAndRenderCapsules()});
+}
+
+function render(){
+ document.querySelectorAll('#cf .pill').forEach(p=>p.classList.toggle('active',p.textContent===aCat));
+ document.querySelectorAll('#sf .pill').forEach(p=>p.classList.toggle('active',p.textContent===aSeason));
+ const f=items.filter(i=>(aCat==="Все"||i.cat===aCat)&&(aSeason==="Все"||i.season===aSeason));
+ const g=document.getElementById('grid');g.innerHTML='';
+ document.getElementById('empty').style.display=f.length?'none':'block';
+ document.getElementById('vc').textContent=f.length;
+
+ /* Аксессуары сразу за сумками: очки ближе к сумке, чем к украшениям. */
+ const CAT_ORDER=["Верх","Низ","Платье","Верхняя одежда","Обувь","Сумка","Аксессуар","Украшение"];
+ const CAT_TITLE={"Верхняя одежда":"Верхняя одежда","Верх":"Верх","Низ":"Низ","Платье":"Платья",
+  "Обувь":"Обувь","Сумка":"Сумки","Украшение":"Украшения","Аксессуар":"Аксессуары"};
+ const SEA_ORDER=["Лето","Демисезон","Зима","Всесезон"];
+
+ /* Одна категория — один блок: весь верх вместе, весь низ вместе.
+    Так проще собирать образ. Раньше делили сначала по сезонам, и вещи
+    одного типа расползались по странице: всесезонные джинсы вообще
+    уезжали в самый низ, отдельно от остальных брюк.
+    Сезон внутри блока — только порядком, без отдельных заголовков. */
+ CAT_ORDER.forEach(cat=>{
+   const inCat=f.filter(i=>i.cat===cat)
+     .sort((a,b)=>SEA_ORDER.indexOf(a.season)-SEA_ORDER.indexOf(b.season));
+   if(!inCat.length) return;
+   const t=document.createElement('div');t.className='secttl';
+   t.innerHTML=`<h2>${CAT_TITLE[cat]}</h2><span>${inCat.length}</span>`;
+   g.appendChild(t);
+   const row=document.createElement('div');row.className='grid';
+   inCat.forEach(it=>{const c=document.createElement('div');c.className='card';
+     c.innerHTML=`<img src="${it.img}" alt=""><div class="cb"><div class="cn">${it.name}</div><div class="cm">${it.brand==="—"?it.color:it.brand} · ${it.season.toLowerCase()}</div></div>`;
+     c.onclick=()=>openItem(it);attachTilt(c);row.appendChild(c)});
+   g.appendChild(row);
+ });
+}
+
+/* ---------- конструктор ---------- */
+function poolFor(slot){
+ return items.filter(i=>slot.cats.includes(i.cat) &&
+  (buildSeason==="Все" || i.season===buildSeason || i.season==="Всесезон"));
+}
+function renderSlots(){
+ document.querySelectorAll('#bf .pill').forEach(p=>p.classList.toggle('active',p.textContent===buildSeason));
+ const box=document.getElementById('slots');box.innerHTML='';
+ SLOTS.forEach(s=>{
+  const it=outfit[s.key];
+  const d=document.createElement('div');
+  d.className='slot'+(it?' filled':'');
+  d.innerHTML = (it?`<img src="${it.img}" alt="">`:`<div class="ph">+</div>`)
+   +`<div class="lbl">${s.label}</div><div class="val">${it?it.name:'—'}</div>`
+   +`<button class="x">×</button>`;
+  d.onclick=e=>{
+    if(e.target.classList.contains('x')){outfit[s.key]=null;renderSlots();return}
+    openPicker(s);
+  };
+  box.appendChild(d);
+ });
+ updateHint();
+}
+function openPicker(slot){
+ const pool=poolFor(slot);
+ const sh=document.getElementById('sheet');
+ sh.className='sheet picker';
+ sh.innerHTML=`<h3>${slot.label}</h3>`+
+  (pool.length? `<div class="pgrid">`+pool.map(i=>
+    `<div class="pitem" data-id="${i.id}"><img src="${i.img}"><div>${i.name}</div></div>`).join('')+`</div>`
+   : `<div class="empty">Для этого сезона таких вещей нет.<br>Смени сезон или выбери «Все».</div>`)+
+  `<button class="sc" onclick="closeSheet()">Закрыть</button>`;
+ sh.querySelectorAll('.pitem').forEach(el=>el.onclick=()=>{
+   outfit[slot.key]=items[+el.dataset.id];closeSheet();renderSlots();
+ });
+ document.getElementById('ov').classList.add('open');
+}
+function shuffle(){
+ SLOTS.forEach(s=>{
+   const pool=poolFor(s);
+   if(s.key==='bag'||s.key==='outer'){
+     outfit[s.key]= pool.length && Math.random()>0.25 ? pool[Math.floor(Math.random()*pool.length)] : null;
+   } else {
+     outfit[s.key]= pool.length ? pool[Math.floor(Math.random()*pool.length)] : null;
+   }
+ });
+ renderSlots();
+}
+function updateHint(){
+ const chosen=SLOTS.map(s=>outfit[s.key]).filter(Boolean);
+ const h=document.getElementById('hint');
+ document.getElementById('saveBtn').disabled = chosen.length<2;
+ h.className='hint';
+ if(chosen.length<2){
+  h.innerHTML='Выбери хотя бы <b>две вещи</b> — верх и низ, например. Или нажми «Собрать случайно».';
+  return;
+ }
+
+ const problems=checkOutfit(chosen);
+ if(problems.length){
+  h.className='hint bad';
+  h.innerHTML='<b>Так не сочетается:</b><ul>'+
+    problems.map(p=>`<li>${p}</li>`).join('')+'</ul>';
+  return;
+ }
+
+ const brights=chosen.filter(c=>tone(c.color)==='bright');
+ h.className='hint good';
+ h.innerHTML='<b>Образ собран.</b> '+(brights.length===1
+   ? `Один акцент — ${brights[0].color.toLowerCase()} — на нейтральной базе.`
+   : 'Всё в нейтральной базе. Можно добавить одно яркое пятно — фуксию, мятную шапку или голубую сумку.');
+}
+
+/* ---------- капсулы от стилиста ---------- */
+const NEUTRAL=/белый|молочный|серый|серо-бежевый|бежевый|чёрный|тёмно-синий|тёмно-серый|синий|коричневый|шоколадный|серебро|жемчуг|розовое золото/;
+const BRIGHT=/фуксия|розовый|мятный|голубой|бордовый|хаки|жжёный баклажан|аметист/;
+const WARM=/бежевый|коричневый|шоколадный|серо-бежевый|молочный|хаки|бордовый/;
+const COOL=/синий|тёмно-синий|голубой|мятный|серый|тёмно-серый|серебро/;
+
+const tone=c=>{const s=c.toLowerCase();return BRIGHT.test(s)&&!NEUTRAL.test(s)?'bright':'neutral'};
+const temp=c=>{const s=c.toLowerCase();return WARM.test(s)?'warm':COOL.test(s)?'cool':'any'};
+
+/* Сезон соблюдается строго. Раньше бралась и соседняя пора — из-за этого
+   к лёгкой кофте прилетали зимние ботинки. Всесезонное (джинсы, сумки,
+   украшения) подходит к любому сезону. */
+
+/* Пока отложено — в капсулы не идёт. Убрать название, когда понадобится. */
+const PAUSED=["Пуховик короткий","Пуховик длинный",
+              "Ботинки челси","Сапоги высокие","Угги Ultra Mini"];
+
+let lastCapsules=[];
+
+const WNAME={1:'лёгкая',2:'средняя',3:'плотная'};
+
+/* Разбор образа: что не так и почему. Одна функция и для капсул,
+   и для ручной сборки — иначе правила разъедутся. */
+function checkOutfit(pieces){
+ const problems=[];
+ const find=c=>pieces.find(p=>p.cat===c);
+
+ /* Лето и демисезон носятся вместе, зима с летом — нет. */
+ const seasons=new Set(pieces.map(p=>p.season).filter(s=>s!=='Всесезон'));
+ if(seasons.has('Лето')&&seasons.has('Зима')){
+  const s=pieces.filter(p=>p.season==='Лето').map(p=>p.name.toLowerCase())[0];
+  const w=pieces.filter(p=>p.season==='Зима').map(p=>p.name.toLowerCase())[0];
+  problems.push(`${s} и ${w} — это разные сезоны`);
+ }
+
+ /* Массивная обувь спорит с лёгким летним низом: лоферы на плотной подошве
+    к льняным брюкам не идут, даже если по цвету всё сходится. */
+ const base=find('Платье')||find('Низ');
+ const shoe=find('Обувь');
+ if(base&&shoe&&Math.abs(base.weight-shoe.weight)>1){
+  const heavy=shoe.weight>base.weight?shoe:base, light=shoe.weight>base.weight?base:shoe;
+  problems.push(`${heavy.name.toLowerCase()} — ${WNAME[heavy.weight]}, а ${light.name.toLowerCase()} — ${WNAME[light.weight]}: смотрится из разной погоды`);
+ }
+ const top=find('Верх');
+ if(top&&base&&base.cat==='Низ'&&Math.abs(top.weight-base.weight)>1){
+  problems.push(`${top.name.toLowerCase()} и ${base.name.toLowerCase()} разной плотности`);
+ }
+
+ /* Чёрную кожаную сумку нужно чем-то поддержать — к лёгкому платью
+    в одиночку она не идёт. */
+ const blackBag=pieces.find(p=>p.cat==='Сумка'&&/чёрн/i.test(p.color));
+ if(blackBag && !pieces.some(p=>p!==blackBag&&/чёрн/i.test(p.color)))
+  problems.push('чёрная сумка одна во всём образе — её нужно поддержать чёрным');
+
+ const brights=pieces.filter(p=>tone(p.color)==='bright');
+ if(brights.length>1)
+  problems.push('два ярких цвета сразу: '+brights.map(b=>b.color.toLowerCase()).join(' и '));
+
+ const temps=pieces.map(p=>temp(p.color)).filter(t=>t!=='any');
+ if(temps.includes('warm')&&temps.includes('cool'))
+  problems.push('тёплые и холодные оттенки в одном образе');
+
+ return problems;
+}
+
+function scoreOutfit(pieces){
+ if(checkOutfit(pieces).length) return -1;
+
+ const brights=pieces.filter(p=>tone(p.color)==='bright');
+ let score=10;
+ const notes=[];
+
+ if(brights.length===1){score+=4;notes.push(`акцент — ${brights[0].color.toLowerCase()} (${brights[0].name.toLowerCase()})`)}
+ else notes.push('вся база нейтральная — спокойно и универсально');
+
+ const temps=pieces.map(p=>temp(p.color)).filter(t=>t!=='any');
+ const warm=temps.filter(t=>t==='warm').length, cool=temps.filter(t=>t==='cool').length;
+ if(warm&&cool) score-=3; else if(warm||cool){score+=3;notes.push(warm?'тёплая гамма':'холодная гамма')}
+
+ if(pieces.some(p=>p.cat==='Украшение')) score+=1;
+ /* Платье — уже готовый образ, ему не нужно подбирать низ. */
+ if(pieces.some(p=>p.cat==='Платье')) score+=2;
+ return {score,note:notes.join(', ')};
+}
+
+function buildCapsules(season,limit){
+ /* «Лето» показывает и демисезонное — свитшоты, брюки, лоферы.
+    Зимнее сюда не попадёт: его отсекает проверка сезонов в scoreOutfit. */
+ const fit=i=>season==='Все'||i.season===season||i.season==='Всесезон'||
+   (season==='Лето'&&i.season==='Демисезон')||(season==='Демисезон'&&i.season==='Лето');
+ const pool=c=>items.filter(i=>fit(i)&&c.includes(i.cat)&&!PAUSED.includes(i.name));
+ const tops=pool(['Верх']), bottoms=pool(['Низ']), dresses=pool(['Платье']),
+       shoes=pool(['Обувь']), bags=pool(['Сумка']), jewels=pool(['Украшение']),
+       extras=pool(['Аксессуар']), outers=pool(['Верхняя одежда']);
+
+ /* Платья идут первыми: при равном счёте они должны попадать в выдачу,
+    иначе их всегда вытесняют комплекты «верх + низ», которых кратно больше. */
+ const bases=[];
+ dresses.forEach(d=>bases.push([d]));
+ tops.forEach(t=>bottoms.forEach(b=>bases.push([t,b])));
+
+ const out=[];
+ bases.forEach(base=>{
+  shoes.forEach(sh=>{
+   const core=[...base,sh];
+   if(scoreOutfit(core)===-1) return;
+   bags.concat([null]).forEach(bag=>{
+    const withBag=bag?[...core,bag]:core;
+    if(bag&&scoreOutfit(withBag)===-1) return;
+    jewels.concat([null]).forEach(jew=>{
+     const withJew=jew?[...withBag,jew]:withBag;
+     if(jew&&scoreOutfit(withJew)===-1) return;
+     extras.concat([null]).forEach(ex=>{
+      const withEx=ex?[...withJew,ex]:withJew;
+      if(ex&&scoreOutfit(withEx)===-1) return;
+      const needOuter=(season==='Зима'||season==='Демисезон');
+      (needOuter?outers.concat([null]):[null]).forEach(o=>{
+       const full=o?[...withEx,o]:withEx;
+       if(full.length<3) return; /* из двух вещей капсула выглядит куцей */
+       const fr=scoreOutfit(full);
+       if(fr===-1) return;
+       out.push({pieces:full,score:fr.score,note:fr.note,season});
+      });
+     });
+    });
+   });
+  });
+ });
+
+ out.sort((a,b)=>b.score-a.score);
+
+ /* Показываем немного капсул, но чтобы все они были разные: своё украшение,
+    своя обувь, свой верх и низ. Сотня вариантов, отличающихся браслетом,
+    бесполезна — по такой выдаче не видно, с чем вещь вообще работает.
+    Перебираем все варианты целиком, не отбирая заранее лучший по базе:
+    иначе запасные украшения теряются и в выдачу идёт один и тот же браслет. */
+ const UNIQUE=["Верх","Низ","Платье","Обувь","Украшение","Аксессуар"];
+ const picked=[], used=new Set();
+ while(picked.length<limit){
+  let best=null,bestVal=-Infinity;
+  for(const c of out){
+   if(c.pieces.some(p=>UNIQUE.includes(p.cat)&&used.has(p.id))) continue;
+   /* при равных баллах вперёд идут капсулы с украшением и сумкой */
+   const val=c.score+c.pieces.length;
+   if(val>bestVal){bestVal=val;best=c}
+  }
+  if(!best) break;
+  best.pieces.forEach(p=>{if(UNIQUE.includes(p.cat)) used.add(p.id)});
+  picked.push(best);
+ }
+ return picked;
+}
+
+const PAGE=12;
+let shown=0;
+
+function generateAndRenderCapsules(){
+ lastCapsules=buildCapsules(buildSeason,6);
+ shown=0;
+ document.getElementById('capsules').innerHTML='';
+ const t=document.getElementById('capTally');
+ if(!lastCapsules.length){
+  document.getElementById('capsules').innerHTML='<div class="empty">Для этого сезона капсулу не собрать — вещей мало или цвета спорят. Попробуй другой сезон.</div>';
+  t.textContent='';
+  document.getElementById('moreBtn').hidden=true;
+  return;
+ }
+ renderMoreCapsules();
+}
+
+function renderMoreCapsules(){
+ const box=document.getElementById('capsules');
+ /* Порядок в раскладке — как одеваешься: верх, низ, обувь, потом мелочи. */
+ const LAY=["Верхняя одежда","Верх","Платье","Низ","Обувь","Сумка","Украшение","Аксессуар"];
+ lastCapsules.slice(shown,shown+PAGE).forEach((c,i)=>{
+  const idx=shown+i;
+  const d=document.createElement('div');d.className='capsule';
+  const ordered=[...c.pieces].sort((a,b)=>LAY.indexOf(a.cat)-LAY.indexOf(b.cat));
+  const imgs=ordered.map(p=>
+    `<div class="capsule-piece"><img src="${p.img}" alt="${p.name}"><div class="pn">${p.name}</div></div>`).join('');
+  d.innerHTML=`<div class="capsule-head"><div class="capsule-title">Капсула ${idx+1}</div><div class="capsule-season">${c.season}</div></div>
+   <div class="capsule-grid">${imgs}</div>
+   <div class="capsule-note">${c.note}</div>
+   <div class="capsule-actions">
+     <button class="btn ghost" data-act="try">В конструктор</button>
+     <button class="btn" data-act="save">Сохранить</button>
+   </div>`;
+  d.querySelector('[data-act="try"]').onclick=()=>applyCapsule(idx);
+  d.querySelector('[data-act="save"]').onclick=()=>saveCapsule(idx);
+  box.appendChild(d);
+ });
+ shown=Math.min(shown+PAGE,lastCapsules.length);
+ const n=lastCapsules.length;
+ document.getElementById('capTally').textContent=
+   `${n} капс${n===1?'ула':n<5?'улы':'ул'} · в каждой своё украшение и обувь`;
+ document.getElementById('moreBtn').hidden = shown>=n;
+}
+
+function applyCapsule(idx){
+ outfit={outer:null,top:null,bottom:null,shoes:null,bag:null};
+ lastCapsules[idx].pieces.forEach(p=>{
+  const s=SLOTS.find(s=>s.cats.includes(p.cat));
+  if(s) outfit[s.key]=p;
+ });
+ renderSlots();
+ document.getElementById('slots').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+async function saveCapsule(idx){
+ const c=lastCapsules[idx];
+ looks.unshift({name:'Капсула '+(looks.length+1),season:buildSeason,ids:c.pieces.map(p=>p.id)});
+ await persist();
+ setTab('looks');
+}
+
+/* ---------- образы ---------- */
+async function loadLooks(){
+ try{looks=JSON.parse(localStorage.getItem('looks')||'[]')}catch(e){looks=[]}
+}
+async function persist(){
+ try{localStorage.setItem('looks',JSON.stringify(looks))}catch(e){}
+}
+async function saveLook(){
+ const chosen=SLOTS.filter(s=>outfit[s.key]).map(s=>outfit[s.key].id);
+ if(chosen.length<2)return;
+ looks.unshift({name:'Образ '+(looks.length+1),season:buildSeason,ids:chosen});
+ await persist();
+ setTab('looks');
+}
+function renderLooks(){
+ const box=document.getElementById('looks');box.innerHTML='';
+ document.getElementById('looksEmpty').style.display=looks.length?'none':'block';
+ looks.forEach((l,idx)=>{
+  const d=document.createElement('div');d.className='look';
+  d.innerHTML=`<div class="look-top"><div class="look-name">${l.name} · <span style="color:var(--muted);font-weight:400">${l.season}</span></div>
+   <button class="look-del">удалить</button></div>
+   <div class="look-imgs">${l.ids.map(i=>`<img src="${items[i].img}">`).join('')}</div>`;
+  d.querySelector('.look-del').onclick=async()=>{looks.splice(idx,1);await persist();renderLooks()};
+  box.appendChild(d);
+ });
+}
+
+/* ---------- поворот карточки за курсором ----------
+   Настоящего 3D тут быть не может: фото у вещи одно, с одного ракурса.
+   Поэтому наклоняем саму карточку в пространстве — вещь как будто
+   лежит на столе и поворачивается под взглядом. */
+const CAN_TILT = window.matchMedia('(hover: hover)').matches &&
+                 !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MAX_TILT = 9;
+
+function attachTilt(el){
+ if(!CAN_TILT) return;
+ el.addEventListener('mouseenter',()=>el.classList.add('tilting'));
+ el.addEventListener('mousemove',e=>{
+  const r=el.getBoundingClientRect();
+  const px=(e.clientX-r.left)/r.width-0.5;
+  const py=(e.clientY-r.top)/r.height-0.5;
+  el.style.transform=
+    `rotateX(${(-py*MAX_TILT).toFixed(2)}deg) rotateY(${(px*MAX_TILT).toFixed(2)}deg) translateZ(6px)`;
+ });
+ el.addEventListener('mouseleave',()=>{
+  el.classList.remove('tilting');
+  el.style.transform='';
+ });
+}
+
+/* ---------- чего не хватает ----------
+   Считаем не «сколько вещей», а сколько образов вещь реально даёт.
+   Пробел — это не пустая полка, а место, где сочетания упираются. */
+function renderGaps(){
+ const box=document.getElementById('gaps');box.innerHTML='';
+ const live=items.filter(i=>!PAUSED.includes(i.name));
+ const of=cat=>live.filter(i=>i.cat===cat);
+ const summer=i=>i.season==='Лето'||i.season==='Всесезон';
+
+ const found=[];
+
+ /* Сколько капсул вообще собирается — упор виден сразу. */
+ const caps=buildCapsules('Лето',99).length;
+
+ const sumShoes=of('Обувь').filter(summer);
+ const lightShoes=sumShoes.filter(i=>i.weight===1);
+ if(lightShoes.length<3) found.push({t:'Лёгкая летняя обувь',
+  w:`Лёгкой обуви на жару всего ${lightShoes.length}. Массивные лоферы и сабо к льняным брюкам не идут, и половина летнего низа остаётся без пары.`,
+  a:'Плетёные сандалии или лёгкие босоножки на плоской подошве, в бежевом или молочном.'});
+
+ const bags=of('Сумка');
+ const lightBag=bags.filter(i=>i.weight===1&&!/чёрн/i.test(i.color));
+ if(lightBag.length<2) found.push({t:'Светлая летняя сумка',
+  w:`Сумок ${bags.length}: чёрная кожаная и голубая. Чёрная требует поддержки чёрным, поэтому к платью и светлым брюкам подходит только голубая.`,
+  a:'Соломенная или тканевая сумка в бежевом, молочном или карамельном — она подойдёт ко всему летнему.'});
+
+ const dresses=of('Платье');
+ if(dresses.length<3) found.push({t:'Платья',
+  w:`Платье всего ${dresses.length===1?'одно':dresses.length}. Летом это самый быстрый готовый образ, а собирать приходится из верха и низа.`,
+  a:'Простое платье в нейтральном — молочном, бежевом или тёмно-синем. Оно закроет и работу, и выход.'});
+
+ const sumOuter=of('Верхняя одежда').filter(summer);
+ if(!sumOuter.length) found.push({t:'Лёгкий верхний слой',
+  w:'На лето верхнего слоя нет вообще: блейзер демисезонный, остальное зимнее. В прохладный вечер накинуть нечего.',
+  a:'Льняная рубашка навыпуск или лёгкий тренч — заодно свяжет летние вещи с демисезонными.'});
+
+ const warmTops=of('Верх').filter(i=>summer(i)&&i.weight===1);
+ if(warmTops.length<4) found.push({t:'Летний верх',
+  w:`Лёгких верхов ${warmTops.length}, и все — футболки. Свитшоты плотные, они уже про осень.`,
+  a:'Майка или блуза на бретелях, плюс рубашка из хлопка. Разнообразят силуэт, а не только цвет.'});
+
+ const head=document.createElement('div');
+ head.className='hint';
+ head.innerHTML=`Сейчас из твоих вещей собирается <b>${caps}</b> летних капсул${caps===1?'а':caps<5?'ы':''}. `+
+   (found.length?`Вот что ограничивает их сильнее всего.`:`Пробелов не видно — база закрыта.`);
+ box.appendChild(head);
+
+ found.forEach(g=>{
+  const d=document.createElement('div');
+  d.className='look';
+  d.innerHTML=`<div class="look-name" style="margin-bottom:6px">${g.t}</div>
+   <div style="font-size:12.5px;line-height:1.55;color:var(--muted);margin-bottom:8px">${g.w}</div>
+   <div style="font-size:12.5px;line-height:1.55"><b>Что искать:</b> ${g.a}</div>`;
+  box.appendChild(d);
+ });
+}
+
+/* ---------- карточка вещи ---------- */
+/* Вещь с несколькими ракурсами крутится перетаскиванием.
+   Ракурсы берутся из поля imgs в items.js — по кругу, слева направо.
+   Если снимок один, показываем его обычной картинкой. */
+function shotsOf(it){ return (it.imgs && it.imgs.length) ? it.imgs : [it.img]; }
+
+function openItem(it){
+ const sh=document.getElementById('sheet');sh.className='sheet';
+ const shots=shotsOf(it);
+ const viewer = shots.length>1
+  ? `<div class="spin" id="spin">
+       <img src="${shots[0]}" id="spinImg" alt="${it.name}" draggable="false">
+       <div class="spin-hint">Потяни, чтобы повернуть</div>
+       <div class="spin-dots">${shots.map((_,i)=>`<i${i?'':' class="on"'}></i>`).join('')}</div>
+     </div>`
+  : `<img src="${it.img}" alt="${it.name}">`;
+
+ sh.innerHTML=`${viewer}<div class="sn">${it.name}</div><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:-6px 0 12px">${it.cat}</div>
+  <div class="sr"><span>Бренд</span><span>${it.brand}</span></div>
+  <div class="sr"><span>Цвет</span><span>${it.color}</span></div>
+  <div class="sr"><span>Сезон</span><span>${it.season}</span></div>
+  <div class="sr" style="border:none"><span>Ракурсов</span><span>${shots.length===1?'один снимок':shots.length}</span></div>
+  <button class="sc" onclick="closeSheet()">Закрыть</button>`;
+
+ if(shots.length>1) attachSpin(document.getElementById('spin'),shots);
+ document.getElementById('ov').classList.add('open');
+}
+
+function attachSpin(box,shots){
+ const img=box.querySelector('#spinImg');
+ const dots=[...box.querySelectorAll('.spin-dots i')];
+ let frame=0, dragging=false, startX=0, startFrame=0;
+
+ /* Ширину карточки делим на количество ракурсов: протянул от края
+    до края — обошёл вещь кругом. */
+ const show=n=>{
+  const total=shots.length;
+  frame=((n%total)+total)%total;
+  img.src=shots[frame];
+  dots.forEach((d,i)=>d.classList.toggle('on',i===frame));
+ };
+ const step=()=>Math.max(24, box.clientWidth/shots.length);
+
+ const down=e=>{
+  dragging=true; startX=(e.touches?e.touches[0]:e).clientX; startFrame=frame;
+  box.classList.add('spinning');
+ };
+ const move=e=>{
+  if(!dragging) return;
+  const x=(e.touches?e.touches[0]:e).clientX;
+  show(startFrame+Math.round((x-startX)/step()));
+  e.preventDefault();
+ };
+ const up=()=>{dragging=false;box.classList.remove('spinning')};
+
+ box.addEventListener('mousedown',down);
+ box.addEventListener('touchstart',down,{passive:true});
+ window.addEventListener('mousemove',move);
+ box.addEventListener('touchmove',move,{passive:false});
+ window.addEventListener('mouseup',up);
+ box.addEventListener('touchend',up);
+}
+function closeSheet(){document.getElementById('ov').classList.remove('open')}
+document.getElementById('ov').addEventListener('click',e=>{if(e.target.id==='ov')closeSheet()});
+
+async function boot(){
+  items=ITEMS;
+  items.forEach((it,i)=>it.id=i);
+  document.getElementById('tc').textContent=items.length;
+  buildFilters();
+  render();
+  await loadLooks();
+}
+boot();
+</script></body></html>
