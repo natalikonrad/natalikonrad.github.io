@@ -11,7 +11,7 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const BOOK = path.resolve(HERE, '..');
 const cfg = JSON.parse(fs.readFileSync(path.join(BOOK, 'book.config.json'), 'utf8'));
 
-const CALLOUTS = { note: 'Важно', practice: 'Практика', personal: 'Черновик — заполнить' };
+const CALLOUTS = { note: 'Важно', practice: 'Практика', story: 'Мой опыт', personal: 'Черновик — заполнить' };
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const slug = s => 'ch-' + s.toLowerCase().replace(/[^a-zа-яё0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,40);
 
@@ -185,7 +185,23 @@ td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);vertical-align:t
 .c-practice td{border-bottom-color:rgba(255,255,255,.13)}
 .c-practice th{color:var(--gold-2);border-bottom-color:rgba(181,160,128,.5)}
 .c-practice li::marker{color:var(--gold-2)}
+.c-story{background:var(--surface);border-left:2px solid var(--accent);
+  font-family:'Cormorant',Georgia,serif;font-size:20px;line-height:1.5}
+.c-story .c-label{font-family:'DM Sans',sans-serif;font-size:10.5px}
 .c-personal{border:1px dashed var(--accent);background:transparent;color:var(--muted);font-style:italic}
+
+.figure{margin:34px 0;text-align:center}
+.figure svg{width:100%;height:auto;max-width:600px}
+.figure figcaption{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.5}
+.dg-axis{stroke:var(--accent);stroke-width:1;stroke-dasharray:3 3}
+.dg-body{fill:none;stroke:var(--fg);stroke-width:1.6;stroke-linejoin:round}
+.dg-dot{fill:var(--accent)}
+.dg-box{fill:none;stroke:var(--rule);stroke-width:1}
+.dg-cap{font-family:'DM Sans',sans-serif;font-size:11px;fill:var(--fg);font-weight:600}
+.dg-key{font-family:'DM Sans',sans-serif;font-size:10.5px;fill:var(--muted)}
+.dg-fl{font-family:'Cormorant',serif;font-size:17px;fill:var(--accent)}
+.dg-brk{fill:none;stroke:var(--accent);stroke-width:1.2}
+.dg-brk-l{fill:none;stroke:var(--rule);stroke-width:1.2}
 
 /* ---- служебное ---- */
 .tools{position:fixed;right:20px;bottom:20px;display:flex;gap:8px;z-index:50}

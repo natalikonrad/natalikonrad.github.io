@@ -15,6 +15,8 @@ toc: Почему лицо «съезжает»
 
 ## Четыре этажа
 
+<figure class="figure"><svg viewBox="0 0 640 268" role="img" aria-label="Четыре этажа лица: кожа, мышцы, жир, кость"><rect class="dg-box" x="4" y="14" width="452" height="46" rx="3"/><text class="dg-fl" x="22" y="43">Кожа</text><text class="dg-key" x="104" y="43">коллаген, барьер, фотостарение</text><rect class="dg-box" x="4" y="72" width="452" height="46" rx="3"/><text class="dg-fl" x="22" y="101">Мышцы</text><text class="dg-key" x="104" y="101">вплетены в кожу; тонус и гипертонус</text><rect class="dg-box" x="4" y="130" width="452" height="46" rx="3"/><text class="dg-fl" x="22" y="159">Жир</text><text class="dg-key" x="104" y="159">отдельные пакеты: верхние пустеют, нижние опускаются</text><rect class="dg-box" x="4" y="188" width="452" height="46" rx="3"/><text class="dg-fl" x="22" y="217">Кость</text><text class="dg-key" x="104" y="217">глазница шире, челюсть ниже — каркас уменьшается</text><path class="dg-brk" d="M468,16 h8 v44 h-8"/><text class="dg-cap" x="484" y="42">уход работает здесь</text><path class="dg-brk-l" d="M468,78 h8 v164 h-8"/><text class="dg-key" x="484" y="164">а стареет всё сразу</text></svg><figcaption>Старение идёт на четырёх этажах одновременно. Наружные средства достают только до верхнего.</figcaption></figure>
+
 **Кость.** Череп не статичен. Костная ткань перестраивается всю жизнь, и после
 тридцати баланс смещается в сторону убыли. Глазница расширяется, угол нижней
 челюсти становится тупее, высота её тела уменьшается, рассасывается край

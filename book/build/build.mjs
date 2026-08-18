@@ -58,7 +58,7 @@ function parseFrontMatter(src) {
 }
 
 /** ::: note / practice / personal … ::: → врезки */
-const CALLOUT_LABELS = { note: 'Важно', practice: 'Практика', personal: 'Черновик — заполнить' };
+const CALLOUT_LABELS = { note: 'Важно', practice: 'Практика', story: 'Мой опыт', personal: 'Черновик — заполнить' };
 
 function expandCallouts(md) {
   return md.replace(/^::: *(\w+)\r?\n([\s\S]*?)^::: *$/gm, (_, kind, inner) => {
