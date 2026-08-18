@@ -5,3 +5,4 @@
 book/build/node_modules/
 book/source/*
 !book/source/README.md
+book/dist/*.html
