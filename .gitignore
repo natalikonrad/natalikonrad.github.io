@@ -1,2 +1,7 @@
 .claude/
 .DS_Store
+
+# книга
+book/build/node_modules/
+book/source/*
+!book/source/README.md
